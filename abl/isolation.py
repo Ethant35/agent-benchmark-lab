@@ -2,6 +2,9 @@
 import io
 import json
 import os
+import selectors
+import signal
+import hashlib
 from pathlib import Path
 import shutil
 import subprocess
@@ -11,6 +14,12 @@ import time
 class BoundaryError(RuntimeError): pass
 class TrialTimeout(RuntimeError): pass
 class TrialCancelled(RuntimeError): pass
+class OutputLimit(BoundaryError): pass
+class ArtifactLimit(BoundaryError): pass
+
+OUTPUT_LIMIT = 2_000_000
+RETAIN_LIMIT = 200_000
+ARTIFACT_LIMIT = 64_000_000
 
 
 def runtime_name(preferred='auto'):
@@ -40,7 +49,7 @@ class Sandbox:
     def __init__(self,runtime,image,trial_id,deadline,cancelled):
         self.runtime=runtime; self.image=image; self.name='abl-'+trial_id
         self.volume=self.name+'-work'; self.verifier_name=self.name+'-verify'
-        self.deadline=deadline; self.cancelled=cancelled; self.image_id=None
+        self.deadline=deadline; self.cancelled=cancelled; self.image_id=None; self.artifact=None
     def check(self):
         if self.cancelled(): raise TrialCancelled('Cancellation requested')
         if time.monotonic()>self.deadline: raise TrialTimeout('Trial runtime exceeded')
@@ -63,31 +72,101 @@ class Sandbox:
             'chmod 777 /workspace && tar --no-same-owner -xf - -C /workspace && chmod -R a+rwX /workspace'],input=archive_tree(fixture))
         self.check()
         self.raw(['run','-d',*self.flags(self.name),self.image,'sleep','infinity'])
-    def command(self,args,container=None,user=None):
-        self.check(); start=time.monotonic()
-        command=[self.runtime,'exec']
-        if user: command += ['--user',user]
-        command += [container or self.name,*args]
-        # Temporary files cap in-memory output; hard output limit aborts the trial.
-        import tempfile
-        with tempfile.TemporaryFile() as stdout, tempfile.TemporaryFile() as stderr:
-            p=subprocess.Popen(command,stdout=stdout,stderr=stderr,start_new_session=True)
-            try:
+    @staticmethod
+    def terminate_client(process):
+        # The CLI's process group belongs to this call; never signal the caller.
+        if process.poll() is None:
+            try: os.killpg(process.pid, signal.SIGTERM)
+            except ProcessLookupError: pass
+            try: process.wait(timeout=1)
+            except subprocess.TimeoutExpired:
+                try: os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError: pass
+                process.wait(timeout=2)
+
+    def collect(self, args, *, sink=None, deadline=None):
+        """Drain both pipes through EOF, including bytes buffered after fast exit.
+
+        Only a bounded prefix stays in RAM. A binary sink never receives bytes
+        above ARTIFACT_LIMIT. Observed byte counts are lower bounds on abort.
+        """
+        started=time.monotonic()
+        counts={'stdout':0,'stderr':0}; retained={'stdout':bytearray(),'stderr':bytearray()}
+        written=0; digest=hashlib.sha256(); limit_exceeded=False; complete=False
+        p=subprocess.Popen([self.runtime,*args],stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+            stdin=subprocess.DEVNULL,start_new_session=True,bufsize=0)
+        def result():
+            return dict(exit_code=p.returncode,stdout=retained['stdout'].decode(errors='replace'),
+                stderr=retained['stderr'].decode(errors='replace'),seconds=time.monotonic()-started,
+                stdout_bytes=counts['stdout'],stderr_bytes=counts['stderr'],
+                stdout_retained_bytes=len(retained['stdout']),stderr_retained_bytes=len(retained['stderr']),
+                stdout_truncated=counts['stdout']>len(retained['stdout']),
+                stderr_truncated=counts['stderr']>len(retained['stderr']),
+                output_complete=complete,limit_exceeded=limit_exceeded,
+                byte_count_source='host pipe bytes observed; lower bound when output_complete=false',
+                bytes_written=written,sha256=digest.hexdigest() if complete and sink is not None else None)
+        try:
+            with selectors.DefaultSelector() as selector:
+                for name,pipe in [('stdout',p.stdout),('stderr',p.stderr)]:
+                    os.set_blocking(pipe.fileno(),False)
+                    selector.register(pipe,selectors.EVENT_READ,name)
+                while selector.get_map():
+                    self.check()
+                    if deadline is not None and time.monotonic()>deadline:
+                        raise TrialTimeout('Artifact collection deadline exceeded')
+                    for key,_ in selector.select(timeout=.05):
+                        name=key.data
+                        if sink is not None and name=='stdout':
+                            allowance=ARTIFACT_LIMIT-counts['stdout']+1
+                        elif sink is not None:
+                            allowance=OUTPUT_LIMIT-counts['stderr']+1
+                        else:
+                            allowance=OUTPUT_LIMIT-sum(counts.values())+1
+                        try: chunk=os.read(key.fd,min(65536,max(1,allowance)))
+                        except BlockingIOError: continue
+                        if not chunk:
+                            selector.unregister(key.fileobj); key.fileobj.close(); continue
+                        counts[name]+=len(chunk)
+                        if sink is not None and name=='stdout':
+                            accepted=chunk[:max(0,ARTIFACT_LIMIT-written)]
+                            sink.write(accepted); digest.update(accepted); written+=len(accepted)
+                            if counts['stdout']>ARTIFACT_LIMIT:
+                                limit_exceeded=True
+                                raise ArtifactLimit('Artifact stream exceeded 64,000,000 bytes')
+                        else:
+                            retained[name].extend(chunk[:max(0,RETAIN_LIMIT-len(retained[name]))])
+                            used=counts['stderr'] if sink is not None else sum(counts.values())
+                            if used>OUTPUT_LIMIT:
+                                limit_exceeded=True
+                                raise OutputLimit('Combined tool output exceeded 2,000,000 bytes')
+                # A child can close its pipes while it keeps running.
                 while p.poll() is None:
                     self.check()
-                    if stdout.tell()+stderr.tell()>2_000_000:
-                        raise BoundaryError('Tool output exceeded 2 MB')
+                    if deadline is not None and time.monotonic()>deadline:
+                        raise TrialTimeout('Artifact collection deadline exceeded')
                     time.sleep(.05)
-                stdout.seek(0); stderr.seek(0)
-                return dict(exit_code=p.returncode,stdout=stdout.read(200_000).decode(errors='replace'),
-                    stderr=stderr.read(200_000).decode(errors='replace'),seconds=time.monotonic()-start)
-            except BaseException:
-                p.terminate()
-                try: p.wait(timeout=2)
-                except subprocess.TimeoutExpired: p.kill(); p.wait()
-                # Stop all descendants inside container, not only the exec client.
-                subprocess.run([self.runtime,'kill',container or self.name],capture_output=True,timeout=15)
-                raise
+            complete=True
+            return result()
+        except BaseException as error:
+            self.terminate_client(p)
+            error.result=result()
+            raise
+        finally:
+            for pipe in (p.stdout,p.stderr):
+                if not pipe.closed: pipe.close()
+
+    def command(self,args,container=None,user=None):
+        self.check()
+        command=['exec']
+        if user: command += ['--user',user]
+        command += [container or self.name,*args]
+        try:
+            return self.collect(command)
+        except BaseException:
+            # Terminating the client alone does not terminate container work.
+            try: subprocess.run([self.runtime,'kill',container or self.name],capture_output=True,timeout=15)
+            except (OSError,subprocess.TimeoutExpired): pass
+            raise
     def tool(self,name,args):
         if name=='shell': return self.command(['sh','-c',args['command']])
         if name=='finish': return dict(exit_code=0,stdout=args.get('message','Finished'),stderr='',seconds=0)
@@ -101,11 +180,30 @@ else:
         if name not in ('read_file','write_file'): raise ValueError('Unknown tool')
         return self.command(['python','-c',script,json.dumps(args),name])
     def snapshot(self,output):
-        # Keep tar as opaque bytes. Never extract untrusted symlinks on the host.
-        with output.open('wb') as f:
-            p=subprocess.run([self.runtime,'cp',self.name+':/workspace/.','-'],stdout=f,stderr=subprocess.PIPE,timeout=20)
-        if p.returncode: raise BoundaryError('Could not preserve workspace artifacts')
-        if output.stat().st_size>64_000_000: raise BoundaryError('Artifacts exceed 64 MB')
+        # Never extract untrusted paths. Publish only complete, bounded archives.
+        partial=output.with_suffix(output.suffix+'.partial')
+        self.artifact={'status':'collecting','bytes_written':0,'limit_bytes':ARTIFACT_LIMIT,
+            'source':'host-observed container tar stream'}
+        try:
+            self.check()
+            with partial.open('xb') as f:
+                result=self.collect(['cp',self.name+':/workspace/.','-'],sink=f,
+                    deadline=min(self.deadline,time.monotonic()+20))
+            if result['exit_code']:
+                error=BoundaryError('Could not preserve workspace artifacts')
+                error.result=result; raise error
+            os.replace(partial,output)
+            self.artifact.update(status='complete',bytes_written=result['bytes_written'],
+                bytes_observed=result['stdout_bytes'],sha256=result['sha256'])
+            return self.artifact
+        except BaseException as error:
+            result=getattr(error,'result',{})
+            state='limit_exceeded' if isinstance(error,(ArtifactLimit,OutputLimit)) else (
+                'cancelled' if isinstance(error,TrialCancelled) else 'timeout' if isinstance(error,TrialTimeout) else 'interrupted' if isinstance(error,(KeyboardInterrupt,SystemExit)) else 'error')
+            self.artifact.update(status=state,bytes_written=result.get('bytes_written',0),
+                bytes_observed=result.get('stdout_bytes',0),detail=str(error))
+            partial.unlink(missing_ok=True)
+            raise
     def verify(self,verifier,command):
         self.raw(['rm','-f',self.name])
         self.check()

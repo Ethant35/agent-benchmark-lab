@@ -1,0 +1,201 @@
+[
+  {
+    "case": "explicit-truncation",
+    "attempt": 0,
+    "cli_exit": 0,
+    "elapsed_seconds": 3.150911916993209,
+    "trial_id": "76bdf2b5a79c43b1b4e2ddf89628c1f6",
+    "status": "PASS",
+    "failure_category": null,
+    "tool_calls": 2,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": {
+      "exit_code": 0,
+      "seconds": 0.1630847909982549,
+      "stdout_retained_bytes": 200000,
+      "stderr_retained_bytes": 0
+    },
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "tool",
+      "tool",
+      "verifier",
+      "outcome"
+    ]
+  },
+  {
+    "case": "fast-output",
+    "attempt": 0,
+    "cli_exit": 0,
+    "elapsed_seconds": 2.9023927499947604,
+    "trial_id": "d058d79b7f6642ccac4ac99a77f9c80d",
+    "status": "PASS",
+    "failure_category": null,
+    "tool_calls": 2,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": {
+      "exit_code": 0,
+      "seconds": 0.11361616600333946,
+      "stdout_retained_bytes": 200000,
+      "stderr_retained_bytes": 0
+    },
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "tool",
+      "tool",
+      "verifier",
+      "outcome"
+    ]
+  },
+  {
+    "case": "fast-output",
+    "attempt": 1,
+    "cli_exit": 0,
+    "elapsed_seconds": 2.8785029999999097,
+    "trial_id": "029e4b4b62d246a48e4ab9a3c536ccb5",
+    "status": "PASS",
+    "failure_category": null,
+    "tool_calls": 2,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": {
+      "exit_code": 0,
+      "seconds": 0.11037075000058394,
+      "stdout_retained_bytes": 200000,
+      "stderr_retained_bytes": 0
+    },
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "tool",
+      "tool",
+      "verifier",
+      "outcome"
+    ]
+  },
+  {
+    "case": "fast-output",
+    "attempt": 2,
+    "cli_exit": 1,
+    "elapsed_seconds": 1.7506149170003482,
+    "trial_id": "ed9b2dda1d804d98b5e62237593a16dd",
+    "status": "ERROR",
+    "failure_category": "isolation_error",
+    "tool_calls": 1,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": null,
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "outcome"
+    ]
+  },
+  {
+    "case": "sustained-output",
+    "attempt": 0,
+    "cli_exit": 1,
+    "elapsed_seconds": 1.8144690000044648,
+    "trial_id": "6fc7bf9c3b5542c1912b429e1ba2d0be",
+    "status": "ERROR",
+    "failure_category": "isolation_error",
+    "tool_calls": 1,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": null,
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "outcome"
+    ]
+  },
+  {
+    "case": "both-streams",
+    "attempt": 0,
+    "cli_exit": 0,
+    "elapsed_seconds": 2.8266943330017966,
+    "trial_id": "5972455ea7c147e094440e1f2bdbd6cc",
+    "status": "PASS",
+    "failure_category": null,
+    "tool_calls": 2,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": {
+      "exit_code": 0,
+      "seconds": 0.16278158299974166,
+      "stdout_retained_bytes": 200000,
+      "stderr_retained_bytes": 200000
+    },
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "tool",
+      "tool",
+      "verifier",
+      "outcome"
+    ]
+  },
+  {
+    "case": "oversized-artifact",
+    "attempt": 0,
+    "cli_exit": 1,
+    "elapsed_seconds": 2.223459583001386,
+    "trial_id": "ffa1e6ff60a248fe9b01823512417552",
+    "status": "ERROR",
+    "failure_category": "verification_error",
+    "tool_calls": 2,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 70003712,
+    "tool_result": {
+      "exit_code": 0,
+      "seconds": 0.16285879199858755,
+      "stdout_retained_bytes": 0,
+      "stderr_retained_bytes": 0
+    },
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "tool",
+      "tool",
+      "outcome"
+    ]
+  },
+  {
+    "case": "normal-streams",
+    "attempt": 0,
+    "cli_exit": 0,
+    "elapsed_seconds": 2.90728995900281,
+    "trial_id": "d6a97cce25f246e5b3b220d6bf0f1a5a",
+    "status": "PASS",
+    "failure_category": null,
+    "tool_calls": 2,
+    "failed_tool_calls": 0,
+    "artifact_bytes": 3072,
+    "tool_result": {
+      "exit_code": 0,
+      "seconds": 0.1641045420037699,
+      "stdout_retained_bytes": 100000,
+      "stderr_retained_bytes": 100000
+    },
+    "cleanup_errors": [],
+    "artifact_metadata": null,
+    "trace_kinds": [
+      "environment",
+      "tool",
+      "tool",
+      "verifier",
+      "outcome"
+    ]
+  }
+]
