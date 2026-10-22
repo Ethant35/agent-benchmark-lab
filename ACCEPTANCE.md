@@ -1,7 +1,7 @@
 # Local acceptance: v1.0.0
 Author: Ethan
 
-**Deterministic framework acceptance: PASS. Live model integration unverified.** BL-01–18 pass. BL-19–22 are **BLOCKED_EXTERNAL**, because no authorized OpenRouter credential was available. No model responses, provider charges or token measurements were fabricated.
+**Current validation: BL-01–22 PASS within the documented scopes.** The later authorized live check passed BL-19–22 using OpenRouter and DeepSeek V4.1 Flash 1017 on one rounding task. The original release-time BLOCKED_EXTERNAL records below remain unchanged as historical evidence. No provider responses or measurements were fabricated. See the live-validation section at the end.
 
 GitHub Actions is intentionally omitted per Ethan. Repository Actions permissions are disabled, and the GitHub API reported zero workflow runs before release. Local checks replace the specification's CI gate.
 
@@ -145,3 +145,22 @@ npm run test:e2e --prefix dashboard
 The adversarial harness uses a disposable source/corpus copy through the public CLI so it can prepend actual hostile commands without modifying the release corpus. The original CLI/container regression passed against source; [regression evidence](evidence/hardening/regression.json) records BL-01–15 and BL-18. A separate clean Python 3.12 wheel install passed doctor, all twelve task schemas, and a real rounding trial (`aabac7b48a1041688d794ef4b1077a36`). [Package evidence](evidence/hardening/package.json) verifies all 72 packaged implementation/task/static files against source, Author `Ethan`, version 1.0.1, and preserved third-party notices. All three Playwright tests passed in 2.0 seconds against the installed-wheel dashboard and 29 persisted records, including the genuine credential-blocked attempt. Desktop and mobile screenshots were visually inspected and saved with Author Ethan in `evidence/hardening/`. This completes BL-16/17 for the patch.
 
 These are host collection limits, not a per-volume disk quota: container workspace storage still consumes VM capacity. Host execution remains forbidden. Podman on macOS was exercised; Docker remains untested at runtime. BL-19–22 remain **BLOCKED_EXTERNAL: live model integration unverified**. The repeated missing-credential attempt made no provider request. No GitHub workflows were added; repository Actions remained disabled with zero workflow runs.
+
+
+## Authorized live validation on v1.0.1 (2026-10-22)
+
+Author: Ethan. The installed release wheel was tested without implementation changes. Requested model: `deepseek/deepseek-v4.1-flash-1017`; OpenRouter generation records identify the served snapshot as `deepseek/deepseek-v4.1-flash-20261017`, via Relace. The exact requested alias and endpoint snapshot were verified before execution. Both configurations used low reasoning, up to six model requests, 2,048 output tokens per request, ten tool steps, 120 seconds, and a $0.05 local spending reserve per trial. The intentional failure run permitted zero tool steps and one request. No further inference retries were needed.
+
+| Configuration | Trial outcome | Requests | Input tokens | Output tokens | Cached input tokens | Provider cost USD |
+|---|---|---:|---:|---:|---:|---:|
+| streaming | PASS | 5 | 6364 | 1139 | 3584 | 0.000792772 |
+| restricted-streaming | FAIL (expected step_limit) | 1 | 527 | 56 | 512 | 0.000033146 |
+| nonstreaming | PASS | 6 | 12534 | 4391 | 8448 | 0.002549104 |
+
+Total: **12 requests, 19,425 input tokens, 5,586 output tokens, 12,544 cached input tokens, $0.003375022**. Cached tokens are a subset of input tokens. Every response cost matches its OpenRouter generation record. Their total also matches the observed key-usage increase, within floating-point precision. One generation record was initially unavailable; a metadata-only retry resolved it. No additional inference call was made for that reconciliation.
+
+BL-19 passes: live tools produced repaired artifacts accepted by the independent container verifier. BL-20 passes: the zero-tool run failed as intended with `step_limit`. BL-21 passes: streaming and nonstreaming configurations used identical fixture hashes and distinct records, and both normal trials passed. BL-22 passes: persisted input/output/cache totals and actual costs match returned provider usage. All trials have empty cleanup-error lists. Runtime inspection found no remaining trial containers or volumes; the VM was then stopped.
+
+[Acceptance transcript](evidence/live-deepseek-1017/acceptance.json), [trial summary](evidence/live-deepseek-1017/summary.json), [per-response usage](evidence/live-deepseek-1017/provider-usage.json), [generation records](evidence/live-deepseek-1017/generation-ledger.json), and [cost reconciliation](evidence/live-deepseek-1017/cost-reconciliation.json) retain the evidence. Reproduction configurations are adjacent to those files. The credential was supplied only through process memory/environment and is absent from saved evidence.
+
+This establishes one-task integration behavior for the selected OpenRouter model and configuration. It is not a full twelve-task live benchmark, a comparison of two different models, proof of performance quality, or validation of other providers/endpoints. The release artifacts and earlier blocked attempts remain unchanged; the new dated evidence supersedes the current missing-credential blocker only for these exercised paths. GitHub Actions remained disabled.

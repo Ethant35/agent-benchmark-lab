@@ -1,6 +1,10 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## Latest: authorized live smoke validation complete
+2026-10-22: Installed v1.0.1 passed BL-19–22 using the user-selected deepseek/deepseek-v4.1-flash-1017 alias on OpenRouter. Streaming and nonstreaming normal trials PASS; intentional zero-tool trial FAIL/step_limit as expected. All twelve response charges reconcile with generation metadata and key-usage delta: $0.003375022 total. Evidence: evidence/live-deepseek-1017/. Raw local root: .abl/live-deepseek-1017. No implementation change or extra inference retries. This is one task and one model, not full-corpus performance or all-provider validation.
+Credential retained only in the session's process memory/environment, absent from saved evidence; no key/account settings changed. VM stopped after containers/volumes were verified empty. No workers or GitHub Actions. Historical release and blocked records below remain for provenance; their missing-credential statements no longer describe the tested OpenRouter paths. Current README and ACCEPTANCE describe the bounded live result.
+
 ## Current result: v1.0.1 published and verified
 The bounded be-ambitious follow-up is complete. Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.0.1 ; merged PR: https://github.com/Ethant35/agent-benchmark-lab/pull/2 ; immutable release commit: 1f8753cdadec9054a741620443a1748f74e9faa4. Current branch: main. This documentation-only handoff follows the release commit.
 
@@ -73,3 +77,7 @@ Existing BL-01–18 regression is running at `.abl/hardening-regression-v2`. UI 
 
 ## Patch acceptance complete; release pending
 BL-01–18 regression PASS, including three browser tests (2.0 seconds) against the clean installed-wheel dashboard. All 14 adversarial cases PASS. Clean wheel 1.0.1 passed doctor, validate and actual rounding trial aabac7b48a1041688d794ef4b1077a36. The repeated agent preflight is BLOCKED_EXTERNAL without provider requests. Package equality verified for 72 implementation/task/static files, Author Ethan and preserved third-party notices. Acceptance method, primary sources, limits and raw compact evidence are saved under ACCEPTANCE.md and evidence/hardening/. Actions disabled; zero runs. Next: commit/PR/merge/tag/release and downloaded asset verification, then stop VM/dashboard/checker.
+
+## Authorized live-provider validation active (2026-10-22)
+Ethan supplied an OpenRouter credential and requested economical testing with DeepSeek V4.1 Flash 1017. Exact model ID verified from the live model catalog: deepseek/deepseek-v4.1-flash-1017. Three trials use streaming/nonstreaming and an intentional zero-tool restriction; $0.05 local reserve per trial, $0.15 total across the initial suite. Conservative prices cover listed endpoints: $0.30/M input, $1.20/M output. Key stays in process memory/environment, outside configs and repository files. Existing key cap was inspected, not changed.
+Installed v1.0.1 wheel is under test. Configs and raw results: .abl/live-deepseek-1017. No workers or GitHub Actions. Account checker is functions cell 114 every 45 seconds; stop at 100%. Podman VM started with holding session 28050. Next: inspect real responses and verifier outcomes, reconcile usage/cost, save sanitized evidence, stop runtime and checker.
