@@ -2,6 +2,7 @@
 Author: Ethan
 
 ## Latest: authorized live smoke validation complete
+Evidence merged in PR #3: https://github.com/Ethant35/agent-benchmark-lab/pull/3 . Usage checker closed after final reading of 39% used (61% remaining). The in-memory credential binding was cleared. No live test process remains.
 2026-10-22: Installed v1.0.1 passed BL-19–22 using the user-selected deepseek/deepseek-v4.1-flash-1017 alias on OpenRouter. Streaming and nonstreaming normal trials PASS; intentional zero-tool trial FAIL/step_limit as expected. All twelve response charges reconcile with generation metadata and key-usage delta: $0.003375022 total. Evidence: evidence/live-deepseek-1017/. Raw local root: .abl/live-deepseek-1017. No implementation change or extra inference retries. This is one task and one model, not full-corpus performance or all-provider validation.
 Credential retained only in the session's process memory/environment, absent from saved evidence; no key/account settings changed. VM stopped after containers/volumes were verified empty. No workers or GitHub Actions. Historical release and blocked records below remain for provenance; their missing-credential statements no longer describe the tested OpenRouter paths. Current README and ACCEPTANCE describe the bounded live result.
 
