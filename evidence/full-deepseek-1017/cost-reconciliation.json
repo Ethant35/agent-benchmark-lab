@@ -1,0 +1,13 @@
+{
+  "author": "Ethan",
+  "key_usage_delta_usd": 0.014957188,
+  "previous_key_usage_delta_usd": 0.014957188,
+  "completed_responses": 64,
+  "requests_started": 65,
+  "completed_response_cost_usd": 0.014526328000000003,
+  "generation_total_usd": 0.014526328000000003,
+  "additional_key_charge_usd": 0.00043086,
+  "all_completed_generation_costs_match_response_usage": true,
+  "total_cost_basis": "Observed key usage increase during this benchmark, excluding the earlier smoke tests.",
+  "attribution_limit": "One request was interrupted and its generation ID was not retained. The additional key charge is consistent with that request but cannot be independently matched to a generation record. Concurrent use of this same key, if any, would also affect its usage delta."
+}
