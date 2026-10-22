@@ -1,0 +1,14 @@
+# Architecture
+Author: Ethan
+
+`abl.models` validates versioned task and run configuration. `abl.providers` owns HTTP authentication, native tool calls, SSE assembly and provider usage. `abl.engine` owns the bounded agent loop, reference actions, termination and trial state. `abl.isolation` is the sole execution boundary. `abl.store` owns SQLite persistence, aggregation and exports. `abl.api` is a read-only FastAPI service; React reads the same records as the CLI.
+
+A run contains a fixed ordered schedule of task/repeat slots. Each trial gets a UUID, fresh named volume, fixture hash, task hash and image ID. No fixture or verifier directories are host bind mounted into the agent container. Trusted fixture bytes enter through stdin to a setup container. Agent tools run as UID/GID 65534, without capabilities, with no network, a read-only root filesystem, a 32 MiB temporary filesystem, 64-process limit, 256 MiB memory limit and one CPU. The host provider client retains the API credential; the container receives none.
+
+After agent execution stops, its workspace is saved as an opaque tar archive. The host does not extract agent-controlled paths. A separate verifier container receives a private, read-only verifier volume. The verifier runs with only SETUID/SETGID capabilities to execute candidate code as UID/GID 65534 with no supplementary groups. Verifier files are root-only. A task verifier's nonzero process exit produces failure evidence; an agent's completion signal never establishes success. Cleanup removes task and verifier containers and volumes on success, failure, interruption, cancellation and timeout.
+
+SQLite WAL permits the read-only dashboard and cancellation command to operate while a run is active. A per-run advisory lock prevents concurrent resume. Trial documents and append-only JSONL traces are persisted during execution. Abrupt process death may leave containers until resume performs recovery; no claim is made that a killed orchestrator can execute cleanup.
+
+The reference runner executes version-controlled tool actions. It does not instantiate a provider or emit model responses. Its zero provider spend is known, while token and first-model-output metrics remain unavailable. Results retain runner identity in every comparison group.
+
+Provider adapters currently implement Chat Completions JSON and opt-in OpenAI-format SSE. Capability settings are explicit. OpenRouter requests require native parameter support with provider fallback disabled. Tool JSON is never inferred from prose. Other wire protocols require a new adapter.

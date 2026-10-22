@@ -1,0 +1,4 @@
+Team: Research
+Maya Chen | MAYA.CHEN@example.org | +1 (541) 555-0198
+Omar Ali | omar.ali@example.net | 503-555-0101
+Rina Patel | RINA.P@example.com | extension 44

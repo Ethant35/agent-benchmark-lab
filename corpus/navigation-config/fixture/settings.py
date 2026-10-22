@@ -1,0 +1,4 @@
+DEFAULT_PORT = 8123
+RETRY_LIMIT = 4
+CACHE_ENABLED = False
+SUPPORTED_FORMATS = ("json", "csv", "ndjson")

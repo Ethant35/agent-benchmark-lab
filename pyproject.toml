@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-benchmark-lab"
+version = "1.0.0"
+description = "Reproducible end-to-end agent benchmarks with isolated execution"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+authors = [{name = "Ethan"}]
+dependencies = ["typer>=0.15,<1", "pydantic>=2.10,<3", "PyYAML>=6,<7", "httpx>=0.28,<1", "fastapi>=0.115,<1", "uvicorn>=0.34,<1"]
+
+[project.scripts]
+abl = "abl.cli:app"
+
+[tool.hatch.build]
+artifacts = ["abl/static/**"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["abl"]
+[tool.hatch.build.targets.wheel.force-include]
+"corpus" = "abl/corpus"
+
+"THIRD_PARTY_NOTICES.md" = "abl/static/THIRD_PARTY_NOTICES.md"
