@@ -1,0 +1,21 @@
+{
+  "scenarios": {
+    "BL-19": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Missing live credential; Live model integration unverified"
+    },
+    "BL-20": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Missing live credential; Live model integration unverified"
+    },
+    "BL-21": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Missing live credential; Live model integration unverified"
+    },
+    "BL-22": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Missing live credential; Live model integration unverified"
+    }
+  },
+  "commands": []
+}

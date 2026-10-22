@@ -18,3 +18,5 @@ A single run demonstrates behavior, not universal model quality. Use repeated in
 Live model integration unverified until BL-19–22 pass with actual authorized models. A credential-free framework release must retain this limitation prominently.
 
 A tool/request/budget stop does not automatically erase completed work. If time permits verification and the actual output passes, the trial is PASS and retains its termination reason. A zero-tool configuration is supported for deliberate incomplete-work controls. Cancelled and timed-out attempts remain unsuccessful and retain their reason.
+
+Provider implementation references (consulted 2026-10-22): [OpenRouter client tool calling](https://openrouter.ai/docs/guides/features/tool-calling), [Chat Completions schema](https://openrouter.ai/docs/api_reference/overview), and [usage accounting](https://openrouter.ai/docs/cookbook/administration/usage-accounting). Returned metadata, not documentation examples, must supply actual trial measurements.

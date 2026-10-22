@@ -45,3 +45,17 @@ test('both export formats download from the persisted API', async ({ page }) => 
   const csvDownload = page.waitForEvent('download'); await page.getByRole('link', { name: 'Export CSV' }).click(); const csv = await csvDownload; expect(csv.suggestedFilename().toLowerCase()).toContain('csv');
   const jsonDownload = page.waitForEvent('download'); await page.getByRole('link', { name: 'Export JSON' }).click(); const json = await jsonDownload; expect(json.suggestedFilename().toLowerCase()).toContain('json');
 });
+
+test('cross-run provider and model filters exclude nonmatching persisted records', async ({page,request}) => {
+  const all = await (await request.get('/api/trials')).json();
+  expect(all.some((t: {status:string}) => t.status === 'PASS')).toBeTruthy();
+  const reference = all.find((t: {runner:string}) => t.runner === 'reference');
+  await page.goto('/');
+  await page.getByRole('button', {name:'Reset'}).click();
+  await expect(page.getByTestId('trial-row')).toHaveCount(all.length);
+  await page.getByTestId('filter-provider').selectOption(reference.provider);
+  await expect(page.getByTestId('trial-row')).toHaveCount(all.filter((t: {provider:string}) => t.provider === reference.provider).length);
+  await page.getByTestId('filter-provider').selectOption('');
+  await page.getByTestId('filter-model').selectOption(reference.model);
+  await expect(page.getByTestId('trial-row')).toHaveCount(all.filter((t: {model:string}) => t.model === reference.model).length);
+});

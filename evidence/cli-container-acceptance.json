@@ -1,0 +1,346 @@
+{
+  "scenarios": {
+    "BL-01": {
+      "status": "PASS",
+      "detail": "Installed CLI doctor and workspace initialization succeed; clean wheel installation recorded separately."
+    },
+    "BL-02": {
+      "status": "PASS",
+      "detail": "Public CLI validates all 12 task schemas and six categories."
+    },
+    "BL-03": {
+      "status": "PASS",
+      "detail": "Real verifier passes repaired rounding task: 21e06bf53f494148a886472f791af961"
+    },
+    "BL-04": {
+      "status": "PASS",
+      "detail": "Original broken fixture rejected with preserved stderr: e5455279ea9548f1ac4b3547d239546d"
+    },
+    "BL-05": {
+      "status": "PASS",
+      "detail": "Three distinct trial/container/artifact IDs, identical fixture hash: 131d6659ecc448829c6e4a7a5dc0e123"
+    },
+    "BL-06": {
+      "status": "PASS",
+      "detail": "All 12 independent task-specific container verifiers pass: 53b8e26b3d3b4cbfa16c3dacbc7e3938"
+    },
+    "BL-07": {
+      "status": "PASS",
+      "detail": "Nonterminating command stopped; TIMEOUT persisted: d57b7bd766c54a2e88d23d90c1cca229"
+    },
+    "BL-08": {
+      "status": "PASS",
+      "detail": "Real exit 7 recorded; runner recovers and verifier passes: c5d497b82c0e46a3a06e0f6a964f7308"
+    },
+    "BL-09": {
+      "status": "PASS",
+      "detail": "Active process terminates and cleanup succeeds: 59532f47c3d342679ff063cf866f637b"
+    },
+    "BL-10": {
+      "status": "PASS",
+      "detail": "Actual agent container has no host /Users, /root/.ssh, or provider credential: f5c37db2f32d4263af69709b6b0bb47d"
+    },
+    "BL-11": {
+      "status": "PASS",
+      "detail": "Actual agent container cannot access /verifier/check.py: f5c37db2f32d4263af69709b6b0bb47d"
+    },
+    "BL-12": {
+      "status": "PASS",
+      "detail": "Resumed run keeps completed trial identities; all six slots persisted: 3de6460df9f54e2db642ab89965fd5d4"
+    },
+    "BL-13": {
+      "status": "PASS",
+      "detail": "JSON reopened: 28 rows equal SQLite trial documents, all required fields present."
+    },
+    "BL-14": {
+      "status": "PASS",
+      "detail": "CSV rows, typed values, null token fields, and measurement sources match SQLite."
+    },
+    "BL-15": {
+      "status": "PASS",
+      "detail": "Independent calculations match CLI completion/time/timeout/tool/cost aggregates including failed and timed-out attempts."
+    },
+    "BL-18": {
+      "status": "PASS",
+      "detail": "Complete 12-task clean suite passed; comparison and report generated."
+    },
+    "BL-19": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "BL-20": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "BL-21": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "BL-22": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "cleanup": {
+      "status": "PASS",
+      "detail": "No containers or volumes remain for any persisted acceptance trial"
+    },
+    "BL-16": {
+      "status": "PASS",
+      "detail": "Installed-wheel FastAPI dashboard; real Playwright browser matched API metrics, verifier evidence, exports and desktop/mobile layouts."
+    },
+    "BL-17": {
+      "status": "PASS",
+      "detail": "Three Playwright tests passed; task/run filters and cross-run provider/model filters match persisted rows and exclude nonmatching records."
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "abl",
+        "doctor"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"python\": \"3.12.14\",\n  \"runtime\": \"podman\",\n  \"image\": \"7efd45553a98be3d940b73600550669831c0be34f30c521159e7030a91fcdee6\",\n  \"openrouter_credential_present\": false,\n  \"dashboard_built\": true,\n  \"host_execution_fallback\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "init",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"root\": \"/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance\",\n  \"config\": \"/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/config.yaml\",\n  \"author\": \"Ethan\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"valid\": true,\n  \"tasks\": 12,\n  \"categories\": [\n    \"bug_fix\",\n    \"extraction\",\n    \"feature\",\n    \"multistep\",\n    \"navigation\",\n    \"refactor\"\n  ],\n  \"config_hash\": \"f52ced39a840bfa09d594882f4fe950b46bb3cdf2ff4c64d5087733b5b6c794e\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "tasks",
+        "list"
+      ],
+      "exit_code": 0,
+      "stdout": "[\n  {\n    \"schema_version\": 1,\n    \"id\": \"bugfix-interval-merge\",\n    \"version\": \"1.0\",\n    \"category\": \"bug_fix\",\n    \"description\": \"Fix merge_intervals in app.py. Read JSON pairs on stdin; merge overlapping or touching intervals, sort by start and print compact JSON. Keep the CLI.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"app.py\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"bugfix-rounding\",\n    \"version\": \"1.0\",\n    \"category\": \"bug_fix\",\n    \"description\": \"Repair format_price in app.py: use exact decimal half-up rounding to 2 places. Preserve CLI: python app.py AMOUNT. Cover negative and tie cases.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"app.py\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"extraction-contacts\",\n    \"version\": \"1.0\",\n    \"category\": \"extraction\",\n    \"description\": \"Extract contacts.txt to contacts.json with exact name, email, phone fields. Keep order and original phone text; lowercase emails; omit heading.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"contacts.json\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"extraction-invoices\",\n    \"version\": \"1.0\",\n    \"category\": \"extraction\",\n    \"description\": \"Extract invoices.json into invoices_out.json. Each output has exactly invoice_id, vendor, date, amount_cents. Preserve order; convert decimal amount strings exactly.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"invoices_out.json\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"feature-order-filter\",\n    \"version\": \"1.0\",\n    \"category\": \"feature\",\n    \"description\": \"Implement filter_orders.py: read orders.json; filter by required --status and numeric --minimum total (inclusive); emit matching full records as compact JSON in input order.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"filter_orders.py\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"feature-slugify\",\n    \"version\": \"1.0\",\n    \"category\": \"feature\",\n    \"description\": \"Implement slugify(text) in slugify.py and stdin CLI. Normalize accents to ASCII, lowercase, collapse non-alphanumeric runs to hyphen, trim hyphens; punctuation-only input returns empty.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"slugify.py\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"multistep-document-index\",\n    \"version\": \"1.0\",\n    \"category\": \"multistep\",\n    \"description\": \"Implement indexer.py with three dependent commands: scan reads files.txt and writes docs.json with names and byte counts; index reads docs.json and writes index.json mapping lowercase punctuation-trimmed words to sorted filenames; manifest hashes docs.json and index.json and records document_count. Run scan, index, manifest in order.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"indexer.py\",\n      \"docs.json\",\n      \"index.json\",\n      \"manifest.json\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"multistep-ledger\",\n    \"version\": \"1.0\",\n    \"category\": \"multistep\",\n    \"description\": \"Implement pipeline.py with dependent normalize, total, manifest steps. normalize reads CSV and writes transactions.json with lowercase account and cents. total reads it and writes totals.json preserving first-seen account order. manifest hashes both prior files with SHA-256 and records row_count. Execute each step in order.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"pipeline.py\",\n      \"transactions.json\",\n      \"totals.json\",\n      \"manifest.json\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"navigation-config\",\n    \"version\": \"1.0\",\n    \"category\": \"navigation\",\n    \"description\": \"Inspect settings.py and write answer.json with exactly default_port, retry_limit, cache_enabled, supported_formats, source, and explanation. Use literal source facts and correct JSON types. source must be the exact relative path; explanation must briefly identify what the facts describe. Do not modify settings.py.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"answer.json\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"navigation-routes\",\n    \"version\": \"1.0\",\n    \"category\": \"navigation\",\n    \"description\": \"Inspect routes.py and write routes.json with route_count, methods_by_path, health_path, source, and explanation. Preserve method declaration order. source must be the exact relative path; explanation must explain the route facts. Do not modify routes.py.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"routes.json\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"refactor-csv-summary\",\n    \"version\": \"1.0\",\n    \"category\": \"refactor\",\n    \"description\": \"Refactor summary.py into parse_rows(path) and summarize(rows) helpers while preserving behavior. CSV columns sku, quantity, unit_price; duplicate SKUs accumulate extended amounts rounded to cents; negative quantities remain valid. CLI prints sorted-key JSON.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"summary.py\"\n    ],\n    \"cleanup\": \"always\"\n  },\n  {\n    \"schema_version\": 1,\n    \"id\": \"refactor-text-stats\",\n    \"version\": \"1.0\",\n    \"category\": \"refactor\",\n    \"description\": \"Refactor text_stats.py into tokenize(text) and count_words(tokens). Preserve case-folded whitespace tokens including attached punctuation; output sorted JSON counts and total.\",\n    \"fixture\": \"fixture\",\n    \"setup\": [],\n    \"allowed_tools\": [\n      \"read_file\",\n      \"write_file\",\n      \"shell\",\n      \"finish\"\n    ],\n    \"network\": \"none\",\n    \"runtime_seconds\": 30.0,\n    \"max_tool_steps\": 20,\n    \"token_budget\": null,\n    \"cost_budget_usd\": null,\n    \"verifier\": [\n      \"python\",\n      \"/verifier/check.py\"\n    ],\n    \"expected_artifacts\": [\n      \"text_stats.py\"\n    ],\n    \"cleanup\": \"always\"\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "tasks",
+        "inspect",
+        "bugfix-rounding"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"schema_version\": 1,\n  \"id\": \"bugfix-rounding\",\n  \"version\": \"1.0\",\n  \"category\": \"bug_fix\",\n  \"description\": \"Repair format_price in app.py: use exact decimal half-up rounding to 2 places. Preserve CLI: python app.py AMOUNT. Cover negative and tie cases.\",\n  \"fixture\": \"fixture\",\n  \"setup\": [],\n  \"allowed_tools\": [\n    \"read_file\",\n    \"write_file\",\n    \"shell\",\n    \"finish\"\n  ],\n  \"network\": \"none\",\n  \"runtime_seconds\": 30.0,\n  \"max_tool_steps\": 20,\n  \"token_budget\": null,\n  \"cost_budget_usd\": null,\n  \"verifier\": [\n    \"python\",\n    \"/verifier/check.py\"\n  ],\n  \"expected_artifacts\": [\n    \"app.py\"\n  ],\n  \"cleanup\": \"always\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/success.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"21e06bf53f494148a886472f791af961\"}\n{\"trial_id\": \"42445ebd02a847c4a97d9ec9883c5bc7\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/fail.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"run_id\": \"e5455279ea9548f1ac4b3547d239546d\"}\n{\"trial_id\": \"f9f1fe885cac4034a78ed0c18e745ac4\", \"task_id\": \"bugfix-rounding\", \"status\": \"FAIL\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/fresh.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"131d6659ecc448829c6e4a7a5dc0e123\"}\n{\"trial_id\": \"46eeaae7b32b44e3902f0a1dd4a356a5\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n{\"trial_id\": \"3d410c5fa80c48e98a1c75d94376d237\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n{\"trial_id\": \"c16e74c2070643559fee144fbdb87311\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/full-suite.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"53b8e26b3d3b4cbfa16c3dacbc7e3938\"}\n{\"trial_id\": \"e6034232d73148b1ba1464bc203e7d07\", \"task_id\": \"bugfix-interval-merge\", \"status\": \"PASS\"}\n{\"trial_id\": \"ba50d7ab6e974a16a388bcba283303f6\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n{\"trial_id\": \"75664412844c4a2caf84ef3af8e19d51\", \"task_id\": \"extraction-contacts\", \"status\": \"PASS\"}\n{\"trial_id\": \"373537ea44074f24877b7f6f5bd8b8ca\", \"task_id\": \"extraction-invoices\", \"status\": \"PASS\"}\n{\"trial_id\": \"34c57acca5c44c3db146fb0790b8e8c9\", \"task_id\": \"feature-order-filter\", \"status\": \"PASS\"}\n{\"trial_id\": \"f6a2b020c233427c9df42dfde51c3f7a\", \"task_id\": \"feature-slugify\", \"status\": \"PASS\"}\n{\"trial_id\": \"4877389f25434519a098e94a898f5f27\", \"task_id\": \"multistep-document-index\", \"status\": \"PASS\"}\n{\"trial_id\": \"17da525586d145f28c5e8295cd28e3a2\", \"task_id\": \"multistep-ledger\", \"status\": \"PASS\"}\n{\"trial_id\": \"8ab372f64a464aeaa70316e7ae43b52c\", \"task_id\": \"navigation-config\", \"status\": \"PASS\"}\n{\"trial_id\": \"4df461ae3acb455b83454b9aeac137c4\", \"task_id\": \"navigation-routes\", \"status\": \"PASS\"}\n{\"trial_id\": \"74956f403bfa4c85a15498fdb14dd771\", \"task_id\": \"refactor-csv-summary\", \"status\": \"PASS\"}\n{\"trial_id\": \"c3f375e2dbfa4ffe8ebb0b8b594a1d01\", \"task_id\": \"refactor-text-stats\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/timeout.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"run_id\": \"d57b7bd766c54a2e88d23d90c1cca229\"}\n{\"trial_id\": \"755467cafd744460b886f82780e61192\", \"task_id\": \"bugfix-rounding\", \"status\": \"TIMEOUT\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/tool-failure.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"c5d497b82c0e46a3a06e0f6a964f7308\"}\n{\"trial_id\": \"b63b13f7388c4e0f9a03e9d00d058a05\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "cancel",
+        "59532f47c3d342679ff063cf866f637b",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"run_id\": \"59532f47c3d342679ff063cf866f637b\",\n  \"cancellation_requested\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/isolation.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"f5c37db2f32d4263af69709b6b0bb47d\"}\n{\"trial_id\": \"4176a714157c41659b75ea57bb7c0a5f\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance",
+        "--resume",
+        "3de6460df9f54e2db642ab89965fd5d4"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"run_id\": \"3de6460df9f54e2db642ab89965fd5d4\"}\n{\"trial_id\": \"4808ae7a02c14004aadade661731094a\", \"task_id\": \"bugfix-interval-merge\", \"status\": \"PASS\"}\n{\"trial_id\": \"a41d0e67fa9c4ab5951c087af123ef7f\", \"task_id\": \"feature-slugify\", \"status\": \"PASS\"}\n{\"trial_id\": \"b58b3cf6d0d94a37932ef84f22b2ec6d\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n{\"trial_id\": \"98d2d2f6d9ec4fe4b55e06eedb633a80\", \"task_id\": \"bugfix-interval-merge\", \"status\": \"PASS\"}\n{\"trial_id\": \"4c12345926f546f2bc34fc78505d55e8\", \"task_id\": \"feature-slugify\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "export",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/export.json",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"export\": \"/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/export.json\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "export",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/export.csv",
+        "--format",
+        "csv",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"export\": \"/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/export.csv\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "compare",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"trials\": 28,\n  \"successes\": 24,\n  \"completion_rate\": 0.8571428571428571,\n  \"total_failures\": 4,\n  \"timeout_rate\": 0.03571428571428571,\n  \"tool_failure_frequency\": 0.08333333333333333,\n  \"total_tool_calls\": 36,\n  \"failed_tool_calls\": 3,\n  \"median_wall_seconds\": 2.577368166999804,\n  \"p95_wall_seconds\": 3.109496166005556,\n  \"median_ttft_seconds\": null,\n  \"mean_tokens\": null,\n  \"median_tokens\": null,\n  \"total_spend_usd\": 0,\n  \"measured_spend_usd\": 0,\n  \"cost_per_success_usd\": 0.0,\n  \"wall_stddev_seconds\": 0.9279017283755527,\n  \"measured_cost_trials\": 28,\n  \"measured_token_trials\": 0,\n  \"measured_ttft_trials\": 0,\n  \"categories\": {\n    \"bug_fix\": {\n      \"trials\": 16,\n      \"successes\": 12,\n      \"completion_rate\": 0.75,\n      \"total_failures\": 4,\n      \"timeout_rate\": 0.0625,\n      \"tool_failure_frequency\": 0.1875,\n      \"total_tool_calls\": 16,\n      \"failed_tool_calls\": 3,\n      \"median_wall_seconds\": 2.4960719994996907,\n      \"p95_wall_seconds\": 6.933485292000114,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 1.234577807945673,\n      \"measured_cost_trials\": 16,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    \"extraction\": {\n      \"trials\": 2,\n      \"successes\": 2,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 2,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.448676604002685,\n      \"p95_wall_seconds\": 2.467236625001533,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.026247833414500144,\n      \"measured_cost_trials\": 2,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    \"feature\": {\n      \"trials\": 4,\n      \"successes\": 4,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 4,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.6454014590017323,\n      \"p95_wall_seconds\": 2.908224207996682,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.19188227208630287,\n      \"measured_cost_trials\": 4,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    \"multistep\": {\n      \"trials\": 2,\n      \"successes\": 2,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 8,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.9142161670024507,\n      \"p95_wall_seconds\": 2.919844042000477,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.007959017149549571,\n      \"measured_cost_trials\": 2,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    \"navigation\": {\n      \"trials\": 2,\n      \"successes\": 2,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 4,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.5813370420000865,\n      \"p95_wall_seconds\": 2.636290583999653,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.07771604439622626,\n      \"measured_cost_trials\": 2,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    \"refactor\": {\n      \"trials\": 2,\n      \"successes\": 2,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 2,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.6959207084983063,\n      \"p95_wall_seconds\": 2.7088608749982086,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.01830015896352776,\n      \"measured_cost_trials\": 2,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    }\n  },\n  \"groups\": [\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"167eadbd59df514c88ae4478fbb8b5d650df4f2d1e19bd05ba99405b5f1c9685\",\n      \"trials\": 1,\n      \"successes\": 1,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.5,\n      \"total_tool_calls\": 2,\n      \"failed_tool_calls\": 1,\n      \"median_wall_seconds\": 2.5604808749994845,\n      \"p95_wall_seconds\": 2.5604808749994845,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": null,\n      \"measured_cost_trials\": 1,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"2d1dbf08d1ac29761c9ce6e95430181115b4ee2100a730d934e3e6f4f915398d\",\n      \"trials\": 1,\n      \"successes\": 1,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 2,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.672054583003046,\n      \"p95_wall_seconds\": 2.672054583003046,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": null,\n      \"measured_cost_trials\": 1,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"47591a52ee560308063676002ba7c33e9604737e5841c3fabc0b5f59930a8eef\",\n      \"trials\": 1,\n      \"successes\": 0,\n      \"completion_rate\": 0.0,\n      \"total_failures\": 1,\n      \"timeout_rate\": 1.0,\n      \"tool_failure_frequency\": 1.0,\n      \"total_tool_calls\": 1,\n      \"failed_tool_calls\": 1,\n      \"median_wall_seconds\": 6.933485292000114,\n      \"p95_wall_seconds\": 6.933485292000114,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": null,\n      \"wall_stddev_seconds\": null,\n      \"measured_cost_trials\": 1,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"4bdfc6172012131984972ae2bb11c1a73ddf28b6746ed3bed2c959774a41d416\",\n      \"trials\": 3,\n      \"successes\": 3,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 3,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.3799768750031944,\n      \"p95_wall_seconds\": 2.4576466660000733,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.06747537098556343,\n      \"measured_cost_trials\": 3,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"57991fa2b56bb04d55d59bf56817694f234027d8b3cd92a44cccc5e040e9ef9d\",\n      \"trials\": 7,\n      \"successes\": 6,\n      \"completion_rate\": 0.8571428571428571,\n      \"total_failures\": 1,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 6,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.5942554590001237,\n      \"p95_wall_seconds\": 2.99255550000089,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.755449436252924,\n      \"measured_cost_trials\": 7,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"5db67e7e834f3676eab125337b5976e338f6fccc1ad6a1085fd0f0a2d2995d9f\",\n      \"trials\": 1,\n      \"successes\": 1,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 1,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.354213416001585,\n      \"p95_wall_seconds\": 2.354213416001585,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": null,\n      \"measured_cost_trials\": 1,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"a1094243efa4c3c215f3da8f106d92ca724e04e1d7c9c08b5a62410b1f4ed952\",\n      \"trials\": 1,\n      \"successes\": 0,\n      \"completion_rate\": 0.0,\n      \"total_failures\": 1,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 1.0,\n      \"total_tool_calls\": 1,\n      \"failed_tool_calls\": 1,\n      \"median_wall_seconds\": 3.109496166005556,\n      \"p95_wall_seconds\": 3.109496166005556,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": null,\n      \"wall_stddev_seconds\": null,\n      \"measured_cost_trials\": 1,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"f06f7581e2f729d7d9defca440a550848d1907624910cf767ec748cc9c10ccbb\",\n      \"trials\": 1,\n      \"successes\": 0,\n      \"completion_rate\": 0.0,\n      \"total_failures\": 1,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": null,\n      \"total_tool_calls\": 0,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.1492817500038655,\n      \"p95_wall_seconds\": 2.1492817500038655,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": null,\n      \"wall_stddev_seconds\": null,\n      \"measured_cost_trials\": 1,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    },\n    {\n      \"runner\": \"reference\",\n      \"provider\": \"none\",\n      \"model\": \"deterministic-reference\",\n      \"config_hash\": \"f52ced39a840bfa09d594882f4fe950b46bb3cdf2ff4c64d5087733b5b6c794e\",\n      \"trials\": 12,\n      \"successes\": 12,\n      \"completion_rate\": 1.0,\n      \"total_failures\": 0,\n      \"timeout_rate\": 0.0,\n      \"tool_failure_frequency\": 0.0,\n      \"total_tool_calls\": 20,\n      \"failed_tool_calls\": 0,\n      \"median_wall_seconds\": 2.6579091669991612,\n      \"p95_wall_seconds\": 2.919844042000477,\n      \"median_ttft_seconds\": null,\n      \"mean_tokens\": null,\n      \"median_tokens\": null,\n      \"total_spend_usd\": 0,\n      \"measured_spend_usd\": 0,\n      \"cost_per_success_usd\": 0.0,\n      \"wall_stddev_seconds\": 0.18869640286267858,\n      \"measured_cost_trials\": 12,\n      \"measured_token_trials\": 0,\n      \"measured_ttft_trials\": 0\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "report",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/report.html",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"report\": \"/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/release-acceptance/report.html\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "abl",
+        "doctor"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"python\": \"3.12.14\",\n  \"runtime\": \"podman\",\n  \"image\": \"7efd45553a98be3d940b73600550669831c0be34f30c521159e7030a91fcdee6\",\n  \"openrouter_credential_present\": false,\n  \"dashboard_built\": true,\n  \"host_execution_fallback\": false\n}\n",
+      "stderr": ""
+    }
+  ],
+  "browser_command": "cd dashboard && npm run test:e2e",
+  "browser_result": "3 passed (2.3s)",
+  "fresh_clone": {
+    "commit": "04e1600",
+    "commands": [
+      "git clone --local --branch codex/build-agent-benchmark-lab . .abl/clean-source",
+      "uv sync --project .abl/clean-source --frozen",
+      "npm ci --prefix .abl/clean-source/dashboard",
+      "npm run build --prefix .abl/clean-source/dashboard",
+      "uv run --project .abl/clean-source abl doctor",
+      "uv run --project .abl/clean-source abl init --root .abl/clean-source-workspace",
+      "uv run --project .abl/clean-source abl validate"
+    ],
+    "result": "PASS on Python 3.12.14"
+  },
+  "final_corpus": {
+    "run_id": "dfb66c480969433183a27e11ca37d3a2",
+    "result": "12/12 PASS after strict JSON type checks added",
+    "evidence": "evidence/final-corpus.json"
+  },
+  "negative_controls": {
+    "result": "12/12 original unsolved fixtures rejected with FAIL",
+    "evidence": "evidence/unsolved-controls.json"
+  }
+}
