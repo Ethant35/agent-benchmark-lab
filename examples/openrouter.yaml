@@ -1,0 +1,17 @@
+# Author: Ethan. Replace model and price bounds before use. No API key belongs here.
+schema_version: 1
+runner: agent
+provider: openrouter
+model: REPLACE_WITH_AUTHORIZED_TOOL_CAPABLE_MODEL
+endpoint: https://openrouter.ai/api/v1
+api_key_env: OPENROUTER_API_KEY
+supports_tools: true
+streaming: true
+max_requests: 8
+max_output_tokens: 1024
+max_tool_steps: 12
+spend_limit_usd: 0.10
+input_price_per_million: null
+output_price_per_million: null
+tasks: [bugfix-rounding]
+repeats: 1

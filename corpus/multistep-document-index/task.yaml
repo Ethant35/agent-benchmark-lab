@@ -1,0 +1,16 @@
+schema_version: 1
+id: multistep-document-index
+version: '1.0'
+category: multistep
+description: "Implement indexer.py with three dependent commands: scan reads files.txt and writes docs.json with names and byte counts; index reads docs.json and writes index.json mapping lowercase punctuation-trimmed words to sorted filenames; manifest hashes docs.json and index.json and records document_count. Run scan, index, manifest in order."
+fixture: fixture
+setup: []
+allowed_tools: [read_file, write_file, shell, finish]
+network: none
+runtime_seconds: 30
+max_tool_steps: 20
+token_budget: null
+cost_budget_usd: null
+verifier: [python, /verifier/check.py]
+expected_artifacts: ["indexer.py", "docs.json", "index.json", "manifest.json"]
+cleanup: always

@@ -1,0 +1,12 @@
+# Author: Ethan. Explicit capability opt-in is required after endpoint verification.
+runner: agent
+provider: openai-compatible
+model: REPLACE_WITH_EXACT_MODEL
+endpoint: http://127.0.0.1:8000/v1
+api_key_env: COMPATIBLE_API_KEY
+supports_tools: false
+streaming: false
+spend_limit_usd: 0.10
+input_price_per_million: null
+output_price_per_million: null
+tasks: [bugfix-rounding]

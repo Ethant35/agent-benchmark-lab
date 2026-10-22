@@ -1,0 +1,16 @@
+schema_version: 1
+id: feature-order-filter
+version: '1.0'
+category: feature
+description: "Implement filter_orders.py: read orders.json; filter by required --status and numeric --minimum total (inclusive); emit matching full records as compact JSON in input order."
+fixture: fixture
+setup: []
+allowed_tools: [read_file, write_file, shell, finish]
+network: none
+runtime_seconds: 30
+max_tool_steps: 20
+token_budget: null
+cost_budget_usd: null
+verifier: [python, /verifier/check.py]
+expected_artifacts: ["filter_orders.py"]
+cleanup: always

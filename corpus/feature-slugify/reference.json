@@ -1,0 +1,9 @@
+[
+  {
+    "tool": "write_file",
+    "arguments": {
+      "path": "slugify.py",
+      "content": "import re,sys,unicodedata\ndef slugify(s):\n s=unicodedata.normalize(\"NFKD\",s).encode(\"ascii\",\"ignore\").decode().lower()\n return re.sub(\"^-|-$\",\"\",re.sub(\"[^a-z0-9]+\",\"-\",s))\nif __name__==\"__main__\": print(slugify(sys.stdin.readline().rstrip(\"\\n\")))\n"
+    }
+  }
+]

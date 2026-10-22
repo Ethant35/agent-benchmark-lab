@@ -1,0 +1,9 @@
+[
+  {
+    "tool": "write_file",
+    "arguments": {
+      "path": "orders.json",
+      "content": "[{\"id\":\"a\",\"status\":\"paid\",\"total\":20},{\"id\":\"b\",\"status\":\"pending\",\"total\":80},{\"id\":\"c\",\"status\":\"paid\",\"total\":19},{\"id\":\"d\",\"status\":\"paid\",\"total\":45}]\n"
+    }
+  }
+]

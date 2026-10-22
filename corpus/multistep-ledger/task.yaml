@@ -1,0 +1,16 @@
+schema_version: 1
+id: multistep-ledger
+version: '1.0'
+category: multistep
+description: "Implement pipeline.py with dependent normalize, total, manifest steps. normalize reads CSV and writes transactions.json with lowercase account and cents. total reads it and writes totals.json preserving first-seen account order. manifest hashes both prior files with SHA-256 and records row_count. Execute each step in order."
+fixture: fixture
+setup: []
+allowed_tools: [read_file, write_file, shell, finish]
+network: none
+runtime_seconds: 30
+max_tool_steps: 20
+token_budget: null
+cost_budget_usd: null
+verifier: [python, /verifier/check.py]
+expected_artifacts: ["pipeline.py", "transactions.json", "totals.json", "manifest.json"]
+cleanup: always

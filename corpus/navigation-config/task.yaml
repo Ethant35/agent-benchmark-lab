@@ -1,0 +1,16 @@
+schema_version: 1
+id: navigation-config
+version: '1.0'
+category: navigation
+description: "Inspect settings.py and write answer.json with exactly default_port, retry_limit, cache_enabled, supported_formats, source, and explanation. Use literal source facts and correct JSON types. source must be the exact relative path; explanation must briefly identify what the facts describe. Do not modify settings.py."
+fixture: fixture
+setup: []
+allowed_tools: [read_file, write_file, shell, finish]
+network: none
+runtime_seconds: 30
+max_tool_steps: 20
+token_budget: null
+cost_budget_usd: null
+verifier: [python, /verifier/check.py]
+expected_artifacts: ["answer.json"]
+cleanup: always
