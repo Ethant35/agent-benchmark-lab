@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "runner": "agent",
+  "provider": "openrouter",
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "supports_tools": true,
+  "reasoning_effort": "low",
+  "max_requests": 6,
+  "max_output_tokens": 2048,
+  "max_tool_steps": 10,
+  "runtime_seconds": 120,
+  "spend_limit_usd": 0.05,
+  "input_price_per_million": 0.3,
+  "output_price_per_million": 1.2,
+  "tasks": [
+    "bugfix-rounding"
+  ],
+  "repeats": 1,
+  "streaming": false
+}
