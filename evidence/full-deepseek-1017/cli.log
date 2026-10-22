@@ -1,0 +1,13 @@
+{"run_id": "58c28d97641f4e0c9fed74a8e71c8608"}
+{"trial_id": "b215d20de0194cc788149f0fa272f34e", "task_id": "bugfix-interval-merge", "status": "PASS"}
+{"trial_id": "4a20d8e21afd4025ab136a574dd86d85", "task_id": "bugfix-rounding", "status": "PASS"}
+{"trial_id": "43c582b27cb84a05951843a2d8bb1dc5", "task_id": "extraction-contacts", "status": "PASS"}
+{"trial_id": "1e6847932b2c45e2b35373685c8793f7", "task_id": "extraction-invoices", "status": "PASS"}
+{"trial_id": "adfacdb620b841e1862d2f98c929fc90", "task_id": "feature-order-filter", "status": "FAIL"}
+{"trial_id": "a02defb7e7994881ac548b01215f1477", "task_id": "feature-slugify", "status": "PASS"}
+{"trial_id": "cc3ea44174484a36a63adf4569106807", "task_id": "multistep-document-index", "status": "FAIL"}
+{"trial_id": "e5d81a0002fb439f8ea7a72b9fd8173c", "task_id": "multistep-ledger", "status": "TIMEOUT"}
+{"trial_id": "aadf41a2b9c44243ad7d0e92dd14cd0c", "task_id": "navigation-config", "status": "FAIL"}
+{"trial_id": "80f42f53dd8747d28620caccccba9601", "task_id": "navigation-routes", "status": "FAIL"}
+{"trial_id": "884dd2a5565d40c5989ef6e622f6fb26", "task_id": "refactor-csv-summary", "status": "FAIL"}
+{"trial_id": "51a2bf9896c74ce892e4a60bf35583b3", "task_id": "refactor-text-stats", "status": "FAIL"}

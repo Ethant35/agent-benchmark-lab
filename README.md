@@ -3,7 +3,7 @@ End-to-end benchmarking for AI models and agents
 
 Agent Benchmark Lab measures actual task completion through independent behavioral verifiers, with fresh constrained containers, recorded traces and reproducible exports.
 
-**Live OpenRouter smoke tests passed** on v1.0.1 with `deepseek/deepseek-v4.1-flash-1017`: streaming, nonstreaming, intentional tool-limit failure, and returned usage accounting. This covers one small task, not full-corpus model performance or every provider. The reference suite separately tests the framework. See [ACCEPTANCE.md](ACCEPTANCE.md) for dated evidence. GitHub Actions is intentionally disabled; all acceptance runs locally.
+**Full live corpus run completed** on v1.0.1 with `deepseek/deepseek-v4.1-flash-1017`: 8 PASS, 3 FAIL, 1 TIMEOUT; observed key charge $0.014957188. Several failures expose underspecified schemas or an overly strict verifier, so this is not a clean model ranking. See the [full report](evidence/full-deepseek-1017/REPORT.md) and [dated acceptance](ACCEPTANCE.md). GitHub Actions remains disabled.
 
 ## Install
 
