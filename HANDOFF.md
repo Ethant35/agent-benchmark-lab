@@ -1,41 +1,44 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## Completed release
+Goal: COMPLETE for the explicitly permitted credential-free v1.0.0 framework release.
 Repository: https://github.com/Ethant35/agent-benchmark-lab
+Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.0.0
+Release commit: 3a66b183aba2cf55fe7f747a69b490c59aee74b0
+Merged PR: https://github.com/Ethant35/agent-benchmark-lab/pull/1
 Local path: /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab
-Branch: codex/build-agent-benchmark-lab
-PR: https://github.com/Ethant35/agent-benchmark-lab/pull/1
+Current branch: main. A documentation-only handoff commit follows the immutable release commit; the v1.0.0 tag is unchanged.
 
-## Goal state
-ACTIVE: deterministic acceptance is complete. Last remaining gates are publishing the accepted code (merge, tag v1.0.0, GitHub release), verifying the remote release, and stopping local services. No live provider validation is claimed. Credential-free framework release is permitted by the specification.
+## Verified result
+BL-01–18 PASS. Real installed-wheel CLI/container acceptance, fresh clone installation, three Playwright browser tests, final twelve-task corpus (12/12 PASS), twelve unsolved-fixture controls (12/12 correctly FAIL), persisted exports, denominator checks, timeout/cancellation/resume and isolation checks passed. ACCEPTANCE.md and evidence/ contain exact commands, outcomes and source records.
 
-## Completed and verified
-Python Typer/Pydantic CLI, provider-neutral runner, constrained container lifecycle, OpenRouter/compatible adapter, SQLite reports/exports, React/TypeScript dashboard, twelve independent tasks across six categories, documentation, and real E2E harnesses.
+The wheel, source distribution and SHA256SUMS.txt are published. Downloaded release assets match both the published checksums and local build bytes. Wheel code/task bytes match verified sources. Author metadata is Ethan; bundled dependency copyright/license notices are preserved.
 
-BL-01–18 PASS. Installed-wheel CLI/container run passed all sixteen non-browser deterministic scenarios. Playwright passed 3/3 browser tests. Fresh clone install with frozen Python/npm locks passed. Final corpus passed 12/12 after strict type checks. Original unsolved fixtures were rejected 12/12. All benchmark containers and volumes were cleaned after trials. Details and exact transcripts: ACCEPTANCE.md and evidence/.
+BL-19–22 remain BLOCKED_EXTERNAL: no authorized OpenRouter credential was available. **Live model integration unverified.** No provider requests or fake provider responses were used. OpenRouter/compatible adapters are implemented, but live tool/streaming/usage behavior and nonzero provider-cost accounting await those real tests. Docker compatibility is implemented; local execution used Podman only.
 
-BL-19–22 BLOCKED_EXTERNAL: no authorized OpenRouter credential. Live model integration unverified. Actual missing-credential trial persisted as BLOCKED_EXTERNAL; zero provider requests. Docker compatibility is implemented but only Podman was exercised.
+## Isolation and cleanup
+Podman 6.1.4 is installed. Dedicated `abl-benchmark` VM: 2 CPUs, 2 GiB RAM, 12 GiB virtual disk. VM and dashboard server are stopped; port 8765 is clear. All benchmark containers and volumes were removed, all Luna workers were interrupted on completion, and the VM holding process was terminated. Source, fixtures, SQLite results, opaque archives and traces are retained.
 
-## Environment / processes
-Podman 6.1.4 installed. Dedicated machine `abl-benchmark`: 2 CPUs, 2 GiB RAM, 12 GiB virtual disk. Python base image content ID 7efd45553a98be3d940b73600550669831c0be34f30c521159e7030a91fcdee6. Do not delete unrelated containers or machines.
+The supported account usage checker ran every 45 seconds during work without occupying a Luna slot. Last observed usage before final cleanup: 20% used (80% remaining). No exhaustion occurred. This was a session-scoped tool task, not a durable scheduled automation; it is closed at chat completion. Future work must start its own checker and stop at 100% used, without buying credits or switching accounts.
 
-At this milestone, VM is held by exec session 72486; final dashboard server runs in exec session 26362 on port 8765 against `.abl/release-acceptance`. Stop both after release verification. All Luna child workers finished and were interrupted. The supported account usage checker runs every 45 seconds in persistent functions cell 8; stop it after work stops. Latest delivered usage was 16% used; no exhaustion observed. Stop at 100% used and never buy credits or switch accounts to continue.
+GitHub Actions remains disabled at repository level; zero workflow runs were verified after publishing. No workflows or ~/.codex/config.toml edits were made. Parent repository and other project checkouts were not modified.
 
-## GitHub safeguards
-Exact origin verified. Repository Actions permissions are disabled; API reports zero workflow runs. No workflows added. Recheck permissions before every push/merge/tag/release. No ~/.codex/config.toml changes. Parent repository and other project checkouts untouched.
-
-## Evidence / precise recovery
-Canonical local roots: `.abl/release-acceptance` (29 records including one blocked credential probe), `.abl/final-corpus` (12 PASS), `.abl/unsolved-suite` (12 expected FAIL). Clean Python 3.12 wheel environment `.abl/clean-install`; fresh source clone `.abl/clean-source`. Opaque workspace archives and traces are retained under each root's artifacts/.
+## Exact next-session commands
 
 ```sh
 cd '/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab'
 git status
-gh api repos/Ethant35/agent-benchmark-lab/actions/permissions
-gh pr view 1
-cat ACCEPTANCE.md
-# If publication has not yet happened, finish the accepted PR and release; do not rerun live tests without credentials.
 gh release view v1.0.0 --repo Ethant35/agent-benchmark-lab
-# To use the local application later:
 podman machine start abl-benchmark
+uv sync --frozen
+npm ci --prefix dashboard
+npm run build --prefix dashboard
+uv run abl doctor
 uv run abl dashboard --root .abl/release-acceptance
+# Open http://127.0.0.1:8765
 ```
+
+Acceptance roots: `.abl/release-acceptance` (29 records, including one real credential-blocked probe), `.abl/final-corpus` (12 PASS), `.abl/unsolved-suite` (12 expected FAIL). Clean Python 3.12 wheel environment: `.abl/clean-install`; fresh source clone: `.abl/clean-source`. Release files: dist/; re-downloaded verification copies: `.abl/download-verification`.
+
+For live validation, obtain an authorized OpenRouter key, two exact tool-capable model configurations and a provider-side capped budget. Use examples/openrouter.yaml and tests/live_e2e.py. Do not relabel the existing BLOCKED_EXTERNAL scenarios or present reference outcomes as model scores. No additional implementation is required to finish the credential-free release.
