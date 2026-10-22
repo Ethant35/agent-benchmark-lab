@@ -1,6 +1,20 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## Current result: v1.0.1 published and verified
+The bounded be-ambitious follow-up is complete. Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.0.1 ; merged PR: https://github.com/Ethant35/agent-benchmark-lab/pull/2 ; immutable release commit: 1f8753cdadec9054a741620443a1748f74e9faa4. Current branch: main. This documentation-only handoff follows the release commit.
+
+Real v1.0.0 output-limit and archive-limit defects were reproduced, then fixed. Fourteen adversarial cases PASS; BL-01–18 regression PASS; three browser tests PASS. Clean wheel installation completes a real container trial. All 72 packaged implementation/task/static files match the checked sources. Published assets were downloaded and match both local bytes and published SHA-256 checksums. Author fields are Ethan; required dependency notices remain. The v1.0.0 release notes now carry a correction and upgrade link. See ACCEPTANCE.md and evidence/hardening/.
+
+BL-19–22 remain BLOCKED_EXTERNAL. Live model integration is unverified, no provider responses were fabricated, and the current limits do not impose a container-volume disk quota. No workers were spawned for this follow-up; the earlier completed children are interrupted.
+
+Cleanup verified: no trial containers or volumes remained before shutdown; Podman VM abl-benchmark is stopped; dashboard PID 61991 and holding sleep PID 50492 are terminated; port 8765 has no listener. Actions remains disabled and workflow-run count is zero. No config.toml edits. Usage checker ran every 45 seconds and is closed; final direct supported-tool observation was 34% used (66% remaining). A new work session must start its own checker and stop at 100%.
+
+Retained local roots: .abl/resource-before, .abl/resource-final, .abl/hardening-regression-v2, .abl/patch-install, .abl/patch-smoke, .abl/patch-download. Release assets remain in dist/. To inspect results, start the existing VM only if new execution is needed, and serve `.abl/patch-install/bin/abl dashboard --root .abl/hardening-regression-v2`. Do not relabel reference outcomes as model scores or live-provider gates as passing.
+
+## Historical v1.0.0 handoff and follow-up milestones
+The sections below are historical; the current state above supersedes their pending actions.
+
 ## Completed release
 Goal: COMPLETE for the explicitly permitted credential-free v1.0.0 framework release.
 Repository: https://github.com/Ethant35/agent-benchmark-lab

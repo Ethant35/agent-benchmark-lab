@@ -1,0 +1,14 @@
+[
+  {
+    "asset": "agent_benchmark_lab-1.0.1-py3-none-any.whl",
+    "sha256": "1e48b8b4fe5c8fb26d231224cad8da5398eeddde91192a7477a05074ce0af6d4",
+    "published_checksum_matches": true,
+    "local_bytes_match": true
+  },
+  {
+    "asset": "agent_benchmark_lab-1.0.1.tar.gz",
+    "sha256": "f8f203f30a7e5cc33a2efb9eff7c5b27be8141f15320fa08594ab4f192879ddd",
+    "published_checksum_matches": true,
+    "local_bytes_match": true
+  }
+]
