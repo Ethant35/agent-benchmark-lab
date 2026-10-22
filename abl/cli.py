@@ -89,7 +89,7 @@ def compare(root:Root=Path('.abl'),run_id:Annotated[str|None,typer.Option('--run
     emit(aggregate(Store(root).trials(run_id=run_id)))
 
 @app.command()
-def report(output:Path=Path('report.html'),root:Root=Path('.abl'),run_id:Annotated[str|None,typer.Option('--run-id')]=None):
+def report(output:Annotated[Path,typer.Argument()]=Path('report.html'),root:Root=Path('.abl'),run_id:Annotated[str|None,typer.Option('--run-id')]=None):
     import html
     rows=Store(root).trials(run_id=run_id); summary=aggregate(rows)
     content='<!doctype html><meta charset="utf-8"><meta name="author" content="Ethan"><title>Agent Benchmark Lab report</title><style>body{font:16px system-ui;max-width:1000px;margin:3rem auto}pre{white-space:pre-wrap}</style><h1>Agent Benchmark Lab</h1><p>Reference results are infrastructure checks, not model scores. Unknown measurements remain unavailable.</p><h2>Summary</h2><pre>'+html.escape(json.dumps(summary,indent=2))+'</pre><h2>Trial evidence</h2><pre>'+html.escape(json.dumps(rows,indent=2))+'</pre>'

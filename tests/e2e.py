@@ -18,6 +18,7 @@ import time
 parser=argparse.ArgumentParser(); parser.add_argument('--root',default='.abl/acceptance'); parser.add_argument('--cli',default='abl'); parser.add_argument('--browser',action='store_true')
 a=parser.parse_args(); root=Path(a.root).resolve(); root.mkdir(parents=True,exist_ok=True)
 cli=a.cli; evidence={}; commands=[]
+os.environ['ABL_ISOLATION_SECRET']='host-only-test-marker'
 
 def command(args,expect=0):
     p=subprocess.run([cli,*args],capture_output=True,text=True,timeout=240)
@@ -69,7 +70,7 @@ try:
     passed('BL-04',f'Original broken fixture rejected with preserved stderr: {rid}')
     rid,fresh=run('fresh',tasks=['bugfix-rounding'],repeats=3)
     for field in ('id','environment_id','artifact_dir'): assert len({t[field] for t in fresh})==3
-    assert len({t['fixture_hash'] for t in fresh})==1 and all(Path(t['artifact_dir'],'workspace.tar').exists() for t in fresh)
+    assert len({t['fixture_hash'] for t in fresh})==1 and all(Path(t['artifact_dir'],'agent/workspace.tar').exists() for t in fresh)
     passed('BL-05',f'Three distinct trial/container/artifact IDs, identical fixture hash: {rid}')
     rid,suite=run('full-suite'); assert len(suite)==12 and all(t['status']=='PASS' for t in suite)
     assert all(sum(t['category']==c for t in suite)==2 for c in {t['category'] for t in suite})
@@ -86,8 +87,13 @@ try:
     time.sleep(2); command(['cancel',rid,'--root',str(root)]); p.wait(timeout=30); log.close()
     cancelled=rows(rid); assert cancelled[0]['status']=='CANCELLED' and not cancelled[0]['cleanup_errors']
     passed('BL-09',f'Active process terminates and cleanup succeeds: {rid}')
+    (root/'host-sentinel').write_text('host-only proof, not a secret')
     rid,iso=run('isolation',tasks=['bugfix-rounding'],reference_mode='isolation')
     trace=Path(iso[0]['artifact_dir'],'trace.jsonl').read_text(); assert 'ISOLATION_DENIED' in trace and iso[0]['failed_tool_calls']==0
+    events=[json.loads(line) for line in trace.splitlines()]
+    boundary=next(e for e in events if e['kind']=='environment')
+    assert boundary['network']=='none' and boundary['memory']==268435456 and boundary['pids_limit']==64
+    assert boundary['read_only'] and boundary['user']=='65534:65534' and all(m['Type']=='volume' for m in boundary['mounts'])
     passed('BL-10',f'Actual agent container has no host /Users, /root/.ssh, or provider credential: {rid}')
     passed('BL-11',f'Actual agent container cannot access /verifier/check.py: {rid}')
     p,log,rid=active('resume',tasks=['bugfix-rounding','bugfix-interval-merge','feature-slugify'],repeats=2)
@@ -122,6 +128,11 @@ try:
     command(['report',str(root/'report.html'),'--root',str(root)]); assert 'Agent Benchmark Lab' in (root/'report.html').read_text()
     passed('BL-18','Complete 12-task clean suite passed; comparison and report generated.')
     for i in range(19,23): evidence[f'BL-{i}']={'status':'BLOCKED_EXTERNAL','detail':'Live model integration unverified. No authorized OpenRouter credential available.'}
+    engine=json.loads(command(['doctor']).stdout)['runtime']
+    containers=subprocess.check_output([engine,'ps','-a','--format','{{.Names}}'],text=True)
+    volumes=subprocess.check_output([engine,'volume','ls','--format','{{.Name}}'],text=True)
+    assert all(t['environment_id'] not in containers and t['environment_id'] not in volumes for t in rows())
+    evidence['cleanup']={'status':'PASS','detail':'No containers or volumes remain for any persisted acceptance trial'}
     save()
     print('CLI/container E2E complete. Run dashboard Playwright against this root for BL-16/17.',flush=True)
 except BaseException as e:

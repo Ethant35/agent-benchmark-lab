@@ -121,11 +121,13 @@ else:
                 '-v',v+':/verifier:ro',self.image,'sleep','infinity'])
             return self.command(command,container=self.verifier_name,user='0:0')
         finally:
+            subprocess.run([self.runtime,'kill',self.verifier_name],capture_output=True,timeout=15)
             subprocess.run([self.runtime,'rm','-f',self.verifier_name],capture_output=True,timeout=15)
             subprocess.run([self.runtime,'volume','rm','-f',v],capture_output=True,timeout=15)
     def cleanup(self):
         errors=[]
         for name in (self.name,self.verifier_name,self.name+'-setup'):
+            subprocess.run([self.runtime,'kill',name],capture_output=True,timeout=15)
             p=subprocess.run([self.runtime,'rm','-f',name],capture_output=True,timeout=15)
             if p.returncode and b'no such' not in p.stderr.lower() and b'does not exist' not in p.stderr.lower(): errors.append(p.stderr.decode())
         for name in (self.volume,self.volume+'-verifier'):

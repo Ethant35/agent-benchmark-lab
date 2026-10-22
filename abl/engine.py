@@ -27,7 +27,7 @@ def trial_record(rid,slot,task,folder,config,root):
         sources={'identity':'orchestrator UUID/config SHA256','status':'orchestrator/independent verifier exit status',
             'wall_seconds':'monotonic clock including setup/verification/cleanup', 'ttft_seconds':'unavailable',
             'api_seconds':'unavailable','input_tokens':'unavailable','output_tokens':'unavailable',
-            'cached_input_tokens':'unavailable','tool_calls':'executor trace','failed_tool_calls':'nonzero tool exit or validation failure',
+            'cached_input_tokens':'unavailable','tool_calls':'executor trace','failed_tool_calls':'nonzero tool exit, interruption, or validation failure',
             'retry_count':'orchestrator; requests are never automatically retried','timed_out':'orchestrator deadline',
             'cost_usd':'no_provider_requests' if config.runner=='reference' else 'unavailable',
             'artifacts':'SHA256 task/fixture and container image identifiers','timestamps':'UTC system clock'})
@@ -37,11 +37,12 @@ class Execution:
         self.store=store; self.rid=rid; self.task=task; self.folder=folder; self.config=config
         self.t=trial_record(rid,slot,task,folder,config,store.root)
         self.dir=Path(self.t['artifact_dir']); self.dir.mkdir(parents=True)
+        (self.dir/'agent').mkdir(); (self.dir/'verifier').mkdir()
         self.start=time.monotonic(); self.trace=[]
         deadline=self.start+min(task.runtime_seconds,config.runtime_seconds or task.runtime_seconds)
         self.box=Sandbox(runtime,config.image,self.t['id'],deadline,lambda:store.cancelled(rid))
-        self.limit=min(task.max_tool_steps,config.max_tool_steps or task.max_tool_steps)
-        self.store.save(self.t); self.requests=[]
+        self.limit=min(task.max_tool_steps,config.max_tool_steps if config.max_tool_steps is not None else task.max_tool_steps)
+        self.store.save(self.t); self.requests=[]; self.request_pending=False
     def event(self,kind,**data):
         event=dict(timestamp=now(),kind=kind,**data); self.trace.append(event)
         with (self.dir/'trace.jsonl').open('a') as f: f.write(json.dumps(event)+'\n')
@@ -54,6 +55,10 @@ class Execution:
             if name not in self.task.allowed_tools: raise ValueError('Tool not permitted')
             if not isinstance(args,dict): raise ValueError('Tool arguments must be an object')
             result=self.box.tool(name,args)
+        except (TrialTimeout,TrialCancelled) as e:
+            self.t['failed_tool_calls']+=1
+            self.event('tool',tool=name,arguments=args,result={'exit_code':None,'stdout':'','stderr':str(e),'interrupted':True})
+            raise
         except (KeyError,ValueError,TypeError) as e:
             result=dict(exit_code=2,stdout='',stderr=str(e),seconds=0)
         if result['exit_code']!=0: self.t['failed_tool_calls']+=1
@@ -65,7 +70,23 @@ class Execution:
         if mode=='timeout': self.tool('shell',{'command':'sleep 3600'}); return
         if mode=='tool_failure': self.tool('shell',{'command':'python -c "raise SystemExit(7)"'})
         if mode=='isolation':
-            self.tool('shell',{'command':"python -c \"import os,pathlib; assert not pathlib.Path('/verifier/check.py').exists(); assert not pathlib.Path('/root/.ssh').exists(); assert not pathlib.Path('/Users').exists(); assert not os.environ.get('OPENROUTER_API_KEY'); print('ISOLATION_DENIED')\""})
+            probe="""import os,pathlib,socket
+for name in ['/verifier/check.py','/root/.ssh/id_rsa','HOST_SENTINEL']:
+ try:
+  pathlib.Path(name).read_bytes()
+ except (FileNotFoundError,PermissionError,NotADirectoryError): pass
+ else: raise AssertionError('Forbidden path readable: '+name)
+assert not os.environ.get('OPENROUTER_API_KEY')
+assert not os.environ.get('ABL_ISOLATION_SECRET')
+s=socket.socket(); s.settimeout(1)
+try: s.connect(('1.1.1.1',443))
+except OSError: pass
+else: raise AssertionError('Network available')
+print('ISOLATION_DENIED')
+"""
+            import shlex
+            probe=probe.replace('HOST_SENTINEL',str(self.store.root/'host-sentinel'))
+            self.tool('shell',{'command':'python -c '+shlex.quote(probe)})
         actions=json.loads((self.folder/'reference.json').read_text())
         for action in actions:
             result=self.tool(action['tool'],action['arguments'])
@@ -98,10 +119,18 @@ class Execution:
             {'role':'user','content':self.task.description}]
         budget=min(self.config.spend_limit_usd,self.task.cost_budget_usd or self.config.spend_limit_usd)
         # Run-level spend ceiling includes earlier failures and resumed attempts.
-        prior=sum(t.get('cost_usd') or 0 for t in self.store.trials(run_id=self.rid) if t['id']!=self.t['id'])
+        earlier=[t for t in self.store.trials(run_id=self.rid) if t['id']!=self.t['id']]
+        if any(t.get('cost_usd') is None for t in earlier): raise BudgetExceeded('Earlier attempt has unknown cost; cannot safely continue run spending')
+        prior=sum(t['cost_usd'] for t in earlier)
         budget-=prior
         for _ in range(self.config.max_requests):
+            token_limit=self.config.token_budget or self.task.token_budget
+            if token_limit and len(json.dumps(messages).encode())+4096+self.config.max_output_tokens > token_limit-(self.t['input_tokens'] or 0)-(self.t['output_tokens'] or 0):
+                raise BudgetExceeded('Conservative request token reserve exceeds remaining token budget')
+            self.request_pending=True
+            self.event('request_started',request_number=len(self.requests)+1)
             result=provider.request(messages,self.task.allowed_tools,self.box.check,budget-(self.t['cost_usd'] or 0))
+            self.request_pending=False
             self.usage(result); self.event('provider',**result)
             token_limit=self.config.token_budget or self.task.token_budget
             if token_limit and (self.t['input_tokens'] is None or self.t['output_tokens'] is None): raise BudgetExceeded('Cannot enforce token budget without usage metadata')
@@ -123,6 +152,9 @@ class Execution:
         failure=None
         try:
             self.box.start(self.folder/'fixture'); self.t['image_id']=self.box.image_id
+            info=json.loads(self.box.raw(['inspect',self.box.name]))[0]
+            host=info['HostConfig']
+            self.event('environment',network=host.get('NetworkMode'),memory=host.get('Memory'),pids_limit=host.get('PidsLimit'),read_only=host.get('ReadonlyRootfs'),security_opt=host.get('SecurityOpt'),mounts=info.get('Mounts'),user=info['Config'].get('User'))
             for command in self.task.setup:
                 r=self.box.command(['sh','-c',command]); self.event('setup',result=r)
                 if r['exit_code']: raise RuntimeError('Workspace setup failed')
@@ -141,21 +173,31 @@ class Execution:
             failure=('INTERRUPTED','interrupted','Process interrupted')
             raise
         finally:
+            if self.request_pending:
+                self.t['known_cost_subtotal_usd']=self.t['cost_usd']
+                for key in ('cost_usd','input_tokens','output_tokens','cached_input_tokens'):
+                    self.t[key]=None; self.t['sources'][key]='unavailable: incomplete request'
+                self.t['cost_source']='unavailable: incomplete request'
             try:
                 # Stop all agent processes before snapshot and independent verification.
                 self.box.raw(['stop','--time','0',self.box.name],timeout=15)
-                self.box.snapshot(self.dir/'workspace.tar')
-                if failure is None or failure[1]=='step_limit':
+                self.box.snapshot(self.dir/'agent/workspace.tar')
+                if failure is None or failure[1] in ('step_limit','budget_limit'):
                     result=self.box.verify(self.folder/'verifier',self.task.verifier)
                     self.t['verifier']=result; self.event('verifier',result=result)
-                    (self.dir/'verifier.json').write_text(json.dumps(result,indent=2))
+                    (self.dir/'verifier/result.json').write_text(json.dumps(result,indent=2))
+                    if failure is not None and result['exit_code']==0:
+                        self.t['termination_reason']=failure[1]
+                        failure=None
                     if failure is None:
                         failure=('PASS',None,'Verifier passed') if result['exit_code']==0 else ('FAIL','verification_failed','Verifier rejected result')
             except TrialTimeout: failure=('TIMEOUT','runtime_limit','Deadline reached during verification')
             except TrialCancelled: failure=('CANCELLED','cancelled','Cancelled during verification')
             except Exception as e:
                 if failure is None: failure=('ERROR','verification_error',str(e))
-            cleanup=self.box.cleanup(); self.t['cleanup_errors']=cleanup
+            try: cleanup=self.box.cleanup()
+            except Exception as e: cleanup=[str(e)]
+            self.t['cleanup_errors']=cleanup
             if cleanup: failure=('ERROR','cleanup_error','Container cleanup incomplete')
             failure=failure or ('ERROR','unknown','No outcome')
             self.t.update(status=failure[0],failure_category=failure[1],completed_at=now(),

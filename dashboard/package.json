@@ -1,7 +1,7 @@
 {
   "name": "agent-benchmark-lab-dashboard",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
@@ -19,5 +19,6 @@
     "@playwright/test": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest"
-  }
+  },
+  "author": "Ethan"
 }

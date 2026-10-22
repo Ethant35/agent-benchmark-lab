@@ -13,7 +13,7 @@ test('dashboard reads persisted results, filters, details, and exports', async (
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Benchmark results' })).toBeVisible();
   await expect(page.getByTestId('trial-row')).toHaveCount(trials.length);
-  const expectedCompletion = summary.completion_rate == null ? 'Unavailable' : `${(summary.completion_rate > 1 ? summary.completion_rate : summary.completion_rate * 100).toFixed(1)}%`;
+  const expectedCompletion = summary.completion_rate == null ? 'Unavailable' : `${(summary.completion_rate > 1 ? summary.completion_rate : summary.completion_rate * 100).toLocaleString(undefined, { maximumFractionDigits: 1 })}%`;
   await expect(page.getByTestId('completion-rate')).toHaveText(expectedCompletion);
   const expectedMedian = summary.median_wall_seconds == null ? 'Unavailable' : `${summary.median_wall_seconds.toLocaleString(undefined, { maximumFractionDigits: 1 })}s`;
   await expect(page.getByTestId('median-wall')).toHaveText(expectedMedian);

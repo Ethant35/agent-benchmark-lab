@@ -52,7 +52,7 @@ class Config(Strict):
     reasoning_effort: str | None = None
     max_requests: int = Field(default=12, ge=1, le=100)
     max_output_tokens: int = Field(default=2048, ge=1, le=32768)
-    max_tool_steps: int | None = Field(default=None, ge=1, le=1000)
+    max_tool_steps: int | None = Field(default=None, ge=0, le=1000)
     runtime_seconds: float | None = Field(default=None, gt=0, le=3600)
     token_budget: int | None = Field(default=None, gt=0)
     spend_limit_usd: float = Field(default=0.25, gt=0, le=100)
