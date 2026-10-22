@@ -22,3 +22,5 @@ artifacts = ["abl/static/**"]
 packages = ["abl"]
 [tool.hatch.build.targets.wheel.force-include]
 "corpus" = "abl/corpus"
+
+"THIRD_PARTY_NOTICES.md" = "abl/static/THIRD_PARTY_NOTICES.md"
