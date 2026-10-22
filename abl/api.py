@@ -5,10 +5,11 @@ from fastapi.responses import Response
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 from .store import Store,aggregate,export_data
+from . import __version__
 import json
 
 def create_app(root):
-    app=FastAPI(title='Agent Benchmark Lab',version='1.0.0')
+    app=FastAPI(title='Agent Benchmark Lab',version=__version__)
     app.add_middleware(TrustedHostMiddleware,allowed_hosts=['localhost','127.0.0.1','[::1]'])
     store=Store(root)
     def rows(run_id=None,model=None,provider=None,task_id=None):

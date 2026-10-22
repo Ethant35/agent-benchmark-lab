@@ -12,3 +12,5 @@ Task bundles and reference actions are trusted operator code. Review third-party
 A SIGKILL or machine failure can prevent cleanup. Resume the run to reconcile it. Inspect `podman ps -a --filter label=abl.managed=true` and remove only this project's abandoned resources. Preserve trial evidence before manual cleanup. Workspace archives are untrusted and may contain symlinks; the program never extracts them on the host.
 
 Report security problems privately through the repository's GitHub security reporting channel when available; otherwise contact the repository owner without publishing exploit credentials or private data.
+
+Host collectors enforce byte limits during transfer, not after buffering or writing an entire stream. This protects these specific stdout/stderr and archive paths; it is not a general disk quota on the container volume. The 64 MB archive limit does not prevent a workload from consuming its container runtime's storage before export. Place the runtime on a capacity-limited disposable VM for hostile workloads. SIGKILL cannot execute cleanup immediately; resume removes the bounded abandoned partial archive and container resources.

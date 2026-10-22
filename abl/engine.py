@@ -9,7 +9,7 @@ import time
 import uuid
 from .models import Config, load_tasks, tree_hash
 from .store import Store, now
-from .isolation import Sandbox, runtime_name, BoundaryError, TrialTimeout, TrialCancelled
+from .isolation import Sandbox, runtime_name, BoundaryError, TrialTimeout, TrialCancelled, OutputLimit, ArtifactLimit
 from .providers import CompatibleProvider, ProviderError, Unsupported, CredentialsMissing, BudgetExceeded
 
 class StepLimit(RuntimeError): pass
@@ -55,9 +55,11 @@ class Execution:
             if name not in self.task.allowed_tools: raise ValueError('Tool not permitted')
             if not isinstance(args,dict): raise ValueError('Tool arguments must be an object')
             result=self.box.tool(name,args)
-        except (TrialTimeout,TrialCancelled) as e:
+        except (TrialTimeout,TrialCancelled,OutputLimit,BoundaryError) as e:
             self.t['failed_tool_calls']+=1
-            self.event('tool',tool=name,arguments=args,result={'exit_code':None,'stdout':'','stderr':str(e),'interrupted':True})
+            result=getattr(e,'result',{'exit_code':None,'stdout':'','stderr':str(e),'output_complete':False})
+            result['interrupted']=True
+            self.event('tool',tool=name,arguments=args,result=result)
             raise
         except (KeyError,ValueError,TypeError) as e:
             result=dict(exit_code=2,stdout='',stderr=str(e),seconds=0)
@@ -150,6 +152,8 @@ print('ISOLATION_DENIED')
         raise StepLimit('Maximum model requests reached')
     def execute(self):
         failure=None
+        finalization_interrupt=None
+        finalization_phase="stop"
         try:
             self.box.start(self.folder/'fixture'); self.t['image_id']=self.box.image_id
             info=json.loads(self.box.raw(['inspect',self.box.name]))[0]
@@ -167,6 +171,7 @@ print('ISOLATION_DENIED')
         except CredentialsMissing as e: failure=('BLOCKED_EXTERNAL','credentials_missing',str(e))
         except BudgetExceeded as e: failure=('FAIL','budget_limit',str(e))
         except ProviderError as e: failure=('ERROR','provider_error',str(e))
+        except OutputLimit as e: failure=('ERROR','output_limit',str(e))
         except BoundaryError as e: failure=('ERROR','isolation_error',str(e))
         except Exception as e: failure=('ERROR','runner_error',str(e))
         except BaseException:
@@ -181,8 +186,10 @@ print('ISOLATION_DENIED')
             try:
                 # Stop all agent processes before snapshot and independent verification.
                 self.box.raw(['stop','--time','0',self.box.name],timeout=15)
+                finalization_phase='artifact'
                 self.box.snapshot(self.dir/'agent/workspace.tar')
                 if failure is None or failure[1] in ('step_limit','budget_limit'):
+                    finalization_phase='verifier'
                     result=self.box.verify(self.folder/'verifier',self.task.verifier)
                     self.t['verifier']=result; self.event('verifier',result=result)
                     (self.dir/'verifier/result.json').write_text(json.dumps(result,indent=2))
@@ -191,10 +198,24 @@ print('ISOLATION_DENIED')
                         failure=None
                     if failure is None:
                         failure=('PASS',None,'Verifier passed') if result['exit_code']==0 else ('FAIL','verification_failed','Verifier rejected result')
-            except TrialTimeout: failure=('TIMEOUT','runtime_limit','Deadline reached during verification')
-            except TrialCancelled: failure=('CANCELLED','cancelled','Cancelled during verification')
+            except ArtifactLimit as e:
+                if failure is None: failure=('ERROR','artifact_limit',str(e))
+            except OutputLimit as e:
+                if finalization_phase=='verifier':
+                    self.t['verifier']=getattr(e,'result',None)
+                    self.event('verifier',result=self.t['verifier'])
+                category='artifact_limit' if finalization_phase=='artifact' else 'output_limit'
+                if failure is None: failure=('ERROR',category,str(e))
+            except TrialTimeout: failure=('TIMEOUT','runtime_limit','Deadline reached during finalization')
+            except TrialCancelled: failure=('CANCELLED','cancelled','Cancelled during finalization')
             except Exception as e:
                 if failure is None: failure=('ERROR','verification_error',str(e))
+            except BaseException as e:
+                failure=('INTERRUPTED','interrupted','Interrupted during finalization')
+                finalization_interrupt=e
+            if self.box.artifact is not None:
+                self.t['artifact']=self.box.artifact
+                self.event('artifact',**self.box.artifact)
             try: cleanup=self.box.cleanup()
             except Exception as e: cleanup=[str(e)]
             self.t['cleanup_errors']=cleanup
@@ -205,6 +226,7 @@ print('ISOLATION_DENIED')
             self.event('outcome',status=failure[0],failure_category=failure[1],detail=failure[2])
             (self.dir/'trial.json').write_text(json.dumps(self.t,indent=2))
             self.store.save(self.t)
+            if finalization_interrupt is not None: raise finalization_interrupt
         return self.t
 
 def run_suite(root,config,resume=None):
@@ -225,6 +247,11 @@ def run_suite(root,config,resume=None):
                 if t['status']=='RUNNING':
                     box=Sandbox(runtime,config.image,t['id'],time.monotonic()+30,lambda:False)
                     t['cleanup_errors']=box.cleanup()
+                    partial=store.root/'artifacts'/t['id']/'agent/workspace.tar.partial'
+                    if partial.exists():
+                        t['artifact']={'status':'interrupted','bytes_written':partial.stat().st_size,
+                            'source':'recovered host partial archive; removed during resume'}
+                        partial.unlink()
                     t.update(status='INTERRUPTED',failure_category='process_lost',completed_at=now())
                     store.save(t)
             store.state(rid,'RUNNING',False)
