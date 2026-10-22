@@ -2,6 +2,7 @@
 Author: Ethan
 
 ## Latest: full live corpus run complete
+Evidence merged in PR #4: https://github.com/Ethant35/agent-benchmark-lab/pull/4 . Usage checker closed at 43% used (57% remaining). In-memory credential binding cleared; VM and holding process stopped. Working branch main.
 2026-10-22: Full twelve-task run requested by Ethan, installed v1.0.1 and exact DeepSeek V4.1 Flash 1017 alias. Raw outcomes: 8 PASS, 3 FAIL, 1 TIMEOUT. One provider-executed attempt per task; four initial zero-request budget blocks were preserved and those untouched tasks executed once separately after charge inspection. Actual key-usage increase $0.014957188; 64 completed response/generation records reconcile to $0.014526328, with $0.000430860 additional key charge consistent with the interrupted request but not individually attributable. Same-key concurrent use would affect this delta. Prior smoke-test costs excluded.
 Evidence and failure analysis: evidence/full-deepseek-1017/REPORT.md. Raw data: .abl/full-deepseek-1017. Effective task deadline is 30 seconds despite a 120-second config maximum. The score is qualified by underspecified output schemas and one strict-keyword false negative. No repairs/retries were performed. All resources cleaned and VM stopped. No workers or GitHub Actions. Earlier active-run and smoke-only notes below are historical.
 
