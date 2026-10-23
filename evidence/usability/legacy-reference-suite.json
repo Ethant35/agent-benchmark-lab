@@ -1,0 +1,114 @@
+{
+  "author": "Ethan",
+  "trials": [
+    {
+      "id": "c6e8e0d7ad0a49adad0f7e83b791ff5a",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "bugfix-interval-merge",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "40265ef91a914e12b0410bdbc9bdfb86",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "bugfix-rounding",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "bdf80b53aa944230b5a79101f790dc85",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "extraction-contacts",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "8db20bf0716a48c2acd0d9d51778ba79",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "extraction-invoices",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "f4aa3c797f734bd2909b802a7424fdfe",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "feature-order-filter",
+      "task_version": "1.1",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "288d4b3169094feb983f73e0dda8b260",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "feature-slugify",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "f9b12743a690449fb11fd2586eaa1f98",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "multistep-document-index",
+      "task_version": "1.1",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "dffb001890344de8829f282e0ced93be",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "multistep-ledger",
+      "task_version": "1.1",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "c75f07e36d464115a6f6a6670c4f29ad",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "navigation-config",
+      "task_version": "1.1",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "a7ecd1500eb84bd4a3f04a788456c0bc",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "navigation-routes",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "ace48fca9fe34d728a29f6b21ca25bd7",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "refactor-csv-summary",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    },
+    {
+      "id": "4eb6823101b54f48a7ba2bbba0a31355",
+      "run_id": "6a23d90eda6143cd84436a42a1ee136b",
+      "task_id": "refactor-text-stats",
+      "task_version": "1.0",
+      "status": "PASS",
+      "cost_usd": 0,
+      "cleanup_errors": []
+    }
+  ],
+  "provider_calls": 0
+}

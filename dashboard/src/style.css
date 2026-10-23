@@ -50,3 +50,21 @@ button,a,select{touch-action:manipulation;-webkit-tap-highlight-color:#087f7830}
 .skip-link:focus{transform:translateY(0)}
 
 @media(max-width:480px){.topbar{height:auto;min-height:64px;flex-wrap:wrap;gap:10px;padding-block:12px}.top-actions{margin-left:auto;flex-wrap:wrap}}
+
+/* Quick-start, live progress and contract distinctions. */
+.getting-started{display:flex;align-items:flex-start;gap:16px;margin:0 0 14px;padding:14px 16px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.getting-started h2{margin:0 0 6px;font-size:14px}
+.getting-started p{max-width:76ch;color:var(--muted);line-height:1.5;margin:7px 0;font-size:12px}
+.getting-started pre{max-width:100%;overflow:auto;margin:8px 0;padding:10px 12px;border-radius:7px;background:#eef4f3;color:#244b49;font:12px/1.5 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.getting-started .icon-button{min-width:44px;min-height:44px}
+.run-progress{display:flex;align-items:center;gap:8px;margin:0 0 12px;color:var(--muted);font-size:12px}
+.run-progress svg{flex:none}
+.contract-note{margin:-8px 18px 13px;color:var(--muted);font-size:11px;line-height:1.5;max-width:80ch}
+.empty-state{min-height:210px}
+.empty-state p{max-width:70ch;line-height:1.55}
+.empty-state code{overflow-wrap:anywhere}
+@media(prefers-color-scheme:dark){.getting-started pre{background:#122022;color:#c5dfdb}}
+.summary-context{margin:-6px 0 14px;color:var(--muted);font-size:11px;line-height:1.45}
+.loading.loading-inline{justify-content:flex-start;min-height:0;padding:9px 12px;margin:0 0 10px;border:0;background:transparent;text-align:left}
+.loading{color:#52676d}
+@media(prefers-color-scheme:dark){.loading{color:#b5c3c5}}

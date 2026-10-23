@@ -51,7 +51,8 @@ def trial_record(rid,slot,task,folder,config,root):
             'artifacts':'SHA256 task/fixture and container image identifiers','timestamps':'UTC system clock'})
 
 class Execution:
-    def __init__(self,store,rid,slot,task,folder,config,runtime):
+    def __init__(self,store,rid,slot,task,folder,config,runtime,observer=None):
+        self.observer=observer
         self.store=store; self.rid=rid; self.task=task; self.folder=folder; self.config=config
         self.t=trial_record(rid,slot,task,folder,config,store.root)
         self.dir=Path(self.t['artifact_dir']); self.dir.mkdir(parents=True,mode=0o700)
@@ -66,6 +67,8 @@ class Execution:
         with os.fdopen(os.open(self.dir/'trace.jsonl',os.O_APPEND|os.O_CREAT|os.O_WRONLY|os.O_NOFOLLOW,0o600),'a') as f:
             f.write(json.dumps(event)+'\n')
         self.store.save(self.t)
+        if self.observer:
+            self.observer({'kind':kind,'task_id':self.task.id,'run_id':self.rid})
     def tool(self,name,args):
         self.box.check()
         if self.t['tool_calls']>=self.limit: raise StepLimit('Maximum tool calls reached')
@@ -261,16 +264,16 @@ print('ISOLATION_DENIED')
             if finalization_interrupt is not None: raise finalization_interrupt
         return self.t
 
-def run_suite(root,config,resume=None):
+def run_suite(root,config,resume=None,observer=None):
     if resume is not None:
         validate_run_id(resume)
     from .recovery import store_lock
     store=Store(root)
     with store_lock(store.root):
-        return _run_locked(store.root,config,resume)
+        return _run_locked(store.root,config,resume,observer)
 
 
-def _run_locked(root,config,resume=None):
+def _run_locked(root,config,resume=None,observer=None):
     store=Store(root); runtime=runtime_name(config.runtime); tasks=load_tasks()
     chosen=config.tasks or list(tasks)
     if any(t not in tasks for t in chosen): raise ValueError('Unknown task ID')
@@ -308,7 +311,8 @@ def _run_locked(root,config,resume=None):
                     store.save(t)
             store.state(rid,'RUNNING',False)
         else: store.create_run(rid,config.model_dump(),manifest=manifest)
-        print(json.dumps({'run_id':rid}),flush=True)
+        if observer: observer({'kind':'run_started','run_id':rid})
+        else: print(json.dumps({'run_id':rid}),flush=True)
         previous={t['slot']:t for t in store.trials(run_id=rid)}
         old_handler=signal.getsignal(signal.SIGTERM)
         def terminate(signum,frame): raise KeyboardInterrupt()
@@ -319,12 +323,14 @@ def _run_locked(root,config,resume=None):
                 if store.cancelled(rid): break
                 if corpus_manifest(tasks,chosen,image_identity(runtime,config.image))!=manifest:
                     raise ValueError('Corpus or container image changed during this run')
-                execution=Execution(store,rid,slot,*tasks[tid],config,runtime)
+                execution=Execution(store,rid,slot,*tasks[tid],config,runtime,observer)
+                if observer: observer({'kind':'trial_started','task_id':tid,'run_id':rid})
                 execution.t['corpus_hash']=manifest_hash(manifest)
                 # Use the inspected immutable image, even if the tag moves later.
                 execution.box.image=manifest['image_id']
                 t=execution.execute()
-                print(json.dumps({'trial_id':t['id'],'task_id':tid,'status':t['status']}),flush=True)
+                if observer: observer({'kind':'trial_finished','trial_id':t['id'],'task_id':tid,'status':t['status']})
+                else: print(json.dumps({'trial_id':t['id'],'task_id':tid,'status':t['status']}),flush=True)
             store.state(rid,'CANCELLED' if store.cancelled(rid) else 'COMPLETED')
         except BaseException:
             store.state(rid,'INTERRUPTED'); raise

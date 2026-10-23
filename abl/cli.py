@@ -107,7 +107,7 @@ def export(output:Path,format:Annotated[str,typer.Option('--format')]='json',roo
 def dashboard(root:Root=Path('.abl'),port:int=8765):
     import uvicorn
     from .api import create_app
-    if not (Path(__file__).parent/'static/index.html').exists(): raise typer.BadParameter('Build dashboard first: cd dashboard && npm ci && npm run build')
+    if not (Path(__file__).parent/'static/index.html').exists(): raise typer.BadParameter('Dashboard missing. Reinstall the published wheel (dashboard included). Source contributors: npm ci --prefix dashboard && npm run build --prefix dashboard')
     uvicorn.run(create_app(root),host='127.0.0.1',port=port)
 
 @app.command()
@@ -139,3 +139,29 @@ def diagnostics(root:Root=Path('.abl')):
     """Print operational counts without task, provider, path or config payloads."""
     from .recovery import diagnostics as report
     emit(report(Store(root)))
+
+
+@app.command()
+def check(runtime: str = 'podman'):
+    """Check prerequisites with safe, readable recovery steps; make no changes."""
+    from .guided import setup_check
+    if runtime not in ('auto', 'podman', 'docker'): raise typer.BadParameter('Use podman, docker, or auto')
+    if not setup_check(runtime): raise typer.Exit(2)
+
+
+@app.command()
+def start(root: Root = Path('.abl'),
+          config: Annotated[Path | None, typer.Option('--config')] = None,
+          resume: Annotated[str | None, typer.Option('--resume')] = None,
+          plan: Annotated[bool, typer.Option('--plan', help='Preview only; no setup or requests')] = False,
+          accept_cost: Annotated[float | None, typer.Option('--accept-cost', help='Explicit noninteractive consent; must equal the configured USD reserve')] = None):
+    """Run one free reference task, or review and consent to a selected model config."""
+    from .guided import start as guided_start
+    guided_start(root, config, resume, plan, accept_cost)
+
+
+@app.command()
+def configure(output: Path):
+    """Create a model config with explicit provider, model, prices and spending reserve."""
+    from .guided import configure as guided_configure
+    guided_configure(output)

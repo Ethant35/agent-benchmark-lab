@@ -2,6 +2,17 @@
 Author: Ethan
 Updated: 2026-10-22
 
+## v1.2.0 usability candidate
+
+Candidate acceptance is complete: 78 local tests, 15 packaged-dashboard browser checks,
+12 installed-wheel reference passes, free-first/interruption/recovery journey,
+upgrade/rollback, package byte checks and dependency audits. Publication and downloaded
+release verification are pending. See [USABILITY_ACCEPTANCE.md](docs/USABILITY_ACCEPTANCE.md)
+and evidence/usability/. No new provider requests or charges; historical records remain
+unchanged. The CLI adds optional guidance while the dashboard remains read-only.
+
+## v1.1.0 qualification (preserved)
+
 Status: **QUALIFIED AND RELEASED as v1.1.0 for the documented local target.** Current
 local, container, browser, package, upgrade and bounded live integration gates have
 evidence. This is not a guarantee that a model completes the 30-second benchmark.

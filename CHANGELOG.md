@@ -1,6 +1,16 @@
 # Changelog
 Author: Ethan
 
+## 1.2.0 — 2026-10-22
+
+- Make the prebuilt wheel the first installation route, with no frontend build.
+- Add free-first guided execution, prerequisite checks, explicit model configuration
+  and paid-run consent, status progress, and safe interruption/recovery instructions.
+- Restore dashboard filters/details per workspace, distinguish empty and filtered
+  views, refresh live runs, and label configuration/contract differences and tiny costs.
+- Preserve task deadlines, historical benchmark records, provider accounting and
+  legacy JSON commands. This phase makes no provider requests.
+
 ## 1.1.0 — 2026-10-22
 
 - Add compact history pages, complete summary denominators, explicit chart sampling,

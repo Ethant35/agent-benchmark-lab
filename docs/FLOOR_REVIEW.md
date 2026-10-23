@@ -39,3 +39,14 @@ not the deadline-bound benchmark score. Normal nonstreaming success is now expli
 asserted too, along with artifacts, TTFT mode, no pending request and clean cleanup.
 The old harness only asserted identity/comparison fields for that second configuration.
 No existing assertion was removed. Final integration PASS does not relabel any timeout.
+
+
+## v1.2.0 usability phase
+
+No task verifier, corpus file, provider cost logic or isolation code changed. The new
+17 guided tests add consent/config/diagnostic coverage. Browser checks increased from
+8 to 15. The old first-visit help-visible assertion now expects help closed with a
+working replay button, as requested for optional onboarding. The old empty-store
+filter-mismatch assertion now expects a true empty state; a separate no-match test
+retains filter recovery coverage. These are explicit UI behavior changes, not skipped
+assertions or weakened benchmark outcomes. Legacy JSON/corpus checks remain.
