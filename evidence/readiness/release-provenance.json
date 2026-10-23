@@ -1,0 +1,22 @@
+{
+  "author": "Ethan",
+  "release": "https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.1.0",
+  "pull_request": "https://github.com/Ethant35/agent-benchmark-lab/pull/5",
+  "release_commit": "721bdf8e21edfb24563771b725b881916212873c",
+  "asset_sha256": {
+    "agent_benchmark_lab-1.1.0-py3-none-any.whl": "21f933c86e286927bdc24deecd2bd41857251a1051409bde5ab0c97f7214f487",
+    "agent_benchmark_lab-1.1.0.tar.gz": "7a79135332b8c8030ded70d58677f670479d365f7d3f3235314ef3f589c2b2cf"
+  },
+  "download_matches_local_bytes": true,
+  "download_matches_published_checksums": true,
+  "release_tree_matches_qualified_commit": true,
+  "package_author": "Ethan",
+  "github_merge_attribution": "Ethant35",
+  "downloaded_wheel_trial": "9eded66bc4604d7497f60cdb3dc93e42",
+  "downloaded_wheel_status": "PASS",
+  "source_archive_credential_scan": "PASS",
+  "github_actions_enabled": false,
+  "github_workflow_runs": 0,
+  "screenshot_author": "Ethan",
+  "screenshot_pixels_unchanged": true
+}

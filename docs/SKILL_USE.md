@@ -33,7 +33,7 @@ from each skill or untested platforms. No hooks or Actions were enabled.
 | vercel-composition-patterns | Assessed current component/prop structure | No speculative compound-component refactor justified |
 | code-simplification | Reviewed changed boundaries; retained focused fixes and one-pass aggregation | Long expressions remain readability debt; no broad cleanup solely for scan count |
 | shipping-and-launch | Prelaunch gates, clean package/upgrade, rollback and local diagnostics | Local release gates satisfied; no cloud/canary deployment claim |
-| verification-before-completion | Actual exits/outcomes checked and failures retained | Completion still requires publication and downloaded-asset checks |
+| verification-before-completion | Actual exits/outcomes checked and failures retained | Published assets downloaded, hashes matched and downloaded wheel task passed |
 
 Primary references consulted in this work:
 - https://docs.python.org/3.12/library/sqlite3.html

@@ -1,7 +1,7 @@
 {
   "author": "Ethan",
   "candidate_version": "1.1.0",
-  "published": false,
+  "published": true,
   "wheel_sha256": "21f933c86e286927bdc24deecd2bd41857251a1051409bde5ab0c97f7214f487",
   "matching_packaged_files": 75,
   "package_author": "Ethan",
@@ -96,5 +96,6 @@
   "fresh_source_reference_trial": "975c532c036c4b03b2ab800faf743625",
   "fresh_source_frozen_install": "PASS",
   "fresh_source_dashboard_build": "PASS",
-  "fresh_source_static_bytes_match": true
+  "fresh_source_static_bytes_match": true,
+  "publication_record": "release-provenance.json"
 }

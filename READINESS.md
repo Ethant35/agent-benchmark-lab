@@ -2,7 +2,7 @@
 Author: Ethan
 Updated: 2026-10-22
 
-Status: **QUALIFIED for the documented local target; publication pending.** Current
+Status: **QUALIFIED AND RELEASED as v1.1.0 for the documented local target.** Current
 local, container, browser, package, upgrade and bounded live integration gates have
 evidence. This is not a guarantee that a model completes the 30-second benchmark.
 The separate integration fixture permits 120 seconds; its inputs/verifier and all
@@ -25,7 +25,7 @@ See CONSTRAINTS.md and evidence/readiness/live-integration/.
 | Test floor | 61 pytest passes, eight browser passes; floor checker flags manually reviewed | See docs/FLOOR_REVIEW.md; automated checker itself still exits 1 |
 | Performance | 10,000-row controlled test: JSON 127.95 MB → 1.26 MB, Python allocation 410.86 MB → 15.91 MB | Synthetic local measurement; median query/encoding 1.047 s → 0.391 s |
 | Documentation | Operations, recovery/rollback, support, API, ADR and changelog | Current; see skill ledger for applicable work and limits |
-| Shipping | Candidate built, installed and qualified; GitHub Actions disabled | Publication and downloaded-asset verification pending |
+| Shipping | PR #5 merged; v1.1.0 published; downloads match checksums/local bytes; downloaded wheel task PASS | PASS; release-provenance.json records immutable commit and hashes |
 
 ## Commands and evidence
 
@@ -61,3 +61,7 @@ Compound reads use one SQLite snapshot. HTTP access is read-only, loopback Host 
 foreign Origin rejected, and no-store/security headers applied. Full trace previews are
 bounded to 2 MB total / 1 MB per line and signal truncation; symlinks are rejected. Corpus
 manifest hashes separate changed-contract comparison groups from legacy unknown identity.
+
+Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.1.0 .
+Publication verification is recorded in evidence/readiness/release-provenance.json
+after upload; the release tag and uploaded assets are unchanged.

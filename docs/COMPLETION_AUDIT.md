@@ -4,7 +4,7 @@ Date: 2026-10-22
 
 Target: single-user local macOS Apple Silicon, Python 3.12 and rootless Podman.
 The objective is assessed against current working code and recorded execution, not
-against intent or an older release. Publication checks are completed separately below.
+against intent or an older release. Publication checks are completed in evidence/readiness/release-provenance.json.
 
 | Requirement | Authoritative evidence inspected | Disposition |
 |---|---|---|
@@ -21,9 +21,9 @@ against intent or an older release. Publication checks are completed separately 
 | Dependencies/maintenance | Frozen lockfiles, pip-audit/npm audit zero, no new workflows/hooks/global settings; operations and rollback docs | PASS for resolved snapshots; future dependency/runtime changes require review |
 | Static/differential/floor review | Final Semgrep raw/SARIF; reviewed changed paths and fixed privacy issue; floor flags retained/manual disposition | No confirmed outstanding high/critical issue; 15 third-party rule parse errors, p/yaml absent and Community limits disclosed |
 | Skills and authorship | docs/SKILL_USE; Author Ethan in package/reports; factual dependency notices retained | Applied workflows distinguished from optional/inapplicable techniques |
-| Fresh/upgrade/package | Clean wheel task and browser suite; actual v1.0.1 upgrade and restored export; 75 matching runtime/corpus/static files | PASS; fresh source and final downloaded artifacts recorded at publication |
+| Fresh/upgrade/package | Clean wheel task and browser suite; actual v1.0.1 upgrade and restored export; 75 matching runtime/corpus/static files | PASS; fresh clone f83e0af and downloaded wheel task also passed |
 | Full requested scope | No central supported capability removed; failed attempts and historical evidence retained | No smaller substitute objective; live integration latency contract explicitly separate |
-| Release operations | Actions disabled and zero workflow runs; final source/package/PR/release/download verification | Pending external publication records before goal completion |
+| Release operations | Actions disabled and zero workflow runs; final source/package/PR/release/download verification | PASS: PR #5 merged, release public, downloads match checksums and local files; downloaded wheel task PASS |
 
 BL-01–15 and BL-18 map to evidence/readiness/cli-acceptance.json; BL-16/17 to the
 packaged browser run in package-results.json; BL-19–22 to live-integration/acceptance.json.

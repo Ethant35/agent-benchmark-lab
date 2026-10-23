@@ -1,6 +1,52 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## COMPLETE — v1.1.0 released and verified, 2026-10-22
+Author: Ethan
+
+Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.1.0
+Merged PR: https://github.com/Ethant35/agent-benchmark-lab/pull/5
+Immutable release commit: 721bdf8e21edfb24563771b725b881916212873c.
+Current branch main. A documentation/evidence-only commit follows the release;
+the tag and uploaded assets remain unchanged. See READINESS.md and
+ docs/COMPLETION_AUDIT.md for requirement-by-requirement evidence and support limits.
+
+Qualification is complete for single-user macOS Apple Silicon / Python 3.12 / rootless
+Podman: 61 local tests, eight browser checks (axe clear), twelve reference positives and
+twelve unsolved negatives, fourteen adversarial resource cases, bounded workspace,
+resume/privacy/backup/restore/upgrade, frozen fresh clone and clean wheel checks passed.
+Real streaming/nonstreaming integration passed on the unchanged behavior/verifier with
+a separately versioned 120-second deadline; bundled benchmarks remain 30 seconds.
+Current integration is not a rescoring of the historical 8/12 full benchmark.
+
+All readiness inference charges reconcile: $0.003303652, including prior timeouts.
+The successful three-run integration subtotal is $0.001403188. Original full12 cost
+$0.014957188 and earlier smoke $0.003375022 remain separate and unchanged. No key or
+account settings changed. Credential bindings/processes are gone; no credential pattern
+appears in candidate files or the published source archive.
+
+Downloaded wheel/source assets exactly match local bytes and published checksums.
+The downloaded wheel independently passed validate and a real rounding trial
+9eded66bc4604d7497f60cdb3dc93e42. All 75 packaged runtime/corpus/static files match
+qualified sources. Package/report/PNG Author is Ethan; GitHub merge attribution uses
+the authenticated Ethant35 account. Factual dependency/producer notices were preserved.
+Release provenance, current screenshots and cost ledgers are in evidence/readiness/.
+
+Final Semgrep remains partial: 31 triaged long-line/intentional execution indicators,
+15 third-party rule parse errors, unavailable p/yaml, no Pro. Twelve automated floor
+flags are manually reviewed and retained, not suppressed. Docker/other endpoints and
+actual OS zoom/field telemetry remain outside current qualification. These limits are
+publicly documented, not open central-capability defects. No hosted monitoring added.
+
+Shutdown verified: managed container and volume inventories empty; abl-benchmark VM
+stopped; holding PID41960 terminated. No dashboard, provider or worker remains. Actions
+is disabled with zero workflow runs. No global config or hooks changed. Account checker
+cell96 is closed after finalization; final reading41%used/59%remaining. A future task
+must start its own checker and obey the90%used/10%remaining stop. Never auto-reset/buy.
+Preserve all historical roots and .abl/preserved-duplicate-files-20261022. No further
+work is required for this objective; future model scoring or other-platform qualification
+is separate work. Older active/hold sections below are historical only.
+
 ## Qualified; publication active — 2026-10-22
 Author: Ethan
 

@@ -12,6 +12,6 @@
   "github_actions_enabled": false,
   "github_action_runs": 0,
   "live_gate": "PASS: separately versioned 120-second integration",
-  "published": false,
+  "published": true,
   "floor_guard_flags": 12
 }
