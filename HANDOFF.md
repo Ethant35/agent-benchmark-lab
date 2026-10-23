@@ -1,6 +1,35 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## COMPLETE — v1.2.0 released and verified, 2026-10-22
+
+Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.2.0
+Merged PR: https://github.com/Ethant35/agent-benchmark-lab/pull/6
+Immutable release commit: 9f2078122ec0dea02aac10427e6f9d31659e302a.
+The following documentation/evidence commit does not change the tag or assets.
+
+78 local tests, 15 installed-wheel browser checks (axe clear), and all 12 reference
+controls pass. The downloaded full journey covers free-first, returning results,
+backup/restore byte equality, real SIGTERM and recovery with empty owned resources.
+Public unauthenticated wheel/source downloads match checksums and qualified bytes.
+A fresh public-wheel installation passes setup and free run dc981ce952224d7cbedf82f3486ac6c9.
+Real 1.1→1.2 upgrade and separate 1.1 rollback preserve exported records. All 76 runtime
+files match; Author Ethan verified. Dependency audits clear. Evidence: evidence/usability/.
+
+The approved Semgrep rerun found 36 reviewed heuristic indicators, no confirmed
+vulnerability. Coverage remains partial: 15 third-party rule compile errors, no Pro,
+p/yaml unavailable. Merged SARIF and triage retained; old scan output preserved.
+No provider requests and $0 API charges in this phase. Historical 8/12 model result
+and exact accounting remain unchanged. No claim of new model scores or field usability.
+
+Both Luna children are complete and interrupted. Dashboard ports 8771/8772 are closed;
+owned container/volume inventories are empty, abl-benchmark VM stopped, holding PID46230
+terminated. Actions disabled, zero workflow runs. No global configuration/hooks changed.
+Final account reading: 74% used / 26% remaining; below the 90% stop threshold.
+Checker is closed when this completion is finalized. No ongoing test or provider work.
+
+## Historical checkpoints (superseded by completion above)
+
 ## Candidate accepted — v1.2.0 usability, 2026-10-22
 
 Primary and bounded Luna work completed; both children interrupted. No provider requests.
@@ -16,7 +45,7 @@ Usage checker functions cell2 active45s, latest66%used; stopat90%. Podman abl-be
 heldsession33215; readonly dashboardPID21156/port8772 heldsession80717. No model process.
 No Actions/workflows/globalconfig changes. Preserve priorroots andhistorybelow.
 
-## ACTIVE — usability and distribution phase, 2026-10-22
+## Earlier active checkpoint — usability and distribution phase, 2026-10-22
 
 Prior v1.1.0 qualification is complete and preserved below. New goal is active:
 prebuilt-wheel first installation; guided free-first CLI execution, explicit optional

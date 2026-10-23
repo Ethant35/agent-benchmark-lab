@@ -2,14 +2,18 @@
 Author: Ethan
 Updated: 2026-10-22
 
-## v1.2.0 usability candidate
+## v1.2.0 usability release
 
-Candidate acceptance is complete: 78 local tests, 15 packaged-dashboard browser checks,
+Release acceptance is complete: 78 local tests, 15 packaged-dashboard browser checks,
 12 installed-wheel reference passes, free-first/interruption/recovery journey,
-upgrade/rollback, package byte checks and dependency audits. Publication and downloaded
-release verification are pending. See [USABILITY_ACCEPTANCE.md](docs/USABILITY_ACCEPTANCE.md)
+upgrade/rollback, package byte checks and dependency audits. PR #6 is merged and
+v1.2.0 is published. Public wheel/source hashes match; a fresh public-wheel install
+passes setup and its first free task. The downloaded full journey also passes. See [USABILITY_ACCEPTANCE.md](docs/USABILITY_ACCEPTANCE.md)
 and evidence/usability/. No new provider requests or charges; historical records remain
 unchanged. The CLI adds optional guidance while the dashboard remains read-only.
+The approved current Semgrep scan has 36 reviewed indicators, no confirmed vulnerability,
+and partial coverage: 15 rule errors, no Pro and unavailable p/yaml. See the retained
+triage and release provenance in evidence/usability/.
 
 ## v1.1.0 qualification (preserved)
 

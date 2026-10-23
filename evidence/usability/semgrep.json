@@ -1,0 +1,306 @@
+{
+  "author": "Ethan",
+  "source_commit": "9f2078122ec0dea02aac10427e6f9d31659e302a",
+  "mode": "run-all",
+  "engine": "Community",
+  "metrics": false,
+  "confirmed_vulnerabilities": 0,
+  "indicator_count": 36,
+  "findings": [
+    {
+      "rule": "generic-one-liners",
+      "file": "abl/cli.py",
+      "line": 98,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "dynamic_execution.python.python-dynamic-execution-system",
+      "file": "abl/engine.py",
+      "line": 95,
+      "triage": "Intentional Python execution in container tools, reference probes or independent verifier; existing constrained runtime boundary retained."
+    },
+    {
+      "rule": "dynamic_execution.python.python-dynamic-execution-system",
+      "file": "abl/engine.py",
+      "line": 113,
+      "triage": "Intentional Python execution in container tools, reference probes or independent verifier; existing constrained runtime boundary retained."
+    },
+    {
+      "rule": "obfuscation.python.python-obfuscation-generic",
+      "file": "abl/guided.py",
+      "line": 39,
+      "triage": "Literal __import__(platform) used for local platform reporting; no untrusted module name or payload."
+    },
+    {
+      "rule": "obfuscation.python.python-obfuscation-generic",
+      "file": "abl/guided.py",
+      "line": 40,
+      "triage": "Literal __import__(platform) used for local platform reporting; no untrusted module name or payload."
+    },
+    {
+      "rule": "dynamic_execution.python.python-dynamic-execution-system",
+      "file": "abl/isolation.py",
+      "line": 208,
+      "triage": "Intentional Python execution in container tools, reference probes or independent verifier; existing constrained runtime boundary retained."
+    },
+    {
+      "rule": "dynamic_execution.python.python-dynamic-execution-system",
+      "file": "corpus/bugfix-interval-merge/verifier/check.py",
+      "line": 10,
+      "triage": "Intentional Python execution in container tools, reference probes or independent verifier; existing constrained runtime boundary retained."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "corpus/extraction-invoices/verifier/check.py",
+      "line": 9,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "corpus/multistep-document-index/verifier/check.py",
+      "line": 10,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "corpus/multistep-ledger/verifier/check.py",
+      "line": 10,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "dynamic_execution.python.python-dynamic-execution-system",
+      "file": "corpus/refactor-csv-summary/verifier/check.py",
+      "line": 26,
+      "triage": "Intentional Python execution in container tools, reference probes or independent verifier; existing constrained runtime boundary retained."
+    },
+    {
+      "rule": "dynamic_execution.python.python-dynamic-execution-system",
+      "file": "corpus/refactor-text-stats/verifier/check.py",
+      "line": 19,
+      "triage": "Intentional Python execution in container tools, reference probes or independent verifier; existing constrained runtime boundary retained."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/e2e.spec.ts",
+      "line": 376,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 17,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 135,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 136,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 174,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 204,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 206,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 207,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 208,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 209,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 211,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 215,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 225,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 226,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 227,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 228,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 230,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 231,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 233,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 241,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 244,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 245,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 274,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 275,
+      "triage": "Long-line heuristic; ordinary UI, report, fixture or verifier code. Readability debt; no obfuscated payload found."
+    }
+  ],
+  "coverage": [
+    {
+      "ruleset": "p/secrets",
+      "findings": 0,
+      "filesScanned": 183,
+      "partial": false,
+      "exitCode": 0
+    },
+    {
+      "ruleset": "p/security-audit",
+      "findings": 0,
+      "filesScanned": 183,
+      "partial": false,
+      "exitCode": 0
+    },
+    {
+      "ruleset": "https://github.com/trailofbits/semgrep-rules",
+      "findings": 0,
+      "filesScanned": 183,
+      "partial": false,
+      "exitCode": 0
+    },
+    {
+      "ruleset": "https://github.com/elttam/semgrep-rules",
+      "findings": 0,
+      "filesScanned": 183,
+      "partial": true,
+      "exitCode": 2
+    },
+    {
+      "ruleset": "https://github.com/apiiro/malicious-code-ruleset",
+      "findings": 36,
+      "filesScanned": 38,
+      "partial": true,
+      "exitCode": 2
+    },
+    {
+      "ruleset": "p/fastapi",
+      "findings": 0,
+      "filesScanned": 33,
+      "partial": false,
+      "exitCode": 0
+    },
+    {
+      "ruleset": "p/python",
+      "findings": 0,
+      "filesScanned": 33,
+      "partial": false,
+      "exitCode": 0
+    },
+    {
+      "ruleset": "p/react",
+      "findings": 0,
+      "filesScanned": 5,
+      "partial": false,
+      "exitCode": 0
+    },
+    {
+      "ruleset": "p/typescript",
+      "findings": 0,
+      "filesScanned": 5,
+      "partial": false,
+      "exitCode": 0
+    }
+  ],
+  "rule_errors": 15,
+  "unavailable": [
+    "Semgrep Pro",
+    "p/yaml (previous registry check: HTTP 404)"
+  ],
+  "failed": [],
+  "skipped": [],
+  "oversized": [],
+  "limits": [
+    "No cross-file Pro analysis",
+    "Gitignored paths and scan output excluded",
+    "Third-party non-rule YAML and one unsupported join rule pruned by skill runner"
+  ],
+  "approval": "Approve local run-all scan"
+}

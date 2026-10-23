@@ -1,0 +1,55 @@
+{
+  "author": "Ethan",
+  "journey": "free-first local CLI and dashboard",
+  "provider_calls": 0,
+  "reference_cost_usd": 0,
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "python": "3.12.14",
+  "milestones": {
+    "empty_workspace": {
+      "status": "PASS",
+      "api_trial_total": 0
+    },
+    "free_reference": {
+      "status": "PASS",
+      "run_id": "180b8aa9c966453ba54d3ce88b7fdb1a",
+      "trial_id": "711d8f5cf004457b8b33b41119ea27e6",
+      "provider": "none",
+      "runner": "reference",
+      "trial_status": "PASS",
+      "cost_usd": 0,
+      "progress_output_present": true
+    },
+    "returning_dashboard": {
+      "status": "PASS",
+      "saved_trial_total": 1,
+      "filtered_trial_total": 0
+    },
+    "backup_restore": {
+      "status": "PASS",
+      "trial_count_preserved": 1,
+      "export_bytes_equal": true
+    },
+    "sigterm_recovery": {
+      "status": "PASS",
+      "run_id": "88835a58dd574b40b05ea6f4c119ba2d",
+      "interrupted_trial_status": "INTERRUPTED",
+      "cleanup_errors": [],
+      "partial_archives": 0
+    },
+    "resume_and_cleanup": {
+      "status": "PASS",
+      "run_id": "88835a58dd574b40b05ea6f4c119ba2d",
+      "trial_statuses": [
+        "INTERRUPTED",
+        "TIMEOUT"
+      ],
+      "cleanup_errors": [
+        [],
+        []
+      ],
+      "owned_containers_or_volumes": 0
+    }
+  },
+  "status": "PASS"
+}

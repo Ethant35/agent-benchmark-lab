@@ -67,3 +67,13 @@ The old editable-import diagnosis above is historical. Current verbose Python im
 output proves macOS hidden file flags cause `.pth` files to be skipped in this synced
 workspace. Release-wheel imports and actual task execution passed independently.
 The detailed current phase matrix is USABILITY_ACCEPTANCE.md.
+
+### Approved v1.2.0 Semgrep follow-up
+
+The explicit approval was applied to the same six registry packs and three repositories,
+using the installed semgrep skill runner in Community/run-all mode with metrics off.
+The previous static_analysis_semgrep_1 output was preserved before rerun. All nine scans
+produced results; two are partial due to 15 rule errors. 36 indicators were reviewed,
+with no confirmed vulnerability. Pro remains unavailable; p/yaml was unavailable in the
+previous registry check. Merged SARIF and triage are retained under evidence/usability/.
+Temporary rule clones were removed. No cloud login, source upload or autofix was used.

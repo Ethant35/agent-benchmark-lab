@@ -1,0 +1,29 @@
+{
+  "author": "Ethan",
+  "release": "https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.2.0",
+  "pull_request": "https://github.com/Ethant35/agent-benchmark-lab/pull/6",
+  "release_commit": "9f2078122ec0dea02aac10427e6f9d31659e302a",
+  "asset_sha256": {
+    "agent_benchmark_lab-1.2.0-py3-none-any.whl": "7c6b33980b3b976a961a245d046a6b2dbe713f173f95dc3758946e66f278d7f6",
+    "agent_benchmark_lab-1.2.0.tar.gz": "c47975c4075ac0a175af889123ff6ed33e1f5e24c6328e1ce7543c79f624e8d1"
+  },
+  "public_download_matches_local_bytes": true,
+  "public_download_matches_published_checksums": true,
+  "release_wheel_matches_final_tested_wheel": true,
+  "package_author": "Ethan",
+  "github_merge_attribution": "Ethant35",
+  "downloaded_full_journey": "PASS; see downloaded-journey.json",
+  "public_download_fresh_install": "PASS",
+  "public_download_free_run": "dc981ce952224d7cbedf82f3486ac6c9",
+  "public_download_free_status": "PASS",
+  "api_requests": 0,
+  "api_cost_usd": 0,
+  "source_archive_credential_scan": "PASS",
+  "github_actions_enabled": false,
+  "github_workflow_runs": 0,
+  "screenshot_author": "Ethan",
+  "semgrep": "36 reviewed indicators; no confirmed vulnerability; partial coverage, 15 rule compile errors, p/yaml and Pro unavailable",
+  "public_download_trial_id": "5fb4c2cc8a994143b17d65074edf459a",
+  "owned_resources_after_tests": 0,
+  "test_vm_stopped": true
+}
