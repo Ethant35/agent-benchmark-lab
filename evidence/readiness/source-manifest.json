@@ -1,7 +1,7 @@
 {
   "author": "Ethan",
   "baseline_commit": "381caf28ec2d73dc6e87d0956ff2afcde986cced",
-  "working_candidate": "1.1.0, uncommitted and unreleased",
+  "working_candidate": "1.1.0 qualified runtime snapshot; publication recorded separately",
   "files": {
     "abl/__init__.py": "34d02e993fe1df2f2802348a80e38b12fbbcfa29fe6c9945a17d41bcac3ba9c1",
     "abl/api.py": "e601573b16ae22486d6831985ab7a302f3bede9852be7616d8f09a7f8807a5e5",
@@ -86,7 +86,8 @@
     "pyproject.toml": "1756adcf9edadab86de0f55c6a27bba6b33c3a393ca012a48d65087e42353db1",
     "tests/e2e.py": "29223b4c15278c8b13d7f24ac3a13ec1a14769fcdfad36524d0f1067c3348dd1",
     "tests/history_performance.py": "f65efb72ae984cecf716e1c5b26a85225b1817aa8930b41f8e2568725ebca853",
-    "tests/live_e2e.py": "db9a01790122ab427c859add0d864a5b652a4397e19a4176282e4a0b7001d449",
+    "tests/live_e2e.py": "4380a35b5691b07b4d89c5a6ead4c946bd94a5b0d59ec84aa0001a63b27a0db0",
+    "tests/live_integration_e2e.py": "e47c493b30bfcd4a28c5bbd6b45d9d6a0e39fae0f87b37f8401979540f258ac9",
     "tests/resource_e2e.py": "a1a0e4838668468f29d31b8fcdd9e24dd53d4bbdd4a5b0b0c456c6a632f3ce0b",
     "tests/test_api_history.py": "d4503e688c603531503b12fcdef79d832d033b04dd6e042d0cf8096d8bd97a67",
     "tests/test_corpus_contracts.py": "00a9b5e7fe43d23de56e26e528a02137247aa19ea8f2f2af50e8c30e0f23d6b8",

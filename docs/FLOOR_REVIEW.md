@@ -4,10 +4,10 @@ Date: 2026-10-22
 Baseline: 381caf28ec2d73dc6e87d0956ff2afcde986cced
 
 The installed constraint skill's reference floor-guard ran against the working diff.
-It returned exit 1 with eleven flags. This is not reported as a clean automated pass.
+It returned exit 1 with twelve flags. This is not reported as a clean automated pass.
 The full flags are retained in evidence/readiness/floor-guard.txt.
 
-Two `test-made-easier` flags refer to CSS `.skip-link` and `.skip-link:focus`. They
+Three `test-made-easier` flags refer to CSS `.skip-link` and `.skip-link:focus`. Two are CSS and the third quotes the same selector in this report. They
 implement keyboard skip navigation, which the browser test exercises. They are not
 skipped tests. No skip/only directive was introduced.
 

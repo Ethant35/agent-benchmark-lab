@@ -88,7 +88,7 @@ preserved separately by the coordinator and are not canonical dashboard inputs.
 Remaining UI limitation: trial rows render a bounded page of at most 100 records,
 but are not virtualized. Detail requests still surface through the shared page error
 banner, whose wording describes general benchmark loading; a detail-specific inline
-recovery message would be clearer. These items remain open for final review.
+recovery message would be clearer. The final update below records the retry repair; bounded rendering remains deliberate.
 
 ## Controlled history performance
 

@@ -24,7 +24,7 @@ See CONSTRAINTS.md and evidence/readiness/live-integration/.
 | Static/differential | Final Semgrep 31 triaged indicators, reviewed diff, fixed legacy-root privacy defect | Partial scan coverage: 15 third-party rule errors, p/yaml unavailable, Community only |
 | Test floor | 61 pytest passes, eight browser passes; floor checker flags manually reviewed | See docs/FLOOR_REVIEW.md; automated checker itself still exits 1 |
 | Performance | 10,000-row controlled test: JSON 127.95 MB → 1.26 MB, Python allocation 410.86 MB → 15.91 MB | Synthetic local measurement; median query/encoding 1.047 s → 0.391 s |
-| Documentation | Operations, recovery/rollback, support, API, ADR and unreleased changelog | Current; see skill ledger for applicable work and limits |
+| Documentation | Operations, recovery/rollback, support, API, ADR and changelog | Current; see skill ledger for applicable work and limits |
 | Shipping | Candidate built, installed and qualified; GitHub Actions disabled | Publication and downloaded-asset verification pending |
 
 ## Commands and evidence

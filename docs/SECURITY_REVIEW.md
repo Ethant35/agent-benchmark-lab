@@ -105,8 +105,8 @@ resolved snapshots. See package-results.json for real fresh-install/upgrade/rest
 
 Live calls returned real tool data but three attempts reached the 30-second task deadline.
 All eleven generation records reconcile to $0.001900464; no further paid attempts were
-made. This is accounting/timeout evidence, not a passing normal live workflow. Current
-streaming/nonstreaming success qualification remains open and blocks release.
+made. This is accounting/timeout evidence, not a passing normal live workflow. At that snapshot, streaming/nonstreaming success qualification remained open.
+The release update below records its later resolution.
 
 ## Release qualification update
 

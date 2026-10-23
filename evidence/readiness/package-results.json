@@ -2,7 +2,7 @@
   "author": "Ethan",
   "candidate_version": "1.1.0",
   "published": false,
-  "wheel_sha256": "88982d2b3d7a039eefbb23689f174f368456e13fb92a0e8325705119f29fc58f",
+  "wheel_sha256": "21f933c86e286927bdc24deecd2bd41857251a1051409bde5ab0c97f7214f487",
   "matching_packaged_files": 75,
   "package_author": "Ethan",
   "fresh_wheel_reference_trial": "43f90061e33840a1b6c8cc45cff2870d",
@@ -91,5 +91,10 @@
   "final_build_note": "Rebuilt after documentation update; all 75 runtime/corpus/static files identical to installed and tested wheel.",
   "packaged_browser_tests": 8,
   "axe_violations": 0,
-  "unit_tests": 61
+  "unit_tests": 61,
+  "fresh_source_commit": "f83e0af",
+  "fresh_source_reference_trial": "975c532c036c4b03b2ab800faf743625",
+  "fresh_source_frozen_install": "PASS",
+  "fresh_source_dashboard_build": "PASS",
+  "fresh_source_static_bytes_match": true
 }

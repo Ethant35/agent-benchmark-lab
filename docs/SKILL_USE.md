@@ -9,8 +9,8 @@ from each skill or untested platforms. No hooks or Actions were enabled.
 | Skill | Applied work and retained evidence | Limit / disposition |
 |---|---|---|
 | source-driven-development | SQLite connection lifetime/JSON, FastAPI boundaries, OpenRouter usage/reasoning docs; changes checked against actual runtime | Provider metadata and actual requests outrank examples |
-| constraint-driven-development | CONSTRAINTS, AGENTS, executable floor checker and manual review | Eleven textual flags retained; see FLOOR_REVIEW; separate integration contract documented |
-| documentation-and-adrs | READINESS, OPERATIONS, migration/rollback instructions, ADR-001 and unreleased changelog | Current release documentation |
+| constraint-driven-development | CONSTRAINTS, AGENTS, executable floor checker and manual review | Twelve textual flags retained; see FLOOR_REVIEW; separate integration contract documented |
+| documentation-and-adrs | READINESS, OPERATIONS, migration/rollback instructions, ADR-001 and changelog | Current release documentation |
 | test-driven-development | API, resume, provider, legacy permissions, cleanup and evidence retry reproduced before fixes | 61 local and eight browser tests; not substitutes for external gates |
 | property-based-testing | Hypothesis corpus generation and invariants | Corpus worker's evidence in CORPUS_QUALIFICATION |
 | systematic-debugging | Stored failures, RED regressions, real timeout/cleanup probes, failed editable import | Import repaired by reinstall; original environment cause unknown |

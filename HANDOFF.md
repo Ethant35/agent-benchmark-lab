@@ -1,6 +1,30 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## Qualified; publication active — 2026-10-22
+Author: Ethan
+
+Live BL-19–22 passed using the installed 1.1.0 runtime with an explicitly separate
+1.0-integration-120s rounding contract. Only task version/deadline changed in a disposable
+copy; prompt, fixture, verifier and all application bytes stayed identical. Streaming
+PASS 27.1s; nonstreaming PASS 40.5s; zero-tool FAIL/step_limit 4.9s. All eleven charges
+match response totals/account delta: $0.001403188. Including prior readiness timeouts,
+readiness cost is $0.003303652. No benchmark outcome was relabelled and no full12 rerun.
+Evidence under evidence/readiness/live-integration. New tests/live_integration_e2e.py
+makes this distinction reproducible and leaves the installed/canonical corpus unchanged.
+
+61 local tests still pass. Final scanner rerun4 includes new tests; same 31 findings,
+15 third-party rule errors. Floor guard has 12 textual flags: nine replaced pagination
+assertions, two CSS skip selectors and one documentation quote; manual review retained.
+Fresh local clone f83e0af passed frozen Python/npm installs, build, doctor/validate and
+real reference trial 975c532c036c4b03b2ab800faf743625. Static bytes match the qualified wheel.
+The full completion matrix is docs/COMPLETION_AUDIT.md. Next: final package/PR/release
+and downloaded asset verification, then cleanup and update_goal complete only after audit.
+
+Usage monitor cell96 checks every45s; stop at90%used. Latest39%used. VM is running,
+held by session33039. No provider process or worker active. No dashboard server active.
+Earlier HOLD checkpoints below are retained history and are superseded by this update.
+
 ## Current qualification checkpoint — 2026-10-22, 22:36 PDT
 Author: Ethan
 
