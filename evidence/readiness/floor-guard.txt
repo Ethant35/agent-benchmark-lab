@@ -1,0 +1,15 @@
+floor-guard: 12 floor violation(s):
+  [test-made-easier] dashboard/src/style.css
+  [test-made-easier] dashboard/src/style.css
+  [test-made-easier] docs/FLOOR_REVIEW.md
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+  [assertion-removed] dashboard/e2e.spec.ts
+
+Each is a move that lowers the bar. Fix the code, or route it through a tracked exception.

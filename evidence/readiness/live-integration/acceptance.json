@@ -1,0 +1,67 @@
+{
+  "scenarios": {
+    "BL-19": {
+      "status": "PASS",
+      "trial_id": "6de97370754643138b59070ba25999fc",
+      "detail": "Live tool calls produced artifacts accepted by independent behavioral verifier"
+    },
+    "BL-20": {
+      "status": "PASS",
+      "trial_id": "e57a674803b84cf7a12a0c13cc7e2284",
+      "detail": "Restrictive live limit accurately classified incomplete outcome"
+    },
+    "BL-21": {
+      "status": "PASS",
+      "trial_ids": [
+        "6de97370754643138b59070ba25999fc",
+        "f095c61f926e4b219d3124471a5ab90a"
+      ],
+      "detail": "Distinct live configurations use identical fixture hash and independent records"
+    },
+    "BL-22": {
+      "status": "PASS",
+      "detail": "Persisted totals exactly match actual returned usage; missing token metadata remains null"
+    }
+  },
+  "commands": [
+    {
+      "command": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/readiness-live-protocol/integration/results",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/readiness-live-protocol/a.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"bbc99264cc3d4dff9c22b4e21161bc96\"}\n{\"trial_id\": \"6de97370754643138b59070ba25999fc\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/readiness-live-protocol/integration/results",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/readiness-live-protocol/integration/results/restricted.yaml"
+      ],
+      "exit_code": 1,
+      "stdout": "{\"run_id\": \"85eced5537d84b658fe419e392119085\"}\n{\"trial_id\": \"e57a674803b84cf7a12a0c13cc7e2284\", \"task_id\": \"bugfix-rounding\", \"status\": \"FAIL\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "abl",
+        "run",
+        "--root",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/readiness-live-protocol/integration/results",
+        "--config",
+        "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/readiness-live-protocol/b.json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"run_id\": \"34bebed3b19a454aaf5a3c65d53f17fc\"}\n{\"trial_id\": \"f095c61f926e4b219d3124471a5ab90a\", \"task_id\": \"bugfix-rounding\", \"status\": \"PASS\"}\n",
+      "stderr": ""
+    }
+  ]
+}

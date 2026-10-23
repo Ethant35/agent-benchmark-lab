@@ -1,0 +1,2990 @@
+{
+  "author": "Ethan",
+  "manifest": {
+    "outputDir": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2",
+    "rawDir": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw",
+    "reposPath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/repos",
+    "mode": "run-all",
+    "pro": false,
+    "excludePattern": "static_analysis_semgrep_2",
+    "maxTargetBytes": 20000000,
+    "scans": [
+      {
+        "lang": "all",
+        "ruleset": "p/secrets",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-secrets.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-secrets.sarif",
+        "findings": 0,
+        "filesScanned": 139,
+        "partial": false,
+        "exitCode": 0
+      },
+      {
+        "lang": "all",
+        "ruleset": "p/security-audit",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-security-audit.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-security-audit.sarif",
+        "findings": 0,
+        "filesScanned": 139,
+        "partial": false,
+        "exitCode": 0
+      },
+      {
+        "lang": "all",
+        "ruleset": "https://github.com/trailofbits/semgrep-rules",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-trailofbits-semgrep-rules.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-trailofbits-semgrep-rules.sarif",
+        "findings": 0,
+        "filesScanned": 139,
+        "partial": false,
+        "exitCode": 0
+      },
+      {
+        "lang": "all",
+        "ruleset": "https://github.com/elttam/semgrep-rules",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-elttam-semgrep-rules.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-elttam-semgrep-rules.sarif",
+        "findings": 0,
+        "filesScanned": 139,
+        "partial": true,
+        "exitCode": 2
+      },
+      {
+        "lang": "all",
+        "ruleset": "https://github.com/apiiro/malicious-code-ruleset",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-apiiro-malicious-code-ruleset.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/all-apiiro-malicious-code-ruleset.sarif",
+        "findings": 30,
+        "filesScanned": 37,
+        "partial": true,
+        "exitCode": 2
+      },
+      {
+        "lang": "python",
+        "ruleset": "p/fastapi",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/python-fastapi.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/python-fastapi.sarif",
+        "findings": 0,
+        "filesScanned": 32,
+        "partial": false,
+        "exitCode": 0
+      },
+      {
+        "lang": "python",
+        "ruleset": "p/python",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/python-python.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/python-python.sarif",
+        "findings": 0,
+        "filesScanned": 32,
+        "partial": false,
+        "exitCode": 0
+      },
+      {
+        "lang": "typescript",
+        "ruleset": "p/react",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/typescript-react.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/typescript-react.sarif",
+        "findings": 0,
+        "filesScanned": 5,
+        "partial": false,
+        "exitCode": 0
+      },
+      {
+        "lang": "typescript",
+        "ruleset": "p/typescript",
+        "json": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/typescript-typescript.json",
+        "sarif": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/static_analysis_semgrep_2/raw/typescript-typescript.sarif",
+        "findings": 0,
+        "filesScanned": 5,
+        "partial": false,
+        "exitCode": 0
+      }
+    ],
+    "failed": [],
+    "skipped": [],
+    "alsoShared": [],
+    "unscoped": [],
+    "coveredNothing": [],
+    "oversized": []
+  },
+  "raw": {
+    "typescript-typescript": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.04532909393310547,
+        "profiling_times": {
+          "config_time": 0.2165839672088623,
+          "core_time": 0.7915630340576172,
+          "ignores_time": 0.00010895729064941406,
+          "total_time": 1.015599250793457
+        },
+        "parsing_time": {
+          "total_time": 0.0711069107055664,
+          "per_file_time": {
+            "mean": 0.0033860433669317337,
+            "std_dev": 9.78863632505374e-05
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 0.4865701198577881,
+          "per_file_time": {
+            "mean": 0.09731402397155761,
+            "std_dev": 0.017199928818822628
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "matching_time": {
+          "total_time": 0.17373394966125488,
+          "per_file_and_rule_time": {
+            "mean": 0.00827304522196452,
+            "std_dev": 7.076866272077567e-05
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+          "total_time": 0.16519880294799805,
+          "per_def_and_rule_time": {
+            "mean": 0.0009604581566744071,
+            "std_dev": 3.736708734313463e-06
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 1.0,
+          "rules_selected_ratio": 0.05675675675675676,
+          "rules_matched_ratio": 0.05675675675675676
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 298320192
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "all-secrets": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.gitignore",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ACCEPTANCE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/AGENTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ARCHITECTURE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/BENCHMARK_FORMAT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONSTRAINTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONTRIBUTING.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/HANDOFF.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/LICENSE",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/METHODOLOGY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/READINESS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/SECURITY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/THIRD_PARTY_NOTICES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/cases.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices_out.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/orders.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/example.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/a.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/b.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/files.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/transactions.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/NOTES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/sales.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/sample.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/index.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package-lock.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/style.css",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/tsconfig.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/CORPUS_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/DIFFERENTIAL_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SECURITY_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SKILL_USE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/UI_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/cli-container-acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/comparison.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/credential-blocked-trial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/final-corpus.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/REPORT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/initial-cost-check.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/after.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/before.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/regression.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/release-downloads.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/nonstreaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/streaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-preflight.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-1.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-2.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/report.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/unsolved-controls.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/compatible.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/openrouter.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/pyproject.toml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/uv.lock"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.015146970748901367,
+        "profiling_times": {
+          "config_time": 0.258922815322876,
+          "core_time": 2.98372483253479,
+          "ignores_time": 0.00010776519775390625,
+          "total_time": 3.249631881713867
+        },
+        "parsing_time": {
+          "total_time": 3.829739809036255,
+          "per_file_time": {
+            "mean": 0.08325521323991858,
+            "std_dev": 0.032311140424704635
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.7546628161836578,
+            "count_ratio": 0.10869565217391304
+          },
+          "very_slow_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+              "ftime": 0.43764615058898926
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+              "ftime": 0.4553830623626709
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "ftime": 0.6167299747467041
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "ftime": 0.6601150035858154
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+              "ftime": 0.7202880382537842
+            }
+          ]
+        },
+        "scanning_time": {
+          "total_time": 13.420028448104858,
+          "per_file_time": {
+            "mean": 0.040790360024634834,
+            "std_dev": 0.04082569305296642
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.27280241915819625,
+            "count_ratio": 0.0060790273556231
+          },
+          "very_slow_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+              "ftime": 1.617495059967041
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+              "ftime": 2.0435211658477783
+            }
+          ]
+        },
+        "matching_time": {
+          "total_time": 1.51251220703125,
+          "per_file_and_rule_time": {
+            "mean": 0.032880700152853264,
+            "std_dev": 0.0030423022895266242
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.6359777273919535,
+            "count_ratio": 0.13043478260869565
+          },
+          "very_slow_rules_on_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/task.yaml",
+              "rule_id": "yaml.kubernetes.security.secrets-in-config-file.secrets-in-config-file",
+              "time": 0.11078095436096191
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.13175201416015625
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.13275504112243652
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.15205097198486328
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.19681906700134277
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.23776602745056152
+            }
+          ]
+        },
+        "tainting_time": {
+          "total_time": 3.1220569610595703,
+          "per_def_and_rule_time": {
+            "mean": 0.01836504094740924,
+            "std_dev": 0.0020596241241852375
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.8115809750027033,
+            "count_ratio": 0.12352941176470589
+          },
+          "very_slow_rules_on_defs": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "fline": 35,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.10116696357727051
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+              "fline": 14,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.10149097442626953
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "fline": 25,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.10474395751953125
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "fline": 93,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.12778210639953613
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+              "fline": 75,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.1409139633178711
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+              "fline": 137,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.1617269515991211
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "fline": 113,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.20818686485290527
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "fline": 71,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.21948599815368652
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+              "fline": 1,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.23598098754882812
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "fline": 125,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.29930710792541504
+            }
+          ]
+        },
+        "fixpoint_timeouts": [
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py:14:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+              "start": {
+                "line": 14,
+                "col": 5,
+                "offset": 425
+              },
+              "end": {
+                "line": 14,
+                "col": 15,
+                "offset": 435
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py:113:8 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "start": {
+                "line": 113,
+                "col": 9,
+                "offset": 5626
+              },
+              "end": {
+                "line": 113,
+                "col": 16,
+                "offset": 5633
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py:35:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "start": {
+                "line": 35,
+                "col": 5,
+                "offset": 978
+              },
+              "end": {
+                "line": 35,
+                "col": 17,
+                "offset": 990
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py:93:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "start": {
+                "line": 93,
+                "col": 5,
+                "offset": 4249
+              },
+              "end": {
+                "line": 93,
+                "col": 15,
+                "offset": 4259
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py:125:14 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "start": {
+                "line": 125,
+                "col": 15,
+                "offset": 6536
+              },
+              "end": {
+                "line": 125,
+                "col": 23,
+                "offset": 6544
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py:137:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+              "start": {
+                "line": 137,
+                "col": 5,
+                "offset": 6795
+              },
+              "end": {
+                "line": 137,
+                "col": 14,
+                "offset": 6804
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py:1:0 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+              "start": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py:1:0 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+              "start": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py:1:0 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+              "start": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              }
+            }
+          }
+        ],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 0.9909198578760363,
+          "rules_selected_ratio": 0.018160284247927358,
+          "rules_matched_ratio": 0.018160284247927358
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 969256768
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "all-trailofbits-semgrep-rules": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.gitignore",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ACCEPTANCE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/AGENTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ARCHITECTURE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/BENCHMARK_FORMAT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONSTRAINTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONTRIBUTING.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/HANDOFF.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/LICENSE",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/METHODOLOGY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/READINESS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/SECURITY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/THIRD_PARTY_NOTICES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/cases.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices_out.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/orders.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/example.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/a.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/b.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/files.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/transactions.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/NOTES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/sales.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/sample.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/index.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package-lock.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/style.css",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/tsconfig.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/CORPUS_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/DIFFERENTIAL_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SECURITY_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SKILL_USE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/UI_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/cli-container-acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/comparison.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/credential-blocked-trial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/final-corpus.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/REPORT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/initial-cost-check.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/after.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/before.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/regression.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/release-downloads.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/nonstreaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/streaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-preflight.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-1.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-2.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/report.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/unsolved-controls.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/compatible.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/openrouter.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/pyproject.toml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/uv.lock"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.0221710205078125,
+        "profiling_times": {
+          "config_time": 2.60017991065979,
+          "core_time": 3.899915933609009,
+          "ignores_time": 0.00015211105346679688,
+          "total_time": 6.5072150230407715
+        },
+        "parsing_time": {
+          "total_time": 0.030768871307373047,
+          "per_file_time": {
+            "mean": 9.157402174813407e-05,
+            "std_dev": 3.1332361997141947e-07
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 4.758350610733032,
+          "per_file_time": {
+            "mean": 0.014463071765145986,
+            "std_dev": 0.023068018232408883
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.5757026178365143,
+            "count_ratio": 0.00303951367781155
+          },
+          "very_slow_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+              "ftime": 2.7393949031829834
+            }
+          ]
+        },
+        "matching_time": {
+          "total_time": 0.018950462341308594,
+          "per_file_and_rule_time": {
+            "mean": 5.640018553960891e-05,
+            "std_dev": 2.6841622225964927e-08
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+          "total_time": 0.0,
+          "per_def_and_rule_time": {
+            "mean": 0.0,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 0.9043280182232346,
+          "rules_selected_ratio": 0.11446469248291571,
+          "rules_matched_ratio": 0.11446469248291571
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 983455744
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "python-fastapi": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.0005991458892822266,
+        "profiling_times": {
+          "config_time": 0.2650907039642334,
+          "core_time": 0.7193329334259033,
+          "ignores_time": 8.0108642578125e-05,
+          "total_time": 0.9914908409118652
+        },
+        "parsing_time": {
+          "total_time": 0.0,
+          "per_file_time": {
+            "mean": 0.0,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 0.0037734508514404297,
+          "per_file_time": {
+            "mean": 0.00011792033910751343,
+            "std_dev": 4.145071341721262e-09
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "matching_time": {
+          "total_time": 0.0,
+          "per_file_and_rule_time": {
+            "mean": 0.0,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+          "total_time": 0.0,
+          "per_def_and_rule_time": {
+            "mean": 0.0,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 1.0,
+          "rules_selected_ratio": 0.0,
+          "rules_matched_ratio": 0.0
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 101484544
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "all-elttam-semgrep-rules": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.jax-rs.path-class",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.jax-rs.path-class:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@jakarta.ws.rs.Path(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@$ANNOTATION($...PARAMS)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class-method",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class-method:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@$ANNOTATION($...PARAMS)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.class-extends-action-support",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.class-extends-action-support:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $CLASS extends ActionSupport\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.path-class",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.path-class:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@jakarta.ws.rs.Path(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-CrossOrigin",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-CrossOrigin:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.web.bind.annotation.CrossOrigin(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RequestMapping",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RequestMapping:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.web.bind.annotation.RequestMapping(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.java.servlet.filter",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.java.servlet.filter:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $CLASS implements javax.servlet.Filter\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RestController",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RestController:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.web.bind.annotation.RestController(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Order",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Order:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.core.annotation.Order(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Priority",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Priority:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@javax.annotation.Priority(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules.java.spring.security.audit.remoting.UnsafeHttpInvokerServiceExporter-extends",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.elttam-semgrep-rules.rules.java.spring.security.audit.remoting.UnsafeHttpInvokerServiceExporter-extends:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $CLASS extends org.springframework.remoting.rmi.RemoteInvocationSerializingExporter\n\n----- end pattern -----\n"
+        }
+      ],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.gitignore",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ACCEPTANCE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/AGENTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ARCHITECTURE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/BENCHMARK_FORMAT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONSTRAINTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONTRIBUTING.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/HANDOFF.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/LICENSE",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/METHODOLOGY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/READINESS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/SECURITY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/THIRD_PARTY_NOTICES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/cases.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices_out.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/orders.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/example.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/a.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/b.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/files.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/transactions.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/NOTES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/sales.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/sample.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/index.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package-lock.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/style.css",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/tsconfig.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/CORPUS_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/DIFFERENTIAL_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SECURITY_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SKILL_USE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/UI_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/cli-container-acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/comparison.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/credential-blocked-trial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/final-corpus.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/REPORT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/initial-cost-check.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/after.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/before.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/regression.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/release-downloads.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/nonstreaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/streaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-preflight.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-1.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-2.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/report.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/unsolved-controls.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/compatible.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/openrouter.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/pyproject.toml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/uv.lock"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.019628047943115234,
+        "profiling_times": {
+          "config_time": 2.403615951538086,
+          "core_time": 1.1380128860473633,
+          "ignores_time": 9.512901306152344e-05,
+          "total_time": 3.5515429973602295
+        },
+        "parsing_time": {
+          "total_time": 0.27408766746520996,
+          "per_file_time": {
+            "mean": 0.0024472113166536602,
+            "std_dev": 8.57526745949447e-05
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 0.7056806087493896,
+          "per_file_time": {
+            "mean": 0.003714108467102055,
+            "std_dev": 0.0003485086684012112
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "matching_time": {
+          "total_time": 0.10242986679077148,
+          "per_file_and_rule_time": {
+            "mean": 0.0009145523820604598,
+            "std_dev": 6.8730422796176605e-06
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+          "total_time": 0.05709695816040039,
+          "per_def_and_rule_time": {
+            "mean": 0.0011652440440898038,
+            "std_dev": 8.154312680949555e-06
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 0.7731481481481481,
+          "rules_selected_ratio": 0.26157407407407407,
+          "rules_matched_ratio": 0.26157407407407407
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 1056024768
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "all-apiiro-malicious-code-ruleset": {
+      "version": "1.182.1",
+      "results": [
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "start": {
+            "line": 98,
+            "col": 1,
+            "offset": 4612
+          },
+          "end": {
+            "line": 98,
+            "col": 514,
+            "offset": 5125
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "start": {
+            "line": 92,
+            "col": 64,
+            "offset": 5406
+          },
+          "end": {
+            "line": 92,
+            "col": 73,
+            "offset": 5415
+          },
+          "extra": {
+            "message": "Dynamic execution using system commands.",
+            "metadata": {},
+            "severity": "ERROR",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "start": {
+            "line": 110,
+            "col": 43,
+            "offset": 6177
+          },
+          "end": {
+            "line": 110,
+            "col": 52,
+            "offset": 6186
+          },
+          "extra": {
+            "message": "Dynamic execution using system commands.",
+            "metadata": {},
+            "severity": "ERROR",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "start": {
+            "line": 208,
+            "col": 29,
+            "offset": 11234
+          },
+          "end": {
+            "line": 208,
+            "col": 73,
+            "offset": 11278
+          },
+          "extra": {
+            "message": "Dynamic execution using system commands.",
+            "metadata": {},
+            "severity": "ERROR",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "start": {
+            "line": 10,
+            "col": 15,
+            "offset": 486
+          },
+          "end": {
+            "line": 10,
+            "col": 209,
+            "offset": 680
+          },
+          "extra": {
+            "message": "Dynamic execution using system commands.",
+            "metadata": {},
+            "severity": "ERROR",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "start": {
+            "line": 9,
+            "col": 1,
+            "offset": 350
+          },
+          "end": {
+            "line": 9,
+            "col": 477,
+            "offset": 826
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "start": {
+            "line": 10,
+            "col": 1,
+            "offset": 423
+          },
+          "end": {
+            "line": 10,
+            "col": 480,
+            "offset": 902
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "start": {
+            "line": 10,
+            "col": 1,
+            "offset": 429
+          },
+          "end": {
+            "line": 10,
+            "col": 643,
+            "offset": 1071
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "start": {
+            "line": 26,
+            "col": 14,
+            "offset": 1128
+          },
+          "end": {
+            "line": 26,
+            "col": 47,
+            "offset": 1161
+          },
+          "extra": {
+            "message": "Dynamic execution using system commands.",
+            "metadata": {},
+            "severity": "ERROR",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+          "start": {
+            "line": 19,
+            "col": 14,
+            "offset": 986
+          },
+          "end": {
+            "line": 19,
+            "col": 47,
+            "offset": 1019
+          },
+          "extra": {
+            "message": "Dynamic execution using system commands.",
+            "metadata": {},
+            "severity": "ERROR",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 15,
+            "col": 1,
+            "offset": 1480
+          },
+          "end": {
+            "line": 15,
+            "col": 890,
+            "offset": 2369
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 69,
+            "col": 1,
+            "offset": 6457
+          },
+          "end": {
+            "line": 69,
+            "col": 423,
+            "offset": 6879
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 70,
+            "col": 1,
+            "offset": 6880
+          },
+          "end": {
+            "line": 70,
+            "col": 470,
+            "offset": 7349
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 111,
+            "col": 1,
+            "offset": 10463
+          },
+          "end": {
+            "line": 111,
+            "col": 632,
+            "offset": 11094
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 113,
+            "col": 1,
+            "offset": 11155
+          },
+          "end": {
+            "line": 113,
+            "col": 404,
+            "offset": 11558
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 114,
+            "col": 1,
+            "offset": 11559
+          },
+          "end": {
+            "line": 114,
+            "col": 1007,
+            "offset": 12565
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 115,
+            "col": 1,
+            "offset": 12566
+          },
+          "end": {
+            "line": 115,
+            "col": 1253,
+            "offset": 13818
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 117,
+            "col": 1,
+            "offset": 14138
+          },
+          "end": {
+            "line": 117,
+            "col": 494,
+            "offset": 14631
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 126,
+            "col": 1,
+            "offset": 16107
+          },
+          "end": {
+            "line": 126,
+            "col": 1322,
+            "offset": 17428
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 127,
+            "col": 1,
+            "offset": 17429
+          },
+          "end": {
+            "line": 127,
+            "col": 699,
+            "offset": 18127
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 128,
+            "col": 1,
+            "offset": 18128
+          },
+          "end": {
+            "line": 128,
+            "col": 610,
+            "offset": 18737
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 129,
+            "col": 1,
+            "offset": 18738
+          },
+          "end": {
+            "line": 129,
+            "col": 453,
+            "offset": 19190
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 131,
+            "col": 1,
+            "offset": 19526
+          },
+          "end": {
+            "line": 131,
+            "col": 456,
+            "offset": 19981
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 132,
+            "col": 1,
+            "offset": 19982
+          },
+          "end": {
+            "line": 132,
+            "col": 893,
+            "offset": 20874
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 134,
+            "col": 1,
+            "offset": 20888
+          },
+          "end": {
+            "line": 134,
+            "col": 1820,
+            "offset": 22707
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 142,
+            "col": 1,
+            "offset": 23034
+          },
+          "end": {
+            "line": 142,
+            "col": 419,
+            "offset": 23452
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 145,
+            "col": 1,
+            "offset": 23807
+          },
+          "end": {
+            "line": 145,
+            "col": 1115,
+            "offset": 24921
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 146,
+            "col": 1,
+            "offset": 24922
+          },
+          "end": {
+            "line": 146,
+            "col": 941,
+            "offset": 25862
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 175,
+            "col": 1,
+            "offset": 28442
+          },
+          "end": {
+            "line": 175,
+            "col": 791,
+            "offset": 29232
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        },
+        {
+          "check_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "start": {
+            "line": 176,
+            "col": 1,
+            "offset": 29233
+          },
+          "end": {
+            "line": 176,
+            "col": 692,
+            "offset": 29924
+          },
+          "extra": {
+            "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable.",
+            "metadata": {},
+            "severity": "INFO",
+            "fingerprint": "requires login",
+            "lines": "requires login",
+            "validation_state": "NO_VALIDATOR",
+            "engine_kind": "OSS"
+          }
+        }
+      ],
+      "errors": [
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.dart.dart-obfuscation-conditions",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.dart.dart-obfuscation-conditions:\n Invalid pattern for Dart: Stdlib.Parsing.Parse_error\n----- pattern -----\nswitch ($VAR) { ... }\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.java.java-obfuscation-declarations",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.java.java-obfuscation-declarations:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $VAR\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.javascript_typescript.javascript-obfuscation-conditions",
+          "message": "Rule parse error in rule static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.javascript_typescript.javascript-obfuscation-conditions:\n Invalid pattern for JavaScript: Stdlib.Parsing.Parse_error\n----- pattern -----\nswitch ($VAR) { case ... }\n----- end pattern -----\n"
+        }
+      ],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.017878055572509766,
+        "profiling_times": {
+          "config_time": 1.4783451557159424,
+          "core_time": 1.0780870914459229,
+          "ignores_time": 9.417533874511719e-05,
+          "total_time": 2.564385175704956
+        },
+        "parsing_time": {
+          "total_time": 0.19542646408081055,
+          "per_file_time": {
+            "mean": 0.000769395527877207,
+            "std_dev": 1.562024003429948e-05
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 2.7943758964538574,
+          "per_file_time": {
+            "mean": 0.07552367287713127,
+            "std_dev": 0.016596914561258745
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "matching_time": {
+          "total_time": 1.2031104564666748,
+          "per_file_and_rule_time": {
+            "mean": 0.00473665534041998,
+            "std_dev": 0.0009154595164958444
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.5277827264852778,
+            "count_ratio": 0.007874015748031496
+          },
+          "very_slow_rules_on_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "rule_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.javascript_typescript.javascript-obfuscation-reconstruction",
+              "time": 0.24949097633361816
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+              "rule_id": "static_analysis_semgrep_2.repos.apiiro-malicious-code-ruleset.obfuscation.javascript_typescript.javascript-obfuscation-reconstruction",
+              "time": 0.38548994064331055
+            }
+          ]
+        },
+        "tainting_time": {
+          "total_time": 0.0,
+          "per_def_and_rule_time": {
+            "mean": 0.0,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 0.6349453978159126,
+          "rules_selected_ratio": 0.3962558502340094,
+          "rules_matched_ratio": 0.3962558502340094
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 553070400
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "all-security-audit": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.gitignore",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ACCEPTANCE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/AGENTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/ARCHITECTURE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/BENCHMARK_FORMAT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONSTRAINTS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/CONTRIBUTING.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/HANDOFF.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/LICENSE",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/METHODOLOGY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/READINESS.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/SECURITY.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/THIRD_PARTY_NOTICES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/README.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/cases.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/fixture/contacts.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/fixture/invoices_out.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/orders.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/example.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/a.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/b.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/files.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/transactions.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/NOTES.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/sales.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/sample.txt",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/reference.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/task.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/index.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package-lock.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/style.css",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/tsconfig.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/CORPUS_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/DIFFERENTIAL_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SECURITY_REVIEW.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/SKILL_USE.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/docs/UI_QUALIFICATION.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/cli-container-acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/comparison.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/credential-blocked-trial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/final-corpus.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/REPORT.md",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/initial-cost-check.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-cli.log",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/remaining-config.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/full-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/after.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/before.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/package.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/regression.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/hardening/release-downloads.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/acceptance.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/cost-reconciliation.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/generation-ledger.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/nonstreaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/provider-usage.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/streaming.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-deepseek-1017/summary.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/live-preflight.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-1.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/history-performance-2.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/readiness/semgrep-initial.sarif",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/report.html",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.csv",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/trials.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/evidence/unsolved-controls.json",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/compatible.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/examples/openrouter.yaml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/pyproject.toml",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/uv.lock"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.07079505920410156,
+        "profiling_times": {
+          "config_time": 0.3276808261871338,
+          "core_time": 3.2878410816192627,
+          "ignores_time": 0.0001659393310546875,
+          "total_time": 3.6230530738830566
+        },
+        "parsing_time": {
+          "total_time": 5.775474786758423,
+          "per_file_time": {
+            "mean": 0.023477539783570825,
+            "std_dev": 0.010860912118420238
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.4883072008834839,
+            "count_ratio": 0.016260162601626018
+          },
+          "very_slow_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "ftime": 0.3347818851470947
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "ftime": 0.45284509658813477
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+              "ftime": 1.0143420696258545
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "ftime": 1.0182368755340576
+            }
+          ]
+        },
+        "scanning_time": {
+          "total_time": 21.300729751586914,
+          "per_file_time": {
+            "mean": 0.09425101659994212,
+            "std_dev": 0.10338468150668896
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.19722940015403329,
+            "count_ratio": 0.008849557522123894
+          },
+          "very_slow_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "ftime": 2.093536138534546
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "ftime": 2.1075940132141113
+            }
+          ]
+        },
+        "matching_time": {
+          "total_time": 8.167652606964111,
+          "per_file_and_rule_time": {
+            "mean": 0.03320183986570777,
+            "std_dev": 0.007517099230608747
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.7172178754518193,
+            "count_ratio": 0.0975609756097561
+          },
+          "very_slow_rules_on_files": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "rule_id": "python.django.security.audit.avoid-insecure-deserialization.avoid-insecure-deserialization",
+              "time": 0.22043991088867188
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+              "rule_id": "python.django.security.audit.avoid-insecure-deserialization.avoid-insecure-deserialization",
+              "time": 0.2599790096282959
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.30052995681762695
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.3255629539489746
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "rule_id": "typescript.react.security.react-insecure-request.react-insecure-request",
+              "time": 0.3370351791381836
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.3447749614715576
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+              "rule_id": "javascript.lang.security.audit.unknown-value-with-script-tag.unknown-value-with-script-tag",
+              "time": 0.40551185607910156
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "rule_id": "python.django.security.injection.command.command-injection-os-system.command-injection-os-system",
+              "time": 0.4107658863067627
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.5453281402587891
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "rule_id": "javascript.lang.security.audit.unknown-value-with-script-tag.unknown-value-with-script-tag",
+              "time": 0.7462389469146729
+            }
+          ]
+        },
+        "tainting_time": {
+          "total_time": 3.55873441696167,
+          "per_def_and_rule_time": {
+            "mean": 0.017705146353043124,
+            "std_dev": 0.0015300830266510735
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.7099890837812752,
+            "count_ratio": 0.11940298507462686
+          },
+          "very_slow_rules_on_defs": [
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "fline": 125,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.09505796432495117
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+              "fline": 1,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.10727596282958984
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+              "fline": 101,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.11005592346191406
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "fline": 24,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.11899614334106445
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+              "fline": 14,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.12368392944335938
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "fline": 137,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.12498784065246582
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "fline": 113,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.13471007347106934
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+              "fline": 1,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.20911788940429688
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+              "fline": 137,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.23102879524230957
+            },
+            {
+              "fpath": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+              "fline": 1,
+              "rule_id": "python.boto3.security.hardcoded-token.hardcoded-token",
+              "time": 0.2670450210571289
+            }
+          ]
+        },
+        "fixpoint_timeouts": [
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py:14:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+              "start": {
+                "line": 14,
+                "col": 5,
+                "offset": 425
+              },
+              "end": {
+                "line": 14,
+                "col": 15,
+                "offset": 435
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py:115:8 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "start": {
+                "line": 115,
+                "col": 9,
+                "offset": 6489
+              },
+              "end": {
+                "line": 115,
+                "col": 14,
+                "offset": 6494
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py:137:8 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "start": {
+                "line": 137,
+                "col": 9,
+                "offset": 8183
+              },
+              "end": {
+                "line": 137,
+                "col": 14,
+                "offset": 8188
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py:183:8 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "start": {
+                "line": 183,
+                "col": 9,
+                "offset": 11437
+              },
+              "end": {
+                "line": 183,
+                "col": 16,
+                "offset": 11444
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py:273:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+              "start": {
+                "line": 273,
+                "col": 5,
+                "offset": 16992
+              },
+              "end": {
+                "line": 273,
+                "col": 16,
+                "offset": 17003
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py:113:8 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+              "start": {
+                "line": 113,
+                "col": 9,
+                "offset": 5626
+              },
+              "end": {
+                "line": 113,
+                "col": 16,
+                "offset": 5633
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py:93:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+              "start": {
+                "line": 93,
+                "col": 5,
+                "offset": 4249
+              },
+              "end": {
+                "line": 93,
+                "col": 15,
+                "offset": 4259
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py:103:14 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "start": {
+                "line": 103,
+                "col": 15,
+                "offset": 5517
+              },
+              "end": {
+                "line": 103,
+                "col": 21,
+                "offset": 5523
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py:125:14 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "start": {
+                "line": 125,
+                "col": 15,
+                "offset": 6536
+              },
+              "end": {
+                "line": 125,
+                "col": 23,
+                "offset": 6544
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py:70:8 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "start": {
+                "line": 70,
+                "col": 9,
+                "offset": 3721
+              },
+              "end": {
+                "line": 70,
+                "col": 25,
+                "offset": 3737
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py:137:4 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+              "start": {
+                "line": 137,
+                "col": 5,
+                "offset": 6795
+              },
+              "end": {
+                "line": 137,
+                "col": 14,
+                "offset": 6804
+              }
+            }
+          },
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py:1:0 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+              "start": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              },
+              "end": {
+                "line": 1,
+                "col": 1,
+                "offset": 0
+              }
+            }
+          }
+        ],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 0.9480027548209367,
+          "rules_selected_ratio": 0.09331955922865014,
+          "rules_matched_ratio": 0.09331955922865014
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 1207667648
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "typescript-react": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/playwright.config.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/vite-env.d.ts",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/vite.config.ts"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.003365039825439453,
+        "profiling_times": {
+          "config_time": 0.17014479637145996,
+          "core_time": 1.1774728298187256,
+          "ignores_time": 6.29425048828125e-05,
+          "total_time": 1.3542070388793945
+        },
+        "parsing_time": {
+          "total_time": 0.0549929141998291,
+          "per_file_time": {
+            "mean": 0.0549929141998291,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 0.08056998252868652,
+          "per_file_time": {
+            "mean": 0.016113996505737305,
+            "std_dev": 0.0009999877506743362
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "matching_time": {
+          "total_time": 0.02343916893005371,
+          "per_file_and_rule_time": {
+            "mean": 0.02343916893005371,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+          "total_time": 0.0,
+          "per_def_and_rule_time": {
+            "mean": 0.0,
+            "std_dev": 0.0
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 1.0,
+          "rules_selected_ratio": 0.05,
+          "rules_matched_ratio": 0.05
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 159348736
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    },
+    "python-python": {
+      "version": "1.182.1",
+      "results": [],
+      "errors": [],
+      "paths": {
+        "scanned": [
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/__init__.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/api.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/cli.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/engine.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/isolation.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/models.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/recovery.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/store.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-interval-merge/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/fixture/app.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/bugfix-rounding/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-contacts/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/extraction-invoices/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/fixture/filter_orders.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-order-filter/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/fixture/slugify.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/feature-slugify/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/fixture/indexer.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-document-index/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/fixture/pipeline.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/multistep-ledger/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/fixture/settings.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-config/verifier/contract.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/fixture/routes.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/navigation-routes/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/fixture/summary.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-csv-summary/verifier/check.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/fixture/text_stats.py",
+          "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/corpus/refactor-text-stats/verifier/check.py"
+        ]
+      },
+      "time": {
+        "rules": [],
+        "rules_parse_time": 0.032800912857055664,
+        "profiling_times": {
+          "config_time": 0.23554491996765137,
+          "core_time": 1.6431212425231934,
+          "ignores_time": 0.0001163482666015625,
+          "total_time": 1.885671854019165
+        },
+        "parsing_time": {
+          "total_time": 0.3076150417327881,
+          "per_file_time": {
+            "mean": 0.001690192536993341,
+            "std_dev": 5.2013087510906336e-05
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "scanning_time": {
+          "total_time": 3.1365137100219727,
+          "per_file_time": {
+            "mean": 0.09801605343818665,
+            "std_dev": 0.018042696018190977
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_files": []
+        },
+        "matching_time": {
+          "total_time": 1.099485158920288,
+          "per_file_and_rule_time": {
+            "mean": 0.00604112724681477,
+            "std_dev": 0.00010467448546074686
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_files": []
+        },
+        "tainting_time": {
+          "total_time": 0.5793993473052979,
+          "per_def_and_rule_time": {
+            "mean": 0.000540989119799531,
+            "std_dev": 4.05071780029557e-06
+          },
+          "very_slow_stats": {
+            "time_ratio": 0.0,
+            "count_ratio": 0.0
+          },
+          "very_slow_rules_on_defs": []
+        },
+        "fixpoint_timeouts": [
+          {
+            "error_type": "Fixpoint timeout",
+            "severity": "warn",
+            "message": "Fixpoint timeout while performing taint analysis at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py:125:14 [rules: 1, first: python.boto3.security.hardcoded-token.hardcoded-token]",
+            "location": {
+              "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/abl/providers.py",
+              "start": {
+                "line": 125,
+                "col": 15,
+                "offset": 6536
+              },
+              "end": {
+                "line": 125,
+                "col": 23,
+                "offset": 6544
+              }
+            }
+          }
+        ],
+        "prefiltering": {
+          "project_level_time": 0.0,
+          "file_level_time": 0.0,
+          "rules_with_project_prefilters_ratio": 0.0,
+          "rules_with_file_prefilters_ratio": 0.9933774834437086,
+          "rules_selected_ratio": 0.03766556291390728,
+          "rules_matched_ratio": 0.03766556291390728
+        },
+        "targets": [],
+        "total_bytes": 0,
+        "max_memory_bytes": 507880448
+      },
+      "engine_requested": "OSS",
+      "skipped_rules": [],
+      "profiling_results": []
+    }
+  }
+}

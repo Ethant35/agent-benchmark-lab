@@ -3,7 +3,7 @@
     "tool": "write_file",
     "arguments": {
       "path": "pipeline.py",
-      "content": "import csv,json,hashlib,sys\ndef dump(p,x): open(p,\"w\").write(json.dumps(x,separators=(\",\",\":\"))+\"\\n\")\ndef main(s):\n if s==\"normalize\": dump(\"transactions.json\",[{\"account\":r[\"account\"].lower(),\"cents\":round(float(r[\"amount\"])*100)} for r in csv.DictReader(open(\"transactions.csv\",newline=\"\"))])\n elif s==\"total\":\n  d={}\n  for r in json.load(open(\"transactions.json\")): d[r[\"account\"]]=d.get(r[\"account\"],0)+r[\"cents\"]\n  dump(\"totals.json\",d)\n elif s==\"manifest\": dump(\"manifest.json\",{\"sha256\":{p:hashlib.sha256(open(p,\"rb\").read()).hexdigest() for p in (\"transactions.json\",\"totals.json\")},\"row_count\":len(json.load(open(\"transactions.json\")))})\nif __name__==\"__main__\": main(sys.argv[1])\n"
+      "content": "import csv,json,hashlib,sys\ndef dump(p,x): open(p,\"w\").write(json.dumps(x,separators=(\",\",\":\"))+\"\\n\")\ndef main(s):\n if s==\"normalize\": dump(\"transactions.json\",[{\"account\":r[\"account\"].lower(),\"cents\":round(float(r[\"amount\"])*100)} for r in csv.DictReader(open(\"transactions.csv\",newline=\"\"))])\n elif s==\"total\":\n  d={}\n  for r in json.load(open(\"transactions.json\")): d[r[\"account\"]]=d.get(r[\"account\"],0)+r[\"cents\"]\n  dump(\"totals.json\",[{\"account\":a,\"total_cents\":c} for a,c in d.items()])\n elif s==\"manifest\": dump(\"manifest.json\",{\"sha256\":{p:hashlib.sha256(open(p,\"rb\").read()).hexdigest() for p in (\"transactions.json\",\"totals.json\")},\"row_count\":len(json.load(open(\"transactions.json\")))})\nif __name__==\"__main__\": main(sys.argv[1])\n"
     }
   },
   {

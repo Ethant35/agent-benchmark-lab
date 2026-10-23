@@ -1,0 +1,101 @@
+[
+  {
+    "id": "gen-1792733971-8UjvjcBwHZwmcpWttpU7",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 5.992e-05,
+    "tokens_prompt": 295,
+    "tokens_completion": 16,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792733974-ye0d3buDqcXpBTvJDbfs",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 8.051e-05,
+    "tokens_prompt": 501,
+    "tokens_completion": 11,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792733978-JZ5IkG5Paeb0NS1XlEhk",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 0.000169564,
+    "tokens_prompt": 624,
+    "tokens_completion": 192,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792733984-w6tYgfpGjCrdpuIK9zP0",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 0.000126538,
+    "tokens_prompt": 920,
+    "tokens_completion": 104,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792733988-w3y45IyxvVDO3iNweP0x",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 0.000214538,
+    "tokens_prompt": 1219,
+    "tokens_completion": 204,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792733999-xw0CT84X0Uq4q5R7XMZ4",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 7.342e-05,
+    "tokens_prompt": 295,
+    "tokens_completion": 21,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792734004-ihMs1hHyroj92OkG2Gjd",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 7.242e-05,
+    "tokens_prompt": 295,
+    "tokens_completion": 19,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792734007-xfAwQMB48kMM6J2QORqN",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 6.0402e-05,
+    "tokens_prompt": 607,
+    "tokens_completion": 11,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792734009-h1wKSyfxqK3JFm0RGgZu",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 0.000184324,
+    "tokens_prompt": 730,
+    "tokens_completion": 223,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792734017-RWxZLb3zOU3Y6WZivI2S",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 0.000163218,
+    "tokens_prompt": 1056,
+    "tokens_completion": 137,
+    "provider_name": "OpenInference",
+    "finish_reason": "tool_calls"
+  },
+  {
+    "id": "gen-1792734033-UhvmtlBCtaS068MIOJU3",
+    "model": "deepseek/deepseek-v4.1-flash-20261017",
+    "total_cost": 0.000198334,
+    "tokens_prompt": 1389,
+    "tokens_completion": 212,
+    "provider_name": "OpenInference",
+    "finish_reason": "stop"
+  }
+]

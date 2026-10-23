@@ -22,6 +22,7 @@ else:
     def execute(path):
         r=subprocess.run([a.cli,'run','--root',str(a.root),'--config',str(path)],capture_output=True,text=True,timeout=180)
         records.append({'command':['abl','run','--root',str(a.root),'--config',str(path)],'exit_code':r.returncode,'stdout':r.stdout,'stderr':r.stderr})
+        assert r.stdout.splitlines(), f'CLI returned no run ID (exit {r.returncode})'
         rid=json.loads(r.stdout.splitlines()[0])['run_id']
         inspect=subprocess.run([a.cli,'inspect',rid,'--root',str(a.root)],capture_output=True,text=True,check=True)
         return json.loads(inspect.stdout)['trials'][0]
@@ -35,11 +36,17 @@ else:
         assert limited['status']=='FAIL' and limited['failure_category'] in ('step_limit','verification_failed','budget_limit')
         results['BL-20']={'status':'PASS','trial_id':limited['id'],'detail':'Restrictive live limit accurately classified incomplete outcome'}
         second=execute(a.config_b)
+        assert second['status']=='PASS' and second['verifier']['exit_code']==0 and second['tool_calls']>0
+        assert Path(second['artifact_dir'],'agent/workspace.tar').is_file()
+        assert (first['ttft_seconds'] is not None)==bool(configs[0].get('streaming'))
+        assert (second['ttft_seconds'] is not None)==bool(configs[1].get('streaming'))
         assert first['id']!=second['id'] and first['fixture_hash']==second['fixture_hash'] and first['config_hash']!=second['config_hash']
         r=subprocess.run([a.cli,'compare','--root',str(a.root)],capture_output=True,text=True,check=True)
         assert len(json.loads(r.stdout)['groups'])>=2
         results['BL-21']={'status':'PASS','trial_ids':[first['id'],second['id']],'detail':'Distinct live configurations use identical fixture hash and independent records'}
         for t in (first,limited,second):
+            assert not t.get('request_pending') and not t.get('cleanup_errors')
+            assert t['cost_usd'] is not None and t['cost_usd']>=0
             trace=[json.loads(x) for x in Path(t['artifact_dir'],'trace.jsonl').read_text().splitlines()]
             responses=[x for x in trace if x['kind']=='provider']; assert responses
             for field,key in [('input_tokens','prompt_tokens'),('output_tokens','completion_tokens')]:

@@ -1,0 +1,17 @@
+{
+  "author": "Ethan",
+  "pytest_passed": 61,
+  "pytest_warnings": [
+    "Starlette TestClient httpx dependency deprecation"
+  ],
+  "browser_passed": 8,
+  "axe_violations": 0,
+  "build": "PASS",
+  "git_diff_check": "PASS",
+  "credential_scan_matching_files": 0,
+  "github_actions_enabled": false,
+  "github_action_runs": 0,
+  "live_gate": "PASS: separately versioned 120-second integration",
+  "published": false,
+  "floor_guard_flags": 12
+}
