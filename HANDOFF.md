@@ -1,6 +1,49 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## Candidate accepted — v1.2.0 usability, 2026-10-22
+
+Primary and bounded Luna work completed; both children interrupted. No provider requests.
+78 local tests and15 final installed-wheel browser tests PASS; axe clear. All12 reference
+controls PASS via legacy installed CLI. Final guided journey PASS (free task, returning
+API, backup/restore byte match, SIGTERM, resumeTIMEOUT, empty owned resources).
+Real1.1→1.2upgrade and separate1.1rollback preserve exportbytes.76packaged runtime files
+match source+installation; Author Ethan; dependency audits clear. See evidence/usability.
+Current branch codex/guided-first-run, pending commit/PR/release. Final package build
+must include these docs/evidence; code/static qualification already passed. Stage draft
+release, download+test, then publish/verify public URLs. Do not markgoalcomplete yet.
+Usage checker functions cell2 active45s, latest66%used; stopat90%. Podman abl-benchmark
+heldsession33215; readonly dashboardPID21156/port8772 heldsession80717. No model process.
+No Actions/workflows/globalconfig changes. Preserve priorroots andhistorybelow.
+
+## ACTIVE — usability and distribution phase, 2026-10-22
+
+Prior v1.1.0 qualification is complete and preserved below. New goal is active:
+prebuilt-wheel first installation; guided free-first CLI execution, explicit optional
+model consent/caps, live progress/cancellation/recovery, clearer dashboard labels,
+empty and returning states; release only after downloaded journey acceptance.
+Branch codex/guided-first-run; baseline d8bdf35c4fdfc7a4e2ee2903088037fe370bd5ce.
+No current paid inference is planned; provider adapter and corpus contracts stay fixed.
+Ethan amended delegation: primary may spawn/reuse up to TWO Luna High assistants;
+assistants may not spawn. ui worker is repairing bounded review findings; journey
+worker is complete and interrupted. No additional agent was spawned.
+Usage guard functions cell 2 checks every45 seconds. Initial46%, latest47% used.
+At90%used in any applicable window: stop owned processes, save handoff and pause.
+Actions verified disabled, zero workflow runs. No global configuration changes.
+Implemented guided start/check/configure with free-first plan, exact paid consent,
+readable progress/recovery and metadata-only observer. Existing JSON CLI stays intact.
+Source journey passed reference/return/backup/restore/SIGTERM/resume/cleanup. UI initial
+10 checks passed; targeted review repairs pending. 76 local tests passed before two
+additional focused tests (17 focused now pass). New dependency audits clear.
+Podman abl-benchmark held by session33215. Current wheel env .abl/usability-wheel-env;
+legacy-all plus wheel journey session91275. No provider calls. New tests/docs stay local.
+Build candidate v1.2.0 under .abl/usability-dist; will rebuild after UI review fixes.
+Editable environment import failure traced to macOS hidden flags on .pth, which Python
+skips; use source PYTHONPATH scoped to command or installed wheels. No global repair.
+Next: final UI review, candidate/downloaded package, upgrade/rollback, PR/release gates.
+Do not claim completion yet.
+
+
 ## COMPLETE — v1.1.0 released and verified, 2026-10-22
 Author: Ethan
 

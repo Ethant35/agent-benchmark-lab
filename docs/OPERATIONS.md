@@ -12,15 +12,27 @@ v1.0.1 live results are separate evidence.
 
 Use a dedicated disposable VM for untrusted code. On macOS, create a Podman machine
 only if none exists, start it, then pull `docker.io/library/python:3.12-slim`.
-`abl doctor` must show the runtime, image and built dashboard before execution.
+`abl check` reports prerequisite status and safe recovery commands; `abl doctor` retains the legacy JSON diagnostic view.
 A missing runtime blocks execution. The image is inspected and pinned for each run.
 
 Source development uses `uv sync --frozen --python 3.12`, `npm ci --prefix dashboard`,
 and `npm run build --prefix dashboard`. A release wheel includes the dashboard and
 corpus. `uv run abl validate` checks configurations without provider calls. If an
-editable environment cannot import `abl.cli`, reinstall its local package with
-`uv sync --frozen --reinstall-package agent-benchmark-lab` and rerun `abl validate`.
-This repaired the local test environment; its original import failure cause is unknown.
+editable development install cannot import `abl.cli`, inspect the environment's `.pth`
+file flags. Python skips macOS hidden `.pth` files; this was reproduced in the local
+synced workspace. A reinstall may only temporarily clear those flags. Prefer the
+release wheel for users, or an unsynced development environment; do not change global
+Python or Finder settings as a workaround. This does not affect ordinary wheel imports.
+
+Version 1.2.0 adds `abl start` (one free reference task by default), `abl configure`,
+`abl check`, and saved dashboard views. The YAML and JSON-output `abl run` interface
+remains available for existing scripts. `abl start --plan` previews configuration
+without container setup or provider calls. `--accept-cost AMOUNT` is an explicit
+scripted consent option and must equal the configured whole-run USD reserve exactly.
+Interactive runs default to declining paid execution. An absent credential is requested
+through hidden input after consent and removed from the environment after execution.
+No credential value is written to the configuration. See [first use](USABILITY.md).
+
 
 ## Deadlines, costs and interrupted requests
 

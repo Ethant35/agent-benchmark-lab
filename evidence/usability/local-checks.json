@@ -1,0 +1,26 @@
+{
+  "author": "Ethan",
+  "pytest": {
+    "passed": 78,
+    "warnings": [
+      "Existing Starlette httpx TestClient deprecation"
+    ]
+  },
+  "playwright": {
+    "passed": 15,
+    "axe_violations": 0,
+    "installed_wheel": true,
+    "headless": true
+  },
+  "build": "PASS",
+  "runtime_files_matched": 76,
+  "api_requests": 0,
+  "api_cost_usd": 0,
+  "actions_enabled": false,
+  "workflow_runs": 0,
+  "limits": [
+    "No unfamiliar-user testing",
+    "No native screen-reader or OS zoom study",
+    "Historical live integration retained; no provider adapter change"
+  ]
+}

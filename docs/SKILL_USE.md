@@ -45,3 +45,25 @@ Primary references consulted in this work:
 Initial contract tests used Python 3.13. Qualification uses frozen Python 3.12.14.
 The local wheel and fresh upgrade environments also used Python 3.12.14. Each evidence
 record names the kind of test; reference outcomes and controlled fixtures are not model scores.
+
+
+## v1.2.0 usability and distribution phase
+
+The seven explicitly requested workflows were loaded from their installed project-local
+SKILL.md files. No new skill was installed and no hooks or global settings changed.
+
+| Workflow | Application in this phase |
+|---|---|
+| shipping-and-launch | Wheel-first route, dependency audits, real first-use/return/update/recovery/rollback and downloaded-asset gate; no hosted rollout or field telemetry |
+| api-and-interface-design | Additive CLI commands and read-only typed workspace identity/commands; existing run/config/schema/provider contract preserved; consent and unknown outcomes explicit |
+| impeccable | Existing Operate surface refined; context/onboard/craft references, rendered mobile review and detector; no redesign or unfamiliar-user study |
+| baseline-ui | Concise optional quick start, clear empty/loading/error/recovery states, no new animation/decorative hero |
+| fixing-accessibility | Native controls, keyboard focus/return and axe checks, mobile reflow; OS assistive-tech certification not claimed |
+| systematic-debugging | Reproduced hidden .pth imports, source harness assumptions, dashboard returning-state timing and label defects before targeted repairs |
+| verification-before-completion | Fresh command results, package/source byte checks, real containers and browser checks gate release |
+| test-driven-development (debugging support) | New guided consent/config/negative-control/terminal-control tests observed RED then GREEN; no fake response labelled live |
+
+The old editable-import diagnosis above is historical. Current verbose Python import
+output proves macOS hidden file flags cause `.pth` files to be skipped in this synced
+workspace. Release-wheel imports and actual task execution passed independently.
+The detailed current phase matrix is USABILITY_ACCEPTANCE.md.

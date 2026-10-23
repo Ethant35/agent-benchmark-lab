@@ -1,0 +1,11 @@
+{
+  "author": "Ethan",
+  "old_version": "1.1.0",
+  "new_version": "1.2.0",
+  "old_trial_id": "5b8cbdd857864232933af168c34adde8",
+  "before_after_rollback_exports_equal": true,
+  "export_sha256": "c63cdbb3d4ff313cf37eb60c8e9268e2644a9e6eda11e95f1c8e44079d925c43",
+  "backup_files": 5,
+  "new_reference_run": "83046cb59d7649e9ab35f386cb9a0570",
+  "rollback_environment": "separate v1.1.0; restored pre-upgrade backup"
+}

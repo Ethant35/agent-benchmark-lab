@@ -75,6 +75,10 @@ def create_app(root):
     store=Store(root)
     def rows(run_id=None,model=None,provider=None,task_id=None):
         return store.trials(run_id=run_id,model=model,provider=provider,task_id=task_id)
+    @app.get('/api/workspace', response_model=dict[str, str])
+    def workspace():
+        from .guided import workspace_info
+        return workspace_info(store.root)
     @app.get('/api/runs')
     def runs(): return store.runs()
     @app.get('/api/trials')
