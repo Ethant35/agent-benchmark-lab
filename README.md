@@ -5,19 +5,20 @@ Agent Benchmark Lab measures actual task completion through independent behavior
 
 **Full live corpus run completed** on v1.0.1 with `deepseek/deepseek-v4.1-flash-1017`: 8 PASS, 3 FAIL, 1 TIMEOUT; observed key charge $0.014957188. Several failures expose underspecified schemas or an overly strict verifier, so this is not a clean model ranking. See the [full report](evidence/full-deepseek-1017/REPORT.md) and [dated acceptance](ACCEPTANCE.md). GitHub Actions remains disabled.
 
+**v1.1.0 is qualified for the documented local target.** Current checks and limits are tracked in [READINESS.md](READINESS.md). Real streaming/nonstreaming integration passed using a separately versioned 120-second test contract; the bundled benchmark deadlines remain 30 seconds. See [operation, migration and recovery instructions](docs/OPERATIONS.md).
+
 ## Install
 
-Requires Python 3.12+, Node 22+ for building the dashboard, and a running Docker or Podman engine. No Claude account is needed.
+Qualified local target: macOS Apple Silicon, Python 3.12, Node 22+ for dashboard builds, and a dedicated Podman VM. Docker and other Python versions are not currently qualified. No Claude account is needed.
 
 ```sh
 git clone https://github.com/Ethant35/agent-benchmark-lab.git
 cd agent-benchmark-lab
-uv sync --frozen
+uv sync --frozen --python 3.12
 cd dashboard
 npm ci
 npm run build
 cd ..
-# Use docker instead when that is your installed engine.
 podman pull docker.io/library/python:3.12-slim
 uv run abl doctor
 uv run abl init
@@ -41,7 +42,7 @@ uv run abl dashboard --root .abl/reference
 # Open http://127.0.0.1:8765
 ```
 
-The CLI prints run/trial IDs. Inspect with `abl inspect RUN_ID --root PATH`, cancel from another terminal with `abl cancel RUN_ID --root PATH`, and resume an interrupted schedule with `abl run --resume RUN_ID --root PATH`. Completed slots are not repeated. A run returns nonzero if any trial did not pass.
+The CLI prints run/trial IDs. Inspect with `abl inspect RUN_ID --root PATH`, cancel from another terminal with `abl cancel RUN_ID --root PATH`, and resume an interrupted schedule with `abl run --resume RUN_ID --root PATH`. Completed slots are not repeated. Current runs require an unchanged corpus/image manifest; legacy runs without a manifest remain readable but cannot resume in the new candidate. A run returns nonzero if any trial did not pass.
 
 ## Compare two live configurations
 

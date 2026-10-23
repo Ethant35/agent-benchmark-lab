@@ -1,8 +1,8 @@
 schema_version: 1
 id: navigation-config
-version: '1.0'
+version: '1.1'
 category: navigation
-description: "Inspect settings.py and write answer.json with exactly default_port, retry_limit, cache_enabled, supported_formats, source, and explanation. Use literal source facts and correct JSON types. source must be the exact relative path; explanation must briefly identify what the facts describe. Do not modify settings.py."
+description: "Inspect settings.py and write answer.json with exactly default_port, retry_limit, cache_enabled, supported_formats, source, and explanation. Use the literal source facts and correct JSON types. source must be the exact relative path. In one brief sentence, explain that the file contains application settings and describe the port, retry limit, cache setting, and supported formats. Use clear wording; equivalent terms are acceptable. Do not modify settings.py."
 fixture: fixture
 setup: []
 allowed_tools: [read_file, write_file, shell, finish]

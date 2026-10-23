@@ -3,11 +3,13 @@ from pathlib import Path
 from typing import Literal
 import hashlib
 import json
+import re
+import stat
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 class Strict(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
 
 class Task(Strict):
     schema_version: Literal[1]
@@ -110,6 +112,20 @@ def load_tasks(root=None):
 def tree_hash(path):
     h = hashlib.sha256()
     for p in sorted(path.rglob('*')):
+        if '__pycache__' in p.parts or p.suffix == '.pyc':
+            continue
+        if p.is_symlink() or not (p.is_file() or p.is_dir()):
+            raise ValueError('Corpus must contain only regular files and directories')
         if p.is_file():
-            h.update(str(p.relative_to(path)).encode()); h.update(p.read_bytes())
+            name = p.relative_to(path).as_posix().encode()
+            content = p.read_bytes()
+            h.update(len(name).to_bytes(8, 'big')); h.update(name)
+            h.update((stat.S_IMODE(p.stat().st_mode) & 0o111).to_bytes(2, 'big'))
+            h.update(len(content).to_bytes(8, 'big')); h.update(content)
     return h.hexdigest()
+
+
+def validate_run_id(value):
+    if not isinstance(value, str) or re.fullmatch(r'[0-9a-f]{32}', value) is None:
+        raise ValueError('Run ID must be 32 lowercase hexadecimal characters')
+    return value

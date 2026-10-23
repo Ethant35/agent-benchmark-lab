@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Annotated
 import typer
 import yaml
-from .models import Config, load_tasks
+from .models import Config, load_tasks, validate_run_id
 from .store import Store, aggregate, export_data
 from .isolation import runtime_name, BoundaryError
 from .engine import run_suite
@@ -59,7 +59,10 @@ def run(root:Root=Path('.abl'),config:Annotated[Path|None,typer.Option('--config
         task:Annotated[list[str]|None,typer.Option('--task')]=None,
         repeats:Annotated[int|None,typer.Option('--repeats')]=None,
         resume:Annotated[str|None,typer.Option('--resume')]=None):
-    if resume and not config:
+    if resume is not None:
+        try: validate_run_id(resume)
+        except ValueError as e: raise typer.BadParameter(str(e)) from e
+    if resume is not None and not config:
         old=Store(root).run(resume)
         if not old: raise typer.BadParameter('Run not found')
         c=Config.model_validate(old['config'])
@@ -113,3 +116,26 @@ def cancel(run_id:str,root:Root=Path('.abl')):
     if not old: raise typer.BadParameter('Run not found')
     if old['status']!='RUNNING': raise typer.BadParameter('Run is not active')
     store.state(run_id,'CANCELLING',True); emit({'run_id':run_id,'cancellation_requested':True})
+
+
+@app.command()
+def backup(output:Path,root:Root=Path('.abl')):
+    """Copy an idle store and its evidence to a new verified backup directory."""
+    from .recovery import backup_store
+    try: emit(backup_store(root,output))
+    except (OSError,ValueError) as error: raise typer.BadParameter(str(error)) from error
+
+
+@app.command()
+def restore(backup:Path,root:Root):
+    """Verify and restore a backup into a new directory; never overwrite data."""
+    from .recovery import restore_store
+    try: emit(restore_store(backup,root))
+    except (OSError,ValueError) as error: raise typer.BadParameter(str(error)) from error
+
+
+@app.command()
+def diagnostics(root:Root=Path('.abl')):
+    """Print operational counts without task, provider, path or config payloads."""
+    from .recovery import diagnostics as report
+    emit(report(Store(root)))

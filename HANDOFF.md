@@ -1,6 +1,338 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## Current qualification checkpoint — 2026-10-22, 22:36 PDT
+Author: Ethan
+
+Candidate 1.1.0 remains **unreleased and incomplete**. No readiness commit, PR, push,
+tag or release was made. Branch codex/production-readiness; baseline 381caf28ec2d73dc6e87d0956ff2afcde986cced.
+This is a saved checkpoint, not a new user-requested pause or a claim of completion.
+The goal tool previously remained paused because its API cannot resume it; resumed
+work followed Ethan's direct instruction. Do not create a replacement goal to hide this.
+
+Completed local qualification: 61 pytest passes, eight browser passes on a fresh wheel,
+zero axe violations in tested views, fourteen real resource cases, 128 MiB/16,384-inode
+workspace control, all twelve references PASS and all twelve unsolved controls FAIL.
+Fresh wheel task PASS. Real v1.0.1 upgrade plus backup/restore preserved export content.
+Seventy-five runtime/corpus/static files match final wheel, tested install and sources;
+Author Ethan verified. Both dependency audits found zero vulnerabilities. Actions
+rechecked disabled with zero runs; no global config/hook changes. Final source manifest,
+package evidence and exact limitations are under evidence/readiness/ and READINESS.md.
+
+Final approved Semgrep plan ran as static_analysis_semgrep_3: seven scans exit 0,
+Elttam and Apiiro exit 2 with partial results (12 and 3 rule errors). No TSX target
+parse errors. Thirty-one findings (25 long-line indicators, six intentional execution
+sites) retained and triaged; p/yaml unavailable, Community only. No claim of complete
+coverage. Rule clones removed; raw local reports retained. Floor checker still exits 1:
+two CSS skip-link false positives and nine replaced pagination assertions manually
+reviewed in docs/FLOOR_REVIEW.md; no suppression, skipped test or guard override.
+
+Live gate OPEN: three real readiness attempts timed out at the unchanged 30-second
+task limit. Low/none reasoning and request caps are recorded in .abl/readiness-live,
+.abl/readiness-live-none and .abl/readiness-live-capped-2. The first capped attempt
+(.abl/readiness-live-capped) made zero requests after an editable CLI import failure;
+forced local package reinstall restored imports, original cause unknown. The harness
+stopped on its first assertion, so current nonstreaming normal success is not verified.
+Do not label the old v1.0.1 smoke run as qualification of new provider code.
+
+All eleven readiness generation charges later reconciled exactly with two matching
+key readings: **$0.001900464**, zero unattributed difference, no missing generations.
+Evidence: evidence/readiness/live-reconciliation.json. Original interrupted trial costs
+remain null, preserving observed records. No more inference retries were made. Key used
+only through hidden input/process memory; no matching credential in candidate files.
+Original full12 remains 8 PASS/3 FAIL/1 TIMEOUT, observed charge $0.014957188; earlier
+smoke $0.003375022 stays separate. No full12 rerun or retrospective rescoring.
+
+Remaining: choose a bounded live integration design that addresses observed latency
+without weakening or relabelling benchmark contracts, complete actual streaming and
+nonstreaming success/restriction checks, then final review/commit/package/publication
+and downloaded-asset verification only after every gate closes. No automatic paid
+retry loop. Current local docs include operations, migration/rollback, ADR, skill ledger,
+security/floor/UI reviews and unreleased changelog. Long expressions remain readability
+debt, not hidden scanner suppressions. OS zoom/field telemetry/Docker remain unqualified.
+
+Shutdown: all owned containers/volumes were empty before stopping abl-benchmark VM.
+Own dashboard PIDs 91235 and 87514, holding sleeps 61169 and 63740 were terminated.
+No provider process or worker remains. The 45-second usage checker is closed at end of
+this checkpoint; final direct reading 35% used / 65% remaining. On any continuation,
+start a fresh checker and stop at >=90% used / <=10% remaining in any applicable window.
+Never buy credits/reset/switch accounts automatically. Preserve the numbered copies
+under .abl/preserved-duplicate-files-20261022 and all historical evidence.
+
+## Resumed — 2026-10-22
+Author: Ethan
+
+Ethan explicitly revoked the pause through the coordinating chat. Initial account
+reading: 5% used, 95% remaining. Session checker cell 10 checks every 45 seconds (cell 2 was replaced to emit readings).
+New mandatory stop: any applicable window at **90% used / 10% remaining**.
+The goal record still reports paused; its API cannot resume status. Work is resumed
+under the explicit instruction, without creating a replacement goal.
+
+Preserved 81 extra untracked numbered copies under
+`.abl/preserved-duplicate-files-20261022/` with SHA256 inventory. These files were
+not in the saved pause inventory; including fixture copies would change candidate
+inputs. No copy was deleted or used to overwrite canonical edits.
+
+Active work: resume-ID and immutable-manifest repair from nine confirmed failing
+tests. One bounded Luna UI worker owns dashboard source/tests and UI qualification.
+No provider calls. Prior pause details below remain the baseline, not a new stop.
+
+### Resume progress snapshot
+
+- 55 local tests pass after resume manifest, ID validation, private DB/root,
+  bounded safe trace reads, additive comparison grouping, backup/restore with
+  integrity manifests and activity locks, and payload-free diagnostics.
+- New files: abl/recovery.py, tests/test_isolation_edges.py,
+  tests/test_recovery_privacy.py. CLI adds backup/restore/diagnostics.
+- UI worker completed build plus six browser checks and stopped server8766.
+  Same worker now performs bounded read-only differential review.
+- Podman first startup died after command exit; next had gvproxy readiness error.
+  Frozen editable reinstall repaired missing CLI import. Debug startup succeeded
+  with holding session89410; redundant holding sleep61169/session15792 remains.
+  No global Podman configuration/rootful/helper changes.
+- Resource roots3 setup failed;4 passed ten cases then reproduced Darwin zombie
+  killpg EPERM masking timeout. Two diagnostic retries retained in root4.
+  Fix confirms no live group member before treating EPERM as completed cleanup.
+  Current resource suite root5/session7163; CLI acceptance root1/session95839;
+  all12 negative controls/session79203. Own these only during shutdown.
+- No readiness provider spending yet. Live adapter check, final scan/audit,
+  package/upgrade/release, review repairs and final documentation remain open.
+
+## PAUSED at Ethan's explicit instruction — 2026-10-22
+Author: Ethan
+
+This section supersedes all older active-work instructions below. **Do not resume
+without a new instruction from Ethan.** The stop instruction arrived from the
+coordinating chat and explicitly permitted only safe shutdown and this handoff.
+The goal tool actually returned `status: paused`; it was not marked complete.
+
+### Objective and checkout
+
+Full objective: Qualify Agent Benchmark Lab for real local users through the
+explicitly invoked project-local skills: define support/security scope and
+executable readiness criteria; fix verified correctness, isolation, recovery,
+cost/accounting, UI/onboarding and maintenance defects; validate fresh/upgrade/
+package and live supported paths within existing spending limits; retain skill-use/
+readiness evidence, HANDOFF, disabled Actions, and account-usage stop monitoring.
+Release only after qualification.
+
+Local path: `/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab`
+Branch: `codex/production-readiness`
+HEAD: `381caf28ec2d73dc6e87d0956ff2afcde986cced`
+No readiness commit, push, PR, merge, tag or release was made. All work is local and
+unfinished. Historical v1.0.1 and full-provider benchmark evidence is preserved.
+
+### Completed changes, with limits
+
+- Added `CONSTRAINTS.md`, `READINESS.md`, root `AGENTS.md`, skill-use/security/UI
+  evidence docs. The matrix still has open gates; some rows predate the final work
+  in this handoff. This section is authoritative for the pause state.
+- Four corpus contracts updated to v1.1: order-filter, document-index, ledger,
+  navigation-config. Ledger ordered totals now use an array. Navigation wording
+  accepts equivalent cache terms. Historical v1.0 outcomes were not rescored.
+- Added compact `/api/trials/page` and `/api/overview`, preserving legacy endpoints.
+  SQL filters are parameterized; overview summary covers all matching terminal
+  trials; chart data explicitly samples at 2,000. Added measurement coverage and
+  actual/estimated cost counts. DB context scopes now commit/rollback and close.
+  Added local-origin/no-store/security response handling.
+- Dashboard now uses paginated data, native detail dialog with explicit keyboard
+  wrapping and return focus, replayable local onboarding, improved contrast and
+  scroll-region access. Failed detail fetch no longer pretends compact data is full
+  evidence. Final small JSX spacing normalization is not in the last built static
+  bundle. More UI state, readability and performance work remains.
+- Provider uses bounded raw HTTP reads (8,000,000 bytes total, 1,000,000 bytes per
+  SSE line/event), identity encoding, multiline SSE and completion-marker checks,
+  stricter usage/tool structure validation and finite config prices. Generation
+  IDs are saved from headers/events before completion. Request intent is recorded
+  only after reserve preflight; pending costs remain unknown and prior subtotal is
+  retained. A refusal before transmission stays zero cost. No current live-provider
+  verification has been run after these changes.
+- Workspace volume is tmpfs, 128 MiB / 16,384 inodes, with a sleep-only keeper to
+  retain data through stop/snapshot/verification. Rootless tmpfs required mode 0777
+  at mount and chmod only of extracted children. Keeper is container UID 0 with
+  all caps dropped and no candidate commands. No unbounded storage fallback.
+  Cleanup precedes artifact-event persistence; cleanup attempts each owned resource.
+- Locked pytest 9.1.1 and Hypothesis 6.170.6 in Python dev dependencies. Dashboard
+  dependencies pinned to installed lock versions and axe-core Playwright added.
+  Fresh frozen Python 3.12.14 environment: `.abl/readiness-env`.
+
+### Last actual verification and known failures
+
+- Last entire pytest run: **33 passed**, Python 3.12.14, before the later finalization
+  test and resume-contract tests were added. Do not describe current whole suite as
+  green. One Starlette warning says its httpx TestClient integration is deprecated;
+  production HTTPX remains 0.28.1. Warning was not suppressed.
+- Finalization fault injection: baseline `381caf2` **fails** because artifact-event
+  persistence prevents cleanup; current implementation **passes 1 test**. This is
+  control-flow evidence, not a full storage failure acceptance suite.
+- **Current `tests/test_resume_contract.py`: 9 FAIL** by design of the next RED step.
+  No repair was started before stop. `corpus_manifest`, `image_identity`, and
+  `Store.manifest` do not exist. `run_suite` still permits malformed resume IDs to
+  reach filesystem path construction and has no immutable corpus/image manifest.
+  Empty resume string starts a fresh run. The controlled test uses runtime `unused`,
+  so it did not execute candidate code. One reproduction opened `/tmp/absolute.lock`;
+  future tests should use a unique absolute path inside their temporary root.
+- Last dashboard build and full Playwright suite: **4 passed (4.9 seconds)**.
+  Three tests read actual historical SQLite results through the real API. The
+  fourth uses a clearly controlled 250-row API fixture. Axe main/dialog, exports,
+  filters, evidence, all tab stops, both wraps, Escape, trigger focus, onboarding
+  persistence and 320px/390px behavior passed. Screenshots retained at
+  `dashboard/test-results/dashboard.png` and `dashboard-mobile.png`; mobile inspected.
+  Source spacing changed afterward only to repair Semgrep TSX parsing, not rebuilt.
+- Controlled 10,000-row history comparison: baseline median 1.047s / 410,863,740
+  peak Python bytes / 127,952,195 response bytes; revised 0.391s / 15,910,897 /
+  1,256,915. Both keep all summary denominators. Evidence in
+  `evidence/readiness/history-performance-{1,2}.json`; first attempt retained too.
+- Real workspace RED: `.abl/workspace-before/result.json` reports shared capacity
+  12,279,853,056 bytes and no ENOSPC. Two subsequent probes failed setup permissions
+  and are preserved (`.abl/workspace-after`, `...-after-2`). Final probe
+  `.abl/workspace-after-3/result.json`: **PASS**, exact 134,217,728 bytes, 16,384
+  inodes, ENOSPC on excess write, valid independent verifier, bounded artifact,
+  empty cleanup errors. It is a rounding-task probe, not all corpus acceptance.
+- Resource regression `.abl/readiness-resources` failed initial tmpfs permissions.
+  Fixed version `.abl/readiness-resources-2` was **interrupted by this stop request**,
+  not completed. Eight cases finished with expected outcomes: explicit truncation,
+  three fast-output attempts, sustained output, dual streams, oversized artifact,
+  stderr limit. Those records have empty cleanup errors. Do not claim 14/14 or
+  current cancellation/SIGKILL/resume coverage. Remaining cases did not complete.
+- Approved Semgrep run-all scan executed nine scans and merged 30 findings. No
+  process failed/skipped; however raw records show partial TSX parsing plus rule
+  parse errors (12 Elttam, 3 Apiiro), so coverage is partial. 24 long-line warnings
+  and 6 intended dynamic execution boundaries need final triage/review. No secret
+  findings. `p/yaml` was unavailable (404) and excluded from the approved plan.
+  Initial scan predates provider/isolation changes; final scan remains undone.
+  Raw plan/scans: `static_analysis_semgrep_1/`; copied initial SARIF/JSON under
+  `evidence/readiness/`. Cloned rules alone were removed after merge; repo SHAs saved.
+- Actions was checked disabled during this readiness session. No workflows/global
+  config/hooks were changed. No provider/API inference spending occurred in readiness.
+  Prior full run actual key delta remains $0.014957188; prior smoke $0.003375022.
+
+### Remaining gates and blockers
+
+The pause is user-directed, not an external technical blocker. Semgrep approval was
+received and used; do not keep listing approval as pending. Pro and p/yaml availability
+are scan coverage limitations. No additional skill was installed in this session.
+
+Complete the nine RED resume tests and immutable run/corpus/image compatibility;
+qualify legacy read/upgrade/recovery paths; enforce safe IDs before filesystem use;
+finish backup/restore, corruption/disk failure handling, private permissions, bounded
+trace reads and privacy-safe diagnostic export. Review finite usage/cost edge cases,
+request outcome accounting, unknown-cost reconciliation and corpus comparison groups.
+Finish resource regression (including descendants, inode pressure, cancellation,
+SIGTERM, SIGKILL/resume) and all 12 current corpus positive/negative controls. Finish
+UI empty/error/loading/zoom/deep-link/readability and large matrix checks. Run current
+bounded real OpenRouter stream/nonstream/tool/usage tests within prior spending scope
+and reconcile actual charges. Complete all applicable invoked skills, final static/
+differential review and audits, fresh wheel install, upgrade and packaged-byte checks,
+then publish only after every gate passes. No new release is qualified now.
+
+The 26 invoked skills and actual/pending applications are in `docs/SKILL_USE.md`.
+Correct that table from evidence: harness-writing was inspected and has no owned
+C/C++/Rust entry point here; web-design and React rule review now occurred; Semgrep
+approval/run occurred; other pending workflows remain pending. Do not convert an
+installed skill or a worker's claim into completed qualification.
+
+### Shutdown state (verified)
+
+All four children (`corpus`, `dashboard`, `corpus_readiness`, `dashboard_readiness`)
+were already terminal and were explicitly interrupted again. No active child remains.
+Stopped test parent PID 11641 (session 39816, exit 143) and signalled its exact CLI
+child PID 13779. Parent was briefly stopped first to prevent another test from starting.
+Dashboard PID 19017/session 15965 shut down (exit 143); port 8765 had no listener.
+No project provider, scan, build or test process remains. Scanner session 69635 had
+already finished before stop. Other short sessions had completed.
+
+After CLI exit, container and volume inventories were verified **empty**. Cleanup
+was restricted to names derived from this test run's persisted trial IDs. Dedicated
+Podman VM `abl-benchmark` was stopped and machine inventory reports Running=false.
+Holding sleep PID 96124/session 81334 terminated (exit 143). No unrelated process
+or other chat's resources were targeted.
+
+Usage checker functions cell 175 was terminated after safe shutdown; last reading
+was **71% used** at 20:43:41 UTC. It is session-local and no longer runs. Goal tool
+returned **paused** at 20:43:48 UTC, tokensUsed 579201, no token budget. Do not
+create a replacement goal or restart monitoring/work until Ethan resumes.
+
+### Exact resume steps — only after a new instruction from Ethan
+
+1. Read this section, `CONSTRAINTS.md`, `READINESS.md`, and inspect the dirty diff.
+   Start a fresh supported-tool usage checker at the instructed cadence and stop
+   at account exhaustion; do not use paid credits/reset/account switching implicitly.
+2. Use this checkout and branch. Preserve all existing edits and historical evidence.
+   Fresh/frozen environment command:
+   `UV_PROJECT_ENVIRONMENT=.abl/readiness-env uv sync --frozen --python 3.12`
+3. Inspect and repair `tests/test_resume_contract.py` against real requirements;
+   run `.abl/readiness-env/bin/python -m pytest tests/test_resume_contract.py -q`.
+   Full small/local suite: `.abl/readiness-env/bin/python -m pytest -q`.
+4. Start the existing dedicated VM only when container work resumes:
+   `podman machine start abl-benchmark`. Confirm the image is present with
+   `.abl/readiness-env/bin/abl doctor`. Do not install helpers or change rootful/global
+   settings just because the runtime startup prints optional suggestions.
+5. Resource regression uses a NEW root, preserving interrupted evidence:
+   `.abl/readiness-env/bin/python tests/resource_e2e.py --root .abl/readiness-resources-3 --cli .abl/readiness-env/bin/abl`
+   Run current all-corpus positive/negative acceptance afterward; do not reuse old
+   successful v1.0.1 claims to qualify revised contracts.
+6. `npm run build --prefix dashboard`; start
+   `.abl/readiness-env/bin/abl dashboard --root .abl/hardening-regression-v2`, then
+   `npm run test:e2e --prefix dashboard`. This historical root is UI fixture evidence;
+   use fresh data for new engine qualification. Stop the server when done.
+7. Complete open gates above. Reuse the approved Semgrep rulesets and installed
+   `../.agents/skills/semgrep/scripts/run-scans.sh`; keep metrics off and inspect raw
+   error arrays as well as exit codes. Preserve initial scan evidence before rerunning.
+8. Only after current gates pass: final diff/security/skill audit, package/upgrade/
+   download checks, then release if still authorized. Recheck Actions disabled.
+
+### Exact dirty files at pause
+
+Tracked modifications (plus this HANDOFF update):
+```text
+.gitignore
+abl/api.py
+abl/engine.py
+abl/isolation.py
+abl/models.py
+abl/providers.py
+abl/store.py
+corpus/feature-order-filter/task.yaml
+corpus/multistep-document-index/task.yaml
+corpus/multistep-ledger/task.yaml
+corpus/multistep-ledger/verifier/check.py
+corpus/navigation-config/task.yaml
+corpus/navigation-config/verifier/check.py
+dashboard/e2e.spec.ts
+dashboard/package-lock.json
+dashboard/package.json
+dashboard/src/main.tsx
+dashboard/src/style.css
+pyproject.toml
+uv.lock
+HANDOFF.md
+```
+Untracked files retained:
+```text
+AGENTS.md
+CONSTRAINTS.md
+READINESS.md
+corpus/navigation-config/verifier/contract.py
+docs/CORPUS_QUALIFICATION.md
+docs/SECURITY_REVIEW.md
+docs/SKILL_USE.md
+docs/UI_QUALIFICATION.md
+evidence/readiness/history-performance-1.json
+evidence/readiness/history-performance-2.json
+evidence/readiness/semgrep-initial.json
+evidence/readiness/semgrep-initial.sarif
+tests/history_performance.py
+tests/test_api_history.py
+tests/test_corpus_contracts.py
+tests/test_finalization.py
+tests/test_provider_boundary.py
+tests/test_resume_contract.py
+tests/workspace_e2e.py
+```
+Ignored local environments, raw stores, scan output, generated static bundle and
+browser screenshots are also retained. No unfinished work was cleaned away.
+
 ## Latest: full live corpus run complete
 Evidence merged in PR #4: https://github.com/Ethant35/agent-benchmark-lab/pull/4 . Usage checker closed at 43% used (57% remaining). In-memory credential binding cleared; VM and holding process stopped. Working branch main.
 2026-10-22: Full twelve-task run requested by Ethan, installed v1.0.1 and exact DeepSeek V4.1 Flash 1017 alias. Raw outcomes: 8 PASS, 3 FAIL, 1 TIMEOUT. One provider-executed attempt per task; four initial zero-request budget blocks were preserved and those untouched tasks executed once separately after charge inspection. Actual key-usage increase $0.014957188; 64 completed response/generation records reconcile to $0.014526328, with $0.000430860 additional key charge consistent with the interrupted request but not individually attributable. Same-key concurrent use would affect this delta. Prior smoke-test costs excluded.

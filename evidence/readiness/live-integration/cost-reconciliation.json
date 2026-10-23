@@ -1,0 +1,62 @@
+{
+  "author": "Ethan",
+  "purpose": "120-second separately versioned live integration, not 30-second benchmark score",
+  "usage_before": 16.878589403,
+  "usage_after": 16.879992591,
+  "usage_confirmed": 16.879992591,
+  "key_delta_usd": "0.001403188",
+  "generation_total_usd": "0.001403188",
+  "trial_cost_usd": "0.001403188",
+  "unknown_generations": 0,
+  "outcomes": [
+    {
+      "id": "6de97370754643138b59070ba25999fc",
+      "task_id": "bugfix-rounding",
+      "task_version": "1.0-integration-120s",
+      "status": "PASS",
+      "failure_category": null,
+      "termination_reason": null,
+      "wall_seconds": 27.097882749996643,
+      "api_seconds": 23.44045641699995,
+      "ttft_seconds": 3.319283417000406,
+      "cost_usd": 0.00065107,
+      "input_tokens": 5780,
+      "output_tokens": 811,
+      "cleanup_errors": [],
+      "request_pending": false
+    },
+    {
+      "id": "e57a674803b84cf7a12a0c13cc7e2284",
+      "task_id": "bugfix-rounding",
+      "task_version": "1.0-integration-120s",
+      "status": "FAIL",
+      "failure_category": "step_limit",
+      "termination_reason": null,
+      "wall_seconds": 4.896488207999937,
+      "api_seconds": 2.197324208998907,
+      "ttft_seconds": 1.805945874999452,
+      "cost_usd": 7.342e-05,
+      "input_tokens": 506,
+      "output_tokens": 76,
+      "cleanup_errors": [],
+      "request_pending": false
+    },
+    {
+      "id": "f095c61f926e4b219d3124471a5ab90a",
+      "task_id": "bugfix-rounding",
+      "task_version": "1.0-integration-120s",
+      "status": "PASS",
+      "failure_category": null,
+      "termination_reason": null,
+      "wall_seconds": 40.464800916997774,
+      "api_seconds": 34.35034274899954,
+      "ttft_seconds": null,
+      "cost_usd": 0.000678698,
+      "input_tokens": 6562,
+      "output_tokens": 884,
+      "cleanup_errors": [],
+      "request_pending": false
+    }
+  ],
+  "test_exit": 0
+}

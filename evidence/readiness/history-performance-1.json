@@ -1,0 +1,67 @@
+{
+  "author": "Ethan",
+  "kind": "controlled synthetic persisted history",
+  "python": "3.12.14",
+  "trials": 10000,
+  "evidence_bytes_per_trial": 12288,
+  "baseline_ref": "381caf2",
+  "baseline_store_sha256": "720b9acf9dd42df34b37cfb9dc7a8e1c62027b6eeff6091804fc87b5c3dd9418",
+  "current_store_sha256": "e8aa3f0137477e8b0a0c22dbca0b5684aec284548ea68c1a2ea72e16f3c01e94",
+  "observations": {
+    "baseline": [
+      {
+        "seconds": 1.2068311659968458,
+        "peak_python_bytes": 410864746,
+        "response_bytes": 127952195
+      },
+      {
+        "seconds": 1.0145858750038315,
+        "peak_python_bytes": 410863740,
+        "response_bytes": 127952195
+      },
+      {
+        "seconds": 1.0162537500000326,
+        "peak_python_bytes": 410863740,
+        "response_bytes": 127952195
+      }
+    ],
+    "compact": [
+      {
+        "seconds": 3.9891663339949446,
+        "peak_python_bytes": 15911324,
+        "response_bytes": 1256915
+      },
+      {
+        "seconds": 1.2218098330049543,
+        "peak_python_bytes": 15908235,
+        "response_bytes": 1256915
+      },
+      {
+        "seconds": 1.157748375000665,
+        "peak_python_bytes": 15908235,
+        "response_bytes": 1256915
+      }
+    ]
+  },
+  "medians": {
+    "baseline": {
+      "seconds": 1.0162537500000326,
+      "peak_python_bytes": 410863740,
+      "response_bytes": 127952195
+    },
+    "compact": {
+      "seconds": 1.2218098330049543,
+      "peak_python_bytes": 15908235,
+      "response_bytes": 1256915
+    }
+  },
+  "run_filter_query_plan": [
+    [
+      3,
+      0,
+      62,
+      "SEARCH trials USING INDEX trials_run (run_id=?)"
+    ]
+  ],
+  "limits": "Python allocations only; includes JSON encoding; local warm OS cache; not field-user telemetry."
+}

@@ -1,0 +1,20 @@
+{
+  "author": "Ethan",
+  "kind": "real container workspace limit",
+  "probe": {
+    "quota_probe": true,
+    "bytes": 134217728,
+    "inodes": 16384,
+    "enospc": true
+  },
+  "status": "PASS",
+  "cleanup_errors": [],
+  "artifact": {
+    "status": "complete",
+    "bytes_written": 3072,
+    "limit_bytes": 64000000,
+    "source": "host-observed container tar stream",
+    "bytes_observed": 3072,
+    "sha256": "550a13fdc30bb98c121d98897a60db5b07c3d58936b8aa119d1e8ad7ac377558"
+  }
+}

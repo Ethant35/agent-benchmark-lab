@@ -3,36 +3,91 @@ import csv
 import io
 import json
 import math
+import os
 import sqlite3
 import statistics
+from collections import Counter
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
 def now():
     return datetime.now(timezone.utc).isoformat()
 
+# List endpoints expose measurements, never response bodies or execution evidence.
+COMPACT_FIELDS = (
+    'id', 'run_id', 'slot', 'task_id', 'task_version', 'category', 'runner',
+    'provider', 'model', 'config_hash', 'status', 'failure_category',
+    'started_at', 'completed_at', 'wall_seconds', 'ttft_seconds', 'api_seconds',
+    'input_tokens', 'output_tokens', 'cached_input_tokens', 'tool_calls',
+    'failed_tool_calls', 'retry_count', 'timed_out', 'cost_usd', 'cost_source',
+    'known_cost_subtotal_usd', 'corpus_hash',
+)
+COMPACT_SELECT = ','.join(f"json_extract(data, '$.{key}') AS {key}" for key in COMPACT_FIELDS)
+FILTER_COLUMNS = {'id': 'id', 'run_id': 'run_id'} | {
+    key: f"json_extract(data, '$.{key}')" for key in
+    ('provider', 'model', 'task_id', 'status', 'runner', 'config_hash')
+}
+
+
+def where_clause(filters):
+    clauses, values = [], []
+    for key, value in filters.items():
+        if key not in FILTER_COLUMNS:
+            raise ValueError(f'Unknown trial filter: {key}')
+        if value:
+            clauses.append(FILTER_COLUMNS[key] + '=?')
+            values.append(value)
+    return (' WHERE ' + ' AND '.join(clauses) if clauses else ''), values
+
+
 class Store:
     def __init__(self, root):
         self.root = Path(root).resolve()
-        self.root.mkdir(parents=True, exist_ok=True)
+        self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
+        # Existing v1 stores used the caller's umask. Restrict traversal too,
+        # so historical artifact files become private without rewriting evidence.
+        self.root.chmod(0o700)
+        path=self.root/'results.sqlite3'
+        if path.is_symlink(): raise ValueError('Result database must not be a symlink')
+        descriptor=os.open(path,os.O_CREAT|os.O_WRONLY|os.O_NOFOLLOW,0o600)
+        os.close(descriptor)
+        path.chmod(0o600)
         with self.connect() as db:
             db.executescript('''
             PRAGMA journal_mode=WAL;
             CREATE TABLE IF NOT EXISTS runs(id TEXT PRIMARY KEY, status TEXT, created_at TEXT, config TEXT, cancel INTEGER DEFAULT 0);
             CREATE TABLE IF NOT EXISTS trials(id TEXT PRIMARY KEY, run_id TEXT NOT NULL, slot INTEGER NOT NULL, data TEXT NOT NULL);
+            CREATE INDEX IF NOT EXISTS trials_run ON trials(run_id);
+            CREATE TABLE IF NOT EXISTS run_manifests(run_id TEXT PRIMARY KEY, data TEXT NOT NULL);
             ''')
+    @contextmanager
     def connect(self):
         db = sqlite3.connect(self.root/'results.sqlite3', timeout=30)
         db.row_factory = sqlite3.Row
-        return db
-    def create_run(self, rid, config):
+        try:
+            with db:
+                yield db
+        except sqlite3.DatabaseError as error:
+            raise ValueError('Result store unavailable or corrupt; stop writers and restore a verified backup. '+str(error)) from error
+        finally:
+            db.close()
+    def create_run(self, rid, config, manifest=None):
         with self.connect() as db:
             db.execute('INSERT INTO runs VALUES(?,?,?,?,0)', (rid,'RUNNING',now(),json.dumps(config)))
+            if manifest is not None:
+                db.execute('INSERT INTO run_manifests VALUES(?,?)', (rid,json.dumps(manifest,sort_keys=True)))
+    def manifest(self, rid):
+        with self.connect() as db:
+            row = db.execute('SELECT data FROM run_manifests WHERE run_id=?', (rid,)).fetchone()
+            return json.loads(row[0]) if row else None
     def runs(self):
         with self.connect() as db:
             return [{**dict(r), 'config':json.loads(r['config'])} for r in db.execute('SELECT * FROM runs ORDER BY created_at DESC')]
     def run(self, rid):
-        return next((r for r in self.runs() if r['id']==rid), None)
+        with self.connect() as db:
+            row = db.execute('SELECT * FROM runs WHERE id=?', (rid,)).fetchone()
+            return {**dict(row), 'config':json.loads(row['config'])} if row else None
     def state(self, rid, status, cancel=None):
         with self.connect() as db:
             db.execute('UPDATE runs SET status=? WHERE id=?',(status,rid))
@@ -47,9 +102,35 @@ class Store:
             db.execute('INSERT INTO trials VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET data=excluded.data',
                 (trial['id'],trial['run_id'],trial['slot'],json.dumps(trial)))
     def trials(self, **filters):
+        where, values = where_clause(filters)
         with self.connect() as db:
-            rows = [json.loads(r[0]) for r in db.execute('SELECT data FROM trials ORDER BY rowid')]
-        return [r for r in rows if all(not v or r.get(k)==v for k,v in filters.items())]
+            return [json.loads(r[0]) for r in db.execute('SELECT data FROM trials'+where+' ORDER BY rowid', values)]
+
+    def trial_page(self, limit=100, offset=0, **filters):
+        if not 1 <= limit <= 200 or offset < 0:
+            raise ValueError('Page limit must be 1..200 and offset must be nonnegative')
+        where, values = where_clause(filters)
+        with self.connect() as db:
+            # One read snapshot keeps count and page consistent during a run.
+            db.execute('BEGIN')
+            total = db.execute('SELECT count(*) FROM trials'+where, values).fetchone()[0]
+            items = [dict(r) for r in db.execute(
+                'SELECT '+COMPACT_SELECT+' FROM trials'+where+' ORDER BY rowid DESC LIMIT ? OFFSET ?',
+                [*values, limit, offset])]
+        return dict(items=items, total=total, limit=limit, offset=offset)
+
+    def overview(self, **filters):
+        where, values = where_clause(filters)
+        with self.connect() as db:
+            db.execute('BEGIN')
+            rows = [dict(r) for r in db.execute(
+                'SELECT '+COMPACT_SELECT+' FROM trials'+where+' ORDER BY rowid DESC', values)]
+            # Scan history once for all facets; avoid three passes over evidence JSON.
+            facet_rows = db.execute("SELECT DISTINCT json_extract(data, '$.provider'), json_extract(data, '$.model'), json_extract(data, '$.task_id') FROM trials").fetchall()
+            facets = {label: sorted({r[index] for r in facet_rows if r[index]})
+                      for index, label in enumerate(('providers','models','tasks'))}
+        return dict(summary=aggregate(rows), **facets, chart_trials=rows[:2000],
+                    chart_total=len(rows), chart_sampled=len(rows)>2000)
 
 TERMINAL = {'PASS','FAIL','TIMEOUT','CANCELLED','ERROR','UNSUPPORTED','BLOCKED_EXTERNAL','INTERRUPTED'}
 
@@ -73,10 +154,22 @@ def aggregate(rows, grouped=True):
       cost_per_success_usd=full_cost/success if full_cost is not None and success else None,
       wall_stddev_seconds=statistics.stdev(wall) if len(wall)>1 else None,
       measured_cost_trials=len(costs), measured_token_trials=len(tokens), measured_ttft_trials=len(ttft))
+    out['status_counts'] = dict(Counter(r['status'] for r in rows))
+    out['actual_cost_trials'] = sum(r.get('cost_usd') is not None and r.get('cost_source') == 'provider.usage.cost' for r in rows)
+    out['estimated_cost_trials'] = sum(r.get('cost_usd') is not None and 'estimated' in (r.get('cost_source') or '') for r in rows)
+    partial=[r['known_cost_subtotal_usd'] for r in rows
+             if r.get('cost_usd') is None and r.get('known_cost_subtotal_usd') is not None]
+    out['known_spend_usd']=sum(costs)+sum(partial) if costs or partial else None
+    out['partial_cost_trials']=len(partial)
+    for field, coverage in [('input_tokens','input_token'), ('output_tokens','output_token'), ('cached_input_tokens','cached_input_token')]:
+        values = [r[field] for r in rows if r.get(field) is not None]
+        out['observed_'+field] = sum(values) if values else None
+        out['measured_'+coverage+'_trials'] = len(values)
     if grouped:
         out['categories']={c:aggregate([r for r in rows if r['category']==c],False) for c in sorted({r['category'] for r in rows})}
-        keys=sorted({(r['runner'],r['provider'],r['model'],r['config_hash']) for r in rows})
-        out['groups']=[dict(zip(('runner','provider','model','config_hash'),k)) | aggregate([r for r in rows if (r['runner'],r['provider'],r['model'],r['config_hash'])==k],False) for k in keys]
+        fields=('runner','provider','model','config_hash','corpus_hash')
+        keys=sorted({tuple(r.get(f) for f in fields) for r in rows},key=lambda k:tuple(v or '' for v in k))
+        out['groups']=[dict(zip(fields,k)) | aggregate([r for r in rows if tuple(r.get(f) for f in fields)==k],False) for k in keys]
     return out
 
 def export_data(rows, format):

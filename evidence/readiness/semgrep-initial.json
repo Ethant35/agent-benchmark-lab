@@ -1,0 +1,701 @@
+{
+  "author": "Ethan",
+  "phase": "initial readiness scan; source edits continued afterward",
+  "approved": true,
+  "engine": "Community",
+  "mode": "run-all",
+  "repos": {
+    "apiiro-malicious-code-ruleset": "a21246b666f34db899f0e33add7237ed70fab790",
+    "elttam-semgrep-rules": "244268562cc92d33f54b8a60a187df5520f91b26",
+    "trailofbits-semgrep-rules": "31390b3a99c04c81522d1b37c8d1900aa2dd4094"
+  },
+  "counts": {
+    "failed": [],
+    "skipped": [],
+    "coveredNothing": [],
+    "oversized": []
+  },
+  "unavailable_unapproved_pack": "p/yaml returned HTTP 404 during planning; excluded from approved plan",
+  "findings": [
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "abl/cli.py",
+      "line": 95,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+      "path": "abl/engine.py",
+      "line": 73,
+      "message": "Dynamic execution using system commands."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+      "path": "abl/engine.py",
+      "line": 91,
+      "message": "Dynamic execution using system commands."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+      "path": "abl/isolation.py",
+      "line": 181,
+      "message": "Dynamic execution using system commands."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+      "path": "corpus/bugfix-interval-merge/verifier/check.py",
+      "line": 10,
+      "message": "Dynamic execution using system commands."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "corpus/extraction-invoices/verifier/check.py",
+      "line": 9,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "corpus/multistep-document-index/verifier/check.py",
+      "line": 10,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "corpus/multistep-ledger/verifier/check.py",
+      "line": 10,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+      "path": "corpus/refactor-csv-summary/verifier/check.py",
+      "line": 26,
+      "message": "Dynamic execution using system commands."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.dynamic_execution.python.python-dynamic-execution-system",
+      "path": "corpus/refactor-text-stats/verifier/check.py",
+      "line": 19,
+      "message": "Dynamic execution using system commands."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 15,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 62,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 63,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 82,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 84,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 85,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 86,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 88,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 97,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 98,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 99,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 100,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 102,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 103,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 105,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 113,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 116,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 117,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 146,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    },
+    {
+      "rule": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.generic-one-liners",
+      "path": "dashboard/src/main.tsx",
+      "line": 147,
+      "message": "Minified, compressed, obfuscated or any other form of unreadable files is excluded from the scan, because although a strong indicator of maliciousness, its FP rate is relatively higher. It is highly recommended to store such files in CDN, cloud buckets, etc. and keep the codebase readable."
+    }
+  ],
+  "coverage": [
+    {
+      "ruleset": "p/secrets",
+      "files_scanned": 131,
+      "partial": false,
+      "errors": [],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "p/security-audit",
+      "files_scanned": 131,
+      "partial": false,
+      "errors": [
+        {
+          "code": 3,
+          "level": "warn",
+          "type": [
+            "PartialParsing",
+            [
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 668,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 669,
+                  "offset": 1
+                }
+              },
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 671,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 672,
+                  "offset": 1
+                }
+              }
+            ]
+          ],
+          "message": "Syntax error at line /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx:117:\n `/` was unexpected",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "spans": [
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 668,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 669,
+                "offset": 1
+              }
+            },
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 671,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 672,
+                "offset": 1
+              }
+            }
+          ]
+        }
+      ],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "https://github.com/trailofbits/semgrep-rules",
+      "files_scanned": 131,
+      "partial": false,
+      "errors": [],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "https://github.com/elttam/semgrep-rules",
+      "files_scanned": 131,
+      "partial": false,
+      "errors": [
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.jax-rs.path-class",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.jax-rs.path-class:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@jakarta.ws.rs.Path(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Order",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Order:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.core.annotation.Order(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RequestMapping",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RequestMapping:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.web.bind.annotation.RequestMapping(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@$ANNOTATION($...PARAMS)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class-method",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.convention-annotation-class-method:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@$ANNOTATION($...PARAMS)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.path-class",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.jax-rs.security.audit.entrypoints.path-class:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@jakarta.ws.rs.Path(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.class-extends-action-support",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.struts2.security.audit.entrypoints.class-extends-action-support:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $CLASS extends ActionSupport\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Priority",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-Priority:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@javax.annotation.Priority(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-CrossOrigin",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-CrossOrigin:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.web.bind.annotation.CrossOrigin(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.java.servlet.filter",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.java.servlet.filter:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $CLASS implements javax.servlet.Filter\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RestController",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules-audit.java.spring.security.audit.entrypoints.rest-RestController:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\n@org.springframework.web.bind.annotation.RestController(...)\nclass $CLASS\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules.java.spring.security.audit.remoting.UnsafeHttpInvokerServiceExporter-extends",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.elttam-semgrep-rules.rules.java.spring.security.audit.remoting.UnsafeHttpInvokerServiceExporter-extends:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $CLASS extends org.springframework.remoting.rmi.RemoteInvocationSerializingExporter\n\n----- end pattern -----\n"
+        },
+        {
+          "code": 3,
+          "level": "warn",
+          "type": [
+            "PartialParsing",
+            [
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 668,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 669,
+                  "offset": 1
+                }
+              },
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 671,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 672,
+                  "offset": 1
+                }
+              }
+            ]
+          ],
+          "message": "Syntax error at line /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx:117:\n `/` was unexpected",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "spans": [
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 668,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 669,
+                "offset": 1
+              }
+            },
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 671,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 672,
+                "offset": 1
+              }
+            }
+          ]
+        }
+      ],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "https://github.com/apiiro/malicious-code-ruleset",
+      "files_scanned": 36,
+      "partial": false,
+      "errors": [
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.obfuscation.dart.dart-obfuscation-conditions",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.obfuscation.dart.dart-obfuscation-conditions:\n Invalid pattern for Dart: Stdlib.Parsing.Parse_error\n----- pattern -----\nswitch ($VAR) { ... }\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.obfuscation.java.java-obfuscation-declarations",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.obfuscation.java.java-obfuscation-declarations:\n Invalid pattern for Java: Stdlib.Parsing.Parse_error\n----- pattern -----\nclass $VAR\n----- end pattern -----\n"
+        },
+        {
+          "code": 2,
+          "level": "error",
+          "type": "Rule parse error",
+          "rule_id": "static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.obfuscation.javascript_typescript.javascript-obfuscation-conditions",
+          "message": "Rule parse error in rule static_analysis_semgrep_1.repos.apiiro-malicious-code-ruleset.obfuscation.javascript_typescript.javascript-obfuscation-conditions:\n Invalid pattern for JavaScript: Stdlib.Parsing.Parse_error\n----- pattern -----\nswitch ($VAR) { case ... }\n----- end pattern -----\n"
+        },
+        {
+          "code": 3,
+          "level": "warn",
+          "type": [
+            "PartialParsing",
+            [
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 668,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 669,
+                  "offset": 1
+                }
+              },
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 671,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 672,
+                  "offset": 1
+                }
+              }
+            ]
+          ],
+          "message": "Syntax error at line /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx:117:\n `/` was unexpected",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "spans": [
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 668,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 669,
+                "offset": 1
+              }
+            },
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 671,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 672,
+                "offset": 1
+              }
+            }
+          ]
+        }
+      ],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "p/fastapi",
+      "files_scanned": 31,
+      "partial": false,
+      "errors": [],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "p/python",
+      "files_scanned": 31,
+      "partial": false,
+      "errors": [],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "p/react",
+      "files_scanned": 5,
+      "partial": false,
+      "errors": [
+        {
+          "code": 3,
+          "level": "warn",
+          "type": [
+            "PartialParsing",
+            [
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 668,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 669,
+                  "offset": 1
+                }
+              },
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 671,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 672,
+                  "offset": 1
+                }
+              }
+            ]
+          ],
+          "message": "Syntax error at line /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx:117:\n `/` was unexpected",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "spans": [
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 668,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 669,
+                "offset": 1
+              }
+            },
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 671,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 672,
+                "offset": 1
+              }
+            }
+          ]
+        }
+      ],
+      "skipped_paths": []
+    },
+    {
+      "ruleset": "p/typescript",
+      "files_scanned": 5,
+      "partial": false,
+      "errors": [
+        {
+          "code": 3,
+          "level": "warn",
+          "type": [
+            "PartialParsing",
+            [
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 668,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 669,
+                  "offset": 1
+                }
+              },
+              {
+                "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+                "start": {
+                  "line": 117,
+                  "col": 671,
+                  "offset": 0
+                },
+                "end": {
+                  "line": 117,
+                  "col": 672,
+                  "offset": 1
+                }
+              }
+            ]
+          ],
+          "message": "Syntax error at line /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx:117:\n `/` was unexpected",
+          "path": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+          "spans": [
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 668,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 669,
+                "offset": 1
+              }
+            },
+            {
+              "file": "/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/src/main.tsx",
+              "start": {
+                "line": 117,
+                "col": 671,
+                "offset": 0
+              },
+              "end": {
+                "line": 117,
+                "col": 672,
+                "offset": 1
+              }
+            }
+          ]
+        }
+      ],
+      "skipped_paths": []
+    }
+  ]
+}

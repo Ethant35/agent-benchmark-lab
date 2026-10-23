@@ -15,8 +15,10 @@ Total spend is unavailable if any attempt has unknown cost; a separate measured 
 
 A single run demonstrates behavior, not universal model quality. Use repeated independent attempts, report task/category composition and uncertainty, and avoid ranking close results without adequate samples. The small bundled corpus is intended for inexpensive smoke comparisons, not a representative measurement of all software engineering. Public tasks can leak into training data. Hidden here means inaccessible to the running agent; the open-source verifier is not a secret from a model's training corpus.
 
-Live model integration unverified until BL-19–22 pass with actual authorized models. A credential-free framework release must retain this limitation prominently.
+v1.0.1 passed dated live checks, but that does not qualify changed provider code. Version 1.1.0 passed actual streaming/nonstreaming integration on the same rounding behavior and verifier with a separately versioned 120-second deadline. Three earlier 30-second attempts remain TIMEOUT; see READINESS.md. Historical results are not rescored.
 
 A tool/request/budget stop does not automatically erase completed work. If time permits verification and the actual output passes, the trial is PASS and retains its termination reason. A zero-tool configuration is supported for deliberate incomplete-work controls. Cancelled and timed-out attempts remain unsuccessful and retain their reason.
 
 Provider implementation references (consulted 2026-10-22): [OpenRouter client tool calling](https://openrouter.ai/docs/guides/features/tool-calling), [Chat Completions schema](https://openrouter.ai/docs/api_reference/overview), and [usage accounting](https://openrouter.ai/docs/cookbook/administration/usage-accounting). Returned metadata, not documentation examples, must supply actual trial measurements.
+
+Comparison groups include the ordered corpus/image manifest hash. Legacy records with unknown corpus identity form a separate group. An incomplete trial contributes its known subtotal to `known_spend_usd`, while total cost and cost per success remain unavailable until all required costs are known. Dashboard pages contain at most 200 rows (the UI requests 100); charts sample the newest 2,000 matching records, while summaries and exports cover all matching records.

@@ -33,10 +33,20 @@ def runtime_name(preferred='auto'):
 
 
 def archive_tree(path, prefix=''):
-    out=io.BytesIO()
+    class BoundedBuffer(io.BytesIO):
+        def write(self, data):
+            if self.tell()+len(data)>ARTIFACT_LIMIT:
+                raise BoundaryError('Trusted input archive exceeds 64,000,000 byte limit')
+            return super().write(data)
+    out=BoundedBuffer()
     with tarfile.open(fileobj=out,mode='w') as tar:
         for p in sorted(Path(path).rglob('*')):
+            if '__pycache__' in p.parts or p.suffix=='.pyc': continue
             if p.is_symlink(): raise BoundaryError('Fixture symlinks are forbidden')
+            if not (p.is_file() or p.is_dir()):
+                raise BoundaryError('Trusted inputs must be regular files or directories')
+            if p.is_file() and p.stat().st_size>ARTIFACT_LIMIT:
+                raise BoundaryError('Trusted input exceeds archive byte limit')
             name=str(Path(prefix)/p.relative_to(path))
             info=tar.gettarinfo(str(p),arcname=name)
             info.uid=65534; info.gid=65534; info.uname=''; info.gname=''
@@ -49,6 +59,7 @@ class Sandbox:
     def __init__(self,runtime,image,trial_id,deadline,cancelled):
         self.runtime=runtime; self.image=image; self.name='abl-'+trial_id
         self.volume=self.name+'-work'; self.verifier_name=self.name+'-verify'
+        self.keeper_name=self.name+'-keeper'
         self.deadline=deadline; self.cancelled=cancelled; self.image_id=None; self.artifact=None
     def check(self):
         if self.cancelled(): raise TrialCancelled('Cancellation requested')
@@ -66,23 +77,38 @@ class Sandbox:
     def start(self,fixture):
         self.check()
         self.image_id=self.raw(['image','inspect',self.image,'--format','{{.Id}}']).decode().strip()
-        self.raw(['volume','create',self.volume])
+        self.raw(['volume','create','--label','abl.managed=true',
+            '--opt','type=tmpfs','--opt','device=tmpfs',
+            '--opt','o=size=128m,nr_inodes=16384,nodev,nosuid,mode=0777',self.volume])
+        # A live owner keeps tmpfs mounted after agent shutdown, through snapshot
+        # and verification. It has a separate PID namespace and no agent commands.
+        self.raw(['run','-d',*self.flags(self.keeper_name,'0:0'),self.image,'sleep','infinity'])
         # Setup runs trusted commands only; agent execution always uses unprivileged UID.
         self.raw(['run','--rm','-i',*self.flags(self.name+'-setup','0:0'),self.image,'sh','-c',
-            'chmod 777 /workspace && tar --no-same-owner -xf - -C /workspace && chmod -R a+rwX /workspace'],input=archive_tree(fixture))
+            'tar --no-same-owner -xf - -C /workspace && find /workspace -mindepth 1 -exec chmod a+rwX {} +'],input=archive_tree(fixture))
         self.check()
         self.raw(['run','-d',*self.flags(self.name),self.image,'sleep','infinity'])
     @staticmethod
     def terminate_client(process):
         # The CLI's process group belongs to this call; never signal the caller.
-        if process.poll() is None:
-            try: os.killpg(process.pid, signal.SIGTERM)
+        # Children can still hold pipes after their parent has already exited.
+        def signal_group(sig):
+            try: os.killpg(process.pid, sig)
             except ProcessLookupError: pass
-            try: process.wait(timeout=1)
-            except subprocess.TimeoutExpired:
-                try: os.killpg(process.pid, signal.SIGKILL)
-                except ProcessLookupError: pass
-                process.wait(timeout=2)
+            except PermissionError:
+                # Darwin may retain a zombie-only process group briefly after
+                # SIGTERM. Confirm that it has no live member before accepting
+                # EPERM; a real permission failure must remain visible.
+                states=subprocess.run(['ps','-axo','pgid=,stat='],capture_output=True,text=True,check=True,timeout=2)
+                for line in states.stdout.splitlines():
+                    fields=line.split()
+                    if len(fields)==2 and fields[0]==str(process.pid) and not fields[1].startswith('Z'):
+                        raise
+        signal_group(signal.SIGTERM)
+        try: process.wait(timeout=1)
+        except subprocess.TimeoutExpired: pass
+        signal_group(signal.SIGKILL)
+        process.wait(timeout=2)
 
     def collect(self, args, *, sink=None, deadline=None):
         """Drain both pipes through EOF, including bytes buffered after fast exit.
@@ -152,6 +178,7 @@ class Sandbox:
             error.result=result()
             raise
         finally:
+            self.terminate_client(p)
             for pipe in (p.stdout,p.stderr):
                 if not pipe.closed: pipe.close()
 
@@ -224,11 +251,17 @@ else:
             subprocess.run([self.runtime,'volume','rm','-f',v],capture_output=True,timeout=15)
     def cleanup(self):
         errors=[]
-        for name in (self.name,self.verifier_name,self.name+'-setup'):
-            subprocess.run([self.runtime,'kill',name],capture_output=True,timeout=15)
-            p=subprocess.run([self.runtime,'rm','-f',name],capture_output=True,timeout=15)
-            if p.returncode and b'no such' not in p.stderr.lower() and b'does not exist' not in p.stderr.lower(): errors.append(p.stderr.decode())
+        for name in (self.name,self.verifier_name,self.name+'-setup',self.keeper_name):
+            try:
+                subprocess.run([self.runtime,'kill',name],capture_output=True,timeout=15)
+                p=subprocess.run([self.runtime,'rm','-f',name],capture_output=True,timeout=15)
+                if p.returncode and b'no such' not in p.stderr.lower() and b'does not exist' not in p.stderr.lower(): errors.append(p.stderr.decode())
+            except (OSError,subprocess.TimeoutExpired) as error:
+                errors.append(f'Could not remove {name}: {error}')
         for name in (self.volume,self.volume+'-verifier'):
-            p=subprocess.run([self.runtime,'volume','rm','-f',name],capture_output=True,timeout=15)
-            if p.returncode and b'no such' not in p.stderr.lower() and b'not found' not in p.stderr.lower(): errors.append(p.stderr.decode())
+            try:
+                p=subprocess.run([self.runtime,'volume','rm','-f',name],capture_output=True,timeout=15)
+                if p.returncode and b'no such' not in p.stderr.lower() and b'not found' not in p.stderr.lower(): errors.append(p.stderr.decode())
+            except (OSError,subprocess.TimeoutExpired) as error:
+                errors.append(f'Could not remove {name}: {error}')
         return errors

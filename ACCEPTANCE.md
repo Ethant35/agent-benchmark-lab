@@ -1,7 +1,11 @@
-# Local acceptance: v1.0.0
+# Local acceptance history
 Author: Ethan
 
-**Current validation: BL-01–22 PASS within the documented scopes.** The later authorized live check passed BL-19–22 using OpenRouter and DeepSeek V4.1 Flash 1017 on one rounding task. The original release-time BLOCKED_EXTERNAL records below remain unchanged as historical evidence. No provider responses or measurements were fabricated. See the live-validation section at the end.
+Current v1.1.0 qualification is in [READINESS.md](READINESS.md) and
+[evidence/readiness](evidence/readiness/). The sections below retain earlier release
+results and their original limits; they do not substitute for current checks.
+
+**Historical v1.0.1 validation: BL-01–22 PASS within the documented scopes.** The later authorized live check passed BL-19–22 using OpenRouter and DeepSeek V4.1 Flash 1017 on one rounding task. The original release-time BLOCKED_EXTERNAL records below remain unchanged as historical evidence. No provider responses or measurements were fabricated. See the live-validation section at the end.
 
 GitHub Actions is intentionally omitted per Ethan. Repository Actions permissions are disabled, and the GitHub API reported zero workflow runs before release. Local checks replace the specification's CI gate.
 

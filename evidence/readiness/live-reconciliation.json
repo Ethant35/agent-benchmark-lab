@@ -1,0 +1,164 @@
+{
+  "author": "Ethan",
+  "usage_before": 16.876688939,
+  "usage_after": 16.878589403,
+  "usage_confirmed": 16.878589403,
+  "key_delta_usd": "0.001900464",
+  "generation_total_usd": "0.001900464",
+  "unattributed_delta_usd": "0E-9",
+  "unknown_generations": 0,
+  "trials": [
+    {
+      "id": "3c0b7730814647adaa4a6f196ed5d968",
+      "run_id": "05ba1211979e4c3394449c090422920b",
+      "task_id": "bugfix-rounding",
+      "status": "TIMEOUT",
+      "failure_category": "runtime_limit",
+      "cost_usd": null,
+      "known_cost_subtotal_usd": 0.00052138,
+      "requests": null,
+      "generation_ids": [
+        "gen-1792732673-50lmi6A15VhEZYUxfb23",
+        "gen-1792732677-Ck8EKwVIHG4ZfWkonPhC",
+        "gen-1792732682-Q2DKRUafvbRpnntRnraU"
+      ],
+      "request_pending": true
+    },
+    {
+      "id": "d3f4ce19a2ac41a58a1925ee84614eaa",
+      "run_id": "ed860a8407454a8bbdea5b8630b5147c",
+      "task_id": "bugfix-rounding",
+      "status": "TIMEOUT",
+      "failure_category": "runtime_limit",
+      "cost_usd": null,
+      "known_cost_subtotal_usd": 0.000570154,
+      "requests": null,
+      "generation_ids": [
+        "gen-1792732807-PfhQoA9DvcofXPEow920",
+        "gen-1792732809-uzaUw5YkzTIGxMeqLNae",
+        "gen-1792732812-K69P7fuxQcjWN8dYM25E",
+        "gen-1792732819-L2UwSDazZ1OxTfTCE6zt",
+        "gen-1792732827-bzaWIRogVGuzAHLroEob"
+      ],
+      "request_pending": true
+    },
+    {
+      "id": "fc391783ed51449395939e91735ae99a",
+      "run_id": "9c6a23381efa461c9ceddbe67e143a38",
+      "task_id": "bugfix-rounding",
+      "status": "TIMEOUT",
+      "failure_category": "runtime_limit",
+      "cost_usd": null,
+      "known_cost_subtotal_usd": 0.00016918,
+      "requests": null,
+      "generation_ids": [
+        "gen-1792733199-5U7ygbWVDOztCeSdzvfd",
+        "gen-1792733207-NefIbJ3QrXjK1rgj4lV9",
+        "gen-1792733216-G56CffHJdBxpTNAAfCgy"
+      ],
+      "request_pending": true
+    }
+  ],
+  "generations": [
+    {
+      "id": "gen-1792732673-50lmi6A15VhEZYUxfb23",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 0.00016517,
+      "tokens_prompt": 295,
+      "tokens_completion": 211,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792732677-Ck8EKwVIHG4ZfWkonPhC",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 0.00035621,
+      "tokens_prompt": 607,
+      "tokens_completion": 452,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792732682-Q2DKRUafvbRpnntRnraU",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 0.0004351,
+      "tokens_prompt": 730,
+      "tokens_completion": 768,
+      "provider_name": "OpenInference",
+      "finish_reason": null
+    },
+    {
+      "id": "gen-1792732807-PfhQoA9DvcofXPEow920",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 8.092e-05,
+      "tokens_prompt": 295,
+      "tokens_completion": 31,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792732809-uzaUw5YkzTIGxMeqLNae",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 9.437e-05,
+      "tokens_prompt": 629,
+      "tokens_completion": 11,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792732812-K69P7fuxQcjWN8dYM25E",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 0.000183056,
+      "tokens_prompt": 752,
+      "tokens_completion": 260,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792732819-L2UwSDazZ1OxTfTCE6zt",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 0.000211808,
+      "tokens_prompt": 1116,
+      "tokens_completion": 207,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792732827-bzaWIRogVGuzAHLroEob",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 0.00013198,
+      "tokens_prompt": 1664,
+      "tokens_completion": 31,
+      "provider_name": "OpenInference",
+      "finish_reason": null
+    },
+    {
+      "id": "gen-1792733199-5U7ygbWVDOztCeSdzvfd",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 7.042e-05,
+      "tokens_prompt": 295,
+      "tokens_completion": 41,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792733207-NefIbJ3QrXjK1rgj4lV9",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 9.876e-05,
+      "tokens_prompt": 528,
+      "tokens_completion": 35,
+      "provider_name": "OpenInference",
+      "finish_reason": "tool_calls"
+    },
+    {
+      "id": "gen-1792733216-G56CffHJdBxpTNAAfCgy",
+      "model": "deepseek/deepseek-v4.1-flash-20261017",
+      "total_cost": 7.267e-05,
+      "tokens_prompt": 681,
+      "tokens_completion": 50,
+      "provider_name": "OpenInference",
+      "finish_reason": null
+    }
+  ],
+  "note": "Readiness checks only. Original 12-task benchmark excluded. Same-key concurrent usage can affect account delta. Interrupted trial records remain immutable."
+}
