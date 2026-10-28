@@ -1,0 +1,15 @@
+{
+  "author": "Ethan",
+  "runtime_files_match_qualified_candidate_and_installed": 77,
+  "runtime_changes_since_full_candidate_checks": 0,
+  "package_author": "Ethan",
+  "source_archive_required_files_present": true,
+  "source_archive_private_paths_or_credentials": 0,
+  "source_archive_duplicate_files": 0,
+  "asset_sha256": {
+    "agent_benchmark_lab-1.2.1-py3-none-any.whl": "fe4641377d72f85eaded2aca1010b332bebb6cd0a0f2658ed35000ab2616d112",
+    "agent_benchmark_lab-1.2.1.tar.gz": "500a3b2952bf42e5025426cb7abfcb5d9a8057b2839644ef9e92bd2c3ec7bf93"
+  },
+  "sdist_rebuild_every_wheel_entry_equal": true,
+  "staged_source_equals_build_manifest": true
+}

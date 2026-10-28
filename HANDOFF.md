@@ -1,6 +1,55 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## RELEASE COMPLETE — v1.2.1, 2026-10-27
+
+Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.2.1
+PR #7 merged: https://github.com/Ethant35/agent-benchmark-lab/pull/7
+Immutable release commit:5726f85706026f231659092c006841b44358cae5.
+
+Completed the resumed production scope for macOS Apple Silicon/Python3.12/rootless
+Podman.91 canonical Python tests,18 installed/public browser checks and all12 reference
+controls pass. Real interruption then successful recovery, unchanged interrupted record,
+50% attempt rate versus1/1 scheduled pass, legacy exit1, backup/restore, rows/artifacts,
+exports, isolation/cleanup and public1.2.0 upgrade with separate rollback pass. Package
+uninstall preserves the separate result store. No provider requests; API cost$0.
+
+Final wheel/source downloads match published SHA256SUMS and local qualified bytes.
+77 runtime files match source and installed package. Rebuilding the source archive
+reproduces every wheel entry. Public-wheel dependencies match audited versions. Author
+metadata Ethan verified in package and screenshots. Required notices retained. No native
+app introduced; Mac native signing/notarization does not apply to this Python wheel.
+
+Wheel SHA256:fe4641377d72f85eaded2aca1010b332bebb6cd0a0f2658ed35000ab2616d112.
+Source SHA256:500a3b2952bf42e5025426cb7abfcb5d9a8057b2839644ef9e92bd2c3ec7bf93.
+
+Evidence: evidence/result-clarity/, docs/RESULT_CLARITY_ACCEPTANCE.md, and private
+.abl/production-20261027/. Failed initial browser focus regression is retained; repaired
+candidate and public download both pass. Dependency audits: no known vulnerabilities.
+Semgrep:43 reviewed indicators, no confirmed vulnerability;15 third-party rule errors,
+Pro unavailable, YAML pack previously unavailable.77 historical boundary/evidence files
+unchanged. Earlier live model results/costs remain separate, not rescored or rerun.
+
+Both Luna High reviewers finished and were interrupted. Test servers stopped and ports
+closed. Podman containers/volumes empty before dedicated VM stop; machine Running=false.
+VM holder PID72190 terminated. Actions disabled and workflow run count0. No global config,
+hooks, credential storage, paid allowance renewal, resets or credits used. Usage was
+checked every45s: fresh49%used baseline, latest70%used/30%remaining, reset1793599137.
+No in-work reset or5%remaining trigger. Guard cell3 is closed at final task completion.
+Ethan restarted the actual broader goal during work; completion follows final evidence
+push. No product/release acceptance gate remains for the documented supported target.
+
+Local checkout note: fetch after merge encountered pre-existing malformed duplicate
+Git ref refs/heads/main 2. Original checkout and unrelated duplicate files were preserved.
+A clean clone at .abl/production-20261027/release-checkout matched the merged source and
+is used for post-release evidence. Original branch remains codex/result-clarity with
+post-release documentation copied locally; do not blindly fetch/reset/delete duplicates.
+This local synced-checkout issue does not affect the clean public clone or release.
+
+Limits: no fresh-Mac or unfamiliar-user study, native assistive-tech certification,
+Docker/Windows/other-provider qualification, or kernel-escape guarantee. Those limits
+are explicit in the release and docs. No further work or automatic monitoring is scheduled.
+
 ## ACTIVE — explicit resume and updated usage guard, 2026-10-27
 
 Ethan explicitly resumed production work through the coordinator. The actual goal

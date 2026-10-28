@@ -1,0 +1,34 @@
+{
+  "author": "Ethan",
+  "release": "https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.2.1",
+  "pull_request": "https://github.com/Ethant35/agent-benchmark-lab/pull/7",
+  "release_commit": "5726f85706026f231659092c006841b44358cae5",
+  "asset_sha256": {
+    "agent_benchmark_lab-1.2.1-py3-none-any.whl": "fe4641377d72f85eaded2aca1010b332bebb6cd0a0f2658ed35000ab2616d112",
+    "agent_benchmark_lab-1.2.1.tar.gz": "500a3b2952bf42e5025426cb7abfcb5d9a8057b2839644ef9e92bd2c3ec7bf93"
+  },
+  "public_download_matches_local_bytes": true,
+  "public_download_matches_published_checksums": true,
+  "public_fresh_install_full_journey": "PASS",
+  "public_browser_checks": 18,
+  "package_runtime_files_match": 77,
+  "source_archive_rebuild_every_wheel_entry_equal": true,
+  "public_dependencies_equal_audited_candidate": true,
+  "package_author": "Ethan",
+  "screenshot_author": "Ethan",
+  "api_requests": 0,
+  "api_cost_usd": 0,
+  "github_actions_enabled": false,
+  "github_workflow_runs": 0,
+  "limits": [
+    "macOS Apple Silicon / Python3.12 / rootless Podman",
+    "No new-Mac setup or unfamiliar-user study",
+    "Partial static coverage:15rule errors, no Pro/YAML pack"
+  ],
+  "local_git_note": "Original checkout has malformed duplicate refs/heads/main 2; preserved. Clean clone matched merged release source and is used for post-release evidence.",
+  "owned_containers_or_volumes_after_tests": 0,
+  "test_vm_stopped": true,
+  "dashboard_ports_closed": true,
+  "latest_usage_used_percent": 70,
+  "usage_reset_timestamp": 1793599137
+}

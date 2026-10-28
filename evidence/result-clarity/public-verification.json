@@ -1,0 +1,30 @@
+{
+  "author": "Ethan",
+  "provider_calls": 0,
+  "api_cost_usd": 0,
+  "distribution": "unauthenticated public v1.2.1 wheel",
+  "new_mac_setup": "not exercised",
+  "checks": [
+    {
+      "name": "doctor",
+      "exit_code": 0
+    },
+    {
+      "name": "journey",
+      "exit_code": 0
+    },
+    {
+      "name": "browser",
+      "exit_code": 0
+    }
+  ],
+  "status": "PASS",
+  "dashboard_stopped": true,
+  "dashboard_port_closed": true,
+  "evidence_hashes": {
+    "state-before.json": "fb303f7cf5f83158847436336965e22d478227cd35790938861d73fbcd8defe0",
+    "state-after.json": "fb303f7cf5f83158847436336965e22d478227cd35790938861d73fbcd8defe0",
+    "recovered-overview.json": "647031873d9e3a7505333ae777e5a27b5dc1af717ed7fe3038046b2713abd1c4",
+    "recovered-detail.json": "9ade56dbdd36caa549d9ca6f584c03fcafc804569d8915a29c4df46d8702ca38"
+  }
+}

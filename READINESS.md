@@ -11,8 +11,10 @@ dependency audits report no known vulnerabilities. Semgrep has 43 reviewed indic
 no confirmed vulnerability and 15 rule errors; Pro and the previously unavailable YAML
 pack are outside coverage. No model requests or charges occurred. See
 [result clarity acceptance](docs/RESULT_CLARITY_ACCEPTANCE.md) and evidence/result-clarity/.
-Publication and public downloaded bytes are a separate final gate, recorded in
-release-provenance.json after completion. Earlier release evidence below is preserved.
+v1.2.1 is published. Unauthenticated downloads match the qualified bytes and checksums;
+a fresh public-wheel install passes the full free/recovery/backup journey and all 18
+browser checks. See evidence/result-clarity/release-provenance.json. Earlier release
+evidence below is preserved.
 
 ## v1.2.0 usability release
 

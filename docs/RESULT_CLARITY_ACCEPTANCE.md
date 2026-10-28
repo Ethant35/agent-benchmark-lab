@@ -2,10 +2,11 @@
 Author: Ethan
 Date: 2026-10-27
 
-The v1.2.1 candidate passed local qualification for macOS Apple Silicon, Python 3.12
-and rootless Podman. Public release/download qualification is recorded separately in
-`evidence/result-clarity/release-provenance.json` after publication. A candidate pass
-alone does not prove a published download works.
+v1.2.1 is qualified and published for macOS Apple Silicon, Python 3.12 and rootless
+Podman. Unauthenticated downloads match the qualified wheel/source bytes and checksums.
+A fresh public-wheel install passed the complete free/recovery/backup journey and all
+18 browser checks. Provenance is in `evidence/result-clarity/release-provenance.json`.
+The immutable release commit is `5726f85706026f231659092c006841b44358cae5` (PR #7).
 
 ## Behavior and compatibility
 
