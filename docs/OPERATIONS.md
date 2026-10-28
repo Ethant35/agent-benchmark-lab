@@ -117,6 +117,19 @@ Opaque candidate archives are untrusted: never extract them on the host.
 
 ## Maintenance
 
+Version 1.2.1 adds a schedule summary without changing attempt-level metrics or saved
+records. After interruption and successful recovery, one scheduled task can pass while
+the CLI retains its legacy exit code 1 for the interrupted attempt. Use the explicit
+schedule counts to assess final task completion; retain the attempt history for reliability
+and cost comparisons. Historical task descriptions require a matching manifest, corpus
+hash, task version and installed task tree. Missing identity remains unavailable.
+
+To uninstall from the dedicated environment, stop its dashboard and runs, save a backup,
+then run `uv pip uninstall --python ~/agent-benchmark-lab/.venv/bin/python agent-benchmark-lab`.
+This removes the package; it does not remove separately stored results or the Podman VM.
+Keep the environment if you want to reinstall. Retain the database and artifacts together.
+Stop the dedicated VM when it has no other work; do not use prune as an uninstall step.
+
 Use frozen dependencies for development; review lockfile changes and run both dependency
 audits. Requalify changed execution, provider and storage boundaries before release.
 Review a new container image before using it; an image change deliberately blocks resume.

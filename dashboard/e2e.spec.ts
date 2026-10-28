@@ -27,6 +27,13 @@ test('dashboard reads persisted results, filters, details, and exports', async (
   await page.getByRole('button', { name: 'Close quick start' }).click();
   await expect(page.getByTestId('onboarding')).toBeHidden();
   await expect(page.getByTestId('trial-row')).toHaveCount(Math.min(100, trials.length));
+  await expect(page.getByTestId('summary-metrics')).toBeHidden();
+  await mkdir('test-results', { recursive: true });
+  await page.screenshot({ path: 'test-results/results-primary.png', fullPage: true });
+  await expect(page.getByTestId('schedule-summary')).toBeVisible();
+  await expect(page.getByText('Attempt metrics and configuration analysis')).toBeVisible();
+  await expect(page.getByTestId('summary-metrics')).toBeHidden();
+  await page.getByText('Attempt metrics and configuration analysis').click();
   const expectedCompletion = summary.completion_rate == null ? 'Unavailable' : `${(summary.completion_rate > 1 ? summary.completion_rate : summary.completion_rate * 100).toLocaleString(undefined, { maximumFractionDigits: 1 })}%`;
   await expect(page.getByTestId('completion-rate')).toHaveText(expectedCompletion);
   const expectedMedian = summary.median_wall_seconds == null ? 'Unavailable' : `${summary.median_wall_seconds.toLocaleString(undefined, { maximumFractionDigits: 1 })}s`;
@@ -45,6 +52,7 @@ test('dashboard reads persisted results, filters, details, and exports', async (
   await expect(page.getByTestId('trial-row')).toHaveCount(Math.min(100, allPage.total));
   const row = page.getByTestId('trial-row').first(); const openButton = row.getByRole('button'); await openButton.focus(); await openButton.press('Enter');
   await expect(page.getByTestId('trial-detail')).toBeVisible(); await expect(page.getByTestId('verifier-evidence')).toBeVisible();
+  await page.screenshot({ path: 'test-results/result-detail.png', fullPage: true });
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('trial-detail')).toBeHidden();
   await expect(openButton).toBeFocused();
@@ -59,6 +67,7 @@ test('dashboard reads persisted results, filters, details, and exports', async (
   await page.getByRole('button', { name: 'Close quick start' }).click();
   await page.reload();
   await expect(page.getByTestId('onboarding')).toBeHidden();
+  await page.getByText('Attempt metrics and configuration analysis').click();
   await mkdir('test-results', { recursive: true }); await page.screenshot({ path: 'test-results/dashboard.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   const widths = await page.evaluate(() => ({ viewport: document.documentElement.clientWidth, page: document.documentElement.scrollWidth }));
@@ -323,6 +332,7 @@ test('large histories page compact rows and label chart samples', async ({ page 
   await expect(page.getByTestId('trial-row')).toHaveCount(100);
   await expect(page.getByText('Showing 1–100 of 250')).toBeVisible();
   await expect(page.getByText('Recent sample; summary metrics cover all selected trials.')).toHaveCount(2);
+  await page.getByText('Attempt metrics and configuration analysis').click();
   await expect(page.getByTestId('success-matrix').locator('tbody tr')).toHaveCount(100);
   await expect(page.getByTestId('success-matrix').locator('thead th')).toHaveCount(21);
   await expect(page.getByText('Showing 100 of 2,000 tasks and 20 of 2,000 configurations')).toBeVisible();
@@ -347,10 +357,17 @@ test('large histories page compact rows and label chart samples', async ({ page 
   expect(detailA11y.violations.map(v => v.id)).toEqual([]);
   const close = page.getByRole('button', { name: 'Close trial details' });
   await expect(close).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(dialog.getByText('Technical details', { exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(close).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(dialog.getByRole('region', { name: 'Trial evidence and measurements' })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(dialog.getByLabel('Verifier output', { exact: true })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(dialog.getByText('Technical details', { exact: true })).toBeFocused();
+  await page.keyboard.press('Enter');
   for (let index = 1; index <= 20; index += 1) {
     await page.keyboard.press('Tab');
     await expect(dialog.getByLabel(`Execution trace event ${index}`, { exact: true })).toBeFocused();
@@ -375,6 +392,8 @@ test('unknown final cost retains its known subtotal and distinct corpus groups',
   await page.route('**/api/trials/tiny',route=>route.fulfill({json:tiny}));
   await page.route('**/api/overview**',route=>route.fulfill({json:{summary:{trials:3,total_spend_usd:null,known_spend_usd:.020000042,groups:[{config_hash:'same',corpus_hash:'corpus-one',trials:1},{config_hash:'same',corpus_hash:'corpus-two',trials:2},{config_hash:'outside12345',corpus_hash:'outside67890',trials:1}]},providers:['openrouter'],models:['model'],tasks:['task'],chart_trials:[trial,{...trial,id:'two',corpus_hash:'corpus-two'},tiny],chart_total:3,chart_sampled:false}}));
   await page.goto('/');
+  await expect(page.getByTestId('schedule-summary')).toBeHidden();
+  await page.getByText('Attempt metrics and configuration analysis').click();
   await expect(page.getByText('$0.020000042 known subtotal', {exact:false}).first()).toBeVisible();
   await expect(page.getByTestId('mixed-summary')).toContainText('3 configurations and task contracts');
   await expect(page.locator('.comparison-panel')).toContainText('not rankings');
@@ -382,6 +401,7 @@ test('unknown final cost retains its known subtotal and distinct corpus groups',
   await expect(page.getByTestId('trial-row').filter({hasText:'tiny-cost'})).toContainText('$0.000000042');
   await expect(page.getByTestId('success-matrix').locator('thead th')).toHaveCount(3);
   await page.getByTestId('trial-row').first().getByRole('button').click();
+  await page.getByText('Technical details', {exact:true}).click();
   await expect(page.getByTestId('trial-detail')).toContainText('Known cost subtotal');
   await expect(page.getByTestId('trial-detail')).toContainText('Integration check · 1.0-integration-120s');
   await expect(page.getByTestId('trial-detail')).toContainText('Trace preview is truncated');
@@ -406,4 +426,77 @@ test('failed detail request retries the same evidence without replacing the tria
   await expect(page.getByTestId('trial-detail')).toContainText('Recovered evidence');
   expect(requests).toBe(2);
   await expect(page.getByRole('alert')).toHaveCount(0);
+});
+
+test('recovered run outcome stays separate from retained attempt metrics and historical task text', async ({page}) => {
+  const interrupted={id:'resume-interrupted',run_id:'recovered-run',slot:0,task_id:'navigation',task_version:'1.0',status:'INTERRUPTED',runner:'reference',provider:'reference',model:'reference',config_hash:'cfg',corpus_hash:'corpus',cost_usd:0,cost_source:'no_provider_requests'};
+  const passed={...interrupted,id:'resume-passed',status:'PASS',verifier:{exit_code:0,stdout:'Expected result found'},task_context:{status:'verified',description:'The navigation task returns the requested records.',expected_artifacts:['expected-answer.json']}};
+  await page.route('**/api/runs',route=>route.fulfill({json:[{id:'recovered-run',status:'COMPLETED',created_at:'2026-10-25T12:00:00Z',config:{runner:'reference'}}]}));
+  await page.route('**/api/workspace',route=>route.fulfill({json:{workspace_id:'test',start_command:'abl start',dashboard_command:'abl dashboard'}}));
+  await page.route('**/api/trials/page**',route=>route.fulfill({json:{items:[passed,interrupted],total:2,limit:100,offset:0}}));
+  await page.route('**/api/overview**',route=>route.fulfill({json:{summary:{trials:2,successes:1,completion_rate:0.5,total_failures:1,total_spend_usd:0,known_spend_usd:0,status_counts:{PASS:1,INTERRUPTED:1},groups:[]},schedule:{run_id:'recovered-run',run_status:'COMPLETED',tasks:1,passed:1,failed:0,recovered:1,pending:0,unknown:0,incomplete:0},providers:['reference'],models:['reference'],tasks:['navigation'],chart_trials:[passed,interrupted],chart_total:2,chart_sampled:false}}));
+  await page.route('**/api/trials/resume-passed',route=>route.fulfill({json:passed}));
+  await page.route('**/api/trials/resume-interrupted',route=>route.fulfill({json:interrupted}));
+  await page.goto('/');
+  const runOutcome=page.getByTestId('schedule-summary');
+  await expect(runOutcome.getByRole('heading',{name:'Latest matching run outcome'})).toBeVisible();
+  await expect(runOutcome).toContainText('1 / 1');
+  await expect(runOutcome.locator('.schedule-stats > div').filter({hasText:'passed after recovery'}).locator('b')).toHaveText('1');
+  await expect(page.getByTestId('trial-row')).toHaveCount(2);
+  await expect(page.getByTestId('trial-row').first()).not.toContainText('settings cfg · corpus');
+  await page.getByText('Attempt metrics and configuration analysis').click();
+  await expect(page.getByTestId('completion-rate')).toHaveText('50%');
+  await expect(page.getByTestId('summary-metrics')).toContainText('1 of 2 attempts');
+  await page.locator('[data-trial-id="resume-passed"]').click();
+  const detail=page.getByTestId('task-result-summary');
+  await expect(detail).toContainText('The navigation task returns the requested records.');
+  await expect(detail).toContainText('expected-answer.json');
+  await expect(detail).toContainText('Passed · exit code 0');
+  await expect(detail).toContainText('$0.0000');
+  await page.keyboard.press('Escape');
+  await page.locator('[data-trial-id="resume-interrupted"]').click();
+  await expect(page.getByTestId('task-result-summary')).toContainText('Historical task description unavailable');
+  await expect(page.getByTestId('task-result-summary')).toContainText('Expected output unavailable');
+});
+
+test('active run cost is unavailable while terminal known spend stays explicit', async ({page}) => {
+  const active={id:'active-attempt',run_id:'active-run',slot:0,task_id:'task',status:'RUNNING',runner:'agent',provider:'openrouter',model:'m',config_hash:'cfg',cost_usd:null,known_cost_subtotal_usd:0.03,cost_source:'unavailable: incomplete request'};
+  await page.route('**/api/runs',route=>route.fulfill({json:[{id:'active-run',status:'RUNNING',created_at:'2026-10-27T12:00:00Z',config:{runner:'agent',provider:'openrouter',model:'m',tasks:['task']}}]}));
+  await page.route('**/api/workspace',route=>route.fulfill({json:{workspace_id:'active',start_command:'abl start',dashboard_command:'abl dashboard'}}));
+  await page.route('**/api/trials/page**',route=>route.fulfill({json:{items:[active],total:1,limit:100,offset:0}}));
+  await page.route('**/api/overview**',route=>route.fulfill({json:{summary:{trials:1,successes:1,completion_rate:1,total_spend_usd:0.02,known_spend_usd:0.02,groups:[]},schedule:{run_id:'active-run',run_status:'RUNNING',tasks:1,passed:0,failed:0,recovered:0,pending:0,unknown:0,incomplete:1},providers:['openrouter'],models:['m'],tasks:['task'],chart_trials:[active],chart_total:1,chart_sampled:false}}));
+  await page.goto('/');
+  await expect(page.getByTestId('schedule-summary')).toContainText('$0.0200 known terminal subtotal · active total unavailable');
+  await expect(page.getByTestId('schedule-summary')).toContainText('matching active run total');
+  await expect(page.getByRole('status')).toContainText('A benchmark run is active');
+});
+
+test('technical details expose allowlisted settings that distinguish matching model labels', async ({page}) => {
+  const cold={id:'cold',run_id:'cold-run',slot:0,task_id:'task',status:'PASS',runner:'agent',provider:'openrouter',model:'same-model',config_hash:'coldcfg',corpus_hash:'corpus',cost_usd:0.01,cost_source:'provider.usage.cost'};
+  const warm={...cold,id:'warm',run_id:'warm-run',config_hash:'warmcfg',cost_usd:0.02};
+  const baseConfig={runner:'agent',provider:'openrouter',model:'same-model',reasoning_effort:'medium',streaming:true,max_requests:8,max_output_tokens:1024,max_tool_steps:12,runtime:'podman',image:'example/task:1',api_key_env:'PRIVATE_KEY_ENV'};
+  await page.route('**/api/runs',route=>route.fulfill({json:[
+    {id:'warm-run',status:'COMPLETED',created_at:'2026-10-27T12:00:00Z',config:{...baseConfig,temperature:0.8}},
+    {id:'cold-run',status:'COMPLETED',created_at:'2026-10-27T11:00:00Z',config:{...baseConfig,temperature:0.1}},
+  ]}));
+  await page.route('**/api/workspace',route=>route.fulfill({json:{workspace_id:'settings',start_command:'abl start',dashboard_command:'abl dashboard'}}));
+  await page.route('**/api/trials/page**',route=>route.fulfill({json:{items:[warm,cold],total:2,limit:100,offset:0}}));
+  await page.route('**/api/overview**',route=>route.fulfill({json:{summary:{trials:2,successes:2,completion_rate:1,total_spend_usd:0.03,known_spend_usd:0.03,groups:[]},schedule:null,providers:['openrouter'],models:['same-model'],tasks:['task'],chart_trials:[warm,cold],chart_total:2,chart_sampled:false}}));
+  await page.route('**/api/trials/cold',route=>route.fulfill({json:cold}));
+  await page.route('**/api/trials/warm',route=>route.fulfill({json:warm}));
+  await page.goto('/');
+  await expect(page.getByTestId('trial-row').nth(0).locator('td').nth(1)).toContainText('same-model');
+  await expect(page.getByTestId('trial-row').nth(1).locator('td').nth(1)).toContainText('same-model');
+  await page.locator('[data-trial-id="cold"]').click();
+  await page.getByText('Technical details', {exact:true}).click();
+  const settings=page.getByTestId('benchmark-settings');
+  await expect(settings.getByText('Temperature', {exact:true}).locator('xpath=following-sibling::dd')).toHaveText('0.1');
+  await expect(settings.getByText('Maximum output tokens', {exact:true}).locator('xpath=following-sibling::dd')).toHaveText('1024');
+  await expect(settings.getByText('Container runtime', {exact:true}).locator('xpath=following-sibling::dd')).toHaveText('podman');
+  await expect(settings).not.toContainText('PRIVATE_KEY_ENV');
+  await page.keyboard.press('Escape');
+  await page.locator('[data-trial-id="warm"]').click();
+  await page.getByText('Technical details', {exact:true}).click();
+  const warmSettings=page.getByTestId('benchmark-settings');
+  await expect(warmSettings.getByText('Temperature', {exact:true}).locator('xpath=following-sibling::dd')).toHaveText('0.8');
 });

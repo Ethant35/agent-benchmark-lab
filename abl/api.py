@@ -28,6 +28,7 @@ class OverviewResponse(BaseModel):
     chart_trials: list[dict[str, str | int | float | bool | None]]
     chart_total: int = Field(ge=0)
     chart_sampled: bool
+    schedule: dict[str, Any] | None = None
 
 
 def read_trace(root, tid):
@@ -102,6 +103,8 @@ def create_app(root):
         try: validate_run_id(tid)
         except ValueError: raise HTTPException(400,'Invalid trial ID')
         t=found[0]
+        from .presentation import task_context
+        t['task_context']=task_context(store,t)
         t.update(read_trace(store.root,tid))
         return t
     @app.get('/api/export')

@@ -8,7 +8,7 @@ Agent Benchmark Lab measures whether an AI agent completes small software tasks.
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if it is not already available. It creates an isolated Python 3.12 environment and can download Python when needed. The supported wheel route needs no Git, Node.js, or frontend build. Qualification used Python 3.12.14.
 
-Install the current release wheel in a dedicated Python environment. Release files and SHA-256 checksums are published on the [GitHub Releases page](https://github.com/Ethant35/agent-benchmark-lab/releases/latest). The commands below pin the v1.2.0 wheel; check the release page if a later release is available.
+Install the current release wheel in a dedicated Python environment. Release files and SHA-256 checksums are published on the [GitHub Releases page](https://github.com/Ethant35/agent-benchmark-lab/releases/latest). The commands below pin the v1.2.1 wheel; check the release page if a later release is available.
 
 ```sh
 set -e
@@ -16,12 +16,12 @@ mkdir -p ~/agent-benchmark-lab
 cd ~/agent-benchmark-lab
 uv venv --python 3.12 .venv
 source .venv/bin/activate
-wheel_path=agent_benchmark_lab-1.2.0-py3-none-any.whl
+wheel_path=agent_benchmark_lab-1.2.1-py3-none-any.whl
 curl -fL -o "$wheel_path" \
-  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.2.0/agent_benchmark_lab-1.2.0-py3-none-any.whl
+  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.2.1/agent_benchmark_lab-1.2.1-py3-none-any.whl
 curl -fL -o SHA256SUMS.txt \
-  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.2.0/SHA256SUMS.txt
-expected_hash=$(awk '$2 == "agent_benchmark_lab-1.2.0-py3-none-any.whl" { print $1 }' SHA256SUMS.txt)
+  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.2.1/SHA256SUMS.txt
+expected_hash=$(awk '$2 == "agent_benchmark_lab-1.2.1-py3-none-any.whl" { print $1 }' SHA256SUMS.txt)
 test -n "$expected_hash"
 printf '%s  %s\n' "$expected_hash" "$wheel_path" | shasum -a 256 -c -
 uv pip install "./$wheel_path"
@@ -71,6 +71,14 @@ abl dashboard --root ~/abl-results
 ```
 
 Open <http://127.0.0.1:8765>. Stop the dashboard with Ctrl-C. On later visits, use the same `--root` to see prior runs and saved filters. A genuinely empty workspace has no runs. If filters match zero runs, clear or adjust the filters; the page says which state you are viewing.
+
+The run outcome counts scheduled tasks. Attempt history retains interruptions and
+failures even when a later attempt passes. For example, a recovered task can show
+1/1 tasks passed and a 50% attempt pass rate. Select a task to see its expected output,
+verifier evidence and cost. Charts and benchmark settings are under the detail controls.
+Cost totals cover terminal attempts matching the filters; active totals and missing
+charges remain unavailable. Historical task text stays unavailable when its saved
+identity cannot be verified. The dashboard is read-only; start and resume runs in the CLI.
 
 ## Optional model run
 

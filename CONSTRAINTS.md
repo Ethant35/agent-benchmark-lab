@@ -29,7 +29,7 @@ unfinished central feature optional.
 | Dependencies | Frozen installs reproduce reviewed dependencies; reachable critical/high findings resolved before release | Frozen Python/npm installs and native audit with recorded triage |
 | Privacy | No credentials in saved evidence; diagnostic exports omit task/provider payloads; local retention and deletion are documented | Sanitized evidence inspection and privacy/recovery tests |
 | Packaging | Clean wheel install, upgrade data, installed corpus and static bytes match qualified source; release download hashes match | Fresh environment and downloaded-asset comparison |
-| Operations | Actions disabled; no workflows, global hooks or user config changes; usage monitor stops work at 90% used / 10% remaining | Repository permissions check and supported account usage tool |
+| Operations | Actions disabled; no workflows, global hooks or user config changes; usage monitor stops work at 95% used / 5% remaining or an observed active-work reset to 100% remaining | Repository permissions check and supported account usage tool |
 
 Run `uv run --frozen python -m pytest -q` for small/local integration tests and
 `npm run build --prefix dashboard` for the UI build. These do not substitute for

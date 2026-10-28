@@ -13,9 +13,11 @@ type Trial = {
   cached_input_tokens?: number | null; tool_calls?: number; failed_tool_calls?: number; retry_count?: number; timed_out?: boolean;
   cost_usd?: number | null; known_cost_subtotal_usd?: number | null; trace_truncated?: boolean; trace_error?: string | null; cost_source?: string | null; verifier?: { exit_code?: number | null; stdout?: string; stderr?: string; stdout_truncated?: boolean; stderr_truncated?: boolean; output_complete?: boolean };
   artifact_dir?: string | null; environment_id?: string | null; sources?: Record<string, string>; trace?: Record<string, unknown>[];
+  task_context?: { status: 'verified' | 'unavailable'; description?: string; expected_artifacts?: string[]; reason?: string };
 };
 type Metrics = { trials?: number; successes?: number; completion_rate?: number | null; total_failures?: number; timeout_rate?: number | null; tool_failure_frequency?: number | null; median_wall_seconds?: number | null; p95_wall_seconds?: number | null; median_ttft_seconds?: number | null; mean_tokens?: number | null; median_tokens?: number | null; total_spend_usd?: number | null; known_spend_usd?: number | null; cost_per_success_usd?: number | null; wall_stddev_seconds?: number | null; measured_cost_trials?: number; actual_cost_trials?: number; estimated_cost_trials?: number; measured_token_trials?: number; status_counts?: Record<string, number>; categories?: Record<string, { trials?: number; successes?: number; completion_rate?: number | null }>; groups?: (Metrics & { runner?: string; provider?: string; model?: string; config_hash?: string; corpus_hash?: string | null })[] };
-type Overview = { summary: Metrics; providers: string[]; models: string[]; tasks: string[]; chart_trials: Trial[]; chart_sampled: boolean; chart_total: number };
+type ScheduleSummary = { run_id?: string | null; run_status?: string | null; tasks?: number; passed?: number; failed?: number; recovered?: number; pending?: number; unknown?: number; incomplete?: number };
+type Overview = { summary: Metrics; schedule?: ScheduleSummary | null; providers: string[]; models: string[]; tasks: string[]; chart_trials: Trial[]; chart_sampled: boolean; chart_total: number };
 type TrialPage = { items: Trial[]; total: number; limit: number; offset: number };
 const PAGE_SIZE = 100;
 const MATRIX_TASK_LIMIT = 100;
@@ -48,6 +50,29 @@ const configLabel = (t: Trial, runConfig?: Record<string, unknown>) => {
   const details = describeConfig({ ...t, config: { ...runConfig, ...t.config } });
   return `${t.model || (t.runner === 'reference' ? 'Reference runner' : 'Unknown model')}${details ? ` · ${details}` : ''} · settings ${(t.config_hash || 'unknown').slice(0, 8)} · corpus ${t.corpus_hash?.slice(0, 8) || 'unknown'}`;
 };
+const primaryConfigLabel = (t: Trial, runConfig?: Record<string, unknown>) => {
+  const details = describeConfig({ ...t, config: { ...runConfig, ...t.config } });
+  return `${t.runner === 'reference' ? 'Reference runner' : t.model || 'Unknown model'}${details ? ` · ${details}` : ''}`;
+};
+const BENCHMARK_SETTINGS: Array<[string, string]> = [
+  ['Runner', 'runner'], ['Provider', 'provider'], ['Model', 'model'], ['Reasoning effort', 'reasoning_effort'],
+  ['Streaming', 'streaming'], ['Stream usage', 'stream_usage'], ['Temperature', 'temperature'],
+  ['Maximum requests', 'max_requests'], ['Maximum output tokens', 'max_output_tokens'], ['Maximum tool steps', 'max_tool_steps'],
+  ['Runtime limit (seconds)', 'runtime_seconds'], ['Token budget', 'token_budget'], ['Spending reserve (USD)', 'spend_limit_usd'],
+  ['Input price / million tokens', 'input_price_per_million'], ['Output price / million tokens', 'output_price_per_million'],
+  ['Repeats', 'repeats'], ['Tasks', 'tasks'], ['Container runtime', 'runtime'], ['Container image', 'image'],
+  ['Reference mode', 'reference_mode'], ['Tool support', 'supports_tools'],
+];
+function benchmarkSettings(config?: Record<string, unknown>) {
+  if (!config) return [];
+  return BENCHMARK_SETTINGS.flatMap(([label, key]) => {
+    const value = config[key];
+    if (value === undefined || value === null) return [];
+    if (Array.isArray(value)) return [[label, value.map(item => String(item)).join(', ') || 'None'] as [string, string]];
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') return [[label, String(value)] as [string, string]];
+    return [];
+  });
+}
 const groupDescription = (group: Metrics & { config_hash?: string; corpus_hash?: string | null }, sample?: Trial, runConfig?: Record<string, unknown>) => {
   const details = sample ? describeConfig({ ...sample, config: { ...runConfig, ...sample.config } }) : '';
   return `${details ? `${details} · ` : ''}settings ${(group.config_hash || 'unknown').slice(0, 8)} · corpus ${group.corpus_hash?.slice(0, 8) || 'unknown'}`;
@@ -74,6 +99,7 @@ function App() {
   const [allTasks, setAllTasks] = useState<string[]>([]);
   const [offset, setOffset] = useState(initialOffset);
   const [summary, setSummary] = useState<Metrics>({});
+  const [schedule, setSchedule] = useState<ScheduleSummary | null>(null);
   const [runId, setRunId] = useState(() => initialQueryValue('run_id'));
   const [provider, setProvider] = useState(() => initialQueryValue('provider'));
   const [model, setModel] = useState(() => initialQueryValue('model'));
@@ -116,7 +142,16 @@ function App() {
   }, [workspaceRetry]);
 
   useEffect(() => { const controller = new AbortController(); fetch('/api/runs', { signal: controller.signal }).then(r => { if (!r.ok) throw new Error(`Runs request failed (${r.status})`); return r.json() as Promise<Run[]>; }).then(setRuns).catch(e => { if (e.name !== 'AbortError') setError(String(e)); }); return () => controller.abort(); }, [refresh]);
-  const activeRuns = runs.some(run => ['RUNNING', 'CANCELLING'].includes(run.status.toUpperCase()));
+  const activeRuns = runs.some(run => {
+    if (!['RUNNING', 'CANCELLING'].includes(run.status.toUpperCase())) return false;
+    if (runId && run.id !== runId) return false;
+    const config = run.config ?? {};
+    if (provider && config.provider !== provider) return false;
+    if (model && config.model !== model) return false;
+    const configuredTasks = Array.isArray(config.tasks) ? config.tasks : [];
+    if (task && configuredTasks.length > 0 && !configuredTasks.includes(task)) return false;
+    return true;
+  });
   useEffect(() => {
     const refreshWhenVisible = () => { if (!loading && document.visibilityState === 'visible') setRefresh(value => value + 1); };
     const timer = window.setInterval(refreshWhenVisible, 3000);
@@ -133,7 +168,7 @@ function App() {
     if (!workspaceReady || !workspace) return;
     const controller = new AbortController();
     Promise.all([fetch(`/api/trials/page?${pageParams}`, { signal: controller.signal }).then(r => { if (!r.ok) throw new Error(`Trial page request failed (${r.status})`); return r.json() as Promise<TrialPage>; }), fetch(`/api/overview${filters ? `?${filters}` : ''}`, { signal: controller.signal }).then(r => { if (!r.ok) throw new Error(`Overview request failed (${r.status})`); return r.json() as Promise<Overview>; })])
-      .then(([page, overview]) => { setTrials(page.items); setTotalTrials(page.total); setSummary(overview.summary); setChartTrials(overview.chart_trials); setChartSampled(overview.chart_sampled); setProviders(overview.providers); setModels(overview.models); setAllTasks(overview.tasks); setLoading(false); hasLoadedRef.current = true; setHasLoaded(true); }).catch(e => { if (e.name !== 'AbortError') { setError(String(e)); setLoading(false); hasLoadedRef.current = true; setHasLoaded(true); } });
+      .then(([page, overview]) => { setTrials(page.items); setTotalTrials(page.total); setSummary(overview.summary); setSchedule(overview.schedule ?? null); setChartTrials(overview.chart_trials); setChartSampled(overview.chart_sampled); setProviders(overview.providers); setModels(overview.models); setAllTasks(overview.tasks); setLoading(false); hasLoadedRef.current = true; setHasLoaded(true); }).catch(e => { if (e.name !== 'AbortError') { setError(String(e)); setLoading(false); hasLoadedRef.current = true; setHasLoaded(true); } });
     return () => controller.abort();
   }, [workspaceReady, workspace, runId, provider, model, task, offset, refresh]);
   useEffect(() => {
@@ -203,7 +238,7 @@ function App() {
   return <div className="app-shell">
     <header className="topbar"><a className="skip-link" href="#main-content">Skip to results</a><a className="brand" href="#"><span className="brand-mark"><Activity size={18}/></span><span>Agent Benchmark <b>Lab</b></span></a><div className="top-actions"><span className="local-pill"><span/> Local results</span><button className="help-button" aria-expanded={showGettingStarted} onClick={toggleGettingStarted}><CircleHelp size={16} aria-hidden="true"/> Quick start</button><button className="icon-button" aria-label="Refresh results" disabled={loading} onClick={() => setRefresh(x => x + 1)}><RefreshCw size={16}/></button></div></header>
     <main className="page" id="main-content" tabIndex={-1}>
-      <div className="page-heading"><div><h1>Benchmark results</h1><p>Review locally saved task outcomes, measurements, and evidence.</p></div><div className="export-actions"><a className="button secondary" href={exportUrl('csv')} download><ArrowDownToLine size={15}/> Export CSV</a><a className="button primary" href={exportUrl('json')} download><ArrowDownToLine size={15}/> Export JSON</a></div></div>
+      <div className="page-heading"><div><h1>Benchmark results</h1></div><div className="export-actions"><a className="button secondary" href={exportUrl('csv')} download><ArrowDownToLine size={15}/> Export CSV</a><a className="button primary" href={exportUrl('json')} download><ArrowDownToLine size={15}/> Export JSON</a></div></div>
       {showGettingStarted && <section className="getting-started" aria-label="Quick start" data-testid="onboarding"><div><h2>Start with a free reference task</h2><p>In Terminal, run the command below. It checks the local container setup and runs one reference task without a provider key or model charge.</p>{workspace ? <pre><code>{workspace.start_command}</code></pre> : <p>{workspaceError ? 'Workspace details could not be loaded. Retry workspace lookup before running a command.' : 'Loading the command for this results folder…'}</p>}<p>To reopen these steps, choose <strong>Quick start</strong>. Optional model runs require a selected provider and model configuration, and may incur charges under that configuration’s request limits, token limits, and spending reserve.</p><p><strong>Reference controls validate task contracts. They are not model benchmark scores.</strong> Integration checks may use a longer task deadline; they do not change historical benchmark results.</p><a href="https://github.com/Ethant35/agent-benchmark-lab#get-a-first-result-without-model-charges" target="_blank" rel="noreferrer">CLI guide</a></div><button className="icon-button" aria-label="Close quick start" onClick={dismissGettingStarted}><X size={16}/></button></section>}
       <section className="filterbar" aria-label="Benchmark filters"><div className="filter-title"><Filter size={15}/> Filters</div><label>Run<select data-testid="filter-run" value={runId} onChange={e => { setLoading(true); setOffset(0); setRunId(e.target.value); }}><option value="">All runs</option>{runs.map(r => <option key={r.id} value={r.id}>{r.id.slice(0, 12)} · {r.config?.runner ?? r.status}</option>)}</select></label><label>Provider<select data-testid="filter-provider" value={provider} onChange={e => { setLoading(true); setOffset(0); setProvider(e.target.value); }}><option value="">All providers</option>{providers.map(x => <option key={x}>{x}</option>)}</select></label><label>Model<select data-testid="filter-model" value={model} onChange={e => { setLoading(true); setOffset(0); setModel(e.target.value); }}><option value="">All models</option>{models.map(x => <option key={x}>{x}</option>)}</select></label><label>Task<select data-testid="filter-task" value={task} onChange={e => { setLoading(true); setOffset(0); setTask(e.target.value); }}><option value="">All tasks</option>{allTasks.map(x => <option key={x}>{x}</option>)}</select></label><button className="reset-button" onClick={() => { if (offset || runId || provider || model || task) { setLoading(true); setOffset(0); setRunId(''); setProvider(''); setModel(''); setTask(''); } }}><X size={14}/> Reset</button></section>
       {workspaceError && <div className="error-banner" role="alert"><ShieldAlert size={18}/><span>Could not identify this results folder. No run command will be shown until workspace lookup succeeds. <small>{workspaceError}</small></span><button className="button secondary" onClick={() => { setWorkspace(null); setWorkspaceReady(false); setWorkspaceRetry(value => value + 1); }}>Retry workspace lookup</button></div>}
@@ -212,9 +247,16 @@ function App() {
       {detailLoading && <p role="status">Loading trial evidence…</p>}
       {detailFailure && <div className="error-banner" role="alert"><ShieldAlert size={18}/><span>Could not load trial evidence for {detailFailure.trial.task_id}. <small>{detailFailure.message}</small></span><button className="button secondary" onClick={() => openTrial(detailFailure.trial, detailFailure.trigger)}>Retry evidence</button></div>}
       {activeRuns && <p className="run-progress" role="status" aria-live="polite"><RefreshCw size={15}/> A benchmark run is active. Results refresh automatically every 3 seconds. Cancel it from the terminal running the CLI.</p>}
+      {!loading && !error && schedule && <section className="schedule-summary" aria-label="Scheduled task outcomes" data-testid="schedule-summary">
+        <div className="schedule-heading"><div><h2>{runId ? 'Selected run outcome' : 'Latest matching run outcome'}</h2><p>{schedule.run_status || 'Run status unavailable'} · {count(schedule.tasks)} scheduled tasks{schedule.run_id ? ` · ${schedule.run_id.slice(0, 12)}` : ''}</p></div><span className={statusClass(schedule.run_status || 'UNKNOWN')}>{schedule.run_status || 'UNKNOWN'}</span></div>
+        <div className="schedule-stats">{schedule.tasks == null ? <div><b>Unavailable</b><span>scheduled task count</span></div> : <div><b>{count(schedule.passed)} / {count(schedule.tasks)}</b><span>tasks passed</span></div>}{Boolean(schedule.recovered) && <div><b>{count(schedule.recovered)}</b><span>passed after recovery</span></div>}{Boolean(schedule.failed) && <div><b>{count(schedule.failed)}</b><span>tasks failed</span></div>}{Boolean(schedule.incomplete) && <div><b>{count(schedule.incomplete)}</b><span>incomplete</span></div>}{Boolean(schedule.pending) && <div><b>{count(schedule.pending)}</b><span>not started</span></div>}{Boolean(schedule.unknown) && <div><b>{count(schedule.unknown)}</b><span>outcome unavailable</span></div>}<div><b>{activeRuns ? `${money(summary.known_spend_usd)} known terminal subtotal · active total unavailable` : summary.total_spend_usd == null ? `${money(summary.known_spend_usd)} known subtotal · total unavailable` : money(summary.total_spend_usd)}</b><span>{activeRuns ? 'matching active run total' : 'recorded terminal attempt cost'}</span></div></div>
+        <p className="schedule-note">Counts reflect saved results at this refresh. Attempt metrics and cost below cover terminal attempts matching the current filters.</p>
+      </section>}
       {loading ? workspaceError ? null : <div className={`loading ${hasLoaded ? 'loading-inline' : ''}`} role="status" aria-live="polite" aria-busy="true"><RefreshCw size={18}/> {hasLoaded ? 'Loading filtered results…' : 'Loading persisted trials…'}</div> : error || workspaceError ? null : trials.length === 0 ? <div className="empty-state"><Database size={28}/><h2>{totalTrials === 0 && !runId && !provider && !model && !task && runs.length === 0 ? 'No benchmark results yet' : totalTrials === 0 && (runId || provider || model || task) ? 'No trials match these filters' : totalTrials === 0 ? 'No trial records are saved for these runs' : 'No trials on this page'}</h2><p>{totalTrials === 0 && !runId && !provider && !model && !task && runs.length === 0 ? <>Start with the free reference task: {workspace && <code>{workspace.start_command}</code>}</> : totalTrials === 0 && (runId || provider || model || task) ? 'No saved trials match the current filters. Clear filters to return to all results.' : totalTrials === 0 ? 'The selected runs exist, but no trial records were returned. Refresh or check the local results folder.' : 'This page has no records. Return to the first page or check the saved filter state.'}</p>{(runId || provider || model || task) && <button className="button secondary" onClick={() => { setLoading(true); setOffset(0); setRunId(''); setProvider(''); setModel(''); setTask(''); }}>Clear filters</button>}{totalTrials > 0 && offset > 0 && <button className="button secondary" onClick={() => { setLoading(true); setOffset(0); }}>First page</button>}</div> : <>
+      <section className="panel trial-panel" aria-label="Attempt history"><PanelTitle icon={<Database/>} title="Attempt history" subtitle="Each row is one retained attempt. Select a task to inspect its expected output and verifier evidence."/><div className="table-wrap"><table data-testid="trial-table"><thead><tr><th>Task</th><th>Configuration</th><th>Attempt result</th><th>Duration</th><th>Tokens</th><th>Cost</th><th>Started</th></tr></thead><tbody>{trials.map(t => <tr key={t.id} data-testid="trial-row"><td><button className="trial-open" data-trial-id={t.id} aria-label={`Open ${t.task_id}, ${t.status}, ${primaryConfigLabel(t, runConfig(t))}`} onClick={event => openTrial(t, event.currentTarget)}><strong>{t.task_id}</strong></button><small>{t.category || 'Uncategorized'} · v{t.task_version || '—'} · {runKind(t)}</small></td><td><strong>{primaryConfigLabel(t, runConfig(t))}</strong><small>{t.runner === 'reference' ? 'Reference control' : t.provider || 'Provider unavailable'}</small></td><td><span className={statusClass(t.status)}>{t.status.replace('_', ' ')}</span>{t.failure_category && <small>{t.failure_category}</small>}</td><td>{t.wall_seconds == null ? 'Unavailable' : `${fmt(t.wall_seconds)}s`}</td><td>{t.input_tokens == null && t.output_tokens == null ? 'Unavailable' : `${count(t.input_tokens)} / ${count(t.output_tokens)}`}</td><td>{money(t.cost_usd)}<small>{costLabel(t.cost_source)}</small></td><td>{date(t.started_at)}</td></tr>)}</tbody></table></div><nav className="pagination" aria-label="Attempt record pages"><span>Showing {totalTrials === 0 ? 0 : offset + 1}–{Math.min(offset + trials.length, totalTrials)} of {totalTrials.toLocaleString()}</span><button className="button secondary" disabled={loading || offset === 0} onClick={() => { setLoading(true); setOffset(Math.max(0, offset - PAGE_SIZE)); }}>Previous</button><button className="button secondary" disabled={loading || offset + PAGE_SIZE >= totalTrials} onClick={() => { setLoading(true); setOffset(offset + PAGE_SIZE); }}>Next</button></nav></section>
+      <details className="analysis-details"><summary>Attempt metrics and configuration analysis</summary>
       <section className="metrics-grid" aria-label="Summary metrics" data-testid="summary-metrics">
-        <Metric title="Task completion" value={pct(summary.completion_rate)} helper={`${count(summary.successes)} of ${count(summary.trials)} trials`} icon={<Check/>} accent="teal" test="completion-rate"/>
+        <Metric title="Attempt pass rate" value={pct(summary.completion_rate)} helper={`${count(summary.successes)} of ${count(summary.trials)} attempts`} icon={<Check/>} accent="teal" test="completion-rate"/>
         <Metric title="Total failures" value={count(summary.total_failures)} helper={`${pct(summary.timeout_rate)} timed out`} icon={<ShieldAlert/>} accent="rose"/>
         <Metric title="Median task time" value={summary.median_wall_seconds == null ? 'Unavailable' : `${fmt(summary.median_wall_seconds)}s`} helper={`95th percentile ${summary.p95_wall_seconds == null ? 'Unavailable' : `${fmt(summary.p95_wall_seconds)}s`}`} icon={<Clock3/>} accent="blue" test="median-wall"/>
         <Metric title="Median time to first output" value={summary.median_ttft_seconds == null ? 'Unavailable' : `${fmt(summary.median_ttft_seconds)}s`} helper="Measured from request start; streaming only" icon={<Clock3/>} accent="blue" test="median-ttft"/>
@@ -230,8 +272,8 @@ function App() {
         <section className="panel"><PanelTitle icon={<ShieldAlert/>} title="Failures and timeouts" subtitle="Outcomes across every selected attempt."/><div className="outcome-list">{['FAIL','TIMEOUT','ERROR','CANCELLED','UNSUPPORTED','BLOCKED_EXTERNAL','INTERRUPTED'].map(s => { const n = summary.status_counts?.[s] ?? 0; return <div key={s}><span className={statusClass(s)}>{s.replace('_', ' ')}</span><b>{n.toLocaleString()}</b></div>})}</div></section>
         <section className="panel matrix-panel"><PanelTitle icon={<Layers3/>} title="Task success matrix" subtitle={matrixSubtitle}/><p className="contract-note">Reference controls test the benchmark contracts. Model benchmark results and versioned integration checks remain separate, even when their task prompts match.</p><div className="matrix-wrap" role="region" aria-label="Task outcome matrix" tabIndex={0}><table data-testid="success-matrix"><thead><tr><th>Task</th>{matrixConfigurations.map(([key, t]) => <th key={key}>{configLabel(t, runConfig(t))}</th>)}</tr></thead><tbody>{matrixTasks.map(tid => <tr key={tid}><th>{tid}</th>{matrixConfigurations.map(([key]) => { const entry = matrixCounts.get(`${tid}\u0000${key}`); const total = entry?.total ?? 0; const passed = entry?.passed ?? 0; return <td key={`${tid}-${key}`} title={`${passed} pass / ${total} trials`}>{!total ? <span className="matrix-empty">—</span> : <span className={`matrix-score ${passed === total ? 'all-pass' : passed ? 'partial' : 'no-pass'}`}>{passed}/{total}</span>}</td>})}</tr>)}</tbody></table></div></section>
       </div>
-      <section className="panel trial-panel"><PanelTitle icon={<Database/>} title="Trial records" subtitle="Select a trial to inspect its verifier evidence and execution trace."/><div className="table-wrap"><table data-testid="trial-table"><thead><tr><th>Task</th><th>Configuration</th><th>Outcome</th><th>Duration</th><th>Tokens</th><th>Cost</th><th>Started</th></tr></thead><tbody>{trials.map(t => <tr key={t.id} data-testid="trial-row"><td><button className="trial-open" data-trial-id={t.id} aria-label={`Open ${t.task_id}, ${t.status}, ${configLabel(t, runConfig(t))}`} onClick={event => openTrial(t, event.currentTarget)}><strong>{t.task_id}</strong></button><small>{t.category || 'Uncategorized'} · v{t.task_version || '—'} · {runKind(t)}</small></td><td><strong>{configLabel(t, runConfig(t))}</strong><small>{t.provider || 'No provider'} · {t.runner || 'runner'}</small></td><td><span className={statusClass(t.status)}>{t.status.replace('_', ' ')}</span>{t.failure_category && <small>{t.failure_category}</small>}</td><td>{t.wall_seconds == null ? 'Unavailable' : `${fmt(t.wall_seconds)}s`}</td><td>{t.input_tokens == null && t.output_tokens == null ? 'Unavailable' : `${count(t.input_tokens)} / ${count(t.output_tokens)}`}</td><td>{money(t.cost_usd)}<small>{costLabel(t.cost_source)}</small></td><td>{date(t.started_at)}</td></tr>)}</tbody></table></div><nav className="pagination" aria-label="Trial record pages"><span>Showing {totalTrials === 0 ? 0 : offset + 1}–{Math.min(offset + trials.length, totalTrials)} of {totalTrials.toLocaleString()}</span><button className="button secondary" disabled={loading || offset === 0} onClick={() => { setLoading(true); setOffset(Math.max(0, offset - PAGE_SIZE)); }}>Previous</button><button className="button secondary" disabled={loading || offset + PAGE_SIZE >= totalTrials} onClick={() => { setLoading(true); setOffset(offset + PAGE_SIZE); }}>Next</button></nav></section>
-      <footer>{chartSampled && <span>Charts and success matrix use a recent sample. Summary metrics use all selected trials.</span>} <span>Reference runs validate the benchmark; they are not model scores.</span></footer>
+      </details>
+      <footer>{chartSampled && <span>Charts and success matrix use a recent sample. Summary metrics use all selected attempts.</span>} <span>Reference runs validate the benchmark; they are not model scores.</span></footer>
       </>}
     </main>
     {selected && <TrialDrawer trial={{...selected, config: runConfig(selected)}} close={closeTrial}/>}
@@ -254,7 +296,17 @@ function TrialDrawer({ trial, close }: { trial:Trial; close:()=>void }) {
   }, []);
   function keepFocus(event: React.KeyboardEvent<HTMLDialogElement>) {
     if (event.key !== 'Tab') return;
-    const items = event.currentTarget.querySelectorAll<HTMLElement>('button, [tabindex="0"]');
+    const items = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('button, summary, [tabindex="0"]'))
+      .filter(item => {
+        if (!item.getClientRects().length) return false;
+        // Closed details can retain descendant layout boxes. Only their summary
+        // participates in keyboard navigation until the disclosure is open.
+        for (let parent = item.parentElement; parent; parent = parent.parentElement) {
+          if (parent instanceof HTMLDetailsElement && !parent.open
+              && !parent.querySelector(':scope > summary')?.contains(item)) return false;
+        }
+        return true;
+      });
     const first = items[0], last = items[items.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
@@ -262,18 +314,28 @@ function TrialDrawer({ trial, close }: { trial:Trial; close:()=>void }) {
   const fields: [string, string | number | null | undefined][] = [
     ['Trial ID', trial.id], ['Run ID', trial.run_id], ['Result type', runKind(trial)], ['Task version', trial.task_version], ['Category', trial.category],
     ['Provider', trial.provider], ['Runner', trial.runner], ['Started', date(trial.started_at)], ['Completed', date(trial.completed_at)],
+    ['Configuration identity', configLabel(trial)], ['Settings fingerprint', trial.config_hash], ['Corpus fingerprint', trial.corpus_hash],
     ['Wall time', trial.wall_seconds == null ? 'Unavailable' : `${fmt(trial.wall_seconds)}s`],
     ['Time to first output', trial.ttft_seconds == null ? 'Unavailable' : `${fmt(trial.ttft_seconds)}s`],
     ['Input tokens', count(trial.input_tokens)], ['Output tokens', count(trial.output_tokens)], ['Cached input', count(trial.cached_input_tokens)],
     ['Cost', money(trial.cost_usd)], ['Known cost subtotal', money(trial.known_cost_subtotal_usd)], ['Cost source', costLabel(trial.cost_source)], ['Environment', trial.environment_id], ['Artifact directory', trial.artifact_dir],
   ];
+  const settings = benchmarkSettings(trial.config);
   return <dialog ref={dialog} className="drawer" aria-labelledby="detail-title" data-testid="trial-detail" onKeyDown={keepFocus} onCancel={event => { event.preventDefault(); dismiss(); }} onClick={event => { if (event.target === event.currentTarget) dismiss(); }}>
     <div className="drawer-head"><div><h2 id="detail-title">{trial.task_id}</h2></div><button className="icon-button" aria-label="Close trial details" onClick={dismiss}><X size={18}/></button></div>
-    <div className="drawer-content" role="region" aria-label="Trial evidence and measurements" tabIndex={0}><div className="detail-status"><span className={statusClass(trial.status)}>{trial.status}</span><span>{configLabel(trial)}</span></div>
-      <dl className="detail-grid">{fields.map(([key, value]) => <div key={key}><dt>{key}</dt><dd>{value || 'Unavailable'}</dd></div>)}</dl>
+    <div className="drawer-content" role="region" aria-label="Trial evidence and measurements" tabIndex={0}><div className="detail-status"><span className={statusClass(trial.status)}>{trial.status.replace('_', ' ')}</span><span>{runKind(trial)} · {primaryConfigLabel(trial)}</span></div>
+      <section className="detail-primary" aria-label="Task and result summary" data-testid="task-result-summary">
+        <div><h3>Task</h3>{trial.task_context?.status === 'verified' && trial.task_context.description ? <p>{trial.task_context.description}</p> : <p>Historical task description unavailable. {trial.task_context?.reason || 'The saved task identity could not be verified.'}</p>}</div>
+        <div><h3>Expected output</h3>{trial.task_context?.status === 'verified' && trial.task_context.expected_artifacts?.length ? <ul>{trial.task_context.expected_artifacts.map((artifact, index) => <li key={`${artifact}-${index}`}>{artifact}</li>)}</ul> : <p>Expected output unavailable for this saved task.</p>}</div>
+        <div className="detail-result-pair"><div><h3>Verifier result</h3><p>{trial.verifier?.exit_code == null ? 'Unavailable' : trial.verifier.exit_code === 0 ? 'Passed · exit code 0' : `Failed · exit code ${trial.verifier.exit_code}`}</p></div><div><h3>Total attempt cost</h3><p>{trial.cost_usd == null ? `${money(trial.known_cost_subtotal_usd)} known subtotal · total unavailable` : money(trial.cost_usd)}</p><small>{costLabel(trial.cost_source)}</small></div></div>
+      </section>
       <section className="evidence" data-testid="verifier-evidence"><h3><Check size={16}/> Verifier evidence</h3><div className="evidence-meta">Exit code: {trial.verifier?.exit_code == null ? 'Unavailable' : trial.verifier.exit_code}</div>{(trial.verifier?.stdout_truncated || trial.verifier?.stderr_truncated) && <p>Output truncated. The execution trace records observed and retained byte counts.</p>}{trial.verifier?.output_complete === false && <p>Output collection was interrupted; observed byte counts may be incomplete.</p>}<h4>Output</h4><pre tabIndex={0} aria-label="Verifier output">{trial.verifier?.stdout || 'No verifier output recorded.'}</pre>{trial.verifier?.stderr && <><h4>Errors</h4><pre tabIndex={0} aria-label="Verifier errors">{trial.verifier.stderr}</pre></>}</section>
-      {trial.trace_truncated && <p role="status">Trace preview is truncated. The full trace remains in the local results folder.</p>}{trial.trace_error && <p role="status">{trial.trace_error}</p>}{trial.trace?.length ? <section className="evidence"><h3><Activity size={16}/> Execution trace</h3>{trial.trace.map((event, index) => <div className="trace-row" key={index}><span>{String(event.timestamp || 'Event')}</span><b>{String(event.kind || event.tool || 'Operation')} · {String(event.status || 'recorded')}</b><pre tabIndex={0} aria-label={`Execution trace event ${index + 1}`}>{JSON.stringify(event, null, 2)}</pre></div>)}</section> : <NoData text="No execution trace was recorded."/>}
-      <section className="evidence"><h3><Search size={16}/> Measurement sources</h3>{trial.sources && Object.keys(trial.sources).length ? Object.entries(trial.sources).map(([key, value]) => <div className="source-row" key={key}><b>{key.replaceAll('_', ' ')}</b><span>{value}</span></div>) : <NoData text="No measurement sources were recorded."/>}</section>
+      <details className="technical-details"><summary>Technical details</summary>
+        <section className="evidence" aria-label="Benchmark settings" data-testid="benchmark-settings"><h3>Benchmark settings</h3>{settings.length ? <dl className="settings-list">{settings.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl> : <NoData text="Benchmark settings are unavailable for this saved attempt."/>}</section>
+        <dl className="detail-grid">{fields.map(([key, value]) => <div key={key}><dt>{key}</dt><dd>{value || 'Unavailable'}</dd></div>)}</dl>
+        {trial.trace_truncated && <p role="status">Trace preview is truncated. The full trace remains in the local results folder.</p>}{trial.trace_error && <p role="status">{trial.trace_error}</p>}{trial.trace?.length ? <section className="evidence"><h3><Activity size={16}/> Execution trace</h3>{trial.trace.map((event, index) => <div className="trace-row" key={index}><span>{String(event.timestamp || 'Event')}</span><b>{String(event.kind || event.tool || 'Operation')} · {String(event.status || 'recorded')}</b><pre tabIndex={0} aria-label={`Execution trace event ${index + 1}`}>{JSON.stringify(event, null, 2)}</pre></div>)}</section> : <NoData text="No execution trace was recorded."/>}
+        <section className="evidence"><h3><Search size={16}/> Measurement sources</h3>{trial.sources && Object.keys(trial.sources).length ? Object.entries(trial.sources).map(([key, value]) => <div className="source-row" key={key}><b>{key.replaceAll('_', ' ')}</b><span>{value}</span></div>) : <NoData text="No measurement sources were recorded."/>}</section>
+      </details>
     </div>
   </dialog>;
 }

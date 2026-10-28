@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -63,6 +64,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cli", required=True, type=Path, help="abl executable from the downloaded-wheel environment")
     parser.add_argument("--root", required=True, type=Path, help="new, empty result directory")
+    parser.add_argument("--recovery-mode", choices=("timeout", "success"), default="timeout",
+                        help="reference outcome after a real interruption; default retains the timeout control")
     args = parser.parse_args()
     executable = args.cli.resolve()
     root = args.root.resolve()
@@ -176,19 +179,28 @@ def main():
     cli(executable, ["export", str(before), "--root", str(root)])
     cli(executable, ["export", str(after), "--root", str(restored)])
     assert before.read_bytes() == after.read_bytes()
+    def artifact_hashes(folder):
+        return {str(path.relative_to(folder)): hashlib.sha256(path.read_bytes()).hexdigest()
+                for path in (folder / "artifacts").rglob("*") if path.is_file()}
+    assert artifact_hashes(root) == artifact_hashes(restored)
+    with sqlite3.connect(root / "results.sqlite3") as original_db, sqlite3.connect(restored / "results.sqlite3") as restored_db:
+        for table in ("runs", "trials", "run_manifests"):
+            assert original_db.execute(f"SELECT * FROM {table} ORDER BY rowid").fetchall() == restored_db.execute(f"SELECT * FROM {table} ORDER BY rowid").fetchall(), table
     evidence["milestones"]["backup_restore"] = {
         "status": "PASS", "trial_count_preserved": len(first_trials), "export_bytes_equal": True,
+        "artifact_files_equal": len(artifact_hashes(root)), "database_rows_equal": True,
     }
     save_evidence()
     print("PASS: backup/restore preserves the JSON trial export exactly", flush=True)
 
-    # A private reference-only timeout is used to check process interruption and resume.
+    # A private reference-only configuration checks real interruption and resume.
     # The canonical corpus task files remain installed and are never modified.
     recovery = root / "recovery-reference.yaml"
     recovery.write_text(yaml.safe_dump({
         "runner": "reference", "provider": "none", "model": "deterministic-reference",
         "tasks": ["bugfix-rounding"], "repeats": 1,
-        "runtime_seconds": 5, "reference_mode": "timeout",
+        "runtime_seconds": 5 if args.recovery_mode == "timeout" else 30,
+        "reference_mode": args.recovery_mode,
     }, sort_keys=False))
     recovery.chmod(0o600)
     print("Start the controlled reference-only cancellation case", flush=True)
@@ -254,13 +266,19 @@ def main():
     print(f"PASS: SIGTERM left a clean interrupted run {run_id}", flush=True)
 
     resumed = cli(executable, ["start", "--root", str(root), "--resume", run_id],
-                  input_text="y\n", timeout=90, expected=(0, 1))
+                  input_text="y\n", timeout=90, expected=(1,))
     final_run = next(r for r in run_rows(root) if r["id"] == run_id)
     final_trials = [t for t in records(root) if t["run_id"] == run_id]
     assert final_run["status"] == "COMPLETED", final_run
-    assert len(final_trials) == 2 and final_trials[0]["status"] == "INTERRUPTED" and final_trials[1]["status"] == "TIMEOUT", final_trials
+    expected_status = "TIMEOUT" if args.recovery_mode == "timeout" else "PASS"
+    assert len(final_trials) == 2 and final_trials[0]["status"] == "INTERRUPTED" and final_trials[1]["status"] == expected_status, final_trials
+    assert final_trials[0] == interrupted_trials[0], "Resume rewrote the interrupted attempt"
     assert not final_trials[-1]["cleanup_errors"], final_trials[-1]
-    assert "TIMEOUT" in resumed, resumed
+    assert expected_status in resumed, resumed
+    evidence["milestones"]["resume_cli"] = {
+        "exit_code": 1, "output": resumed, "recovery_mode": args.recovery_mode,
+        "interrupted_attempt_unchanged": True,
+    }
 
     # Confirm the runtime no longer owns resources for any trial in this recovery run.
     names = subprocess.run(["podman", "ps", "-a", "--format", "{{.Names}}"], capture_output=True, text=True, timeout=30)
@@ -277,7 +295,7 @@ def main():
     }
     evidence["status"] = "PASS"
     save_evidence()
-    print(f"PASS: resumed reference timeout completed and cleaned resources ({len(final_trials)} attempts)", flush=True)
+    print(f"PASS: resumed reference {expected_status} completed and cleaned resources ({len(final_trials)} attempts)", flush=True)
     print("USABILITY E2E PASS: no provider configuration, credential, or model request was used", flush=True)
 
 

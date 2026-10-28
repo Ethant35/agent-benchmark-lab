@@ -1,0 +1,12 @@
+{
+  "author": "Ethan",
+  "from": "public v1.2.0 wheel",
+  "to": "candidate v1.2.1",
+  "export_sha256": "9db01e225440a5acdb0d21d8e0bd180901f8a4b4f43c3e438839fec65d5a3986",
+  "exports_equal": true,
+  "all_database_rows_equal": true,
+  "artifact_files_equal": 4,
+  "separate_rollback_env": "v1.2.0",
+  "status": "PASS",
+  "uninstall_preserved_separate_results": true
+}

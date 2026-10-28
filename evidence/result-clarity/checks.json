@@ -1,0 +1,25 @@
+{
+  "author": "Ethan",
+  "python_tests": 91,
+  "python_warning": "Existing Starlette/httpx TestClient deprecation",
+  "browser_tests": 18,
+  "axe_violations_in_tested_views": 0,
+  "reference_tasks_passed": 12,
+  "provider_calls": 0,
+  "api_cost_usd": 0,
+  "independent_review": "Two Luna High reviewers; backend/snapshot/cost/identity, dashboard/focus/unknown cost/settings, packaging/helper boundary review",
+  "fixed_during_review": [
+    "Active totals unavailable; terminal known subtotal labelled",
+    "Inspectable allowlisted benchmark settings",
+    "Closed details excluded from keyboard focus loop"
+  ],
+  "support": "macOS Apple Silicon, Python3.12, rootless Podman",
+  "limits": [
+    "Fresh Mac setup not exercised",
+    "Unfamiliar-user study not performed",
+    "Native screen-reader and OS zoom certification not performed",
+    "Docker and other compatible providers unqualified"
+  ],
+  "screenshots": "Local verification-2/browser-artifacts; desktop/mobile/detail visually inspected",
+  "owned_containers_or_volumes_after_acceptance": 0
+}

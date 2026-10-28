@@ -1,0 +1,90 @@
+{
+  "author": "Ethan",
+  "scenarios": {
+    "BL-01": {
+      "status": "PASS",
+      "detail": "Installed CLI doctor and workspace initialization succeed; clean wheel installation recorded separately."
+    },
+    "BL-02": {
+      "status": "PASS",
+      "detail": "Public CLI validates all 12 task schemas and six categories."
+    },
+    "BL-03": {
+      "status": "PASS",
+      "detail": "Real verifier passes repaired rounding task: 53d4ffe44a6c40b7b839202d52e23961"
+    },
+    "BL-04": {
+      "status": "PASS",
+      "detail": "Original broken fixture rejected with preserved stderr: a2ab1f96a1664a68a544e09f7eca071d"
+    },
+    "BL-05": {
+      "status": "PASS",
+      "detail": "Three distinct trial/container/artifact IDs, identical fixture hash: 68338ac9d8e84dad8eab65a3270bbda0"
+    },
+    "BL-06": {
+      "status": "PASS",
+      "detail": "All 12 independent task-specific container verifiers pass: 29a3d6b201c2496d87fb7f382160dfa4"
+    },
+    "BL-07": {
+      "status": "PASS",
+      "detail": "Nonterminating command stopped; TIMEOUT persisted: 58d38d0eaf394837b6cbbec4cc7eb6b3"
+    },
+    "BL-08": {
+      "status": "PASS",
+      "detail": "Real exit 7 recorded; runner recovers and verifier passes: 3de0e5a3add54e5294a3d840c8aa2062"
+    },
+    "BL-09": {
+      "status": "PASS",
+      "detail": "Active process terminates and cleanup succeeds: b95177df5d2f4c32bcbc4c082bd15151"
+    },
+    "BL-10": {
+      "status": "PASS",
+      "detail": "Actual agent container has no host /Users, /root/.ssh, or provider credential: e095b4ac732b4cc39d416593d5658c84"
+    },
+    "BL-11": {
+      "status": "PASS",
+      "detail": "Actual agent container cannot access /verifier/check.py: e095b4ac732b4cc39d416593d5658c84"
+    },
+    "BL-12": {
+      "status": "PASS",
+      "detail": "Resumed run keeps completed trial identities; all six slots persisted: 8e07420140e74f1e861dd3bd19402e47"
+    },
+    "BL-13": {
+      "status": "PASS",
+      "detail": "JSON reopened: 28 rows equal SQLite trial documents, all required fields present."
+    },
+    "BL-14": {
+      "status": "PASS",
+      "detail": "CSV rows, typed values, null token fields, and measurement sources match SQLite."
+    },
+    "BL-15": {
+      "status": "PASS",
+      "detail": "Independent calculations match CLI completion/time/timeout/tool/cost aggregates including failed and timed-out attempts."
+    },
+    "BL-18": {
+      "status": "PASS",
+      "detail": "Complete 12-task clean suite passed; comparison and report generated."
+    },
+    "BL-19": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "BL-20": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "BL-21": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "BL-22": {
+      "status": "BLOCKED_EXTERNAL",
+      "detail": "Live model integration unverified. No authorized OpenRouter credential available."
+    },
+    "cleanup": {
+      "status": "PASS",
+      "detail": "No containers or volumes remain for any persisted acceptance trial"
+    }
+  },
+  "note": "Local reference and isolation checks; live checks not repeated. Historical live qualification is separate."
+}

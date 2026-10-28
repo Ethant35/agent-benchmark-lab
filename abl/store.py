@@ -119,6 +119,36 @@ class Store:
                 [*values, limit, offset])]
         return dict(items=items, total=total, limit=limit, offset=offset)
 
+    def schedule_snapshot(self, run_id=None, provider=None, model=None, task_id=None, *, db=None):
+        """Read candidate run, manifest and attempts from one SQLite snapshot."""
+        if db is None:
+            with self.connect() as connection:
+                connection.execute('BEGIN')
+                return self._schedule_snapshot(connection, run_id, provider, model, task_id)
+        return self._schedule_snapshot(db, run_id, provider, model, task_id)
+
+    def _schedule_snapshot(self, db, run_id=None, provider=None, model=None, task_id=None):
+        runs = [dict(row) for row in db.execute('SELECT * FROM runs ORDER BY created_at DESC')]
+        for run in runs:
+            if run_id and run['id'] != run_id:
+                continue
+            config = json.loads(run['config'])
+            if provider and config.get('provider') != provider:
+                continue
+            if model and config.get('model') != model:
+                continue
+            manifest_row = db.execute('SELECT data FROM run_manifests WHERE run_id=?',
+                                      (run['id'],)).fetchone()
+            manifest = json.loads(manifest_row[0]) if manifest_row else None
+            tasks = manifest.get('tasks', []) if isinstance(manifest, dict) else []
+            if task_id and task_id not in {entry.get('id') for entry in tasks if isinstance(entry, dict)}:
+                continue
+            run['config'] = config
+            attempts = [dict(row) for row in db.execute(
+                'SELECT '+COMPACT_SELECT+' FROM trials WHERE run_id=? ORDER BY rowid', (run['id'],))]
+            return run, manifest, attempts
+        return None, None, []
+
     def overview(self, **filters):
         where, values = where_clause(filters)
         with self.connect() as db:
@@ -129,8 +159,15 @@ class Store:
             facet_rows = db.execute("SELECT DISTINCT json_extract(data, '$.provider'), json_extract(data, '$.model'), json_extract(data, '$.task_id') FROM trials").fetchall()
             facets = {label: sorted({r[index] for r in facet_rows if r[index]})
                       for index, label in enumerate(('providers','models','tasks'))}
+            schedule_snapshot = self.schedule_snapshot(
+                filters.get('run_id'), filters.get('provider'), filters.get('model'),
+                filters.get('task_id'), db=db)
+        from .presentation import schedule_summary
         return dict(summary=aggregate(rows), **facets, chart_trials=rows[:2000],
-                    chart_total=len(rows), chart_sampled=len(rows)>2000)
+                    chart_total=len(rows), chart_sampled=len(rows)>2000,
+                    schedule=schedule_summary(self, filters.get('run_id'),
+                                              filters.get('provider'), filters.get('model'),
+                                              filters.get('task_id'), snapshot=schedule_snapshot))
 
 TERMINAL = {'PASS','FAIL','TIMEOUT','CANCELLED','ERROR','UNSUPPORTED','BLOCKED_EXTERNAL','INTERRUPTED'}
 

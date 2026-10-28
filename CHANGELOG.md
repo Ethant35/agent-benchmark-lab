@@ -1,6 +1,19 @@
 # Changelog
 Author: Ethan
 
+## 1.2.1 — 2026-10-27
+
+- Show scheduled task completion separately from every retained attempt. A recovered
+  task can pass while the historical attempt pass rate remains 50% (one of two).
+- Put the task, expected output, verifier result and cost first. Show historical
+  task text only when its saved identity matches the installed contract.
+- Keep charts and technical details available through keyboard-accessible disclosures.
+  Show actual benchmark settings and label active-run totals as unavailable.
+- Read overview metrics and run outcomes from one database snapshot. Preserve
+  legacy percentages, exports, CLI exit codes, costs and historical records.
+- Add an explicit local installed-package verification procedure and clean source
+  packaging. No model requests or provider charges in this release qualification.
+
 ## 1.2.0 — 2026-10-22
 
 - Make the prebuilt wheel the first installation route, with no frontend build.

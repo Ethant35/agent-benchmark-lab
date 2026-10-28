@@ -2,6 +2,18 @@
 Author: Ethan
 Updated: 2026-10-22
 
+## v1.2.1 result clarity qualification — 2026-10-27
+
+The installed candidate passes 91 canonical Python tests, 18 browser checks, all 12
+reference tasks, real interruption/recovery, backup/restore and public v1.2.0 upgrade
+with separate rollback. Package files and historical boundaries are verified. Fresh
+dependency audits report no known vulnerabilities. Semgrep has 43 reviewed indicators,
+no confirmed vulnerability and 15 rule errors; Pro and the previously unavailable YAML
+pack are outside coverage. No model requests or charges occurred. See
+[result clarity acceptance](docs/RESULT_CLARITY_ACCEPTANCE.md) and evidence/result-clarity/.
+Publication and public downloaded bytes are a separate final gate, recorded in
+release-provenance.json after completion. Earlier release evidence below is preserved.
+
 ## v1.2.0 usability release
 
 Release acceptance is complete: 78 local tests, 15 packaged-dashboard browser checks,
