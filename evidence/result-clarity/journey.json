@@ -1,0 +1,63 @@
+{
+  "author": "Ethan",
+  "journey": "free-first local CLI and dashboard",
+  "provider_calls": 0,
+  "reference_cost_usd": 0,
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "python": "3.12.14",
+  "milestones": {
+    "empty_workspace": {
+      "status": "PASS",
+      "api_trial_total": 0
+    },
+    "free_reference": {
+      "status": "PASS",
+      "run_id": "a5611f0847b94ceca4c06e92fd0516ef",
+      "trial_id": "d3a62b6c6d0b4621b6c71c2692b16991",
+      "provider": "none",
+      "runner": "reference",
+      "trial_status": "PASS",
+      "cost_usd": 0,
+      "progress_output_present": true
+    },
+    "returning_dashboard": {
+      "status": "PASS",
+      "saved_trial_total": 1,
+      "filtered_trial_total": 0
+    },
+    "backup_restore": {
+      "status": "PASS",
+      "trial_count_preserved": 1,
+      "export_bytes_equal": true,
+      "artifact_files_equal": 4,
+      "database_rows_equal": true
+    },
+    "sigterm_recovery": {
+      "status": "PASS",
+      "run_id": "4e694edbf9294103ac18ccc3c92e3314",
+      "interrupted_trial_status": "INTERRUPTED",
+      "cleanup_errors": [],
+      "partial_archives": 0
+    },
+    "resume_cli": {
+      "exit_code": 1,
+      "output": "Reference control \u00b7 mode: success \u00b7 No provider requests \u00b7 $0 API cost\nResults folder: /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/production-20261027/verification-2/state\nResume saved run: 4e694edbf9294103ac18ccc3c92e3314 (completed slots stay saved)\nTasks: bugfix-rounding \u00b7 1 repeat(s) \u00b7 1 scheduled trial(s)\n  bugfix-rounding v1.0: 30s limit \u00b7 benchmark contract\nConfiguration SHA256: 1bc0db5ef27b8692bbd4eaabed9a25ef5fb04a40e6e003782c5c7f083d8933db\nPython 3.12.14 \u00b7 darwin \u00b7 arm64\nContainer engine ready: podman\nTask image ready. Candidate tasks run without network or host credentials.\nRun 4e694edbf9294103ac18ccc3c92e3314\nCancel safely: Ctrl+C, or abl cancel --root '/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/production-20261027/verification-2/state' 4e694edbf9294103ac18ccc3c92e3314\n[0.3s] bugfix-rounding: preparing isolated workspace\n[1.0s] Tool step completed\n[2.2s] Independent verifier completed\n[2.9s] bugfix-rounding: PASS\nResult: 1/2 passed \u00b7 run COMPLETED\nSchedule: 1/1 passed \u00b7 1 recovered \u00b7 0 failed \u00b7 0 incomplete \u00b7 0 unknown\nTotal cost: $0.000000000 USD (recorded).\nReference controls check the runner and verifier. They are not model scores.\n  bugfix-rounding: INTERRUPTED \u00b7 interrupted\nInspect: abl inspect --root '/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/production-20261027/verification-2/state' 4e694edbf9294103ac18ccc3c92e3314\nOpen results: abl dashboard --root '/Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/.abl/production-20261027/verification-2/state'\nThen visit http://127.0.0.1:8765/?run_id=4e694edbf9294103ac18ccc3c92e3314\n",
+      "recovery_mode": "success",
+      "interrupted_attempt_unchanged": true
+    },
+    "resume_and_cleanup": {
+      "status": "PASS",
+      "run_id": "4e694edbf9294103ac18ccc3c92e3314",
+      "trial_statuses": [
+        "INTERRUPTED",
+        "PASS"
+      ],
+      "cleanup_errors": [
+        [],
+        []
+      ],
+      "owned_containers_or_volumes": 0
+    }
+  },
+  "status": "PASS"
+}

@@ -174,6 +174,12 @@ def finish_summary(root, rid):
     trials = store.trials(run_id=rid)
     summary = aggregate(trials)
     typer.echo(f'Result: {summary["successes"]}/{summary["trials"]} passed · run {store.run(rid)["status"]}')
+    from .presentation import schedule_summary
+    schedule = schedule_summary(store, rid)
+    if schedule and schedule['tasks'] is not None:
+        typer.echo(f'Schedule: {schedule["passed"]}/{schedule["tasks"]} passed · {schedule["recovered"]} recovered · {schedule["failed"]} failed · {schedule["incomplete"] + schedule["pending"]} incomplete · {schedule["unknown"]} unknown')
+    else:
+        typer.echo('Schedule: outcome unavailable for this legacy run; attempt history is shown below.')
     if summary['total_spend_usd'] is None:
         known = summary['known_spend_usd']
         detail = f'Known subtotal: ${known:.9f} USD.' if known is not None else 'No settled cost subtotal is available.'

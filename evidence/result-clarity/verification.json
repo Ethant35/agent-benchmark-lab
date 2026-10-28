@@ -1,0 +1,30 @@
+{
+  "author": "Ethan",
+  "provider_calls": 0,
+  "api_cost_usd": 0,
+  "distribution": "local candidate wheel",
+  "new_mac_setup": "not exercised",
+  "checks": [
+    {
+      "name": "doctor",
+      "exit_code": 0
+    },
+    {
+      "name": "journey",
+      "exit_code": 0
+    },
+    {
+      "name": "browser",
+      "exit_code": 0
+    }
+  ],
+  "status": "PASS",
+  "dashboard_stopped": true,
+  "dashboard_port_closed": true,
+  "evidence_hashes": {
+    "state-before.json": "2f353c33cd14eff791e2fd76fc0d491b611fd833a8d182f2b8fa4ac49af412bd",
+    "state-after.json": "2f353c33cd14eff791e2fd76fc0d491b611fd833a8d182f2b8fa4ac49af412bd",
+    "recovered-overview.json": "c8fdec994ffa846c4ddfacd0e6145d4365c73c00aa23b57e2dc9560974288377",
+    "recovered-detail.json": "300d2fb227786799569b916e68dcece182465cab81a7dbb6afb6bac1917b23a0"
+  }
+}

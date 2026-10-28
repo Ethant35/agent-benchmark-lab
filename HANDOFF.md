@@ -1,6 +1,308 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+## ACTIVE — explicit resume and updated usage guard, 2026-10-27
+
+Ethan explicitly resumed production work through the coordinator. The actual goal
+still reported paused at intake; Ethan handles its restart. No goal was created,
+replaced or falsely reported as resumed. Work continues under his explicit instruction.
+Fresh supported usage baseline: 49% used / 51% remaining, reset timestamp1793599137.
+The NEW stop threshold is <=5% remaining (>=95% used) in any applicable window,
+or an observed reset to100% remaining during active work. This supersedes all older
+10% thresholds below and in the old objective text. Missing readings require a fresh
+retry; persistent monitoring failure requires stop and handoff. Guard cell3 polls45s.
+Two existing Luna High reviewers reused, no nested agents. Paid authorization is not
+renewed. Resume final1.2.1 combined qualification, upgrade/rollback, free corpus,
+security/docs, release and downloaded-byte verification from the saved checkpoint.
+
+## PAUSED — actual goal updated by Ethan; status audit, 2026-10-25
+
+Actual goal tool reports status `paused`. Ethan manually changed the objective to:
+
+> Make Agent Benchmark Lab production-ready for developers and agent builders on its supported platform. Publish a verified downloadable release with clear installation and runtime setup, a free first useful result, understandable task and verifier outcomes, accurate cost and unknown states, reliable interruption and resume, persistent history, filtering and export, backup and restore, accessibility, and update compatibility. Preserve historical attempts and distinguish final task completion from attempt-level outcomes. Verify the installed package and public download, container isolation, resource cleanup, and appropriate regression and security checks. Document support limits and retain evidence. Paid model verification requires explicit provider, data and spending authorization. Phase completion alone does not complete this goal. No GitHub Actions. During active work, check usage at least every 60 seconds; stop at 10% or less remaining in any applicable window or an observed reset to 100% remaining. On either trigger, stop owned workers/processes, save a handoff, and pause this goal. No automatic resume or usage bypass. Keep this goal paused until Ethan explicitly resumes it.
+
+This supersedes the prior objective-edit limitation below. No product work resumed.
+Both owned assistants are complete and interrupted. Process audit found no owned
+benchmark/test/dashboard or VM-holder process. Usage guard cell6 was already closed;
+no automation configuration targets this thread. Keep paused until Ethan explicitly
+resumes. This audit changed only this handoff.
+
+## PAUSED — mandatory active-work usage reset, 2026-10-25
+
+The live45s usage guard observed21-22% used/reset1793514805, then0% used /
+100% remaining/reset1793599137. This is an in-work reset and triggers the mandatory
+stop. Do not work into the refreshed allowance or resume automatically. Only owned
+shutdown, this handoff and actual goal pause are authorized after the stop.
+
+Ethan explicitly requested the actual goal objective be changed to:
+"Make Agent Benchmark Lab production-ready for its stated supported users and platform:
+publish a verified downloadable release with reliable installation, onboarding, first
+useful result, core workflows, error recovery, data persistence and update compatibility,
+appropriate accessibility and security, and truthful documentation and support limits."
+Available tools only create a goal when no unfinished goal exists, or update status.
+They cannot edit the objective. The existing milestone is not complete because final
+consistency/focus changes still need combined candidate qualification. Do not falsely
+complete it to replace it. Actual objective remains the review/alignment/implementation
+objective shown in the prior active entry and goal tool. Pause it now. At a later valid
+transition, after real milestone completion, create the exact broader objective above.
+
+### Final shutdown confirmation
+
+Ethan explicitly reiterated STOP after the guard fired. Actual goal pause succeeded.
+VM stop completed; machine reports Running=false. Holder PID97704 no longer exists.
+Guard cell6 is closed. Both assistants are complete and interrupted. No ongoing
+operations or automatic resume remain. No user input is required except explicit
+resumption when permitted; production decisions already confirmed stay settled.
+Current branch is codex/result-clarity; no staged changes. Owned dirty/new paths:
+
+```text
+ M HANDOFF.md
+ M README.md
+ M abl/__init__.py
+ M abl/api.py
+ M abl/guided.py
+ M abl/store.py
+ M dashboard/e2e.spec.ts
+ M dashboard/package-lock.json
+ M dashboard/package.json
+ M dashboard/src/main.tsx
+ M dashboard/src/style.css
+ M pyproject.toml
+ M tests/usability_e2e.py
+ M uv.lock
+?? .agents/verify-agent-benchmark-lab/SKILL.md
+?? .agents/verify-agent-benchmark-lab/features/README.md
+?? .agents/verify-agent-benchmark-lab/features/backup.md
+?? .agents/verify-agent-benchmark-lab/features/first-result.md
+?? .agents/verify-agent-benchmark-lab/features/install.md
+?? .agents/verify-agent-benchmark-lab/features/recovery.md
+?? .agents/verify-agent-benchmark-lab/features/results.md
+?? .agents/verify-agent-benchmark-lab/scripts/build_candidate.py
+?? .agents/verify-agent-benchmark-lab/scripts/verify.py
+?? abl/presentation.py
+?? tests/test_presentation.py
+```
+
+All other untracked duplicate files predated this work and remain untouched.
+
+### Implementation and evidence
+
+Branch codex/result-clarity. No commit, PR or release created in this session. Existing
+untracked duplicate files preserved. Product changes: additive detail task_context with
+saved manifest/version/tree/corpus identity proof; compact selected/latest matching run
+schedule summary separate from attempts; duplicate task positions/pending/unknown and
+recovery identity accounted for; exact/known costs distinct; unchanged legacy aggregate,
+export and CLI exit contracts. Guided output adds schedule counts and unknown count.
+Dashboard leads with run outcome and attempt history; expected output/verifier/cost in
+detail; charts and technical fields behind accessible native disclosures. Read-only API.
+
+New explicit verification files are under .agents/verify-agent-benchmark-lab/, separate
+from shared .agents/skills. The helper reuses tests/usability_e2e.py and dashboard tests.
+The CLI harness adds --recovery-mode success while retaining timeout default, immutable
+interrupted-record assertion, exact exit1 compatibility, and backup artifact/database
+row equality. No provider request was sent. Actual API cost for this session is$0.
+
+Evidence root .abl/result-clarity-20261025/:
+- pytest.log/json:90 canonical tests passed before the final snapshot regression.
+  Excluded pre-existing duplicate filenames containing spaces from this canonical count.
+  An earlier broad discovery passed164 including duplicates; do not present that as
+  164 distinct canonical tests.
+- verification-3/verification.json:PASS doctor, actual installed CLI journey and all16
+  browser checks, zero axe violations in checked states; owned dashboard stopped and
+  port closed. Real free PASS, actual SIGTERM, resume toPASS, two retained attempts,
+  one recovered scheduled task, attempt pass rate50%, cost0, unchanged old record.
+  Backup/restore rows/artifacts and JSON export equality pass. Browser screenshots and
+  logs retained. Desktop results-primary.png visually inspected.
+- verification-1/ and verification-2/:earlier failed browser iterations retained.
+  Fixed contrast in new schedule status and detail small text; adapted new disclosures
+  and keyboard test steps without dropping the underlying checks.
+- candidate-3/:tested local1.2.0-version candidate, NOT a published1.2.0 replacement.
+- package.json refers to candidate-2:77 installed runtime files matched, Author Ethan
+  verified, no unrelated duplicate files packaged. Do NOT claim it qualifies candidate3
+  or future1.2.1. Final package verification must be rerun for exact final bytes.
+- historical-integrity.json:77 baseline corpus/engine/provider/isolation/recovery and
+  historical evidence files unchanged. No historical scores or costs rescored.
+- runtime-start.log:existing VM startup needed held parent process. Earlier short-lived
+  start died; next startup had stale gvproxy socket; debug start with held parent worked.
+  No VM reset/deletion, global settings, helper installation or rootful switch.
+
+Independent reviewers completed and were interrupted. They found and fixed schedule
+cost double counting/undefined variable, pending-cost API failure, duplicate tasks,
+missing unknown CLI count, active total-cost certainty and recovery identity mismatch.
+Latest backend repair uses one SQLite snapshot for overview metrics and schedule.
+It has a concurrent-writer regression: first response sees old state in both views,
+next sees new PASS in both. Focused55 tests passed. This repair is AFTER candidate3.
+Lead changed schedule reads to COMPACT_SELECT to avoid loading full evidence JSON.
+
+### Exact unverified changes and next work
+
+After candidate3 proof, the lead added visible-only keyboard focus targets including
+summary elements, plus a collapsed-detail Shift+Tab regression. These changes and the
+snapshot repair need a final build, canonical tests and installed browser/CLI proof.
+Version files now say1.2.1:pyproject.toml, uv.lock, abl/__init__.py, dashboard/package.json,
+package-lock.json and README install links. They are not released. The existing built
+static bundle/installed candidate remain from before these last changes. Do not publish
+or claim final qualification until rebuilt and checked.
+
+The build_candidate.py helper now stages all tracked working files plus explicit new
+source and built static files, then builds wheel AND sdist. Its earlier narrower wheel
+variant was executed; the latest full-source/sdist variant still needs proof. New files
+are not staged yet; include them explicitly or stage only the owned reviewed paths
+before clean-source build. Never add the shared symlink or unrelated duplicate files.
+A direct in-place build was observed to package the unrelated ' 2.py' duplicates, so
+use clean staging. Preserve original files in the working checkout.
+
+On explicit future resumption: check actual goal and fresh usage baseline first. Finish
+current milestone with final combined tests, procedure/source map and truthful docs,
+then transition actual goal to the exact broader objective when legal. Complete the
+production gates: public1.2.0 install to1.2.1 upgrade and rollback with unchanged exports,
+all12 free reference controls, dependency/boundary review, support/cleanup documentation,
+final independent review, commit/PR/merge, new1.2.1 release assets and public-download
+verification. No new native app or notarization route is introduced. Do not alter sealed
+old assets. Prior live provider qualification remains applicable only to unchanged
+adapter/contracts; no new paid allowance exists. Fresh-Mac setup and unfamiliar-user
+research remain untested and must be disclosed rather than claimed.
+
+Shutdown: no browser/CLI test process remained; Podman container and volume inventories
+were empty. Owned dedicated VM abl-benchmark was stopped and holder PID97704 terminated.
+No workers remain active; guard cell6 ended itself on the reset. Actions checked disabled.
+No credentials, global config, hooks, or external messages were created. Do not resume
+without explicit user instruction that respects the usage stop.
+
+## ACTIVE — production acceptance and distribution, 2026-10-25
+
+Ethan confirmed the result-clarity scope and then expanded the objective to a
+production-ready, downloadable app for the established supported target. Continue
+necessary implementation, local checks, documentation, packaging and normal release
+work. Preserve all prior evidence, source duplicates and user data. No paid allowance
+was renewed. No new native Mac distribution is planned; this app ships a Python wheel.
+
+Actual goal currently reports active with its existing review/alignment/implementation
+objective. The tool cannot edit that objective. Finish this milestone truthfully before
+creating the broader production-readiness goal. Do not mark the broader outcome complete
+until the public downloadable bytes and supported user journeys are verified.
+
+Confirmed scope: CLI execution plus read-only dashboard; task/expected output/verifier/
+cost first; recovered schedule outcomes separate from all attempts; percentages, cost
+accounting, exports and CLI exit codes preserved. Technical details remain accessible.
+The explicit local verification procedure is under .agents/verify-agent-benchmark-lab/.
+
+Current evidence is in .abl/result-clarity-20261025/. Candidate3 passed the real installed
+free first result, SIGTERM then successful resume with immutable old attempt, backup/
+restore rows and artifacts, and all16 browser checks. Review fixes for concurrent-read
+consistency and collapsed-detail keyboard focus now need the final candidate proof.
+90 canonical Python tests passed before the final snapshot regression was added.
+Earlier failed browser iterations and their logs/screenshots remain available.
+
+Production acceptance gates remaining: final source/build/unit/browser qualification,
+install and upgrade from the public1.2.0 wheel, old export/rollback equality, dependency
+and boundary review, all12 free reference controls, user docs/support/cleanup, final
+review, PR/release and clean public-download acceptance. Preserve historical live provider
+qualification because provider/engine/isolation/model contracts are unchanged. Do not
+claim a fresh provider run, fresh-Mac setup or unfamiliar-user research.
+
+Usage baseline today was7% used/reset1793514805. Last supported read21% used/79% remaining.
+Guard cell6 polls45s and stops at >=90%used or a new active-work reset to100%remaining.
+Two Luna workers were used within cap; completed workers are interrupted. VM abl-benchmark
+was initially stopped and this session started it under holder session75707. Stop only
+owned processes/resources at shutdown; retain evidence. No GitHub Actions/global config
+changes. Actions remain disabled. No input is currently required from Ethan.
+
+## STOPPED — handoff only at Ethan's request, 2026-10-24
+
+Latest instruction: "Use best judgment but don’t do any work r just make a handoff
+of what are next steps". This supersedes the unanswered Q1 checkpoint below.
+Use judgment for the proposed audience and plan. It does not authorize implementation,
+tests, further investigation, paid calls, commits, publication or automatic continuation.
+Resume only when Ethan explicitly requests it. The goal is paused, not complete.
+
+The usage check also triggered the mandatory reset stop: the previous reading was
+14% used / 86% remaining, reset timestamp 1793385116; the new reading is 0% used /
+100% remaining, reset timestamp 1793514805. Do not work into this refreshed allowance.
+Only this requested handoff and goal pause are being completed. No checker, assistant
+or test process was restarted. Existing evidence and duplicate files remain intact.
+
+### Recommended next steps, for a future authorized session
+
+1. Use developers and agent builders as the initial audience. The concrete job is
+   choosing a configuration based on verified task outcomes and cumulative cost.
+   This is the assistant's recommendation under Ethan's best-judgment instruction,
+   not a claim that Ethan personally selected this audience.
+2. Present a concise proposed scope for confirmation before product edits. Keep CLI
+   execution and the read-only dashboard for this iteration. Browser start/cancel
+   would require a separate, explicit execution and spending-consent design.
+3. Put the task, expected result, actual verifier outcome and total cost before
+   comparison charts. Keep traces, hashes and secondary measurements available in
+   details. Preserve unknown values. For historical records, show task text only
+   when its configuration/corpus identity is verified; otherwise disclose the gap.
+4. Show scheduled-task outcomes separately from all attempt outcomes. For the observed
+   recovery case, show one scheduled task passed after recovery, plus two retained
+   attempts: one interrupted and one passed. Preserve the existing attempt-based
+   benchmark percentages and all costs. Propose the guided CLI exit-code behavior
+   explicitly before changing it; script compatibility is an acceptance condition.
+5. After scope confirmation, create the explicit-only verification entry point under
+   .agents/verify-agent-benchmark-lab/, never through the shared .agents/skills symlink.
+   Start from .abl/review-followup-20261024/verification-plan-draft.json. Reuse the
+   existing guided, API, browser, resume and usability tests instead of duplicating
+   them. Prove the written procedure and retain evidence after cleanup.
+6. Verify affected real paths: wheel installation/check, prerequisite guidance, free
+   task and progress, result interpretation, actual interruption and successful
+   recovery, retained attempts, filters/export, backup/restore and owned-resource
+   cleanup. Protect historical exports, corpus/config identity and exact/unknown
+   cost accounting with regression checks. Keep new-Mac setup separate from reuse
+   of an existing VM/image. Automatic refresh already passed; do not invent a fix.
+7. Review UX, DX and agent/API/CLI use together. Remove redundant copy through better
+   hierarchy while retaining accessible labels, recovery and safety information.
+   Run appropriate local checks and independent review before any authorized release.
+   Do not claim unfamiliar-user research or general production readiness.
+
+Evidence already saved: accounting.json, ui-findings.json, polling.json,
+polling-after.txt/png, baseline-hashes.json and verified pinned sources under
+.abl/review-followup-20261024/. The earlier checkpoint below contains exact findings.
+No product source changed in this follow-up. HANDOFF.md is the only tracked edit.
+No verification skill, PR or release was created. Keep GitHub Actions disabled,
+preserve global settings, and do not renew prior paid-provider allowances.
+
+## ALIGNMENT — evidence reviewed; awaiting interview answers, 2026-10-24
+
+Current bounded goal: pstack-guided evidence review, grill-me alignment, then only
+implementation scope Ethan explicitly confirms. No product implementation is approved.
+Read-only investigation is complete at main 558b8037f19d73aff36406b87e3ddb7f4c188f1f.
+Untracked duplicate files existed at startup and were preserved. No paid calls, VM
+startup, product/config/dependency/release edits or external messages were made.
+
+Pinned seven pstack source files were downloaded and SHA256-checked against the index.
+The unchanged grill-me and grilling files were read using the local Codex adapter.
+Draft verification plan, baseline hashes and reports are in
+.abl/review-followup-20261024/. No verification skill has been created. After scope
+confirmation use .agents/verify-agent-benchmark-lab/ with an explicit file invocation;
+do not write through the shared .agents/skills symlink. Reuse existing harnesses.
+
+Confirmed recovery presentation: isolated real Typer command with mocked execution
+produced COMPLETED plus 1/2 passed and exit 1 for INTERRUPTED then PASS in one slot.
+This is consistent with documented attempt metrics. Any future schedule outcome must
+be separate; preserve historical rows, exact/unknown costs and API/export semantics.
+Live published-wheel dashboard showed a new synthetic saved row automatically, without
+refresh/reload/navigation. The review's manual-refresh requirement was not reproduced.
+Task context is absent from current detail API/UI; adding it must not mislabel current
+corpus text as historical task text when identities cannot be verified.
+New-Mac VM/image setup remains untested. No performance/model comparison was made.
+
+Interview starts with audience and the decision results should support. Recommendation
+is developers/agent builders choosing configurations by verified outcomes and total cost.
+Do not assume this recommendation is Ethan's preference. Interface, result hierarchy,
+recovery/exit semantics and any execution consent decisions follow his actual answer.
+Keep UI clarity and UX/DX/AX requirements in the eventual agreed implementation plan.
+
+Both Luna High assistants completed and were interrupted. Owned dashboard PID30446
+stopped; port8884 closed; owned browser tab closed. Evidence remains. Usage checker
+cell4 closed before waiting. Last reading13%used/87%remaining, reset timestamp1793385116;
+startup8%, no reset observed. On resumed active work check usage first and every<=60s.
+Stop at any >=90%used, or observed reset to100%remaining; stop owned work, save handoff,
+pause goal and end. Goal remains unfinished awaiting actual answers, not complete.
+Actions verified disabled. No polling loop runs while awaiting the interview reply.
+
+
 ## COMPLETE — v1.2.0 released and verified, 2026-10-22
 
 Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.2.0

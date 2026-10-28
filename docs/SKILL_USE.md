@@ -77,3 +77,20 @@ produced results; two are partial due to 15 rule errors. 36 indicators were revi
 with no confirmed vulnerability. Pro remains unavailable; p/yaml was unavailable in the
 previous registry check. Merged SARIF and triage are retained under evidence/usability/.
 Temporary rule clones were removed. No cloud login, source upload or autofix was used.
+
+## v1.2.1 result clarity and production checks
+
+Resumed the existing project-local verification, review and shipping workflows.
+The explicit procedure and five feature maps are under
+`.agents/verify-agent-benchmark-lab/`, outside the shared skills symlink. Its launcher
+reuses the installed CLI journey and browser suite. No global skill or hook was installed.
+Pinned pstack references from the earlier reviewed source snapshot guided the procedure
+and blast-radius review; no new plugin or automatic discovery is claimed.
+
+Independent reviewers checked backend identity/snapshot/cost compatibility, dashboard
+focus/cost/settings, and packaging/helper boundaries. The lead reproduced and fixed
+closed-details keyboard focus, then drove the installed package. Current dependency
+audits and the already-approved nine-pack Community Semgrep scan ran locally. All43
+indicators were reviewed, with no confirmed vulnerability;15 rule errors, no Pro and
+previously unavailable YAML coverage are disclosed. No source upload or metrics.
+See RESULT_CLARITY_ACCEPTANCE.md for actual evidence and support limits.

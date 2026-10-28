@@ -1,0 +1,31 @@
+
+> agent-benchmark-lab-dashboard@1.2.1 test:e2e
+> playwright test
+
+
+Running 18 tests using 1 worker
+
+  ✓   1 e2e.spec.ts:5:1 › dashboard reads persisted results, filters, details, and exports (1.6s)
+  ✓   2 e2e.spec.ts:86:1 › both export formats download from the persisted API (177ms)
+  ✓   3 e2e.spec.ts:92:1 › cross-run provider and model filters exclude nonmatching persisted records (218ms)
+  ✓   4 e2e.spec.ts:107:1 › filters and page are encoded in the URL and restored by a direct link (153ms)
+  ✓   5 e2e.spec.ts:126:1 › loading, API errors, and a valid empty result each have a clear recovery path (230ms)
+  ✓   6 e2e.spec.ts:154:1 › empty workspace, filter miss, and returning state stay distinct (258ms)
+  ✓   7 e2e.spec.ts:184:1 › active runs refresh in place and report safe terminal cancellation guidance (3.4s)
+  ✓   8 e2e.spec.ts:200:1 › workspace state waits for its identity before loading filters or restoring evidence (104ms)
+  ✓   9 e2e.spec.ts:229:1 › workspace lookup error gives retry and never shows a guessed results path (174ms)
+  ✓  10 e2e.spec.ts:248:1 › stale result offset returns to the first page (212ms)
+  ✓  11 e2e.spec.ts:263:1 › filter changes replace old rows with a compact loading state until new matches arrive (117ms)
+  ✓  12 e2e.spec.ts:292:1 › run configuration labels use actual cost field and keep reference controls plain (99ms)
+axe violations: 
+(node:17533) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+detail axe: 
+  ✓  13 e2e.spec.ts:308:1 › large histories page compact rows and label chart samples (1.6s)
+  ✓  14 e2e.spec.ts:386:1 › unknown final cost retains its known subtotal and distinct corpus groups (299ms)
+  ✓  15 e2e.spec.ts:414:1 › failed detail request retries the same evidence without replacing the trial list (275ms)
+  ✓  16 e2e.spec.ts:431:1 › recovered run outcome stays separate from retained attempt metrics and historical task text (261ms)
+  ✓  17 e2e.spec.ts:462:1 › active run cost is unavailable while terminal known spend stays explicit (107ms)
+  ✓  18 e2e.spec.ts:474:1 › technical details expose allowlisted settings that distinguish matching model labels (327ms)
+
+  18 passed (26.4s)

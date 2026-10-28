@@ -1,0 +1,378 @@
+{
+  "author": "Ethan",
+  "engine": "Community",
+  "mode": "run-all",
+  "metrics": "off",
+  "findings": [
+    {
+      "rule": "generic-one-liners",
+      "file": "abl/cli.py",
+      "line": 98,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "python-dynamic-execution-system",
+      "file": "abl/engine.py",
+      "line": 95,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Intentional argv-based runtime invocation or subprocess inside an isolated verifier. No shell interpolation added."
+    },
+    {
+      "rule": "python-dynamic-execution-system",
+      "file": "abl/engine.py",
+      "line": 113,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Intentional argv-based runtime invocation or subprocess inside an isolated verifier. No shell interpolation added."
+    },
+    {
+      "rule": "python-obfuscation-generic",
+      "file": "abl/guided 2.py",
+      "line": 39,
+      "severity": "WARNING",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Literal import of platform module; duplicate untracked copy excluded from distributions."
+    },
+    {
+      "rule": "python-obfuscation-generic",
+      "file": "abl/guided 2.py",
+      "line": 40,
+      "severity": "WARNING",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Literal import of platform module; duplicate untracked copy excluded from distributions."
+    },
+    {
+      "rule": "python-obfuscation-generic",
+      "file": "abl/guided.py",
+      "line": 39,
+      "severity": "WARNING",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Literal import of platform module; duplicate untracked copy excluded from distributions."
+    },
+    {
+      "rule": "python-obfuscation-generic",
+      "file": "abl/guided.py",
+      "line": 40,
+      "severity": "WARNING",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Literal import of platform module; duplicate untracked copy excluded from distributions."
+    },
+    {
+      "rule": "python-dynamic-execution-system",
+      "file": "abl/isolation.py",
+      "line": 208,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Intentional argv-based runtime invocation or subprocess inside an isolated verifier. No shell interpolation added."
+    },
+    {
+      "rule": "python-dynamic-execution-system",
+      "file": "corpus/bugfix-interval-merge/verifier/check.py",
+      "line": 10,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Intentional argv-based runtime invocation or subprocess inside an isolated verifier. No shell interpolation added."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "corpus/extraction-invoices/verifier/check.py",
+      "line": 9,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "corpus/multistep-document-index/verifier/check.py",
+      "line": 10,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "corpus/multistep-ledger/verifier/check.py",
+      "line": 10,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "python-dynamic-execution-system",
+      "file": "corpus/refactor-csv-summary/verifier/check.py",
+      "line": 26,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Intentional argv-based runtime invocation or subprocess inside an isolated verifier. No shell interpolation added."
+    },
+    {
+      "rule": "python-dynamic-execution-system",
+      "file": "corpus/refactor-text-stats/verifier/check.py",
+      "line": 19,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Intentional argv-based runtime invocation or subprocess inside an isolated verifier. No shell interpolation added."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/e2e.spec.ts",
+      "line": 393,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/e2e.spec.ts",
+      "line": 437,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/e2e.spec.ts",
+      "line": 467,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 18,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 170,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 171,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 209,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 239,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 242,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 243,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 244,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 246,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 252,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 255,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 256,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 267,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 268,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 269,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 270,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 272,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 273,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 283,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 286,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 287,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 330,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 332,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "generic-one-liners",
+      "file": "dashboard/src/main.tsx",
+      "line": 336,
+      "severity": "INFO",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Long source expressions; inspected as application rendering and verifiers. Readability debt, no malicious content found."
+    },
+    {
+      "rule": "dynamic-urllib-use-detected",
+      "file": ".agents/verify-agent-benchmark-lab/scripts/verify.py",
+      "line": 58,
+      "severity": "WARNING",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Verification helper constructs its URL from fixed http://127.0.0.1 and an allocated local port; no arbitrary URL input."
+    },
+    {
+      "rule": "dangerous-subprocess-use-tainted-env-args",
+      "file": ".agents/verify-agent-benchmark-lab/scripts/verify.py",
+      "line": 72,
+      "severity": "ERROR",
+      "disposition": "reviewed; no confirmed vulnerability",
+      "rationale": "Operator supplies the installed CLI to this explicit local harness. Popen uses an argv list and no shell."
+    }
+  ],
+  "finding_count": 43,
+  "rule_errors": 15,
+  "failed": [],
+  "skipped": [],
+  "partial_rulesets": [
+    "https://github.com/elttam/semgrep-rules",
+    "https://github.com/apiiro/malicious-code-ruleset"
+  ],
+  "limits": [
+    "Pro unavailable",
+    "p/yaml unavailable in approved plan; not included",
+    "15 third-party rule errors",
+    "untracked duplicate files scanned but not packaged"
+  ],
+  "raw_local": "static_analysis_semgrep_5/",
+  "scan_rulesets": [
+    "p/secrets",
+    "p/security-audit",
+    "https://github.com/trailofbits/semgrep-rules",
+    "https://github.com/elttam/semgrep-rules",
+    "https://github.com/apiiro/malicious-code-ruleset",
+    "p/fastapi",
+    "p/python",
+    "p/react",
+    "p/typescript"
+  ]
+}
