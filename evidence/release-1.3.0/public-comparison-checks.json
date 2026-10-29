@@ -1,0 +1,23 @@
+{
+  "author": "Ethan",
+  "status": "PASS",
+  "provider_calls": 0,
+  "cost_usd": 0,
+  "real_reference_attempts": 3,
+  "recovered_attempt_unchanged": "verified by usability_e2e.py",
+  "matched_contracts": 1,
+  "attempt_counts": [
+    1,
+    1
+  ],
+  "unverified_interruption_excluded": true,
+  "pass_counts": [
+    1,
+    1
+  ],
+  "download_matches_api": true,
+  "dark_label_contrast": "PASS",
+  "mobile_320px": "PASS",
+  "evidence_navigation_and_focus": "PASS",
+  "scope": "Reference and harness behavior only; not model quality"
+}

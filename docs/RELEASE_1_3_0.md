@@ -49,3 +49,17 @@ history but is excluded from matched statistics; a recorded image permits matchi
 The test driver now asserts these distinct cases instead of assuming startup timing.
 No product/grader/provider behavior was changed for release, aside from version metadata.
 Source archive rebuild matches every wheel entry. Public verification follows publication.
+
+## Public release and completion
+
+v1.3.0 is published at https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.3.0
+from merge fcaf3322289de6512c13ba0ae173481c6117f805 (PR10). Unauthenticated
+wheel/source/checksum downloads match the accepted assets. A second fresh install
+in ~/Applications/AgentBenchmarkLab/1.3.0 imports only its installed package and
+uses the same audited runtime dependencies. Its CLI, reopened restored history,
+comparison/evidence/download and task identities pass without source paths. All
+restored task contexts and traces still work after candidate/source/backup removal.
+
+Technical gates1–7 are complete. Screenshots, checksums, dependency versions and
+cleanup evidence are in evidence/release-1.3.0/. No provider charges. Unfamiliar-
+developer usability remains pending. No model-quality or causal-ranking claim is made.

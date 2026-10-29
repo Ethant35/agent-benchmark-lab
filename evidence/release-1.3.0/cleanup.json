@@ -1,0 +1,18 @@
+{
+  "author": "Ethan",
+  "temporary_directory_removed": "/var/folders/j_/l874vytd19j5hkhl05ymffbc0000gn/T/abl-release-130-yrm9z9j7",
+  "allocated_bytes_removed": 106950656,
+  "preserved_public_install": "/Users/ethantarnarider/Applications/AgentBenchmarkLab/1.3.0",
+  "preserved_restored_history": "/Users/ethantarnarider/Documents/AgentBenchmarkLab/reference-acceptance-1.3.0",
+  "restored_evidence_works_after_source_and_backup_removal": true,
+  "dashboard_ports_closed": [
+    18768,
+    18769,
+    18770
+  ],
+  "podman_stopped": true,
+  "no_owned_containers_or_volumes_before_stop": true,
+  "usage_guard": "none",
+  "provider_calls": 0,
+  "provider_cost_usd": 0
+}

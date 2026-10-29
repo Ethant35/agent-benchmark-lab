@@ -11,7 +11,9 @@ matched statistics; the identified-interruption case also passes on retained rec
 All73 corpus files match grader-v2 calibration, whose62 cases and12 reference passes
 are reused. Fresh dependency audits found no known vulnerabilities. No paid calls.
 Unfamiliar-developer usability remains pending. See docs/RELEASE_1_3_0.md and
-evidence/release-1.3.0/. Public asset verification is recorded after publication.
+evidence/release-1.3.0/. Public downloads match accepted checksums; a second isolated install passes without
+source paths. Restored history/evidence survives removal of temporary source and backup.
+v1.3.0 is published; unfamiliar-developer usability remains pending.
 
 ## Source grader 2.0 qualification — 2026-10-28
 
