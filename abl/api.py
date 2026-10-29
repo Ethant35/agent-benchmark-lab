@@ -95,6 +95,13 @@ def create_app(root):
     @app.get('/api/overview',response_model=OverviewResponse)
     def overview(run_id:str|None=None,model:str|None=None,provider:str|None=None,task_id:str|None=None):
         return store.overview(run_id=run_id,model=model,provider=provider,task_id=task_id)
+    @app.get('/api/comparison')
+    def comparison(left:str=Query(pattern=r'^[0-9a-f]{64}$'), right:str=Query(pattern=r'^[0-9a-f]{64}$'),
+                   run_id:str|None=None, model:str|None=None, provider:str|None=None, task_id:str|None=None):
+        if left == right:
+            raise HTTPException(400, 'Choose two different configurations')
+        return store.compare(left, right, run_id=run_id, model=model, provider=provider, task_id=task_id)
+
     @app.get('/api/trials/{tid}')
     def trial(tid:str):
         found=store.trials(id=tid)

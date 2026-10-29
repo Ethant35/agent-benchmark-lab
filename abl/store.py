@@ -149,6 +149,24 @@ class Store:
             return run, manifest, attempts
         return None, None, []
 
+    def compare(self, left, right, **filters):
+        from .comparison import matched_comparison
+        where, values = where_clause(filters)
+        where += (' AND ' if where else ' WHERE ') + "json_extract(data, '$.config_hash') IN (?,?)"
+        identity_fields = ('task_artifact_id', 'fixture_hash', 'image_id')
+        extra = ','.join(f"json_extract(data, '$.{key}') AS {key}" for key in identity_fields)
+        with self.connect() as db:
+            db.execute('BEGIN')
+            rows = [dict(row) for row in db.execute(
+                'SELECT '+COMPACT_SELECT+','+extra+",json_extract(data, '$.verifier.exit_code') AS verifier_exit_code FROM trials"
+                +where+' ORDER BY rowid', [*values, left, right])]
+            run_ids = {row['run_id'] for row in rows}
+            runs = {row['id']: {**dict(row), 'config': json.loads(row['config'])}
+                    for row in db.execute('SELECT id,status,config FROM runs') if row['id'] in run_ids}
+            manifests = {row['run_id']: json.loads(row['data']) for row in
+                         db.execute('SELECT run_id,data FROM run_manifests') if row['run_id'] in run_ids}
+        return matched_comparison(rows, runs, manifests, left, right)
+
     def overview(self, **filters):
         where, values = where_clause(filters)
         with self.connect() as db:

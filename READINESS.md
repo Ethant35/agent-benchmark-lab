@@ -2,6 +2,24 @@
 Author: Ethan
 Updated: 2026-10-22
 
+## Source grader 2.0 qualification — 2026-10-28
+
+All twelve active task contracts are version2.0. Local qualification passes121 Python
+checks,62 isolated reference/negative/variant cases,12 installed reference tasks and
+20 installed dashboard browser checks. Prior61 task files are archived;116 existing
+evidence files are unchanged. No provider calls or charges. See docs/GRADER_V2.md and
+evidence/grader-v2-20261028/. This qualifies the source revision; no new public release
+is claimed. Historical release/benchmark entries below retain their original scope.
+
+## Local audit/comparison revision — 2026-10-28
+
+Task/grader audit and matched comparisons from existing results are implemented in
+local source. See docs/TASK_GRADER_AUDIT.md, docs/MATCHED_COMPARISONS.md and
+`evidence/matched-20261028/checks.json` for tests and limits. The final build, focused
+Python checks and20 browser checks pass. Historical corpus/evidence are unchanged;
+new provider cost$0. This revision is not packaged or published; the v1.2.1 download
+and qualification below remain unchanged.
+
 ## v1.2.1 result clarity qualification — 2026-10-27
 
 The installed candidate passes 91 canonical Python tests, 18 browser checks, all 12

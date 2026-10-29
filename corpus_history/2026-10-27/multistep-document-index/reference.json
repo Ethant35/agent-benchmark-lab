@@ -1,0 +1,27 @@
+[
+  {
+    "tool": "write_file",
+    "arguments": {
+      "path": "indexer.py",
+      "content": "import json,hashlib,sys\ndef dump(p,x): open(p,\"w\").write(json.dumps(x,sort_keys=True,separators=(\",\",\":\"))+\"\\n\")\ndef main(s):\n if s==\"scan\": dump(\"docs.json\",[{\"file\":n,\"bytes\":len(open(n,\"rb\").read())} for n in open(\"files.txt\").read().splitlines()])\n elif s==\"index\":\n  d={}\n  for x in json.load(open(\"docs.json\")):\n   for w in open(x[\"file\"]).read().lower().split(): d.setdefault(w.strip(\".,!?:;\"),set()).add(x[\"file\"])\n  dump(\"index.json\",{k:sorted(v) for k,v in d.items()})\n elif s==\"manifest\": dump(\"manifest.json\",{\"sha256\":{p:hashlib.sha256(open(p,\"rb\").read()).hexdigest() for p in (\"docs.json\",\"index.json\")},\"document_count\":len(json.load(open(\"docs.json\")))})\nif __name__==\"__main__\": main(sys.argv[1])\n"
+    }
+  },
+  {
+    "tool": "shell",
+    "arguments": {
+      "command": "python indexer.py scan"
+    }
+  },
+  {
+    "tool": "shell",
+    "arguments": {
+      "command": "python indexer.py index"
+    }
+  },
+  {
+    "tool": "shell",
+    "arguments": {
+      "command": "python indexer.py manifest"
+    }
+  }
+]

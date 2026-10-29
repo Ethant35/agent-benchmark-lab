@@ -1,16 +1,26 @@
 schema_version: 1
 id: extraction-contacts
-version: '1.0'
+version: '2.0'
 category: extraction
-description: "Extract contacts.txt to contacts.json with exact name, email, phone fields. Keep order and original phone text; lowercase emails; omit heading."
+description: Extract contacts.txt to contacts.json with exact name, email, phone fields. Keep order and
+  original phone text; lowercase emails; omit heading. Output exactly one JSON array of objects; all three
+  fields are strings. This is extraction of this supplied file, not a reusable extraction program. JSON
+  object keys must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["contacts.json"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- contacts.json
 cleanup: always

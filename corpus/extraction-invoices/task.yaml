@@ -1,16 +1,27 @@
 schema_version: 1
 id: extraction-invoices
-version: '1.0'
+version: '2.0'
 category: extraction
-description: "Extract invoices.json into invoices_out.json. Each output has exactly invoice_id, vendor, date, amount_cents. Preserve order; convert decimal amount strings exactly."
+description: Extract invoices.json into invoices_out.json. Each output has exactly invoice_id, vendor,
+  date, amount_cents. Preserve order; convert decimal amount strings exactly. Output exactly one JSON
+  array of objects. invoice_id, vendor and date are strings; amount_cents is an integer, never a boolean
+  or float. This is extraction of this supplied file, not a reusable extraction program. JSON object keys
+  must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["invoices_out.json"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- invoices_out.json
 cleanup: always

@@ -1,16 +1,28 @@
 schema_version: 1
 id: refactor-csv-summary
-version: '1.0'
+version: '2.0'
 category: refactor
-description: "Refactor summary.py into parse_rows(path) and summarize(rows) helpers while preserving behavior. CSV columns sku, quantity, unit_price; duplicate SKUs accumulate extended amounts rounded to cents; negative quantities remain valid. CLI prints sorted-key JSON."
+description: Refactor summary.py into parse_rows(path) and summarize(rows) helpers while preserving behavior.
+  CSV columns sku, quantity, unit_price; duplicate SKUs accumulate extended amounts rounded to cents;
+  negative quantities remain valid. CLI prints sorted-key JSON. parse_rows returns a list of string-valued
+  row dictionaries; summarize returns a SKU-to-numeric-total dictionary. Preserve the existing Python
+  float arithmetic and per-row round(..., 2) behavior. The CLI must call both helpers. Modules must import
+  without CLI side effects. JSON object keys must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["summary.py"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- summary.py
 cleanup: always

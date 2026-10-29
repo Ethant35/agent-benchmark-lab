@@ -1,4 +1,14 @@
 # Changelog
+
+## Unreleased
+
+- Version all twelve task contracts as 2.0. Check helper behavior and CLI use,
+  structured navigation claims, pipeline artifacts/types, general input variants,
+  unique JSON keys and sorted refactor output. Archive the previous corpus.
+- Add matched comparisons from saved equivalent tasks, attempt evidence and cost
+  uncertainty; shorten repeated dashboard copy. Historical results remain unchanged.
+- No new paid model calls or published release.
+
 Author: Ethan
 
 ## 1.2.1 — 2026-10-27

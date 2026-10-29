@@ -1,0 +1,13 @@
+{
+  "author": "Ethan",
+  "method": "Pure checker and Python equality probes of source-audit findings; no candidate execution, grader/container run, or model calls. These are limitations, not changed benchmark outcomes.",
+  "findings_confirmed": {
+    "navigation_config_accepts_contradictory_keywords": true,
+    "document_bytes_float_equals_expected_integer": true,
+    "document_count_float_equals_expected_integer": true,
+    "normalized_cents_float_equals_expected_integer": true,
+    "ledger_row_count_float_equals_expected_integer": true,
+    "parsed_json_discards_requested_serialization_order": true
+  },
+  "navigation_checker_sha256": "597aed0e5b3becc7205de0fcad5e75f5bb2e68cd6954da6789be668d0ae9cb5a"
+}

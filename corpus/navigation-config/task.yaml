@@ -1,16 +1,29 @@
 schema_version: 1
 id: navigation-config
-version: '1.1'
+version: '2.0'
 category: navigation
-description: "Inspect settings.py and write answer.json with exactly default_port, retry_limit, cache_enabled, supported_formats, source, and explanation. Use the literal source facts and correct JSON types. source must be the exact relative path. In one brief sentence, explain that the file contains application settings and describe the port, retry limit, cache setting, and supported formats. Use clear wording; equivalent terms are acceptable. Do not modify settings.py."
+description: 'Inspect settings.py and write answer.json with exactly default_port, retry_limit, cache_enabled,
+  supported_formats, source, and explanation. Preserve the source bytes. Use integer port/retry, boolean
+  cache, an ordered array of format strings, and source="settings.py". explanation is a structured JSON
+  object, not prose: keys listener, retry, cache, formats; each maps to exactly symbol (respectively DEFAULT_PORT,
+  RETRY_LIMIT, CACHE_ENABLED, SUPPORTED_FORMATS) and value (the same correctly typed source value as the
+  corresponding top-level field). Explain each setting through its actual symbol and value; contradictory
+  values fail. JSON object keys must be unique.'
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["answer.json"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- answer.json
 cleanup: always

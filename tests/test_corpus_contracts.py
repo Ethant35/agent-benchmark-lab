@@ -20,7 +20,7 @@ def task(task_id: str) -> dict:
 def test_order_filter_prompt_names_one_json_array_and_preserves_order() -> None:
     spec = task("feature-order-filter")
     prompt = spec["description"].casefold()
-    assert spec["version"] == "1.1"
+    assert spec["version"] == "2.0"
     assert "one json array" in prompt
     assert "input order" in prompt
 
@@ -28,7 +28,7 @@ def test_order_filter_prompt_names_one_json_array_and_preserves_order() -> None:
 def test_document_index_prompt_defines_every_generated_schema() -> None:
     spec = task("multistep-document-index")
     prompt = spec["description"].casefold()
-    assert spec["version"] == "1.1"
+    assert spec["version"] == "2.0"
     for detail in (
         "json array of objects",
         "file",
@@ -44,7 +44,7 @@ def test_document_index_prompt_defines_every_generated_schema() -> None:
 def test_ledger_prompt_defines_outputs_without_changing_the_workload() -> None:
     spec = task("multistep-ledger")
     prompt = spec["description"].casefold()
-    assert spec["version"] == "1.1"
+    assert spec["version"] == "2.0"
     for detail in (
         "json array of objects",
         "account",
@@ -60,7 +60,7 @@ def test_ledger_prompt_defines_outputs_without_changing_the_workload() -> None:
 
 def load_explanation_checker():
     """Load only the pure contract module; never execute the candidate program."""
-    path = CORPUS / "navigation-config" / "verifier" / "contract.py"
+    path = ROOT / "corpus_history/2026-10-27/navigation-config/verifier/contract.py"
     spec = __import__("importlib.util", fromlist=["spec_from_file_location"]).spec_from_file_location(
         "navigation_config_contract", path
     )
@@ -84,7 +84,7 @@ def load_explanation_checker():
     format_phrase=st.sampled_from(["supported formats are JSON and CSV", "formats include JSON and CSV"]),
     separator=st.sampled_from(["; ", ". ", " — ", "\n"]),
 )
-def test_navigation_explanation_accepts_equivalent_cache_wording(
+def test_historical_navigation_explanation_accepts_equivalent_cache_wording(
     port_phrase: str,
     retry_phrase: str,
     cache_phrase: str,
@@ -97,7 +97,7 @@ def test_navigation_explanation_accepts_equivalent_cache_wording(
 
 
 @given(missing=st.sampled_from(["port", "retry", "cache", "format"]))
-def test_navigation_explanation_rejects_missing_a_fact(missing: str) -> None:
+def test_historical_navigation_explanation_rejects_missing_a_fact(missing: str) -> None:
     accepts = load_explanation_checker()
     facts = {
         "port": "The port is 8123",
@@ -110,7 +110,7 @@ def test_navigation_explanation_rejects_missing_a_fact(missing: str) -> None:
 
 
 @given(value=st.sampled_from(["caching is off", "the cache is disabled", "cached responses are not enabled"]))
-def test_navigation_config_passes_semantically_valid_explanations(value: str) -> None:
+def test_historical_navigation_config_passes_semantically_valid_explanations(value: str) -> None:
     # The observed v1.0 verifier rejected valid alternate cache wording.
     accepts = load_explanation_checker()
     assert accepts(f"Settings: port 8123, retry 4, {value}, supported formats JSON and CSV.")

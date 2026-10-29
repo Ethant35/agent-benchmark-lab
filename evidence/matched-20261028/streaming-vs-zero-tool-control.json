@@ -1,0 +1,108 @@
+{
+  "left_config": "d2d2fda10b892f5e8c7862b5ef5aa73ac932e07d5e24b18bcd2ad9e6b3433dc8",
+  "right_config": "2d83c7940dd576def6f2c0d2a02d333e8160b8722fbc115623713b45ce009e87",
+  "differences": [
+    {
+      "setting": "max_requests",
+      "left": 8,
+      "right": 1
+    },
+    {
+      "setting": "max_tool_steps",
+      "left": null,
+      "right": 0
+    }
+  ],
+  "matches": [
+    {
+      "task_id": "bugfix-rounding",
+      "task_version": "1.0-integration-120s",
+      "task_artifact_id": "a198865bebdf63bf7466b669d680ffa09797893cf8e64d59d6fcfb5bd99ae2d5",
+      "fixture_hash": "078f5de11d3f1e153835c5ea1963fee37925601625d004eebd63dd58a4b5b3e5",
+      "image_id": "7efd45553a98be3d940b73600550669831c0be34f30c521159e7030a91fcdee6",
+      "runner": "agent",
+      "left": {
+        "attempts": 1,
+        "passes": 1,
+        "outcomes": {
+          "passed": 1
+        },
+        "median_wall_seconds": 27.097882749996643,
+        "measured_wall_attempts": 1,
+        "cost_usd": 0.00065107,
+        "known_cost_subtotal_usd": 0.00065107,
+        "cost_sources": {
+          "provider.usage.cost": 1
+        },
+        "active_run": false,
+        "evidence": [
+          {
+            "id": "6de97370754643138b59070ba25999fc",
+            "run_id": "bbc99264cc3d4dff9c22b4e21161bc96",
+            "slot": 0,
+            "status": "PASS",
+            "failure_category": null,
+            "wall_seconds": 27.097882749996643,
+            "cost_usd": 0.00065107,
+            "cost_source": "provider.usage.cost",
+            "known_cost_subtotal_usd": 0.000436532,
+            "verifier_exit_code": 0,
+            "outcome_kind": "passed"
+          }
+        ],
+        "evidence_sampled": false
+      },
+      "right": {
+        "attempts": 1,
+        "passes": 0,
+        "outcomes": {
+          "configured_limit": 1
+        },
+        "median_wall_seconds": 4.896488207999937,
+        "measured_wall_attempts": 1,
+        "cost_usd": 7.342e-05,
+        "known_cost_subtotal_usd": 7.342e-05,
+        "cost_sources": {
+          "provider.usage.cost": 1
+        },
+        "active_run": false,
+        "evidence": [
+          {
+            "id": "e57a674803b84cf7a12a0c13cc7e2284",
+            "run_id": "85eced5537d84b658fe419e392119085",
+            "slot": 0,
+            "status": "FAIL",
+            "failure_category": "step_limit",
+            "wall_seconds": 4.896488207999937,
+            "cost_usd": 7.342e-05,
+            "cost_source": "provider.usage.cost",
+            "known_cost_subtotal_usd": 0,
+            "verifier_exit_code": 1,
+            "outcome_kind": "configured_limit"
+          }
+        ],
+        "evidence_sampled": false
+      },
+      "pass_rate_delta": -1.0,
+      "cost_delta_usd": -0.00057765,
+      "wall_delta_seconds": -22.201394541996706
+    }
+  ],
+  "matched_tasks": 1,
+  "display_limited": false,
+  "excluded": {
+    "left": {
+      "no_equivalent_task": 0
+    },
+    "right": {
+      "no_equivalent_task": 0
+    }
+  },
+  "uncertainty": "Observational attempts, not independent paired trials. Small samples and retries do not establish a causal advantage. Harness version and provider routing are not matched. Verifier rejection does not establish model fault.",
+  "basis": "Same saved task version, task bytes, fixture, image and runner; verified against saved manifests and configurations. Costs cover retained terminal attempts only.",
+  "author": "Ethan",
+  "source_database": ".abl/readiness-live-protocol/integration/results/results.sqlite3",
+  "input_snapshot_sha256": "65a36b2bf1e5e712d2f5e85ae3935e5ce561187a75f76a5e29f469dd96fdf351",
+  "new_provider_calls": 0,
+  "new_provider_cost_usd": 0
+}

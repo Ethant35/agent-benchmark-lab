@@ -104,6 +104,12 @@ The lower-level `abl run --config FILE --root DIR` command remains for advanced 
 
 The historical full-corpus DeepSeek run recorded 8 PASS, 3 FAIL, and 1 TIMEOUT at an observed key charge of $0.014957188. Separately, the provider integration check used a versioned 120-second task contract and cost $0.001403188. That integration check did not extend or rescore any historical 30-second benchmark task. See the [original benchmark report](evidence/full-deepseek-1017/REPORT.md) and [current readiness record](READINESS.md).
 
+The local source revision adds [matched comparisons](docs/MATCHED_COMPARISONS.md)
+from saved attempts, with task identity checks, configuration differences, evidence,
+costs and exclusions. Read the [task and grader audit](docs/TASK_GRADER_AUDIT.md)
+before interpreting failures. [Version 2.0 task contracts](docs/GRADER_V2.md) correct
+the reviewed grader gaps. These source additions are not in the v1.2.1 download.
+
 ## Updates and recovery
 
 Before an update, make a verified backup into a new destination. Install the next wheel into the same virtual environment; keep the result directory untouched. For rollback, install the prior wheel in a separate environment and open a restored copy of your pre-update backup. Keep the original history intact. Restore a backup only to a new, empty destination; restore refuses to overwrite existing data.

@@ -1,16 +1,27 @@
 schema_version: 1
 id: refactor-text-stats
-version: '1.0'
+version: '2.0'
 category: refactor
-description: "Refactor text_stats.py into tokenize(text) and count_words(tokens). Preserve case-folded whitespace tokens including attached punctuation; output sorted JSON counts and total."
+description: Refactor text_stats.py into tokenize(text) and count_words(tokens). Preserve case-folded
+  whitespace tokens including attached punctuation; output sorted JSON counts and total. tokenize returns
+  a list of strings; count_words returns an object with exactly total (integer) and counts (object mapping
+  tokens to integers). The CLI must call both helpers. Modules must import without CLI side effects. Sort
+  all JSON object keys, including counts. JSON object keys must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["text_stats.py"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- text_stats.py
 cleanup: always

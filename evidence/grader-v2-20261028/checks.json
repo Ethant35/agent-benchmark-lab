@@ -1,0 +1,24 @@
+{
+  "author": "Ethan",
+  "python_tests": 121,
+  "container_cases": 62,
+  "reference_passes": 12,
+  "unsolved_rejections": 12,
+  "targeted_mutant_rejections": 34,
+  "alternate_valid_json_passes": 4,
+  "installed_reference_passes": 12,
+  "browser_checks": 20,
+  "historical_evidence_files_unchanged": 116,
+  "archived_canonical_files": 61,
+  "new_provider_calls": 0,
+  "new_provider_cost_usd": 0,
+  "actions_enabled": false,
+  "workflow_runs": 0,
+  "release_published": false,
+  "limits": [
+    "Finite deterministic coverage, not general correctness proof",
+    "Structured navigation explanation replaces prose grading in new version 2.0",
+    "One existing Starlette TestClient deprecation warning",
+    "No fresh paid provider qualification; adapters unchanged"
+  ]
+}

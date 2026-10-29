@@ -3,6 +3,9 @@
 Author: Ethan  
 Qualified: 2026-10-22
 
+This is the preserved October 22 qualification of versions 1.0/1.1.
+For the current 2.0 contracts, see [GRADER_V2.md](GRADER_V2.md).
+
 ## Scope and evidence
 
 The corpus contains twelve deterministic reference tasks. Their verifiers define

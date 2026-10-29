@@ -1,16 +1,26 @@
 schema_version: 1
 id: bugfix-interval-merge
-version: '1.0'
+version: '2.0'
 category: bug_fix
-description: "Fix merge_intervals in app.py. Read JSON pairs on stdin; merge overlapping or touching intervals, sort by start and print compact JSON. Keep the CLI."
+description: Fix merge_intervals in app.py. Read JSON pairs on stdin; merge overlapping or touching intervals,
+  sort by start and print compact JSON. Keep the CLI. merge_intervals accepts a list of integer [start,
+  end] pairs with start <= end and returns a list of merged pairs. Include duplicate, nested, degenerate
+  and negative intervals. The module must be safe to import. JSON object keys must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["app.py"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- app.py
 cleanup: always
