@@ -1,0 +1,13 @@
+{
+  "author": "Ethan",
+  "status": "COMPLETE",
+  "technical_acceptance": "PASS",
+  "public_install": "PASS",
+  "independent_usability": "PENDING",
+  "provider_calls": 0,
+  "provider_cost_usd": 0,
+  "historical_records_preserved": true,
+  "actions_enabled": false,
+  "goal_object": "none",
+  "next_work": "backlog only; stopped"
+}

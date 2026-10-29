@@ -2,6 +2,57 @@
 Author: Ethan
 
 
+## COMPLETE — public v1.3.0, 2026-10-29
+
+Author: Ethan
+
+Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.3.0
+PR10 merged at fcaf3322289de6512c13ba0ae173481c6117f805. Public downloads and
+checksums match the accepted candidate; source rebuild matches all wheel entries.
+All122 installed tests, free recovery/restore/reopen journey, comparison/export
+and both-theme contrast pass.73 corpus files match reused grader-v2 calibration.
+Early interruption with missing image identity stays in history and is excluded
+from matched statistics; identified attempts remain eligible. Unknown-cost and
+incompatible-comparison tests pass. No grader/provider runtime behavior changed.
+
+Installed public app: /Users/ethantarnarider/Applications/AgentBenchmarkLab/1.3.0
+Preserved reference history: /Users/ethantarnarider/Documents/AgentBenchmarkLab/reference-acceptance-1.3.0
+
+Launch from any directory; no source checkout or PYTHONPATH is needed:
+
+```sh
+/Users/ethantarnarider/Applications/AgentBenchmarkLab/1.3.0/.venv/bin/abl dashboard --root /Users/ethantarnarider/Documents/AgentBenchmarkLab/reference-acceptance-1.3.0
+```
+
+Open http://127.0.0.1:8765; Ctrl-C stops the dashboard. Existing results need no VM.
+For a new free run, start the existing stopped Podman VM in a normal Terminal,
+then run the installed CLI's check and start against a new results directory:
+
+```sh
+podman machine start abl-benchmark
+/Users/ethantarnarider/Applications/AgentBenchmarkLab/1.3.0/.venv/bin/abl check
+/Users/ethantarnarider/Applications/AgentBenchmarkLab/1.3.0/.venv/bin/abl start --root /Users/ethantarnarider/Documents/AgentBenchmarkLab/my-runs
+```
+
+The default run is a free reference control, not a model score. No key is needed.
+If the VM is already running, skip its start command. Stop it only when no other
+work uses it. No global config, prune, Actions or paid runs were used.
+
+Evidence: evidence/release-1.3.0/. Historical evidence remains intact. Temporary
+release directories and install/build copies were removed (~102MiB); public app,
+downloads, restored results and evidence remain. Ports18768/18769/18770 are closed;
+Podman is stopped; no owned containers/volumes remained before stop. The restored
+app still serves all task contexts/traces after temporary source/backup deletion.
+
+Unfamiliar-developer usability is pending; no unfamiliar developer was available.
+Fresh-Mac setup, Windows/Docker and new model studies are not claimed. A local-app
+PyPI audit entry was unavailable; all third-party installed packages were audited
+with no known vulnerabilities. One existing Starlette/httpx warning remains.
+
+Technical release contract complete. No goal object exists on this chat to mark
+complete. No usage guard or assistants remain active. Stop here; no automatic resume.
+Future studies/optional features are in docs/BACKLOG.md.
+
 ## v1.3.0 CANDIDATE ACCEPTED — 2026-10-29
 
 Author: Ethan. Frozen contract: docs/RELEASE_1_3_0.md.
