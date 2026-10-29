@@ -52,7 +52,11 @@ def inspect_task(task_id:str):
 def validate(config:Annotated[Path|None,typer.Option('--config')]=None):
     c=config_at(config); tasks=load_tasks()
     if any(t not in tasks for t in c.tasks): raise typer.BadParameter('Unknown task in configuration')
-    emit({'valid':True,'tasks':len(tasks),'categories':sorted({t.category for t,p in tasks.values()}),'config_hash':c.fingerprint()})
+    selected=c.tasks or sorted(tasks)
+    emit({'valid':True,'tasks':len(tasks),'tasks_scope':'available corpus tasks (legacy field)',
+          'available_corpus_tasks':len(tasks),'selected_tasks':len(selected),
+          'scheduled_trials':len(selected)*c.repeats,
+          'categories':sorted({t.category for t,p in tasks.values()}),'config_hash':c.fingerprint()})
 
 @app.command()
 def run(root:Root=Path('.abl'),config:Annotated[Path|None,typer.Option('--config')]=None,
