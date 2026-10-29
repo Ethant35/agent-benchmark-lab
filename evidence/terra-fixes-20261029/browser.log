@@ -19,10 +19,10 @@ Running 22 tests using 1 worker
   ✓  12 e2e.spec.ts:321:1 › stale result offset returns to the first page (211ms)
   ✓  13 e2e.spec.ts:336:1 › filter changes replace old rows with a compact loading state until new matches arrive (122ms)
   ✓  14 e2e.spec.ts:365:1 › run configuration labels use actual cost field and keep reference controls plain (129ms)
-axe violations: 
+axe violations:
 (node:29498) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-detail axe: 
+detail axe:
   ✓  15 e2e.spec.ts:381:1 › large histories page compact rows and label chart samples (1.5s)
   ✓  16 e2e.spec.ts:459:1 › unknown final cost retains its known subtotal and distinct corpus groups (283ms)
   ✓  17 e2e.spec.ts:487:1 › failed detail request retries the same evidence without replacing the trial list (257ms)
