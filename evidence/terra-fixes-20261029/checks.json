@@ -1,0 +1,18 @@
+{
+  "author": "Ethan",
+  "python_tests": 122,
+  "browser_tests": 22,
+  "reference_recovery": "PASS; INTERRUPTED then PASS; retained attempt unchanged; no owned resources after completion",
+  "real_reference_comparison": "PASS; 1 vs 2 retained attempts; API equals downloaded JSON",
+  "provider_calls": 0,
+  "cost_usd": 0,
+  "historical_tracked_corpus_and_evidence": "unchanged from HEAD 869736ab1060878e3440f322c0a10a2400d0ed38",
+  "scope": "Source revision; no new release or model-quality claim",
+  "metadata": "Saved PNG Author chunks verified as Ethan",
+  "limitations": [
+    "Python suite run on a clean tracked-source snapshot to avoid filesystem duplicate reads",
+    "One existing Starlette/httpx deprecation warning",
+    "Cost delta remains conservatively unavailable when cost-source counts differ; both reference totals are zero",
+    "Interruption of the assistant turn stopped owned background services after recovery had passed; dashboard restarted for final browser checks"
+  ]
+}

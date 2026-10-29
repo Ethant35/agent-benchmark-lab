@@ -154,3 +154,26 @@ def test_progress_never_echoes_tool_or_provider_payload(capsys,tmp_path):
     output=capsys.readouterr().out
     assert 'Waiting for provider' in output and 'Tool step' in output
     assert 'private-sentinel' not in output
+
+
+def test_validate_labels_corpus_selection_and_schedule_counts(tmp_path):
+    # Keep the legacy total while making a one-task configuration unambiguous.
+    from abl.models import load_tasks
+    total = len(load_tasks())
+    for selected, repeats, count in [(['bugfix-rounding'], 3, 1), ([], 2, total)]:
+        path = tmp_path / 'counts.yaml'
+        path.write_text(yaml.safe_dump({'tasks': selected, 'repeats': repeats}))
+        result = runner.invoke(app, ['validate', '--config', str(path)])
+        assert result.exit_code == 0, result.output
+        data = json.loads(result.output)
+        assert data['tasks'] == data['available_corpus_tasks'] == total
+        assert data['tasks_scope'] == 'available corpus tasks (legacy field)'
+        assert data['selected_tasks'] == count
+        assert data['scheduled_trials'] == count * repeats
+        plan = runner.invoke(app, ['start', '--config', str(path), '--plan'])
+        assert plan.exit_code == 0, plan.output
+        assert f'{count * repeats} scheduled trial(s)' in plan.output
+    path.write_text('tasks: [unknown-task]\n')
+    invalid = runner.invoke(app, ['validate', '--config', str(path)])
+    assert invalid.exit_code == 2
+    assert 'Unknown task' in invalid.output

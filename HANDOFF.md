@@ -2,6 +2,33 @@
 Author: Ethan
 
 
+## VERIFIED FOR PR — Terra fixes, 2026-10-29
+
+Author: Ethan
+
+Two corrections are implemented: inherited text now follows the theme text color;
+validate distinguishes available_corpus_tasks, selected_tasks and scheduled_trials,
+while retaining the legacy tasks field with an explicit tasks_scope label.
+
+Checks: 122 Python tests, 22 browser tests, and a real free SIGTERM/resume journey
+pass. Recovery retains the INTERRUPTED attempt and adds PASS, cleans owned resources,
+and costs $0. Two real reference configurations match the same task2.0 contract;
+the comparison keeps 1 vs2 attempts, opens interruption evidence and downloads JSON
+identical to the API. These are harness checks, not model-quality measurements.
+See evidence/terra-fixes-20261029/ and dashboard/reference-comparison.mjs.
+
+The Python suite initially stalled reading duplicate archive files in the synced
+checkout. A clean git archive with the exact code patch passed all122 tests. No
+duplicates were deleted. Podman ran in a persistent PTY; the real recovery test
+verified cleanup before an assistant-turn interruption stopped background services.
+Final UI checks use restarted dashboards and saved results, without more paid calls.
+One existing Starlette/httpx deprecation warning remains. No public release.
+
+The latest instruction disables BOTH the 50%-remaining and active-reset usage
+stops; the guard was terminated. No goal or global configuration was changed.
+No assistants were spawned for these fixes. PR/merge follows this checkpoint; final
+merge and cleanup are recorded in the local completion handoff.
+
 ## VERIFIED FOR PR — grader version 2.0, 2026-10-28
 
 Ethan authorized grader corrections with new versions, local tests, no paid calls,

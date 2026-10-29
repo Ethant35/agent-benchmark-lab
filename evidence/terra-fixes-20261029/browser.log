@@ -1,0 +1,35 @@
+
+> agent-benchmark-lab-dashboard@1.2.1 test:e2e
+> playwright test
+
+
+Running 22 tests using 1 worker
+
+  ✓   1 e2e.spec.ts:5:1 › matched comparisons show saved equivalent tasks and open attempt evidence (940ms)
+  ✓   2 e2e.spec.ts:53:1 › comparison errors can retry and unverifiable tasks stay excluded (245ms)
+  ✓   3 e2e.spec.ts:78:1 › dashboard reads persisted results, filters, details, and exports (1.2s)
+  ✓   4 e2e.spec.ts:159:1 › both export formats download from the persisted API (151ms)
+  ✓   5 e2e.spec.ts:165:1 › cross-run provider and model filters exclude nonmatching persisted records (192ms)
+  ✓   6 e2e.spec.ts:180:1 › filters and page are encoded in the URL and restored by a direct link (131ms)
+  ✓   7 e2e.spec.ts:199:1 › loading, API errors, and a valid empty result each have a clear recovery path (203ms)
+  ✓   8 e2e.spec.ts:227:1 › empty workspace, filter miss, and returning state stay distinct (261ms)
+  ✓   9 e2e.spec.ts:257:1 › active runs refresh in place and report safe terminal cancellation guidance (3.4s)
+  ✓  10 e2e.spec.ts:273:1 › workspace state waits for its identity before loading filters or restoring evidence (110ms)
+  ✓  11 e2e.spec.ts:302:1 › workspace lookup error gives retry and never shows a guessed results path (171ms)
+  ✓  12 e2e.spec.ts:321:1 › stale result offset returns to the first page (211ms)
+  ✓  13 e2e.spec.ts:336:1 › filter changes replace old rows with a compact loading state until new matches arrive (122ms)
+  ✓  14 e2e.spec.ts:365:1 › run configuration labels use actual cost field and keep reference controls plain (129ms)
+axe violations:
+(node:29498) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+detail axe:
+  ✓  15 e2e.spec.ts:381:1 › large histories page compact rows and label chart samples (1.5s)
+  ✓  16 e2e.spec.ts:459:1 › unknown final cost retains its known subtotal and distinct corpus groups (283ms)
+  ✓  17 e2e.spec.ts:487:1 › failed detail request retries the same evidence without replacing the trial list (257ms)
+  ✓  18 e2e.spec.ts:504:1 › recovered run outcome stays separate from retained attempt metrics and historical task text (259ms)
+  ✓  19 e2e.spec.ts:535:1 › active run cost is unavailable while terminal known spend stays explicit (104ms)
+  ✓  20 e2e.spec.ts:547:1 › technical details expose allowlisted settings that distinguish matching model labels (328ms)
+  ✓  21 e2e.spec.ts:579:3 › comparison labels meet contrast requirements in light theme (412ms)
+  ✓  22 e2e.spec.ts:579:3 › comparison labels meet contrast requirements in dark theme (395ms)
+
+  22 passed (11.7s)

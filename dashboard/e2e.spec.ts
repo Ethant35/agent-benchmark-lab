@@ -573,3 +573,18 @@ test('technical details expose allowlisted settings that distinguish matching mo
   const warmSettings=page.getByTestId('benchmark-settings');
   await expect(warmSettings.getByText('Temperature', {exact:true}).locator('xpath=following-sibling::dd')).toHaveText('0.8');
 });
+
+
+for (const colorScheme of ['light', 'dark'] as const) {
+  test(`comparison labels meet contrast requirements in ${colorScheme} theme`, async ({ page }) => {
+    await page.emulateMedia({ colorScheme });
+    await page.goto('/');
+    const panel = page.getByTestId('matched-comparisons');
+    await panel.locator(':scope > summary').click();
+    await expect(panel.getByLabel('Comparison configuration A')).toBeVisible();
+    await expect(panel.getByLabel('Comparison configuration B')).toBeVisible();
+    const result = await new AxeBuilder({ page }).include('.matched-comparisons').withRules(['color-contrast']).analyze();
+    expect(result.violations).toEqual([]);
+    await page.screenshot({ path: `test-results/comparison-labels-${colorScheme}.png`, fullPage: true });
+  });
+}

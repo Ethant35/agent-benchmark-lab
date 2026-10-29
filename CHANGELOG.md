@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Fix inherited text contrast in the dark dashboard. Label validation counts for
+  available tasks, selected tasks and scheduled trials; retain the legacy total.
+- Verify free interruption/recovery and a real matched comparison with evidence
+  navigation, JSON download and light/dark contrast checks.
+
 - Version all twelve task contracts as 2.0. Check helper behavior and CLI use,
   structured navigation claims, pipeline artifacts/types, general input variants,
   unique JSON keys and sorted refactor output. Archive the previous corpus.

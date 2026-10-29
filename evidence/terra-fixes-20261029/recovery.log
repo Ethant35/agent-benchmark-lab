@@ -1,0 +1,10 @@
+Check installed package and container prerequisite
+PASS: fresh workspace reports zero saved runs
+Run the one-task reference journey
+PASS: free reference trial aa947d4461a34e589eaed6ae4a9cf851 verified at $0
+PASS: returning dashboard lists the saved trial and reports zero filter matches separately
+PASS: backup/restore preserves the JSON trial export exactly
+Start the controlled reference-only cancellation case
+PASS: SIGTERM left a clean interrupted run 9a49ab0806d94da39fe03360a4cf0e97
+PASS: resumed reference PASS completed and cleaned resources (2 attempts)
+USABILITY E2E PASS: no provider configuration, credential, or model request was used
