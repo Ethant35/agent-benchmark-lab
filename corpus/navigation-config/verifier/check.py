@@ -1,12 +1,6 @@
-import ast,json,hashlib,subprocess,sys
-from pathlib import Path
-from contract import explanation_describes_settings
-W=Path('/workspace')
-try:
-    src=(W/'settings.py').read_bytes(); assert hashlib.sha256(src).hexdigest()=='fbce7e223f91664aa6558ba6926b439b1308adf9561d01ad03d9a31742b0c560'
-    d=json.loads((W/'answer.json').read_text()); explanation=d.pop('explanation'); assert d=={'default_port': 8123, 'retry_limit': 4, 'cache_enabled': False, 'supported_formats': ['json', 'csv', 'ndjson'], 'source': 'settings.py'},d
-    assert type(d['default_port']) is int and type(d['retry_limit']) is int and type(d['cache_enabled']) is bool
-    assert d['source']=='settings.py' and explanation_describes_settings(explanation)
-    print('PASS: source attribution, unchanged-source digest, and extracted facts verified')
-except Exception as e:
-    print('FAIL:',repr(e),file=sys.stderr); raise
+from support import *
+import hashlib
+assert hashlib.sha256((W/'settings.py').read_bytes()).hexdigest()=='fbce7e223f91664aa6558ba6926b439b1308adf9561d01ad03d9a31742b0c560', 'source changed'
+equal(read('answer.json'),{'default_port': 8123, 'retry_limit': 4, 'cache_enabled': False, 'supported_formats': ['json', 'csv', 'ndjson'], 'source': 'settings.py', 'explanation': {'listener': {'symbol': 'DEFAULT_PORT', 'value': 8123}, 'retry': {'symbol': 'RETRY_LIMIT', 'value': 4}, 'cache': {'symbol': 'CACHE_ENABLED', 'value': False}, 'formats': {'symbol': 'SUPPORTED_FORMATS', 'value': ['json', 'csv', 'ndjson']}}})
+
+print('PASS: version 2.0 contract verified')

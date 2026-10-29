@@ -9,7 +9,7 @@
     "tool": "write_file",
     "arguments": {
       "path": "routes.json",
-      "content": "{\"route_count\":4,\"methods_by_path\":{\"/health\":[\"GET\"],\"/items\":[\"GET\",\"POST\"],\"/items/{item_id}\":[\"DELETE\"]},\"health_path\":\"/health\",\"source\":\"routes.py\",\"explanation\":\"There are four declared route-method pairs. /health is the health endpoint; /items supports GET and POST; the item-specific route supports DELETE.\"}\n"
+      "content": "{\"route_count\": 4, \"methods_by_path\": {\"/health\": [\"GET\"], \"/items\": [\"GET\", \"POST\"], \"/items/{item_id}\": [\"DELETE\"]}, \"health_path\": \"/health\", \"source\": \"routes.py\", \"explanation\": {\"health\": {\"path\": \"/health\", \"methods\": [\"GET\"]}, \"collection\": {\"path\": \"/items\", \"methods\": [\"GET\", \"POST\"]}, \"item\": {\"path\": \"/items/{item_id}\", \"methods\": [\"DELETE\"]}}}\n"
     }
   }
 ]

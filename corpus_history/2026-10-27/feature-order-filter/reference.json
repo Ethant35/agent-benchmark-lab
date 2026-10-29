@@ -1,0 +1,9 @@
+[
+  {
+    "tool": "write_file",
+    "arguments": {
+      "path": "filter_orders.py",
+      "content": "import argparse,json\nparser=argparse.ArgumentParser()\nparser.add_argument('--status',required=True)\nparser.add_argument('--minimum',required=True,type=float)\na=parser.parse_args()\nwith open('orders.json',encoding='utf-8') as f: orders=json.load(f)\nprint(json.dumps([r for r in orders if r['status']==a.status and r['total']>=a.minimum],separators=(',',':')))\n"
+    }
+  }
+]

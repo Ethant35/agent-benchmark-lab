@@ -9,7 +9,7 @@
     "tool": "write_file",
     "arguments": {
       "path": "answer.json",
-      "content": "{\"default_port\":8123,\"retry_limit\":4,\"cache_enabled\":false,\"supported_formats\":[\"json\",\"csv\",\"ndjson\"],\"source\":\"settings.py\",\"explanation\":\"DEFAULT_PORT is the default listener port; RETRY_LIMIT sets the retry bound; CACHE_ENABLED controls caching; SUPPORTED_FORMATS lists supported formats for export.\"}\n"
+      "content": "{\"default_port\": 8123, \"retry_limit\": 4, \"cache_enabled\": false, \"supported_formats\": [\"json\", \"csv\", \"ndjson\"], \"source\": \"settings.py\", \"explanation\": {\"listener\": {\"symbol\": \"DEFAULT_PORT\", \"value\": 8123}, \"retry\": {\"symbol\": \"RETRY_LIMIT\", \"value\": 4}, \"cache\": {\"symbol\": \"CACHE_ENABLED\", \"value\": false}, \"formats\": {\"symbol\": \"SUPPORTED_FORMATS\", \"value\": [\"json\", \"csv\", \"ndjson\"]}}}\n"
     }
   }
 ]

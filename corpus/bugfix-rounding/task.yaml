@@ -1,16 +1,26 @@
 schema_version: 1
 id: bugfix-rounding
-version: '1.0'
+version: '2.0'
 category: bug_fix
-description: "Repair format_price in app.py: use exact decimal half-up rounding to 2 places. Preserve CLI: python app.py AMOUNT. Cover negative and tie cases."
+description: 'Repair format_price in app.py: use exact decimal half-up rounding to 2 places. Preserve
+  CLI: python app.py AMOUNT. Cover negative and tie cases. format_price accepts a decimal string and returns
+  the two-place string, including a minus sign for rounded negative zero. The module must be safe to import.
+  Inputs are finite decimal strings, including exponent notation. JSON object keys must be unique.'
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["app.py"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- app.py
 cleanup: always

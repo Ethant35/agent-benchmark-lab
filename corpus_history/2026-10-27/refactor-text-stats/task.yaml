@@ -1,0 +1,16 @@
+schema_version: 1
+id: refactor-text-stats
+version: '1.0'
+category: refactor
+description: "Refactor text_stats.py into tokenize(text) and count_words(tokens). Preserve case-folded whitespace tokens including attached punctuation; output sorted JSON counts and total."
+fixture: fixture
+setup: []
+allowed_tools: [read_file, write_file, shell, finish]
+network: none
+runtime_seconds: 30
+max_tool_steps: 20
+token_budget: null
+cost_budget_usd: null
+verifier: [python, /verifier/check.py]
+expected_artifacts: ["text_stats.py"]
+cleanup: always

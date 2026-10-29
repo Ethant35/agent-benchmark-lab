@@ -1,0 +1,124 @@
+
+> agent-benchmark-lab-dashboard@1.2.1 test:e2e
+> playwright test
+
+
+Running 20 tests using 1 worker
+
+  ✘   1 e2e.spec.ts:5:1 › matched comparisons show saved equivalent tasks and open attempt evidence (1.4s)
+  ✓   2 e2e.spec.ts:53:1 › comparison errors can retry and unverifiable tasks stay excluded (361ms)
+  ✓   3 e2e.spec.ts:78:1 › dashboard reads persisted results, filters, details, and exports (12.5s)
+  ✓   4 e2e.spec.ts:159:1 › both export formats download from the persisted API (457ms)
+  ✓   5 e2e.spec.ts:165:1 › cross-run provider and model filters exclude nonmatching persisted records (415ms)
+  ✓   6 e2e.spec.ts:180:1 › filters and page are encoded in the URL and restored by a direct link (279ms)
+  ✓   7 e2e.spec.ts:199:1 › loading, API errors, and a valid empty result each have a clear recovery path (418ms)
+  ✓   8 e2e.spec.ts:227:1 › empty workspace, filter miss, and returning state stay distinct (580ms)
+  ✓   9 e2e.spec.ts:257:1 › active runs refresh in place and report safe terminal cancellation guidance (3.5s)
+  ✓  10 e2e.spec.ts:273:1 › workspace state waits for its identity before loading filters or restoring evidence (149ms)
+  ✓  11 e2e.spec.ts:302:1 › workspace lookup error gives retry and never shows a guessed results path (226ms)
+  ✓  12 e2e.spec.ts:321:1 › stale result offset returns to the first page (244ms)
+  ✓  13 e2e.spec.ts:336:1 › filter changes replace old rows with a compact loading state until new matches arrive (134ms)
+  ✓  14 e2e.spec.ts:365:1 › run configuration labels use actual cost field and keep reference controls plain (126ms)
+axe violations: 
+(node:3485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+detail axe: 
+  ✓  15 e2e.spec.ts:381:1 › large histories page compact rows and label chart samples (2.1s)
+  ✘  16 e2e.spec.ts:459:1 › unknown final cost retains its known subtotal and distinct corpus groups (5.2s)
+  ✓  17 e2e.spec.ts:487:1 › failed detail request retries the same evidence without replacing the trial list (270ms)
+  ✓  18 e2e.spec.ts:504:1 › recovered run outcome stays separate from retained attempt metrics and historical task text (275ms)
+  ✓  19 e2e.spec.ts:535:1 › active run cost is unavailable while terminal known spend stays explicit (103ms)
+  ✓  20 e2e.spec.ts:547:1 › technical details expose allowlisted settings that distinguish matching model labels (325ms)
+
+
+  1) e2e.spec.ts:5:1 › matched comparisons show saved equivalent tasks and open attempt evidence ───
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 40
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+    +     "help": "Elements must have their visible text as part of their accessible name",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=playwright",
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "label-content-name-mismatch",
+    +             "impact": "serious",
+    +             "message": "Text inside the element is not included in the accessible name",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Text inside the element is not included in the accessible name",
+    +         "html": "<button class=\"trial-open\" aria-label=\"Open comparison attempt 6de97370754643138b59070ba25999fc\">PASS · 6de97370</button>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "details[open=\"\"] > ul > li > .trial-open",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.semantics",
+    +       "wcag21a",
+    +       "wcag253",
+    +       "EN-301-549",
+    +       "EN-9.2.5.3",
+    +       "RGAAv4",
+    +       "RGAA-6.1.5",
+    +     ],
+    +   },
+    + ]
+
+      41 |   await panel.getByRole('link', { name: 'Export comparison JSON' }).click();
+      42 |   expect((await download).suggestedFilename()).toBe('matched-comparison.json');
+    > 43 |   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+         |                                                                 ^
+      44 |   await page.screenshot({ path: 'test-results/matched-comparisons.png', fullPage: true });
+      45 |   await page.setViewportSize({ width: 320, height: 800 });
+      46 |   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBeTruthy();
+        at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts:43:65
+
+    Error Context: test-results/e2e-matched-comparisons-sh-b75f7-s-and-open-attempt-evidence/error-context.md
+
+  2) e2e.spec.ts:459:1 › unknown final cost retains its known subtotal and distinct corpus groups ──
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('mixed-summary')
+    Expected substring: "3 configurations and task contracts"
+    Received string:    "3 attempts across 3 configuration and contract groups."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('mixed-summary') with timeout 5000ms
+      - waiting for getByTestId('mixed-summary')
+        14 × locator resolved to <p class="summary-context" data-testid="mixed-summary">3 attempts across 3 configuration and contract gr…</p>
+           - unexpected value "3 attempts across 3 configuration and contract groups."
+
+
+      469 |   await page.getByText('Attempt metrics and configuration analysis').click();
+      470 |   await expect(page.getByText('$0.020000042 known subtotal', {exact:false}).first()).toBeVisible();
+    > 471 |   await expect(page.getByTestId('mixed-summary')).toContainText('3 configurations and task contracts');
+          |                                                   ^
+      472 |   await expect(page.locator('.comparison-panel')).toContainText('not rankings');
+      473 |   await expect(page.locator('.comparison-panel')).toContainText('settings outside1 · corpus outside6');
+      474 |   await expect(page.getByTestId('trial-row').filter({hasText:'tiny-cost'})).toContainText('$0.000000042');
+        at /Users/ethantarnarider/Documents/ChatGPT/Open source/agent-benchmark-lab/dashboard/e2e.spec.ts:471:51
+
+    Error Context: test-results/e2e-unknown-final-cost-ret-1f9d1--and-distinct-corpus-groups/error-context.md
+
+  2 failed
+    e2e.spec.ts:5:1 › matched comparisons show saved equivalent tasks and open attempt evidence ────
+    e2e.spec.ts:459:1 › unknown final cost retains its known subtotal and distinct corpus groups ───
+  18 passed (35.9s)

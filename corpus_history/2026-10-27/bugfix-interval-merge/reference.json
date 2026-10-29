@@ -1,0 +1,9 @@
+[
+  {
+    "tool": "write_file",
+    "arguments": {
+      "path": "app.py",
+      "content": "import json,sys\ndef merge_intervals(items):\n out=[]\n for a,b in sorted(items):\n  if out and a<=out[-1][1]: out[-1][1]=max(out[-1][1],b)\n  else: out.append([a,b])\n return out\nif __name__==\"__main__\": print(json.dumps(merge_intervals(json.load(sys.stdin)),separators=(\",\",\":\")))\n"
+    }
+  }
+]

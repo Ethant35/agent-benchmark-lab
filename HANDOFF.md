@@ -1,6 +1,133 @@
 # Agent Benchmark Lab handoff
 Author: Ethan
 
+
+## VERIFIED FOR PR — grader version 2.0, 2026-10-28
+
+Ethan authorized grader corrections with new versions, local tests, no paid calls,
+then a PR and merge. The earlier matched-comparison/UI revision is included.
+Authoritative checkout: `.abl/production-20261027/release-checkout`, branch
+`codex/grader-contracts-v2`. The original checkout/duplicate Git ref is preserved.
+
+All12 active tasks now use2.0. Direct function calls, helper-use checks, generated
+boundary cases, explicit extraction schemas, structured navigation explanations,
+strict nested types, duplicate JSON keys, sorted serialization and saved pipeline
+outputs are checked. Reference implementations were updated where contracts changed.
+Previous61 canonical task files are archived under corpus_history/2026-10-27 and
+match origin/main bytes. Existing116 evidence files and original model scores/costs
+are unchanged. See docs/GRADER_V2.md and evidence/grader-v2-20261028/.
+
+Final checks:121 Python tests;62 isolated container cases (12 reference passes,
+12 unsolved rejections,34 targeted mutant rejections,4 alternate-valid-JSON passes);
+12 installed-wheel reference passes;20 installed dashboard browser checks. Package
+source/wheel/installed88 runtime and corpus files match. Author Ethan verified in
+wheel metadata and generated PNGs. Final documentation-only rebuild changed corpus
+README; tested task/runtime bytes stayed identical. No paid requests; new cost$0.
+
+Initial Podman startup did not survive the tool session, and the first held start
+failed on its proxy socket. A PTY holder stabilized the existing dedicated VM;
+all accepted results come from the subsequent real runs. No host candidate execution.
+Older preliminary successful60-case run is retained privately, not added to the62.
+One existing Starlette/httpx TestClient deprecation warning remains. Finite examples
+and helper profiling do not prove universal correctness or prose quality. Structured
+navigation explanations are a new contract, not a rescore of earlier prose answers.
+
+Owned dashboard91908 stopped; port8794 closed. Containers/volumes empty before VM
+shutdown; holder84084 stopped. No assistants spawned. Actions remain disabled with
+zero workflow runs. No release uploaded; publicv1.2.1 assets remain unchanged.
+Local PR creation/merge follows this checkpoint. Final merge identity is recorded
+in the local completion handoff and attached PR.
+
+Usage baseline21%used, latest35%used; reset1793774143 unchanged. Supported tool guard
+cell38 polls45s and stops at50%remaining or an active reset to100%remaining. No trigger
+at this checkpoint. Stop the guard at task completion; no automatic continuation.
+
+Future model collection needs explicit paid authorization and must report version2.0
+separately. A new downloadable release requires its own publication/asset verification.
+
+
+## COMPLETE LOCAL REVISION — audit and matched comparisons, 2026-10-28
+
+Ethan resumed with this bounded scope: audit tasks/graders first, trim UI copy,
+and add matched comparisons using existing results. No new paid calls.
+This scope is implemented and checked locally. It is uncommitted and not included
+in the published v1.2.1 assets. No publication or new benchmark collection occurred.
+
+### Audit and behavior
+
+- `docs/TASK_GRADER_AUDIT.md`: all twelve descriptions, fixtures and graders reviewed.
+  Routes has unstated keyword/40-character rules. Other gaps include lexical prose
+  checks, incomplete helper/function checks, numeric types and serialization order.
+  Pure source/equality probes are saved. Task/verifier bytes remain unchanged.
+- `abl/comparison.py`, additive `GET /api/comparison`, and `Store.compare` read one
+  snapshot and require saved configuration/manifest/slot/task/image agreement.
+  Match exact task/version/artifact/fixture/image/runner. Keep references, changed
+  contracts and unknown identity separate. Retain retries, failures, cost unknowns,
+  timing coverage, cost-source labels, exclusions and uncertainty. Verifier failure
+  is not labeled model fault; limits, provider and harness/execution errors differ.
+- Dashboard: shorter repeated quick-start, progress, summary, history and chart
+  copy; essential instructions/accessibility remain. Matched comparisons has A/B
+  selectors, setting differences, evidence links, export, small-sample warnings and
+  explicit display limits. Existing metrics/exports/CLI status codes are unchanged.
+- `scripts/compare_saved.py` opens an existing database read-only and exports the
+  same comparison without launching a runner/provider.
+
+### Existing measurements
+
+`docs/MATCHED_COMPARISONS.md` and `evidence/matched-20261028/` preserve two pairs
+from the saved 120-second DeepSeek integration task. Streaming: 1/1 PASS,27.097883s,
+$0.000651070. Nonstreaming: 1/1 PASS,40.464801s,$0.000678698. Difference B-A:
++13.366918s,+$0.000027628,0 percentage points. One attempt per setting proves no
+reliability/causal advantage. The intentional zero-tool control remains FAIL under
+its configured limits,$0.000073420. All three total the historical $0.001403188.
+Both pair reports contain streaming; do not sum their totals. Original full-corpus
+8PASS/3FAIL/1TIMEOUT and charge$0.014957188 remain unchanged and separate.
+
+### Verification and limits
+
+108 canonical Python tests passed before the final two boundary tests were added;
+the final affected-area suite passed50 tests including those additions. Counts
+are overlapping, not additive. Final TypeScript/Vite build and20 browser checks
+pass, including real saved integration records, synthetic boundary fixtures,
+axe, keyboard focus/evidence return, export, filtering and320px layout. The initial
+browser accessibility defect was fixed; failed-run log is retained. Desktop/mobile
+screenshots inspected; PNG Author=Ethan saved and verified.88 corpus/historical
+files match the recorded SHA256 baseline. No original results were rescored.
+One existing Starlette/httpx TestClient deprecation warning remains.
+
+Private work root: `.abl/matched-20261028/`. Browser database is a disposable copy
+of prior public free/recovery results plus original integration records; all source
+DB reads were read-only. No VM/container/candidate execution or paid request.
+No new installed-package/security/release qualification is claimed for this source
+revision. The previous public release remains unchanged. Source/fixtures needed
+for comparison browser acceptance are explained in the comparison documentation.
+
+### Cleanup and usage
+
+Owned dashboard PIDs95215 and29973 stopped; port8793 confirmed closed. Test processes
+finished. No assistants spawned or resumed. No VM started, settings/hooks changed,
+GitHub Actions enabled, credentials used or automation created. No push/PR/release.
+Startup usage6%used; final19%used/81%remaining, reset1793774143 unchanged. Guard
+polled every45s. During work Ethan's relayed update changed the stop from5%remaining
+to **50% REMAINING (50% consumed)**; this is now in CONSTRAINTS.md. Active-work reset
+to100%remaining remains a stop. Neither trigger occurred. Guard cells4/31 are stopped
+at task completion. `get_goal` returned null at startup and completion; no goal
+was created, replaced, resumed or falsely completed/paused through the goal tool.
+
+Original branch `codex/result-clarity` and pre-existing duplicate Git ref/files
+remain untouched. Prior post-release doc/evidence changes were preserved. Current
+revision changes CONSTRAINTS,README,HANDOFF,API/store,dashboard source/tests and adds
+comparison module/tests,read-only report script,audit/comparison docs and new evidence.
+
+### Next work, only on a new request
+
+Before collecting more model results, version grader corrections and qualify them
+with positive variants and targeted negative controls in isolation. Preserve the
+old corpus and scores. New paid collection still needs explicit authorization.
+If shipping this local revision, package/install-check these exact bytes and perform
+applicable release gates first; current v1.2.1 is the previous verified release.
+No automatic continuation or monitor remains.
+
 ## RELEASE COMPLETE — v1.2.1, 2026-10-27
 
 Release: https://github.com/Ethant35/agent-benchmark-lab/releases/tag/v1.2.1

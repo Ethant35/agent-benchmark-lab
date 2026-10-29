@@ -1,0 +1,9 @@
+[
+  {
+    "tool": "write_file",
+    "arguments": {
+      "path": "app.py",
+      "content": "from decimal import Decimal,ROUND_HALF_UP\nimport sys\ndef format_price(x): return str(Decimal(str(x)).quantize(Decimal(\"0.01\"),rounding=ROUND_HALF_UP))\nif __name__==\"__main__\": print(format_price(sys.argv[1]))\n"
+    }
+  }
+]

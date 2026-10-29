@@ -1,16 +1,38 @@
 schema_version: 1
 id: multistep-document-index
-version: '1.1'
+version: '2.0'
 category: multistep
-description: "Implement indexer.py with three dependent commands and run scan, index, manifest in order. scan reads file names from files.txt in that order and writes docs.json as a JSON array of objects, each with exactly file (the relative file name) and bytes (the non-negative integer file length in bytes). index splits each document on whitespace and writes index.json as a JSON object mapping each lowercase word, after trimming punctuation from its ends, to the sorted array of relative file names containing it. manifest hashes the exact bytes of docs.json and index.json with SHA-256, then writes manifest.json as a JSON object with exactly sha256 (an object mapping each relative JSON file name to its lowercase hexadecimal digest) and document_count (the number of scanned documents)."
+description: Implement indexer.py with three dependent commands and run scan, index, manifest in order.
+  scan reads file names from files.txt in that order and writes docs.json as a JSON array of objects,
+  each with exactly file (the relative file name) and bytes (the non-negative integer file length in bytes).
+  index splits each document on whitespace and writes index.json as a JSON object mapping each lowercase
+  word, after trimming punctuation from its ends, to the sorted array of relative file names containing
+  it. manifest hashes the exact bytes of docs.json and index.json with SHA-256, then writes manifest.json
+  as a JSON object with exactly sha256 (an object mapping each relative JSON file name to its lowercase
+  hexadecimal digest) and document_count (the number of scanned documents). Leave all required output
+  files present. The verifier checks saved outputs before rerunning the commands on other inputs. Execution
+  history itself is not graded; the implemented dependency chain and output artifacts are graded. Support
+  empty input. Trim ASCII punctuation as defined by Python string.punctuation; omit tokens that become
+  empty. Support UTF-8 content and different file-list order. All bytes and document_count values must
+  be JSON integers, not floats or booleans. JSON object keys must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["indexer.py", "docs.json", "index.json", "manifest.json"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- indexer.py
+- docs.json
+- index.json
+- manifest.json
 cleanup: always

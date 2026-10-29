@@ -1,0 +1,1 @@
+Use exact cents with half-up rounding.

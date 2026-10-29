@@ -1,0 +1,29 @@
+{
+  "author": "Ethan",
+  "scope": "Local source revision; not a published or freshly installed release",
+  "canonical_python_suite": {
+    "passed": 108,
+    "log": "pytest.log"
+  },
+  "final_changed_area_python_suite": {
+    "passed": 50,
+    "log": "pytest-final-focused.log",
+    "note": "Includes two added boundary cases; overlaps the earlier full suite. Do not add counts."
+  },
+  "final_browser_suite": {
+    "passed": 20,
+    "log": "browser.log",
+    "includes": "real saved integration records plus labeled controlled UI fixtures, axe, keyboard, 320px reflow, evidence links, export"
+  },
+  "typescript_vite_build": "passed",
+  "task_grader_audit": "all 12 reviewed; contracts unchanged; deficiencies recorded",
+  "historical_files_unchanged": 88,
+  "new_provider_requests": 0,
+  "new_provider_cost_usd": 0,
+  "screenshots_author": "Ethan",
+  "limitations": [
+    "one recorded attempt per compared integration setting",
+    "harness version and routing are not identity keys",
+    "no new corpus/container qualification or package release"
+  ]
+}

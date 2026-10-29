@@ -1,16 +1,26 @@
 schema_version: 1
 id: feature-slugify
-version: '1.0'
+version: '2.0'
 category: feature
-description: "Implement slugify(text) in slugify.py and stdin CLI. Normalize accents to ASCII, lowercase, collapse non-alphanumeric runs to hyphen, trim hyphens; punctuation-only input returns empty."
+description: Implement slugify(text) in slugify.py and stdin CLI. Normalize accents to ASCII, lowercase,
+  collapse non-alphanumeric runs to hyphen, trim hyphens; punctuation-only input returns empty. Use Unicode
+  NFKD normalization, discard non-ASCII characters, then apply the ASCII a-z/0-9 rule. slugify returns
+  a string and its module must be safe to import. JSON object keys must be unique.
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["slugify.py"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- slugify.py
 cleanup: always

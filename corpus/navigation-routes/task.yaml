@@ -1,16 +1,29 @@
 schema_version: 1
 id: navigation-routes
-version: '1.0'
+version: '2.0'
 category: navigation
-description: "Inspect routes.py and write routes.json with route_count, methods_by_path, health_path, source, and explanation. Preserve method declaration order. source must be the exact relative path; explanation must explain the route facts. Do not modify routes.py."
+description: 'Inspect routes.py and write routes.json with exactly route_count (integer), methods_by_path
+  (object of ordered method-string arrays), health_path (string), source="routes.py", and explanation.
+  Preserve source bytes and method declaration order. explanation is a structured JSON object, not prose:
+  keys health, collection, item, each mapping to exactly path and methods. Use the health endpoint, collection
+  endpoint and item-specific endpoint from ROUTES, with their full path strings and ordered method arrays.
+  These claims must agree with the extracted routes. No prose length or keywords are required. JSON object
+  keys must be unique.'
 fixture: fixture
 setup: []
-allowed_tools: [read_file, write_file, shell, finish]
+allowed_tools:
+- read_file
+- write_file
+- shell
+- finish
 network: none
 runtime_seconds: 30
 max_tool_steps: 20
 token_budget: null
 cost_budget_usd: null
-verifier: [python, /verifier/check.py]
-expected_artifacts: ["routes.json"]
+verifier:
+- python
+- /verifier/check.py
+expected_artifacts:
+- routes.json
 cleanup: always

@@ -1,13 +1,10 @@
-import ast,json,subprocess,sys
-from pathlib import Path
-W=Path('/workspace')
-def run(args):
- p=subprocess.run(args,cwd='/workspace',env={'PATH':'/usr/local/bin:/usr/bin:/bin','PYTHONDONTWRITEBYTECODE':'1'},capture_output=True,text=True,timeout=5,user=65534,group=65534,extra_groups=[])
- assert p.returncode==0,(args,p.stdout,p.stderr)
- return p
-try:
-    for x,y in [('1.005','1.01'),('2.675','2.68'),('-1.005','-1.01'),('0','0.00'),('9.999','10.00')]:
-        p=run(['python','app.py',x]); assert p.stdout.strip()==y,(x,p.stdout,p.stderr)
-    print('PASS: independent task evidence verified')
-except Exception as e:
- print('FAIL:',repr(e),file=sys.stderr); raise
+from support import *
+from decimal import Decimal, ROUND_HALF_UP
+cases=['1.005','2.675','-1.005','0','9.999','-0.005','-0.004','123456.995','1e-3']
+cases += [str(Decimal(n)/1000) for n in range(-9525,9526,635)]
+for value in cases:
+    expected=str(Decimal(value).quantize(Decimal('0.01'),rounding=ROUND_HALF_UP))
+    equal(call('app.py','format_price',[value]),expected)
+    assert run(['python','app.py',value]).stdout.strip()==expected
+
+print('PASS: version 2.0 contract verified')

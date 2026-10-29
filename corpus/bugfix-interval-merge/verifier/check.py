@@ -1,13 +1,22 @@
-import ast,json,subprocess,sys
-from pathlib import Path
-W=Path('/workspace')
-def run(args):
- p=subprocess.run(args,cwd='/workspace',env={'PATH':'/usr/local/bin:/usr/bin:/bin','PYTHONDONTWRITEBYTECODE':'1'},capture_output=True,text=True,timeout=5,user=65534,group=65534,extra_groups=[])
- assert p.returncode==0,(args,p.stdout,p.stderr)
- return p
-try:
-    for v,w in [([[1,3],[3,5]],'[[1,5]]'),([[8,9],[1,2],[2,4]],'[[1,4],[8,9]]'),([],'[]'),([[-4,-1],[-2,0]],'[[-4,0]]')]:
-        p=run(['python','-c','import subprocess,sys; p=subprocess.run([sys.executable,"app.py"],input=sys.argv[1],text=True,capture_output=True); print(p.stdout,end=""); sys.exit(p.returncode)',json.dumps(v)]); assert p.stdout.strip()==w,p.stdout
-    print('PASS: independent task evidence verified')
-except Exception as e:
- print('FAIL:',repr(e),file=sys.stderr); raise
+from support import *
+import random
+rng=random.Random(8123)
+cases=[[],[[1,3],[3,5]],[[8,9],[1,2],[2,4]],[[-4,-1],[-2,0]],[[2,2],[2,2]],[[0,10],[2,3],[9,12]]]
+for _ in range(20):
+    cases.append([sorted([rng.randint(-30,30),rng.randint(-30,30)]) for _ in range(rng.randrange(1,14))])
+for intervals in cases:
+    # Independent connected-component oracle, rather than the candidate's sorted sweep.
+    groups=[[x] for x in intervals]
+    changed=True
+    while changed:
+        changed=False
+        for i in range(len(groups)):
+            for j in range(i+1,len(groups)):
+                if any(a<=d and c<=b for a,b in groups[i] for c,d in groups[j]):
+                    groups[i]+=groups.pop(j);changed=True;break
+            if changed: break
+    expected=sorted([[min(x[0] for x in g),max(x[1] for x in g)] for g in groups])
+    equal(call('app.py','merge_intervals',[intervals]),expected)
+    assert run(['python','app.py'],json.dumps(intervals)).stdout.strip()==json.dumps(expected,separators=(',',':'))
+
+print('PASS: version 2.0 contract verified')

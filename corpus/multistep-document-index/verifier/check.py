@@ -1,13 +1,26 @@
-import ast,json,subprocess,sys
-from pathlib import Path
-W=Path('/workspace')
-def run(args):
- p=subprocess.run(args,cwd='/workspace',env={'PATH':'/usr/local/bin:/usr/bin:/bin','PYTHONDONTWRITEBYTECODE':'1'},capture_output=True,text=True,timeout=5,user=65534,group=65534,extra_groups=[])
- assert p.returncode==0,(args,p.stdout,p.stderr)
- return p
-try:
-    for s in ['scan','index','manifest']: run(['python','indexer.py',s])
-    docs=json.loads((W/'docs.json').read_text()); idx=json.loads((W/'index.json').read_text()); m=json.loads((W/'manifest.json').read_text()); assert docs==[{'file':'a.txt','bytes':24},{'file':'b.txt','bytes':22}]; assert idx=={'apple':['a.txt'],'green':['a.txt','b.txt'],'pear':['b.txt'],'plum':['b.txt'],'red':['a.txt','b.txt']}; import hashlib; h={p:hashlib.sha256((W/p).read_bytes()).hexdigest() for p in ['docs.json','index.json']}; assert m=={'sha256':h,'document_count':2}
-    print('PASS: independent task evidence verified')
-except Exception as e:
- print('FAIL:',repr(e),file=sys.stderr); raise
+from support import *
+import hashlib,string
+
+def expected_outputs(names,contents):
+    docs=[{'file':n,'bytes':len(contents[n].encode('utf-8'))} for n in names]
+    index={}
+    for n in names:
+        for token in contents[n].split():
+            word=token.lower().strip(string.punctuation)
+            if word and n not in index.setdefault(word,[]): index[word].append(n)
+    return docs,{word:sorted(files) for word,files in index.items()}
+def validate(names,contents):
+    docs,index=expected_outputs(names,contents)
+    equal(read('docs.json'),docs);equal(read('index.json'),index)
+    equal(read('manifest.json'),{'sha256':{p:hashlib.sha256((W/p).read_bytes()).hexdigest() for p in ['docs.json','index.json']},'document_count':len(names)})
+# First inspect the agent's saved outputs. Do not let grader execution create missing work.
+names=['a.txt','b.txt'];contents={'a.txt':'Red apple, green apple.\n','b.txt':'Green pear; red plum!\n'}
+validate(names,contents)
+for names,contents in [(['z.txt','a.txt'],{'z.txt':'(Écho) \"pear\" ___ !!!\n','a.txt':'PEAR pear red_red.'}),([], {})]:
+    (W/'files.txt').write_text('\n'.join(names))
+    for n,text in contents.items(): (W/n).write_text(text)
+    for output in ['docs.json','index.json','manifest.json']: (W/output).unlink(missing_ok=True)
+    for step in ['scan','index','manifest']: run(['python','indexer.py',step])
+    validate(names,contents)
+
+print('PASS: version 2.0 contract verified')

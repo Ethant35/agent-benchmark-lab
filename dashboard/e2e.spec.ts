@@ -2,6 +2,79 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { mkdir } from 'node:fs/promises';
 
+test('matched comparisons show saved equivalent tasks and open attempt evidence', async ({ page, request }) => {
+  const all = await (await request.get('/api/trials')).json();
+  const runs = await (await request.get('/api/runs')).json();
+  const integration = all.filter((t: any) => t.task_version?.includes('integration') && t.runner === 'agent');
+  const config = (t: any) => runs.find((r: any) => r.id === t.run_id)?.config;
+  const a = integration.find((t: any) => config(t)?.streaming === true && config(t)?.max_tool_steps == null);
+  const b = integration.find((t: any) => config(t)?.streaming === false);
+  expect(a, 'Use the copied saved integration results for comparison acceptance').toBeTruthy();
+  expect(b).toBeTruthy();
+  await page.goto('/');
+  const panel = page.getByTestId('matched-comparisons');
+  await panel.locator(':scope > summary').click();
+  await panel.getByLabel('Comparison configuration A').selectOption(a.config_hash);
+  await panel.getByLabel('Comparison configuration B').selectOption(b.config_hash);
+  await expect(panel.getByTestId('matched-results')).toContainText('1 matched task contracts');
+  await expect(panel).toContainText('One-attempt sample; reliability unknown.');
+  await expect(panel).toContainText('streaming');
+  await expect(panel).toContainText(a.cost_usd.toString());
+  await expect(panel).toContainText(b.cost_usd.toString());
+  await panel.getByText('A attempt evidence', { exact: true }).click();
+  const link = panel.getByRole('button', { name: new RegExp(`Open comparison attempt ${a.id}`) });
+  await link.click();
+  await expect(page.getByTestId('trial-detail')).toContainText(a.task_id);
+  await page.keyboard.press('Escape');
+  await expect(link).toBeFocused();
+  // Automatic refresh must preserve an open disclosure and keyboard focus.
+  await expect.poll(async () => panel.locator('details[open]').count(), { timeout: 5000 }).toBeGreaterThan(0);
+  await page.getByRole('button', { name: 'Refresh results' }).click();
+  await expect(link).toBeVisible();
+  const response = await request.get(`/api/comparison?left=${a.config_hash}&right=${b.config_hash}`);
+  expect(response.ok()).toBeTruthy();
+  const exported = await response.json();
+  expect(exported.matches[0].left.evidence[0].id).toBe(a.id);
+  expect(exported.matches[0].right.evidence[0].id).toBe(b.id);
+  expect(exported.matches[0].cost_delta_usd).toBeCloseTo(b.cost_usd - a.cost_usd, 12);
+  const download = page.waitForEvent('download');
+  await panel.getByRole('link', { name: 'Export comparison JSON' }).click();
+  expect((await download).suggestedFilename()).toBe('matched-comparison.json');
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+  await page.screenshot({ path: 'test-results/matched-comparisons.png', fullPage: true });
+  await page.setViewportSize({ width: 320, height: 800 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBeTruthy();
+  await page.screenshot({ path: 'test-results/matched-comparisons-mobile.png', fullPage: true });
+  await panel.getByLabel('Comparison configuration B').selectOption(a.config_hash);
+  await expect(panel.getByRole('status')).toHaveText('Choose two different configurations.');
+  await expect(panel.getByTestId('matched-results')).toHaveCount(0);
+});
+
+test('comparison errors can retry and unverifiable tasks stay excluded', async ({ page }) => {
+  const hashes = ['a'.repeat(64), 'b'.repeat(64)];
+  const trials = hashes.map((config_hash, i) => ({id:`comparison-${i}`,run_id:'r',task_id:'task',status:'PASS',runner:'agent',model:'example',config_hash}));
+  await page.route('**/api/workspace', route => route.fulfill({json:{workspace_id:'comparison-fixture'}}));
+  await page.route('**/api/runs', route => route.fulfill({json:[]}));
+  await page.route('**/api/trials/page**', route => route.fulfill({json:{items:trials,total:2,offset:0,limit:100}}));
+  await page.route('**/api/overview**', route => route.fulfill({json:{summary:{groups:hashes.map(config_hash=>({config_hash,model:'example'}))},chart_trials:trials,providers:[],models:[],tasks:[],chart_total:2,chart_sampled:false}}));
+  let calls = 0;
+  await page.route('**/api/comparison?**', route => {
+    calls++;
+    return calls === 1 ? route.fulfill({status:503,body:'unavailable'}) : route.fulfill({json:{matches:[],matched_tasks:0,differences:[],excluded:{left:{unverified_identity:1},right:{no_equivalent_task:1}},basis:'Saved identity required.',uncertainty:'No ranking.'}});
+  });
+  await page.goto('/');
+  const panel = page.getByTestId('matched-comparisons');
+  await panel.locator(':scope > summary').click();
+  await panel.getByLabel('Comparison configuration A').selectOption(hashes[0]);
+  await panel.getByLabel('Comparison configuration B').selectOption(hashes[1]);
+  await expect(panel.getByRole('alert')).toContainText('503');
+  await panel.getByRole('button', {name:'Retry comparison'}).click();
+  await expect(panel).toContainText('No verified equivalent tasks.');
+  await panel.getByText('Matching rules and exclusions', {exact:true}).click();
+  await expect(panel).toContainText('1 unverified identity');
+  await expect(panel.getByRole('region', {name:'Matched task results'})).toHaveCount(0);
+});
+
 test('dashboard reads persisted results, filters, details, and exports', async ({ page, request }) => {
   const runsResponse = await request.get('/api/runs');
   expect(runsResponse.ok(), 'The dashboard API must be running').toBeTruthy();
@@ -191,9 +264,9 @@ test('active runs refresh in place and report safe terminal cancellation guidanc
   await page.route('**/api/trials/page**', route => route.fulfill({ json: { items: [], total: 0, limit: 100, offset: 0 } }));
   await page.route('**/api/overview**', route => route.fulfill({ json: { summary: {}, providers: [], models: [], tasks: [], chart_trials: [], chart_total: 0, chart_sampled: false } }));
   await page.goto('/');
-  await expect(page.getByText('A benchmark run is active')).toBeVisible();
-  await expect(page.getByText('Cancel it from the terminal running the CLI.')).toBeVisible();
-  await expect(page.getByText('A benchmark run is active')).toHaveCount(0, { timeout: 5000 });
+  await expect(page.getByText('Run active.')).toBeVisible();
+  await expect(page.getByText('Cancel in the CLI terminal.')).toBeVisible();
+  await expect(page.getByText('Run active.')).toHaveCount(0, { timeout: 5000 });
   expect(runReads).toBeGreaterThanOrEqual(2);
 });
 
@@ -395,8 +468,8 @@ test('unknown final cost retains its known subtotal and distinct corpus groups',
   await expect(page.getByTestId('schedule-summary')).toBeHidden();
   await page.getByText('Attempt metrics and configuration analysis').click();
   await expect(page.getByText('$0.020000042 known subtotal', {exact:false}).first()).toBeVisible();
-  await expect(page.getByTestId('mixed-summary')).toContainText('3 configurations and task contracts');
-  await expect(page.locator('.comparison-panel')).toContainText('not rankings');
+  await expect(page.getByTestId('mixed-summary')).toContainText('3 configuration and contract groups');
+  await expect(page.locator('.comparison-panel')).toContainText('Unmatched group totals');
   await expect(page.locator('.comparison-panel')).toContainText('settings outside1 · corpus outside6');
   await expect(page.getByTestId('trial-row').filter({hasText:'tiny-cost'})).toContainText('$0.000000042');
   await expect(page.getByTestId('success-matrix').locator('thead th')).toHaveCount(3);
@@ -468,7 +541,7 @@ test('active run cost is unavailable while terminal known spend stays explicit',
   await page.goto('/');
   await expect(page.getByTestId('schedule-summary')).toContainText('$0.0200 known terminal subtotal · active total unavailable');
   await expect(page.getByTestId('schedule-summary')).toContainText('matching active run total');
-  await expect(page.getByRole('status')).toContainText('A benchmark run is active');
+  await expect(page.getByRole('status')).toContainText('Run active.');
 });
 
 test('technical details expose allowlisted settings that distinguish matching model labels', async ({page}) => {
