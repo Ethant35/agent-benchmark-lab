@@ -1,0 +1,11 @@
+
+> agent-benchmark-lab-dashboard@1.3.0 test:e2e
+> playwright test --grep comparison labels meet contrast
+
+
+Running 2 tests using 1 worker
+
+  ✓  1 e2e.spec.ts:579:3 › comparison labels meet contrast requirements in light theme (627ms)
+  ✓  2 e2e.spec.ts:579:3 › comparison labels meet contrast requirements in dark theme (406ms)
+
+  2 passed (1.7s)

@@ -8,7 +8,7 @@ Agent Benchmark Lab measures whether an AI agent completes small software tasks.
 
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if it is not already available. It creates an isolated Python 3.12 environment and can download Python when needed. The supported wheel route needs no Git, Node.js, or frontend build. Qualification used Python 3.12.14.
 
-Install the current release wheel in a dedicated Python environment. Release files and SHA-256 checksums are published on the [GitHub Releases page](https://github.com/Ethant35/agent-benchmark-lab/releases/latest). The commands below pin the v1.2.1 wheel; check the release page if a later release is available.
+Install the current release wheel in a dedicated Python environment. Release files and SHA-256 checksums are published on the [GitHub Releases page](https://github.com/Ethant35/agent-benchmark-lab/releases/latest). The commands below pin the v1.3.0 wheel; check the release page if a later release is available.
 
 ```sh
 set -e
@@ -16,12 +16,12 @@ mkdir -p ~/agent-benchmark-lab
 cd ~/agent-benchmark-lab
 uv venv --python 3.12 .venv
 source .venv/bin/activate
-wheel_path=agent_benchmark_lab-1.2.1-py3-none-any.whl
+wheel_path=agent_benchmark_lab-1.3.0-py3-none-any.whl
 curl -fL -o "$wheel_path" \
-  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.2.1/agent_benchmark_lab-1.2.1-py3-none-any.whl
+  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.3.0/agent_benchmark_lab-1.3.0-py3-none-any.whl
 curl -fL -o SHA256SUMS.txt \
-  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.2.1/SHA256SUMS.txt
-expected_hash=$(awk '$2 == "agent_benchmark_lab-1.2.1-py3-none-any.whl" { print $1 }' SHA256SUMS.txt)
+  https://github.com/Ethant35/agent-benchmark-lab/releases/download/v1.3.0/SHA256SUMS.txt
+expected_hash=$(awk '$2 == "agent_benchmark_lab-1.3.0-py3-none-any.whl" { print $1 }' SHA256SUMS.txt)
 test -n "$expected_hash"
 printf '%s  %s\n' "$expected_hash" "$wheel_path" | shasum -a 256 -c -
 uv pip install "./$wheel_path"
@@ -104,11 +104,11 @@ The lower-level `abl run --config FILE --root DIR` command remains for advanced 
 
 The historical full-corpus DeepSeek run recorded 8 PASS, 3 FAIL, and 1 TIMEOUT at an observed key charge of $0.014957188. Separately, the provider integration check used a versioned 120-second task contract and cost $0.001403188. That integration check did not extend or rescore any historical 30-second benchmark task. See the [original benchmark report](evidence/full-deepseek-1017/REPORT.md) and [current readiness record](READINESS.md).
 
-The local source revision adds [matched comparisons](docs/MATCHED_COMPARISONS.md)
+The release includes [matched comparisons](docs/MATCHED_COMPARISONS.md)
 from saved attempts, with task identity checks, configuration differences, evidence,
 costs and exclusions. Read the [task and grader audit](docs/TASK_GRADER_AUDIT.md)
 before interpreting failures. [Version 2.0 task contracts](docs/GRADER_V2.md) correct
-the reviewed grader gaps. These source additions are not in the v1.2.1 download.
+the reviewed grader gaps. See the [release acceptance](docs/RELEASE_1_3_0.md) for scope and evidence.
 
 ## Updates and recovery
 

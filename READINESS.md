@@ -2,6 +2,17 @@
 Author: Ethan
 Updated: 2026-10-22
 
+## v1.3.0 package qualification — 2026-10-29
+
+The external installed candidate passes122 Python checks, a free execution/recovery/
+backup/restore/reopen journey, real comparison/export, and both-theme contrast checks.
+Early interruption without image identity stays in history and is excluded from
+matched statistics; the identified-interruption case also passes on retained records.
+All73 corpus files match grader-v2 calibration, whose62 cases and12 reference passes
+are reused. Fresh dependency audits found no known vulnerabilities. No paid calls.
+Unfamiliar-developer usability remains pending. See docs/RELEASE_1_3_0.md and
+evidence/release-1.3.0/. Public asset verification is recorded after publication.
+
 ## Source grader 2.0 qualification — 2026-10-28
 
 All twelve active task contracts are version2.0. Local qualification passes121 Python

@@ -1,0 +1,23 @@
+{
+  "author": "Ethan",
+  "status": "CANDIDATE_ACCEPTED",
+  "version": "1.3.0",
+  "runtime_base": "5150a905bc403ac8fff7071e84a4c1ba149e152a",
+  "runtime_changes": "version constant only",
+  "installed_python_tests": 122,
+  "extra_boundary_tests": 46,
+  "contrast_tests": 2,
+  "new_free_journey": "PASS",
+  "restored_history_and_comparison": "PASS",
+  "early_interruption": "retained in history; excluded from matches because image identity was not recorded",
+  "identified_interruption": "retained in both history and compatible matched statistics; rechecked against copied prior free records",
+  "grader_calibration": "73 corpus file hashes identical; reuse62 calibration cases and12 installed references",
+  "prior_browser_checks_reused": 22,
+  "unknown_costs_and_incompatible_comparisons": "installed boundary tests passed",
+  "dependency_audit": "no known vulnerabilities; local app absent from PyPI audit catalogue, reviewed via source/tests",
+  "provider_calls": 0,
+  "provider_cost_usd": 0,
+  "unfamiliar_developer_usability": "PENDING",
+  "first_vm_start": "gvproxy failed before any task; retry succeeded; VM not reset",
+  "remaining": "publish and verify public installation"
+}

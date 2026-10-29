@@ -29,12 +29,17 @@ assert.equal(match.runner, 'reference');
 assert.equal(match.task_version, first.task_version);
 assert.equal(match.left.attempts, 1);
 assert.equal(match.left.passes, 1);
-assert.equal(match.right.attempts, 2);
+// An interruption during container startup may precede the recorded image identity.
+// It must remain in history but cannot enter matched statistics without that identity.
+const identifiedInterruption = interrupted.image_id != null;
+const expectedRightAttempts = identifiedInterruption ? 2 : 1;
+assert.equal(match.right.attempts, expectedRightAttempts);
+assert.equal(comparison.excluded.right.unverified_identity ?? 0, identifiedInterruption ? 0 : 1);
 assert.equal(match.right.passes, 1);
-assert.deepEqual(match.right.evidence.map(e => e.id).sort(), [interrupted.id, resumed.id].sort());
+assert.deepEqual(match.right.evidence.map(e => e.id).sort(), (identifiedInterruption ? [interrupted.id, resumed.id] : [resumed.id]).sort());
 assert.equal(match.left.cost_usd, 0);
 assert.equal(match.right.cost_usd, 0);
-assert.equal(match.pass_rate_delta, -0.5); // Attempt history, not recovered schedule success.
+assert.equal(match.pass_rate_delta, identifiedInterruption ? -0.5 : 0); // Attempt history, not recovered schedule success.
 assert.match(comparison.uncertainty, /not independent paired trials/);
 await writeFile(path.join(output, 'comparison-api.json'), JSON.stringify(comparison, null, 2) + '\n');
 const browser = await chromium.launch();
@@ -49,14 +54,24 @@ try {
   await expect(panel.getByTestId('matched-results')).toContainText('1 matched task contracts');
   await expect(panel).toContainText('Reference control');
   await expect(panel).toContainText('1/1 passed (100.0%)');
-  await expect(panel).toContainText('1/2 passed (50.0%)');
-  await expect(panel).toContainText('1 interrupted or cancelled');
+  if (identifiedInterruption) {
+    await expect(panel).toContainText('1/2 passed (50.0%)');
+    await expect(panel).toContainText('1 interrupted or cancelled');
+  } else {
+    await panel.getByText('Matching rules and exclusions', { exact: true }).click();
+    await expect(panel).toContainText('1 unverified identity');
+  }
   await panel.getByText('B attempt evidence', { exact: true }).click();
-  const evidence = panel.getByRole('button', { name: new RegExp(`Open comparison attempt ${interrupted.id}`) });
+  const evidence = panel.getByRole('button', { name: new RegExp(`Open comparison attempt ${resumed.id}`) });
   await evidence.click();
-  await expect(page.getByTestId('trial-detail')).toContainText('INTERRUPTED');
+  await expect(page.getByTestId('trial-detail')).toContainText('PASS');
   await page.keyboard.press('Escape');
   await expect(evidence).toBeFocused();
+  const retained = page.getByTestId('trial-row').filter({ hasText: 'INTERRUPTED' }).getByRole('button');
+  await retained.click();
+  await expect(page.getByTestId('trial-detail')).toContainText('INTERRUPTED');
+  await page.keyboard.press('Escape');
+  await expect(retained).toBeFocused();
   const pending = page.waitForEvent('download');
   await panel.getByRole('link', { name: 'Export comparison JSON' }).click();
   const download = await pending;
@@ -70,7 +85,7 @@ try {
   await page.setViewportSize({ width: 320, height: 800 });
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth));
   await page.screenshot({ path: path.join(output, 'reference-comparison-mobile.png'), fullPage: true });
-  await writeFile(path.join(output, 'checks.json'), JSON.stringify({author:'Ethan',status:'PASS',provider_calls:0,cost_usd:0,real_reference_attempts:3,recovered_attempt_unchanged:'verified by usability_e2e.py',matched_contracts:1,attempt_counts:[1,2],pass_counts:[1,1],download_matches_api:true,dark_label_contrast:'PASS',mobile_320px:'PASS',evidence_navigation_and_focus:'PASS',scope:'Reference and harness behavior only; not model quality'}, null, 2) + '\n');
+  await writeFile(path.join(output, 'checks.json'), JSON.stringify({author:'Ethan',status:'PASS',provider_calls:0,cost_usd:0,real_reference_attempts:3,recovered_attempt_unchanged:'verified by usability_e2e.py',matched_contracts:1,attempt_counts:[1,expectedRightAttempts],unverified_interruption_excluded:!identifiedInterruption,pass_counts:[1,1],download_matches_api:true,dark_label_contrast:'PASS',mobile_320px:'PASS',evidence_navigation_and_focus:'PASS',scope:'Reference and harness behavior only; not model quality'}, null, 2) + '\n');
   console.log('PASS: real recovered reference comparison, retained evidence, download, contrast and mobile layout');
 } finally {
   await browser.close();
