@@ -1,0 +1,9 @@
+{
+  "author": "Ethan",
+  "status": "PASS",
+  "retained_attempts": 3,
+  "recovered_schedule_passed": 1,
+  "recovered_attempt_pass_rate": 0.5,
+  "all_task_contexts_verified": true,
+  "all_traces_present": true
+}

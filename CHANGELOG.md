@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.3.0 — 2026-10-29
 
 - Fix inherited text contrast in the dark dashboard. Label validation counts for
   available tasks, selected tasks and scheduled trials; retain the legacy total.
@@ -12,7 +12,9 @@
   unique JSON keys and sorted refactor output. Archive the previous corpus.
 - Add matched comparisons from saved equivalent tasks, attempt evidence and cost
   uncertainty; shorten repeated dashboard copy. Historical results remain unchanged.
-- No new paid model calls or published release.
+- Ship the current source as an installable wheel and source archive. Qualify free
+  execution, recovery, comparison/export and restored history outside the checkout.
+- No new paid model calls. Unfamiliar-developer usability remains pending.
 
 Author: Ethan
 

@@ -1,0 +1,10 @@
+{
+  "author": "Ethan",
+  "all_rows_equal": true,
+  "tables": [
+    "runs",
+    "trials",
+    "run_manifests"
+  ],
+  "all_three_attempts_retained": true
+}

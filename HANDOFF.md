@@ -2,6 +2,16 @@
 Author: Ethan
 
 
+## v1.3.0 CANDIDATE ACCEPTED — 2026-10-29
+
+Author: Ethan. Frozen contract: docs/RELEASE_1_3_0.md.
+Installed outside checkout without source paths. All122 tests, the free recovery/
+restore/reopen journey and comparison/export pass. Corpus calibration reused by hash.
+No paid calls. Unfamiliar developer usability pending. Runtime changes are version
+metadata only; the test driver now verifies early identity exclusion and later matching.
+Evidence: evidence/release-1.3.0/. Merge, publish and public-download verification follow.
+No goal exists on this chat; final completion will be recorded in the handoff.
+
 ## VERIFIED FOR PR — Terra fixes, 2026-10-29
 
 Author: Ethan
